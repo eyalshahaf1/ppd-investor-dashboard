@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import type { DataUpload } from "@/lib/types";
+import { DataQualityScorecard } from "./DataQualityScorecard";
 
 const uploadTypes = [
   {
@@ -180,6 +181,8 @@ export function DataConnectionView() {
           ))}
         </div>
       </aside>
+
+      <DataQualityScorecard uploads={uploads} />
 
       <section className="span-7 panel">
         <div className="upload-head">

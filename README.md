@@ -115,7 +115,7 @@ This is a prototype app:
 - local Next.js API routes,
 - local SQLite database,
 - local CSV/TXT pilot upload registry,
-- investor visualizations: pilot evidence, productivity waterfall, sensitivity tornado, and five-year projection,
+- investor visualizations: pilot evidence, data quality scorecard, partner execution flow, productivity waterfall, sensitivity tornado, and five-year SaaS vs pension impact,
 - persistent light/dark mode toggle,
 - global footer with contact, LinkedIn, copyright, and disclaimer,
 - Japanese-version path documented in the About view,

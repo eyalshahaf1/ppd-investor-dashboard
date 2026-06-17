@@ -2,6 +2,7 @@ import { scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
 import type { Assumptions, ProjectionRow } from "@/lib/types";
 import { KpiCard } from "./KpiCard";
+import { PartnerExecutionFlow } from "./PartnerExecutionFlow";
 import { PilotEvidenceChart } from "./PilotEvidenceChart";
 import { ProjectionChart } from "./ProjectionChart";
 
@@ -112,13 +113,14 @@ export function OverviewView({ assumptions, mediumProjection }: OverviewViewProp
         </p>
       </aside>
 
+      <PartnerExecutionFlow />
       <PilotEvidenceChart assumptions={assumptions} />
 
       <section className="span-12 panel chart-frame">
         <div className="chart-head">
-          <h3>Medium scenario: retirement value, tracked assets, and platform revenue</h3>
+          <h3>5-year SaaS revenue vs pension impact</h3>
           <div className="legend">
-            <span><i />Annual contributions</span>
+            <span><i />Retirement contribution flow</span>
             <span className="aum"><i />End-year AUM tracked</span>
             <span className="revenue"><i />Platform revenue</span>
           </div>

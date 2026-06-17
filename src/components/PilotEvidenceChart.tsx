@@ -22,7 +22,7 @@ export function PilotEvidenceChart({ assumptions }: PilotEvidenceChartProps) {
 
   const metrics: EvidenceMetric[] = [
     { label: "Cycle time", before: 100, after: 82, unit: "index", direction: "down" },
-    { label: "Throughput", before: 100, after: 118, unit: "index", direction: "up" },
+    { label: "Volume handled", before: 100, after: 118, unit: "index", direction: "up" },
     { label: "Error / rework", before: 100, after: 71, unit: "index", direction: "down" },
     {
       label: "Overtime cost",
@@ -31,7 +31,7 @@ export function PilotEvidenceChart({ assumptions }: PilotEvidenceChartProps) {
       unit: "yen",
       direction: "down"
     },
-    { label: "AI cost load", before: 0, after: aiCostShare, unit: "%", direction: "down" }
+    { label: "AI cost", before: 0, after: aiCostShare, unit: "%", direction: "down" }
   ];
 
   return (

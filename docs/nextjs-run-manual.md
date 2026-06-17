@@ -122,6 +122,8 @@ src/components/
   AppFooter.tsx
   OverviewView.tsx
   CalculatorView.tsx
+  DataQualityScorecard.tsx
+  PartnerExecutionFlow.tsx
   PilotEvidenceChart.tsx
   ProductivityWaterfallChart.tsx
   SensitivityTornadoChart.tsx
@@ -150,11 +152,15 @@ The investor dashboard includes four chart families:
 ```text
 Overview:
   PilotEvidenceChart - before/after pilot proof metrics
-  ProjectionChart - five-year retirement flow, AUM tracked, platform revenue
+  PartnerExecutionFlow - customer data to regulated partner to employee account
+  ProjectionChart - five-year SaaS revenue vs pension impact
 
 Calculator:
   ProductivityWaterfallChart - operating evidence to verified gain to pension pool
   SensitivityTornadoChart - which assumptions move the retirement pool most
+
+Data Connect:
+  DataQualityScorecard - completeness, baseline, AI-cost evidence, layoff exclusion, partner readiness
 ```
 
 ## Theme And Localization
