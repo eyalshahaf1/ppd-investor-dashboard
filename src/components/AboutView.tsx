@@ -13,14 +13,32 @@ const productBoundaries = [
   ["Not policy-dependent", "The business can start as a voluntary employer SaaS before any public mandate exists."]
 ];
 
-const staticResources = [
-  ["Brand mark", "/brand-mark.svg", "SVG identity asset for decks and lightweight web use."],
-  ["Social preview", "/social-preview.svg", "Open Graph preview image for sharing the project link."],
-  ["Pilot CSV template", "/templates/pilot-workflow-metrics.csv", "Safe aggregated workflow upload format."],
-  ["Assumptions JSON", "/templates/assumptions-template.json", "Static model assumptions template."],
-  ["Partner instruction JSON", "/templates/contribution-instruction-template.json", "Dry-run partner execution payload."],
-  ["Privacy notice", "/legal/privacy-notice.md", "Prototype privacy and data-handling notice."],
-  ["Terms placeholder", "/legal/terms-placeholder.md", "Prototype terms and compliance boundary notice."]
+const staticResourceGroups = [
+  {
+    title: "Demo identity",
+    body: "Useful for decks, browser metadata, and shared links.",
+    links: [
+      ["Brand mark", "/brand-mark.svg"],
+      ["Social preview", "/social-preview.svg"]
+    ]
+  },
+  {
+    title: "Pilot templates",
+    body: "Starter files for safe aggregated customer-data demonstrations.",
+    links: [
+      ["Workflow CSV", "/templates/pilot-workflow-metrics.csv"],
+      ["Assumptions JSON", "/templates/assumptions-template.json"],
+      ["Partner instruction JSON", "/templates/contribution-instruction-template.json"]
+    ]
+  },
+  {
+    title: "Prototype legal notes",
+    body: "Plain-language placeholders that clarify demo boundaries.",
+    links: [
+      ["Privacy notice", "/legal/privacy-notice.md"],
+      ["Terms placeholder", "/legal/terms-placeholder.md"]
+    ]
+  }
 ];
 
 const proofPoints = [
@@ -100,23 +118,45 @@ export function AboutView() {
       <section className="span-12 panel">
         <div className="resource-head">
           <div>
-            <h3>Static project resources</h3>
+            <h3>Project resources</h3>
             <p>
-              These files live in the Next.js <code>public/</code> folder and
-              are included in the GitHub-ready project zip.
+              Investor and pilot support files included with the app. They are
+              served from the Next.js <code>public/</code> folder and included
+              in the GitHub-ready zip.
             </p>
           </div>
         </div>
-        <div className="resource-link-grid">
-          {staticResources.map(([title, href, body]) => (
-            <a className="resource-link" href={href} key={href}>
-              <span>{title}</span>
-              <p>{body}</p>
-              <small>{href}</small>
-            </a>
+        <div className="resource-group-grid">
+          {staticResourceGroups.map((group) => (
+            <article className="resource-group" key={group.title}>
+              <h3>{group.title}</h3>
+              <p>{group.body}</p>
+              <div className="resource-actions">
+                {group.links.map(([label, href]) => (
+                  <a href={href} key={href}>
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
       </section>
+
+      <footer className="span-12 about-footer">
+        <div>
+          <b>Pension from AI Productivity Dividend</b>
+          <p>Prepared by Eyal Shahaf. Prototype SaaS MVP for investor and pilot discussion.</p>
+        </div>
+        <div>
+          <b>Current status</b>
+          <p>Local Next.js demo with SQLite persistence, pilot upload workflow, and static project resources.</p>
+        </div>
+        <div>
+          <b>Compliance boundary</b>
+          <p>Not financial, pension, legal, tax, or investment advice. Regulated partners execute pension rails.</p>
+        </div>
+      </footer>
     </div>
   );
 }

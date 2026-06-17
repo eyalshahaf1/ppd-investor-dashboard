@@ -1037,7 +1037,7 @@ code {
 }
 
 .about-hero-stat span,
-.resource-link small {
+.resource-group h3 {
   color: var(--muted);
   font-size: 12px;
   font-weight: 900;
@@ -1056,8 +1056,7 @@ code {
 
 .principle-list,
 .boundary-list,
-.proof-list,
-.resource-link-grid {
+.proof-list {
   display: grid;
   gap: 10px;
 }
@@ -1124,40 +1123,82 @@ code {
   margin-bottom: 0;
 }
 
-.resource-link-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.resource-link {
+.resource-group-grid {
   display: grid;
-  gap: 6px;
-  border-top: 1px solid var(--line);
-  padding: 12px 0;
-  color: var(--ink);
-  text-decoration: none;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
 
-.resource-link:hover {
+.resource-group {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 170px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: #fff;
+}
+
+.resource-group h3 {
+  margin: 0;
   color: var(--teal);
 }
 
-.resource-link span {
-  color: var(--teal);
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.resource-link p {
+.resource-group p {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
-.resource-link small {
-  text-transform: none;
-  letter-spacing: 0;
-  overflow-wrap: anywhere;
+.resource-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.resource-actions a {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px 9px;
+  background: var(--surface-2);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.resource-actions a:hover {
+  border-color: var(--teal);
+  background: #fff;
+}
+
+.about-footer {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  border-top: 1px solid var(--line);
+  padding: 18px 0 6px;
+}
+
+.about-footer b {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.about-footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 @media (max-width: 1180px) {
@@ -1175,7 +1216,8 @@ code {
   .task-grid,
   .partner-grid,
   .connection-flow,
-  .resource-link-grid {
+  .resource-group-grid,
+  .about-footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1220,7 +1262,8 @@ code {
   .connection-flow,
   .upload-form,
   .upload-type-note,
-  .resource-link-grid,
+  .resource-group-grid,
+  .about-footer,
   .control-grid {
     grid-template-columns: 1fr;
   }
