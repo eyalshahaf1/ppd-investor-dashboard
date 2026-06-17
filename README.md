@@ -2,59 +2,70 @@
 
 Prepared by Eyal Shahaf
 
-This repository contains a working HTML dashboard for demonstrating the **AI Pension Productivity Dividend in Japan** concept to investors, pilot employers, and regulated partners.
+This repository contains a Next.js SaaS MVP for demonstrating the **AI Pension Productivity Dividend in Japan** concept to investors, pilot employers, and regulated partners.
 
-The current version is a **standalone investor demo**. It does not send data anywhere, does not connect to pension systems, and does not custody or move funds. It is designed to show the product logic: measurement, allocation, reporting, and regulated partner execution.
+The current version is a local SaaS-style prototype. It uses Next.js components, typed calculation utilities, API routes, and a local SQLite database. It does not custody or move funds and does not connect to live pension systems.
 
 ## What Is In This Repo
 
-- `index.html` - the complete working dashboard app.
-- `server.py` - local Python backend with SQLite.
-- `docs/backend-run-manual.md` - how to run the local backend.
+- `src/app/` - Next.js app routes and API endpoints.
+- `src/components/` - small readable dashboard components.
+- `src/lib/` - typed assumptions, calculations, formatting, and SQLite helpers.
+- `index.html` - legacy static prototype kept for reference.
+- `server.py` - legacy simple Python backend with SQLite.
+- `docs/nextjs-run-manual.md` - how to run the main Next.js app.
+- `docs/calculations-manual.md` - explanation of all model calculations.
+- `docs/backend-run-manual.md` - how to run the earlier local Python backend.
 - `docs/customer-integration-manual.md` - where the product connects at customer sites.
 - `docs/saas-model.md` - recommended SaaS model, modules, pricing, and roadmap.
 - `docs/github-upload-instructions.md` - simple GitHub upload and hosting steps.
 
-## Fastest Demo
+## Next.js Demo
 
-Open `index.html` in any modern browser.
-
-## Local Backend Demo With SQLite
-
-For the best laptop demo, run the included backend:
+Install dependencies:
 
 ```bash
-python3 server.py
+npm install
+```
+
+Run locally:
+
+```bash
+npm run dev
 ```
 
 Then open:
 
 ```text
-http://127.0.0.1:8765
+http://127.0.0.1:3000
 ```
 
-This creates a local SQLite database at:
+The Next.js app creates a local SQLite database at:
 
 ```text
-data/ppd_demo.sqlite3
+data/ppd_next.sqlite3
 ```
 
-The backend saves calculator assumptions, pilot task status, calculation snapshots, and demo customer records.
+The app saves calculator assumptions, pilot task status, calculation snapshots, and demo customer records through Next.js API routes.
 
-See:
+Detailed run instructions:
 
 ```text
-docs/backend-run-manual.md
+docs/nextjs-run-manual.md
 ```
 
-## Static-Only Demo
+## Legacy Static Demo
 
-You can still open `index.html` directly in a browser. In that mode the dashboard works offline, but SQLite persistence is not available.
+You can still open `index.html` directly in a browser. In that mode the dashboard works offline, but the Next.js API and SQLite persistence are not available.
 
-For a cleaner static local demo without the backend API:
+## Legacy Python Backend
+
+The earlier `server.py` remains available as a tiny standalone Python backend. It is useful for quick API demonstrations without Next.js, but the main SaaS MVP is now the Next.js app.
+
+Run the legacy backend:
 
 ```bash
-python3 -m http.server 8765
+python3 server.py
 ```
 
 Then open:
@@ -80,13 +91,15 @@ http://127.0.0.1:8765
 
 This is a prototype app:
 
-- optional local Python backend,
+- Next.js App Router,
+- React components,
+- TypeScript calculation utilities,
+- local Next.js API routes,
 - local SQLite database,
-- simple local JSON API,
 - no production login,
 - no live customer data upload,
 - no pension-fund movement,
-- no third-party dependencies.
+- no production pension partner integration yet.
 
 The included backend is intentionally lightweight and local. Production SaaS should be built as a separate secure platform, described in `docs/saas-model.md`.
 

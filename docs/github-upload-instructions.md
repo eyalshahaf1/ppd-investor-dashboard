@@ -15,6 +15,11 @@ ppd-investor-dashboard
 ```text
 index.html
 server.py
+package.json
+package-lock.json
+next.config.ts
+tsconfig.json
+src/
 README.md
 docs/
 assets/
@@ -59,7 +64,7 @@ https://YOUR_ACCOUNT.github.io/ppd-investor-dashboard/
 
 Use this only for non-confidential demo content. For sensitive investor meetings, keep the repo private and demo locally.
 
-Important: GitHub Pages can host the static `index.html` dashboard, but it cannot run `server.py` or SQLite. To use the backend, run it on your computer or deploy it later to a real server.
+Important: GitHub Pages can host the static `index.html` dashboard, but it cannot run the Next.js app, `server.py`, or SQLite. For the Next.js app, use local `npm run dev`, Vercel, or another Node-capable host.
 
 ## Recommended Repository Visibility
 

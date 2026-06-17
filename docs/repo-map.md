@@ -2,11 +2,24 @@
 
 ```text
 ppd-investor-dashboard-github/
+  package.json
+  next.config.ts
+  tsconfig.json
+  src/
+    app/
+      api/
+      globals.css
+      layout.tsx
+      page.tsx
+    components/
+    lib/
   index.html
   server.py
   README.md
   .gitignore
   docs/
+    nextjs-run-manual.md
+    calculations-manual.md
     backend-run-manual.md
     github-upload-instructions.md
     customer-integration-manual.md
@@ -30,14 +43,14 @@ docs/
 
 ## What The Current App Is
 
-The current app is a browser-only investor demo. It proves the narrative and calculation model.
+The current app is a Next.js SaaS MVP. The old `index.html` remains as a browser-only investor demo for reference.
 
 ## What The Production App Should Become
 
 The production SaaS should become:
 
 ```text
-enterprise web app
+Next.js SaaS MVP
   + secure customer data ingestion
   + measurement engine
   + dividend rules engine
