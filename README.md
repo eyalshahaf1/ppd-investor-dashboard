@@ -93,11 +93,13 @@ http://127.0.0.1:8765
 3. Open **Calculator** and change the dividend rule from 5% to 3%.
 4. Show how retirement value and platform revenue are separate.
 5. Open **Scenarios** and switch Low / Medium / High.
-6. Open **Pilot Tasks** to show the 90-day proof-of-concept plan.
-7. Open **Data Connect** to show how customer evidence will enter the system safely.
-8. Open **About** to explain the product boundary, Japan logic, and static pilot resources.
-9. Use the top **Dark / Light** switch if the room lighting or projector needs a different contrast mode.
-10. Close in **Investor Room** with the partner ask:
+6. Use the **Pilot evidence dashboard** on Overview to show what operating proof must exist before any dividend claim.
+7. Open **Calculator** to show the productivity gain waterfall and sensitivity tornado.
+8. Open **Pilot Tasks** to show the 90-day proof-of-concept plan.
+9. Open **Data Connect** to show how customer evidence will enter the system safely.
+10. Open **About** to explain the product boundary, Japan logic, and static pilot resources.
+11. Use the top **Dark / Light** switch if the room lighting or projector needs a different contrast mode.
+12. Close in **Investor Room** with the partner ask:
    - two pilot employers,
    - one regulated rail partner,
    - one assurance partner.
@@ -113,6 +115,7 @@ This is a prototype app:
 - local Next.js API routes,
 - local SQLite database,
 - local CSV/TXT pilot upload registry,
+- investor visualizations: pilot evidence, productivity waterfall, sensitivity tornado, and five-year projection,
 - persistent light/dark mode toggle,
 - global footer with contact, LinkedIn, copyright, and disclaimer,
 - Japanese-version path documented in the About view,

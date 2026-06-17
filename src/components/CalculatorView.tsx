@@ -3,6 +3,8 @@ import { formatNumber, formatYen } from "@/lib/format";
 import type { Assumptions } from "@/lib/types";
 import { AssumptionControl } from "./AssumptionControl";
 import { KpiCard } from "./KpiCard";
+import { ProductivityWaterfallChart } from "./ProductivityWaterfallChart";
+import { SensitivityTornadoChart } from "./SensitivityTornadoChart";
 
 type CalculatorViewProps = {
   assumptions: Assumptions;
@@ -92,6 +94,9 @@ export function CalculatorView({
           </article>
         </div>
       </section>
+
+      <ProductivityWaterfallChart assumptions={assumptions} />
+      <SensitivityTornadoChart assumptions={assumptions} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
 import type { Assumptions, ProjectionRow } from "@/lib/types";
 import { KpiCard } from "./KpiCard";
+import { PilotEvidenceChart } from "./PilotEvidenceChart";
 import { ProjectionChart } from "./ProjectionChart";
 
 type OverviewViewProps = {
@@ -111,6 +112,8 @@ export function OverviewView({ assumptions, mediumProjection }: OverviewViewProp
         </p>
       </aside>
 
+      <PilotEvidenceChart assumptions={assumptions} />
+
       <section className="span-12 panel chart-frame">
         <div className="chart-head">
           <h3>Medium scenario: retirement value, tracked assets, and platform revenue</h3>
@@ -147,4 +150,3 @@ function ValueBar({
     </div>
   );
 }
-

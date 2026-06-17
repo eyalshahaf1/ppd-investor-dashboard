@@ -122,6 +122,9 @@ src/components/
   AppFooter.tsx
   OverviewView.tsx
   CalculatorView.tsx
+  PilotEvidenceChart.tsx
+  ProductivityWaterfallChart.tsx
+  SensitivityTornadoChart.tsx
   ScenarioView.tsx
   PilotTaskBoard.tsx
   DataConnectionView.tsx
@@ -138,6 +141,20 @@ src/lib/
 
 public/
   icons, manifest, robots.txt, share preview, legal placeholders, and pilot templates
+```
+
+## Visual Decision Charts
+
+The investor dashboard includes four chart families:
+
+```text
+Overview:
+  PilotEvidenceChart - before/after pilot proof metrics
+  ProjectionChart - five-year retirement flow, AUM tracked, platform revenue
+
+Calculator:
+  ProductivityWaterfallChart - operating evidence to verified gain to pension pool
+  SensitivityTornadoChart - which assumptions move the retirement pool most
 ```
 
 ## Theme And Localization
