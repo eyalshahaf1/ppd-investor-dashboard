@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title desc">
+  <title id="title">PPD app icon</title>
+  <desc id="desc">App icon for Pension from AI Productivity Dividend.</desc>
+  <rect width="180" height="180" rx="36" fill="#f6f7f4"/>
+  <rect x="18" y="18" width="144" height="144" rx="30" fill="#0b6b5a"/>
+  <path d="M50 123V51h46c19 0 31 11.5 31 28.5S115 108 96 108H75v15H50Zm25-36h20c6 0 9.5-2.9 9.5-7.5S101 72 95 72H75v15Z" fill="#ffffff"/>
+  <path d="M50 138h80" stroke="#f0b342" stroke-width="10" stroke-linecap="round"/>
+</svg>

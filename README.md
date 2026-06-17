@@ -11,6 +11,7 @@ The current version is a local SaaS-style prototype. It uses Next.js components,
 - `src/app/` - Next.js app routes and API endpoints.
 - `src/components/` - small readable dashboard components.
 - `src/lib/` - typed assumptions, calculations, formatting, and SQLite helpers.
+- `public/` - static icons, metadata, share preview, legal placeholders, and pilot templates.
 - `index.html` - legacy static prototype kept for reference.
 - `server.py` - legacy simple Python backend with SQLite.
 - `docs/nextjs-run-manual.md` - how to run the main Next.js app.
@@ -18,6 +19,7 @@ The current version is a local SaaS-style prototype. It uses Next.js components,
 - `docs/backend-run-manual.md` - how to run the earlier local Python backend.
 - `docs/customer-integration-manual.md` - where the product connects at customer sites.
 - `docs/security-data-handling.md` - secrets, upload safety, and pilot data rules.
+- `docs/static-assets.md` - explanation of static files served from `public/`.
 - `docs/saas-model.md` - recommended SaaS model, modules, pricing, and roadmap.
 - `docs/github-upload-instructions.md` - simple GitHub upload and hosting steps.
 
@@ -92,7 +94,8 @@ http://127.0.0.1:8765
 5. Open **Scenarios** and switch Low / Medium / High.
 6. Open **Pilot Tasks** to show the 90-day proof-of-concept plan.
 7. Open **Data Connect** to show how customer evidence will enter the system safely.
-8. Close in **Investor Room** with the partner ask:
+8. Open **About** to explain the product boundary, Japan logic, and static pilot resources.
+9. Close in **Investor Room** with the partner ask:
    - two pilot employers,
    - one regulated rail partner,
    - one assurance partner.

@@ -61,6 +61,12 @@ const guardrails = [
   "Keep customer exports in ignored local storage during the demo and pilot."
 ];
 
+const templateLinks = [
+  ["Workflow CSV template", "/templates/pilot-workflow-metrics.csv"],
+  ["Assumptions JSON", "/templates/assumptions-template.json"],
+  ["Partner instruction JSON", "/templates/contribution-instruction-template.json"]
+];
+
 type UploadTypeKey = (typeof uploadTypes)[number]["key"];
 
 type UploadResponse = {
@@ -217,6 +223,14 @@ export function DataConnectionView() {
             <p key={option.key}>
               <b>{option.label}:</b> {option.detail}
             </p>
+          ))}
+        </div>
+
+        <div className="template-link-row" aria-label="Static data templates">
+          {templateLinks.map(([label, href]) => (
+            <a href={href} key={href}>
+              {label}
+            </a>
           ))}
         </div>
       </section>

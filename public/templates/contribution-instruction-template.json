@@ -1,0 +1,15 @@
+{
+  "customer_id": "example-employer",
+  "period": "2026-Q3",
+  "currency": "JPY",
+  "covered_employees": 10000,
+  "verified_net_efficiency_value_jpy": 12000000000,
+  "dividend_rate": 0.05,
+  "confidence_haircut": 1,
+  "retirement_pool_jpy": 600000000,
+  "contribution_per_employee_jpy": 60000,
+  "execution_partner": "regulated-partner-name",
+  "execution_mode": "instruction_only",
+  "status": "ready_for_partner_review",
+  "notes": "Prototype payload. Do not use for live pension execution without legal, regulatory, and partner approval."
+}

@@ -13,7 +13,18 @@ ppd-investor-dashboard-nextjs/
       page.tsx
     components/
       DataConnectionView.tsx
+      AboutView.tsx
     lib/
+  public/
+    favicon.svg
+    apple-touch-icon.svg
+    brand-mark.svg
+    social-preview.svg
+    manifest.webmanifest
+    robots.txt
+    humans.txt
+    templates/
+    legal/
   index.html
   server.py
   README.md
@@ -25,6 +36,7 @@ ppd-investor-dashboard-nextjs/
     github-upload-instructions.md
     customer-integration-manual.md
     security-data-handling.md
+    static-assets.md
     saas-model.md
     repo-map.md
   assets/

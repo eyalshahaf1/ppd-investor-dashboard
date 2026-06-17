@@ -123,6 +123,7 @@ src/components/
   ScenarioView.tsx
   PilotTaskBoard.tsx
   DataConnectionView.tsx
+  AboutView.tsx
   InvestorRoom.tsx
   small reusable UI components
 
@@ -132,6 +133,9 @@ src/lib/
   db.ts
   format.ts
   types.ts
+
+public/
+  icons, manifest, robots.txt, share preview, legal placeholders, and pilot templates
 ```
 
 ## Development Rule

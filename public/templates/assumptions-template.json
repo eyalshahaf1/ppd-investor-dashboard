@@ -1,0 +1,22 @@
+{
+  "coveredEmployees": 1000000,
+  "employers": 250,
+  "gainPerEmployee": 120000,
+  "dividendRate": 0.05,
+  "confidence": 1,
+  "annualReturn": 0.03,
+  "setupFeeM": 25,
+  "monthlySaas": 1.8,
+  "takeRate": 0.003,
+  "auditFeeM": 8,
+  "grossMargin": 0.82,
+  "implementationCostM": 18,
+  "cacM": 14,
+  "retentionYears": 5,
+  "hoursSaved": 22,
+  "costPerHour": 3600,
+  "overtimeM": 180,
+  "outsourcingM": 90,
+  "qualityM": 60,
+  "aiCostM": 110
+}

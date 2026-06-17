@@ -1,0 +1,24 @@
+{
+  "name": "Pension from AI Productivity Dashboard",
+  "short_name": "PPD Dashboard",
+  "description": "Investor dashboard and SaaS MVP for the AI Pension Productivity Dividend in Japan.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f7f4",
+  "theme_color": "#0b6b5a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

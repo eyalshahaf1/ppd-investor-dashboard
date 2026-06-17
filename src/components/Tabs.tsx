@@ -4,6 +4,7 @@ export type DashboardTab =
   | "scenarios"
   | "pilot"
   | "data"
+  | "about"
   | "investor";
 
 const tabs: Array<{ key: DashboardTab; label: string }> = [
@@ -12,6 +13,7 @@ const tabs: Array<{ key: DashboardTab; label: string }> = [
   { key: "scenarios", label: "Scenarios" },
   { key: "pilot", label: "Pilot Tasks" },
   { key: "data", label: "Data Connect" },
+  { key: "about", label: "About" },
   { key: "investor", label: "Investor Room" }
 ];
 
