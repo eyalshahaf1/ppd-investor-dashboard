@@ -12,6 +12,7 @@ The current version is a local SaaS-style prototype. It uses Next.js components,
 - `src/components/` - small readable dashboard components.
 - `src/lib/` - typed assumptions, calculations, formatting, and SQLite helpers.
 - `public/` - static icons, metadata, share preview, legal placeholders, and pilot templates.
+- `postcss.config.mjs` - Tailwind CSS PostCSS integration.
 - `index.html` - legacy static prototype kept for reference.
 - `server.py` - legacy simple Python backend with SQLite.
 - `docs/nextjs-run-manual.md` - how to run the main Next.js app.
@@ -95,7 +96,8 @@ http://127.0.0.1:8765
 6. Open **Pilot Tasks** to show the 90-day proof-of-concept plan.
 7. Open **Data Connect** to show how customer evidence will enter the system safely.
 8. Open **About** to explain the product boundary, Japan logic, and static pilot resources.
-9. Close in **Investor Room** with the partner ask:
+9. Use the top **Dark / Light** switch if the room lighting or projector needs a different contrast mode.
+10. Close in **Investor Room** with the partner ask:
    - two pilot employers,
    - one regulated rail partner,
    - one assurance partner.
@@ -106,10 +108,14 @@ This is a prototype app:
 
 - Next.js App Router,
 - React components,
+- Tailwind CSS utility support for interface controls,
 - TypeScript calculation utilities,
 - local Next.js API routes,
 - local SQLite database,
 - local CSV/TXT pilot upload registry,
+- persistent light/dark mode toggle,
+- global footer with contact, LinkedIn, copyright, and disclaimer,
+- Japanese-version path documented in the About view,
 - no production login,
 - no production customer-data connector,
 - no pension-fund movement,

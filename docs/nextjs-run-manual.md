@@ -10,6 +10,7 @@ Use a recent Node.js version. The app was verified locally with:
 Node.js 22.19.0
 npm 11.6.0
 Next.js 15.5.19
+Tailwind CSS 4.x
 ```
 
 ## Install
@@ -118,6 +119,7 @@ src/app/
 
 src/components/
   DashboardApp.tsx
+  AppFooter.tsx
   OverviewView.tsx
   CalculatorView.tsx
   ScenarioView.tsx
@@ -137,6 +139,18 @@ src/lib/
 public/
   icons, manifest, robots.txt, share preview, legal placeholders, and pilot templates
 ```
+
+## Theme And Localization
+
+The top bar includes a persistent Dark / Light switch. The switch uses Tailwind utility classes for the control and CSS variables for app-wide color changes.
+
+The About view documents the recommended Japanese-version path:
+
+```text
+interface translation -> terminology review -> partner localization -> customer validation
+```
+
+Before a Japanese customer pilot, pension, labor, tax, privacy, and financial-regulatory wording should be reviewed by Japan-qualified experts.
 
 ## Development Rule
 

@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --bg: #f6f7f4;
   --surface: #ffffff;
@@ -19,6 +21,24 @@
   --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+:root[data-theme="dark"] {
+  --bg: #101614;
+  --surface: #17201d;
+  --surface-2: #21302b;
+  --ink: #eef7f2;
+  --muted: #a8b9b0;
+  --line: #35463f;
+  --teal: #3fc5aa;
+  --coral: #ff766b;
+  --amber: #f3c45f;
+  --indigo: #9aa4ff;
+  --blue: #74c7e6;
+  --good: #5bd69f;
+  --warn: #f5ba5b;
+  --bad: #ff7b73;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -33,6 +53,10 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   letter-spacing: 0;
+}
+
+:root[data-theme="dark"] body {
+  background: linear-gradient(180deg, rgba(63, 197, 170, 0.13), rgba(16, 22, 20, 0) 330px), var(--bg);
 }
 
 button,
@@ -69,6 +93,11 @@ p {
   border-bottom: 1px solid rgba(216, 224, 218, 0.9);
   background: rgba(246, 247, 244, 0.94);
   backdrop-filter: blur(14px);
+}
+
+:root[data-theme="dark"] .topbar {
+  border-bottom-color: rgba(53, 70, 63, 0.9);
+  background: rgba(16, 22, 20, 0.94);
 }
 
 .topbar-inner {
@@ -182,6 +211,11 @@ h1 {
   background: rgba(255, 255, 255, 0.52);
 }
 
+:root[data-theme="dark"] .tabs-wrap {
+  border-bottom-color: rgba(53, 70, 63, 0.72);
+  background: rgba(23, 32, 29, 0.62);
+}
+
 .tabs {
   max-width: 1480px;
   margin: 0 auto;
@@ -211,6 +245,64 @@ main {
   max-width: 1480px;
   margin: 0 auto;
   padding: 24px;
+}
+
+.app-footer {
+  border-top: 1px solid var(--line);
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.48);
+}
+
+:root[data-theme="dark"] .app-footer {
+  background: rgba(23, 32, 29, 0.62);
+}
+
+.footer-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.7fr) minmax(220px, 0.7fr) minmax(280px, 1.1fr);
+  gap: 16px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.footer-identity,
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-identity b {
+  color: var(--ink);
+}
+
+.footer-contact a {
+  color: var(--teal);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.linkedin-icon {
+  width: 30px;
+  height: 30px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 6px;
+  background: #0a66c2;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.footer-inner p {
+  margin: 0;
 }
 
 .dashboard-grid {
@@ -269,6 +361,19 @@ main {
 .panel {
   padding: 18px;
   min-width: 0;
+}
+
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] .kpi-card,
+:root[data-theme="dark"] .flow-step,
+:root[data-theme="dark"] .risk-row,
+:root[data-theme="dark"] .task-card,
+:root[data-theme="dark"] .partner-card,
+:root[data-theme="dark"] .demo-step,
+:root[data-theme="dark"] .connection-step,
+:root[data-theme="dark"] .connector-card,
+:root[data-theme="dark"] .guardrail-row {
+  background: var(--surface);
 }
 
 .panel h3 {
@@ -361,14 +466,14 @@ main {
 
 .thesis-band p {
   margin-bottom: 0;
-  color: #34423d;
+  color: var(--ink);
   font-size: 15px;
   line-height: 1.55;
 }
 
 .ask-box {
   border-left: 4px solid var(--teal);
-  background: rgba(255, 255, 255, 0.66);
+  background: color-mix(in srgb, var(--surface) 74%, transparent);
   padding: 14px;
   border-radius: var(--radius);
 }
@@ -376,7 +481,7 @@ main {
 .ask-box ul {
   margin: 8px 0 0;
   padding-left: 18px;
-  color: #34423d;
+  color: var(--ink);
   font-size: 14px;
   line-height: 1.55;
 }
@@ -519,7 +624,7 @@ input[type="number"] {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 8px 9px;
-  background: #fff;
+  background: var(--surface);
   color: var(--ink);
   font-family: var(--mono);
   font-size: 13px;
@@ -572,7 +677,7 @@ input[type="number"] {
   width: 100%;
   min-height: 280px;
   display: block;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
@@ -666,7 +771,7 @@ input[type="number"] {
 
 .data-table td {
   font-family: var(--mono);
-  color: #24302c;
+  color: var(--ink);
 }
 
 .task-toolbar {
@@ -929,7 +1034,7 @@ code {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 8px 9px;
-  background: #fff;
+  background: var(--surface);
   color: var(--ink);
   font-size: 13px;
 }
@@ -971,7 +1076,7 @@ code {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 7px 10px;
-  background: #fff;
+  background: var(--surface);
   color: var(--teal);
   font-size: 12px;
   font-weight: 900;
@@ -1024,7 +1129,7 @@ code {
 .about-hero p {
   margin-bottom: 0;
   max-width: 850px;
-  color: #34423d;
+  color: var(--ink);
   font-size: 15px;
   line-height: 1.55;
 }
@@ -1033,7 +1138,7 @@ code {
   border: 1px solid rgba(11, 107, 90, 0.18);
   border-radius: var(--radius);
   padding: 16px;
-  background: rgba(255, 255, 255, 0.7);
+  background: color-mix(in srgb, var(--surface) 74%, transparent);
 }
 
 .about-hero-stat span,
@@ -1056,9 +1161,15 @@ code {
 
 .principle-list,
 .boundary-list,
-.proof-list {
+.proof-list,
+.localization-grid {
   display: grid;
   gap: 10px;
+}
+
+.localization-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 12px;
 }
 
 .principle-row {
@@ -1099,17 +1210,26 @@ code {
 }
 
 .boundary-row,
-.proof-row {
+.proof-row,
+.localization-step {
   border-bottom: 1px solid var(--line);
   padding: 10px 0;
 }
 
 .boundary-row b,
-.proof-row b {
+.proof-row b,
+.localization-step b {
   display: block;
   margin-bottom: 4px;
   color: var(--ink);
   font-size: 13px;
+}
+
+.localization-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .resource-head {
@@ -1137,7 +1257,7 @@ code {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 14px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .resource-group h3 {
@@ -1175,7 +1295,7 @@ code {
 
 .resource-actions a:hover {
   border-color: var(--teal);
-  background: #fff;
+  background: var(--surface);
 }
 
 .about-footer {
@@ -1216,6 +1336,7 @@ code {
   .task-grid,
   .partner-grid,
   .connection-flow,
+  .localization-grid,
   .resource-group-grid,
   .about-footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1262,8 +1383,10 @@ code {
   .connection-flow,
   .upload-form,
   .upload-type-note,
+  .localization-grid,
   .resource-group-grid,
   .about-footer,
+  .footer-inner,
   .control-grid {
     grid-template-columns: 1fr;
   }

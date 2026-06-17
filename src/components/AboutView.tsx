@@ -48,6 +48,13 @@ const proofPoints = [
   ["Investor proof", "The platform can monetize SaaS, setup, verification, and reporting without custody risk."]
 ];
 
+const japaneseVersionSteps = [
+  ["Interface translation", "Translate navigation, dashboards, labels, investor text, and customer workflow language."],
+  ["Terminology review", "Review Japanese pension, HR, tax, labor, and financial-regulatory terminology with local experts."],
+  ["Partner localization", "Adapt contribution instruction formats to the regulated partner and employer benefit workflow."],
+  ["Customer validation", "Test wording with HR, CFO, compliance, and employee-communications stakeholders in Japan."]
+];
+
 export function AboutView() {
   return (
     <div className="dashboard-grid">
@@ -111,6 +118,24 @@ export function AboutView() {
               <b>{title}</b>
               <p>{body}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="span-12 panel">
+        <h3>Japanese version path</h3>
+        <p>
+          A Japanese version is possible and commercially important. The right
+          path is to localize the interface first, then validate pension,
+          employment, tax, privacy, and financial-regulatory wording before any
+          customer pilot.
+        </p>
+        <div className="localization-grid">
+          {japaneseVersionSteps.map(([title, body]) => (
+            <article className="localization-step" key={title}>
+              <b>{title}</b>
+              <p>{body}</p>
+            </article>
           ))}
         </div>
       </section>

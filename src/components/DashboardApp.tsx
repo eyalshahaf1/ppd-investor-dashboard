@@ -10,6 +10,7 @@ import { defaultAssumptions, scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
 import type { Assumptions, PilotTasks, ScenarioKey } from "@/lib/types";
 import { AboutView } from "./AboutView";
+import { AppFooter } from "./AppFooter";
 import { CalculatorView } from "./CalculatorView";
 import { DataConnectionView } from "./DataConnectionView";
 import type { DashboardTab } from "./Tabs";
@@ -19,6 +20,7 @@ import { PilotTaskBoard } from "./PilotTaskBoard";
 import { ScenarioView } from "./ScenarioView";
 import { Tabs } from "./Tabs";
 import { TopBar } from "./TopBar";
+import type { ThemeMode } from "./TopBar";
 
 type ApiEnvelope<T> = T & { ok: boolean };
 
@@ -45,6 +47,7 @@ export function DashboardApp() {
   const [pilotTasks, setPilotTasks] = useState<PilotTasks>({});
   const [backendOnline, setBackendOnline] = useState(false);
   const [saveLabel, setSaveLabel] = useState("Save");
+  const [themeMode, setThemeMode] = useState<ThemeMode>("light");
 
   const mediumProjection = useMemo(
     () => projectScenario("medium", assumptions),
@@ -74,6 +77,22 @@ export function DashboardApp() {
 
     loadBackendState();
   }, []);
+
+  useEffect(() => {
+    const storedTheme = window.localStorage.getItem("ppd-theme");
+    if (storedTheme === "light" || storedTheme === "dark") {
+      setThemeMode(storedTheme);
+      return;
+    }
+
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setThemeMode(prefersDark ? "dark" : "light");
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = themeMode;
+    window.localStorage.setItem("ppd-theme", themeMode);
+  }, [themeMode]);
 
   async function persistAssumptions(nextAssumptions: Assumptions) {
     if (!backendOnline) return;
@@ -138,12 +157,18 @@ export function DashboardApp() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }
 
+  function toggleTheme() {
+    setThemeMode((current) => (current === "dark" ? "light" : "dark"));
+  }
+
   return (
     <div className="app">
       <TopBar
         activeScenario={activeScenario}
         y5Flow={y5Flow}
         backendOnline={backendOnline}
+        themeMode={themeMode}
+        onThemeToggle={toggleTheme}
         onReset={resetModel}
         onSave={saveSnapshot}
       />
@@ -174,6 +199,7 @@ export function DashboardApp() {
         {activeTab === "about" && <AboutView />}
         {activeTab === "investor" && <InvestorRoom />}
       </main>
+      <AppFooter />
     </div>
   );
 }
