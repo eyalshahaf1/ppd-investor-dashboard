@@ -1,4 +1,12 @@
-export function AppFooter() {
+import { getCopy, type Language } from "@/lib/i18n";
+
+type AppFooterProps = {
+  language: Language;
+};
+
+export function AppFooter({ language }: AppFooterProps) {
+  const t = getCopy(language);
+
   return (
     <footer className="app-footer">
       <div className="footer-inner">
@@ -21,10 +29,7 @@ export function AppFooter() {
           </a>
         </div>
 
-        <p>
-          Disclaimer: The data provided here is for educational purposes only.
-          Renewable energy terminology may evolve over time.
-        </p>
+        <p>{t.footer.disclaimer}</p>
       </div>
     </footer>
   );

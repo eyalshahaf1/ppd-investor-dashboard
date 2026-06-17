@@ -6,6 +6,7 @@ import type {
   Assumptions,
   CustomerConnection,
   DataUpload,
+  JapanStatRecord,
   PilotTasks,
   SnapshotPayload
 } from "./types";
@@ -70,6 +71,18 @@ function initializeDb(database: Database.Database) {
       size_bytes integer not null,
       status text not null,
       created_at integer not null
+    );
+
+    create table if not exists japan_stats (
+      metric_key text primary key,
+      value real not null,
+      unit text not null,
+      period text not null,
+      source_name text not null,
+      source_url text not null,
+      source_date text not null,
+      fetched_at integer not null,
+      status text not null
     );
   `);
 
@@ -208,6 +221,52 @@ export function listDataUploads(limit = 20): DataUpload[] {
        limit ?`
     )
     .all(limit) as DataUpload[];
+}
+
+export function listJapanStats(): JapanStatRecord[] {
+  return getDb()
+    .prepare(
+      `select metric_key, value, unit, period, source_name, source_url, source_date, fetched_at, status
+       from japan_stats
+       order by metric_key`
+    )
+    .all() as JapanStatRecord[];
+}
+
+export function saveJapanStats(records: JapanStatRecord[]): JapanStatRecord[] {
+  const statement = getDb().prepare(
+    `insert into japan_stats
+      (metric_key, value, unit, period, source_name, source_url, source_date, fetched_at, status)
+     values (?, ?, ?, ?, ?, ?, ?, ?, ?)
+     on conflict(metric_key) do update set
+       value = excluded.value,
+       unit = excluded.unit,
+       period = excluded.period,
+       source_name = excluded.source_name,
+       source_url = excluded.source_url,
+       source_date = excluded.source_date,
+       fetched_at = excluded.fetched_at,
+       status = excluded.status`
+  );
+
+  const write = getDb().transaction((payload: JapanStatRecord[]) => {
+    for (const record of payload) {
+      statement.run(
+        record.metric_key,
+        record.value,
+        record.unit,
+        record.period,
+        record.source_name,
+        record.source_url,
+        record.source_date,
+        record.fetched_at,
+        record.status
+      );
+    }
+  });
+
+  write(records);
+  return listJapanStats();
 }
 
 export function createSnapshot(payload: SnapshotPayload) {

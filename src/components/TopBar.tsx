@@ -1,5 +1,6 @@
 import type { ScenarioKey } from "@/lib/types";
 import { scenarios } from "@/lib/defaults";
+import { getCopy, languages, type Language } from "@/lib/i18n";
 
 export type ThemeMode = "light" | "dark";
 
@@ -8,7 +9,9 @@ type TopBarProps = {
   y5Flow: string;
   backendOnline: boolean;
   themeMode: ThemeMode;
+  language: Language;
   onThemeToggle: () => void;
+  onLanguageChange: (language: Language) => void;
   onReset: () => void;
   onSave: () => void;
 };
@@ -18,35 +21,49 @@ export function TopBar({
   y5Flow,
   backendOnline,
   themeMode,
+  language,
   onThemeToggle,
+  onLanguageChange,
   onReset,
   onSave
 }: TopBarProps) {
+  const t = getCopy(language);
+
   return (
     <header className="topbar">
       <div className="topbar-inner">
         <div className="brand">
-          <div className="eyebrow">Japan investor demo app</div>
-          <h1>Pension from AI Productivity</h1>
+          <div className="eyebrow">{t.topbar.eyebrow}</div>
+          <h1>{t.topbar.title}</h1>
           <p className="subtitle">
-            A SaaS MVP dashboard for the AI Pension Productivity Dividend concept.
-            Prepared by Eyal Shahaf. The product wedge is measurement, allocation,
-            and reporting while regulated partners handle pension execution.
+            {t.topbar.subtitle}
           </p>
         </div>
         <div className="top-actions">
+          <div className="language-switch" aria-label="Language">
+            {languages.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                aria-pressed={language === item.key}
+                onClick={() => onLanguageChange(item.key)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
           <div className="pill">
-            <span>Base case</span>
+            <span>{t.topbar.baseCase}</span>
             <strong>{scenarios[activeScenario].label.replace(" adoption", "")}</strong>
           </div>
           <div className="pill">
-            <span>Y5 flow</span>
+            <span>{t.topbar.y5Flow}</span>
             <strong>{y5Flow}</strong>
           </div>
           <div className="pill">
-            <span>Backend</span>
+            <span>{t.topbar.backend}</span>
             <strong className={backendOnline ? "status-ok" : "status-off"}>
-              {backendOnline ? "SQLite" : "Offline"}
+              {backendOnline ? "SQLite" : t.topbar.offline}
             </strong>
           </div>
           <button
@@ -54,7 +71,7 @@ export function TopBar({
             type="button"
             onClick={onThemeToggle}
             aria-pressed={themeMode === "dark"}
-            aria-label={`Switch to ${themeMode === "dark" ? "light" : "dark"} mode`}
+            aria-label={t.topbar.switchTheme}
           >
             <span
               className={`h-3 w-3 rounded-full ${
@@ -65,13 +82,13 @@ export function TopBar({
             {themeMode === "dark" ? "Light" : "Dark"}
           </button>
           <button className="action-btn" type="button" onClick={onReset}>
-            Reset
+            {t.topbar.reset}
           </button>
           <button className="action-btn" type="button" data-testid="save-snapshot" onClick={onSave}>
-            Save
+            {t.topbar.save}
           </button>
           <button className="action-btn primary" type="button" onClick={() => window.print()}>
-            Snapshot
+            {t.topbar.snapshot}
           </button>
         </div>
       </div>

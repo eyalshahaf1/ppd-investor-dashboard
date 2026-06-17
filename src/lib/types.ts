@@ -83,6 +83,20 @@ export type DataUpload = {
   created_at: number;
 };
 
+export type JapanStatKey = "population_65_share" | "population_65_count" | "births_2024";
+
+export type JapanStatRecord = {
+  metric_key: JapanStatKey;
+  value: number;
+  unit: string;
+  period: string;
+  source_name: string;
+  source_url: string;
+  source_date: string;
+  fetched_at: number;
+  status: "seeded" | "refreshed" | "stale";
+};
+
 export type SnapshotPayload = {
   name: string;
   assumptions: Assumptions;

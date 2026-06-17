@@ -140,6 +140,34 @@ h1 {
   flex-wrap: wrap;
 }
 
+.language-switch {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.language-switch button {
+  min-height: 28px;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: calc(var(--radius) - 3px);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.language-switch button[aria-pressed="true"] {
+  background: var(--teal);
+  color: #fff;
+}
+
 .pill,
 .action-btn,
 .tab-btn,
@@ -1273,6 +1301,10 @@ input[type="number"] {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.5;
+}
+
+.macro-note {
+  margin-top: 10px;
 }
 
 .plain-note {

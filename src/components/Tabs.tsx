@@ -1,3 +1,5 @@
+import { getCopy, type Language } from "@/lib/i18n";
+
 export type DashboardTab =
   | "overview"
   | "calculator"
@@ -7,22 +9,25 @@ export type DashboardTab =
   | "about"
   | "investor";
 
-const tabs: Array<{ key: DashboardTab; label: string }> = [
-  { key: "overview", label: "Overview" },
-  { key: "calculator", label: "Calculator" },
-  { key: "scenarios", label: "Scenarios" },
-  { key: "pilot", label: "Pilot Tasks" },
-  { key: "data", label: "Data Connect" },
-  { key: "about", label: "About" },
-  { key: "investor", label: "Investor Room" }
+const tabs: Array<{ key: DashboardTab }> = [
+  { key: "overview" },
+  { key: "calculator" },
+  { key: "scenarios" },
+  { key: "pilot" },
+  { key: "data" },
+  { key: "about" },
+  { key: "investor" }
 ];
 
 type TabsProps = {
   activeTab: DashboardTab;
+  language: Language;
   onChange: (tab: DashboardTab) => void;
 };
 
-export function Tabs({ activeTab, onChange }: TabsProps) {
+export function Tabs({ activeTab, language, onChange }: TabsProps) {
+  const t = getCopy(language);
+
   return (
     <div className="tabs-wrap">
       <nav className="tabs" aria-label="Dashboard views">
@@ -35,7 +40,7 @@ export function Tabs({ activeTab, onChange }: TabsProps) {
             aria-selected={activeTab === tab.key}
             onClick={() => onChange(tab.key)}
           >
-            {tab.label}
+            {t.tabs[tab.key]}
           </button>
         ))}
       </nav>

@@ -20,6 +20,7 @@ The current version is a local SaaS-style prototype. It uses Next.js components,
 - `docs/backend-run-manual.md` - how to run the earlier local Python backend.
 - `docs/customer-integration-manual.md` - where the product connects at customer sites.
 - `docs/security-data-handling.md` - secrets, upload safety, and pilot data rules.
+- `docs/japan-statistics-connector.md` - server-side Japan macro statistics cache and API notes.
 - `docs/static-assets.md` - explanation of static files served from `public/`.
 - `docs/saas-model.md` - recommended SaaS model, modules, pricing, and roadmap.
 - `docs/github-upload-instructions.md` - simple GitHub upload and hosting steps.
@@ -51,6 +52,14 @@ data/ppd_next.sqlite3
 ```
 
 The app saves calculator assumptions, pilot task status, calculation snapshots, and demo customer records through Next.js API routes.
+
+The **Overview** tab reads Japan macro context from:
+
+```text
+GET /api/japan-stats
+```
+
+Those statistics are cached in SQLite with source metadata. The dashboard can refresh the Statistics Bureau 65+ population figure server-side while keeping seeded official values available for offline investor demos.
 
 The **Data Connect** tab also supports local CSV/TXT pilot uploads. Uploaded files are stored under:
 
@@ -99,7 +108,8 @@ http://127.0.0.1:8765
 9. Open **Data Connect** to show how customer evidence will enter the system safely.
 10. Open **About** to explain the product boundary, Japan logic, and static pilot resources.
 11. Use the top **Dark / Light** switch if the room lighting or projector needs a different contrast mode.
-12. Close in **Investor Room** with the partner ask:
+12. Use the top **English / 日本語** switch when presenting to Japanese employers or partners.
+13. Close in **Investor Room** with the partner ask:
    - two pilot employers,
    - one regulated rail partner,
    - one assurance partner.
@@ -117,6 +127,8 @@ This is a prototype app:
 - local CSV/TXT pilot upload registry,
 - investor visualizations: pilot evidence, data quality scorecard, partner execution flow, productivity waterfall, sensitivity tornado, and five-year SaaS vs pension impact,
 - persistent light/dark mode toggle,
+- persistent English/Japanese language switch,
+- server-side Japan macro statistics endpoint with SQLite cache,
 - global footer with contact, LinkedIn, copyright, and disclaimer,
 - Japanese-version path documented in the About view,
 - no production login,

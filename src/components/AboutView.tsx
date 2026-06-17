@@ -1,3 +1,5 @@
+import type { Language } from "@/lib/i18n";
+
 const principles = [
   "Measure verified AI productivity gains from real operating workflows.",
   "Net out AI software, cloud, implementation, training, and change-management costs.",
@@ -55,23 +57,37 @@ const japaneseVersionSteps = [
   ["Customer validation", "Test wording with HR, CFO, compliance, and employee-communications stakeholders in Japan."]
 ];
 
-export function AboutView() {
+type AboutViewProps = {
+  language: Language;
+};
+
+export function AboutView({ language }: AboutViewProps) {
+  const isJapanese = language === "ja";
+
   return (
     <div className="dashboard-grid">
       <section className="span-12 about-hero">
         <div>
-          <p className="eyebrow">About the project</p>
-          <h2>Pension from AI Productivity Dividend in Japan</h2>
+          <p className="eyebrow">{isJapanese ? "プロジェクト概要" : "About the project"}</p>
+          <h2>
+            {isJapanese
+              ? "日本におけるAI生産性配当から年金原資へ"
+              : "Pension from AI Productivity Dividend in Japan"}
+          </h2>
           <p>
-            Prepared by Eyal Shahaf. This SaaS MVP demonstrates how employers
-            can measure responsible AI productivity gains and translate a defined
-            share of verified value into retirement contribution capacity.
+            {isJapanese
+              ? "作成: Eyal Shahaf。このSaaS MVPは、企業が責任あるAI生産性向上を測定し、検証済み価値の一部を退職拠出能力に変換する方法を示します。"
+              : "Prepared by Eyal Shahaf. This SaaS MVP demonstrates how employers can measure responsible AI productivity gains and translate a defined share of verified value into retirement contribution capacity."}
           </p>
         </div>
         <div className="about-hero-stat">
-          <span>Role</span>
-          <strong>Measurement layer</strong>
-          <p>Not custody, not investment advice, not pension administration.</p>
+          <span>{isJapanese ? "役割" : "Role"}</span>
+          <strong>{isJapanese ? "測定レイヤー" : "Measurement layer"}</strong>
+          <p>
+            {isJapanese
+              ? "資産保管、投資助言、年金管理ではありません。"
+              : "Not custody, not investment advice, not pension administration."}
+          </p>
         </div>
       </section>
 
@@ -123,12 +139,11 @@ export function AboutView() {
       </section>
 
       <section className="span-12 panel">
-        <h3>Japanese version path</h3>
+        <h3>{isJapanese ? "日本語版の進め方" : "Japanese version path"}</h3>
         <p>
-          A Japanese version is possible and commercially important. The right
-          path is to localize the interface first, then validate pension,
-          employment, tax, privacy, and financial-regulatory wording before any
-          customer pilot.
+          {isJapanese
+            ? "日本語版は商業的に重要です。まずUIをローカライズし、その後、顧客パイロット前に年金、雇用、税務、プライバシー、金融規制上の表現を専門家と確認します。"
+            : "A Japanese version is possible and commercially important. The right path is to localize the interface first, then validate pension, employment, tax, privacy, and financial-regulatory wording before any customer pilot."}
         </p>
         <div className="localization-grid">
           {japaneseVersionSteps.map(([title, body]) => (

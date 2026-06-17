@@ -8,7 +8,8 @@ import {
 } from "@/lib/calculations";
 import { defaultAssumptions, scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
-import type { Assumptions, PilotTasks, ScenarioKey } from "@/lib/types";
+import type { Language } from "@/lib/i18n";
+import type { Assumptions, JapanStatKey, JapanStatRecord, PilotTasks, ScenarioKey } from "@/lib/types";
 import { AboutView } from "./AboutView";
 import { AppFooter } from "./AppFooter";
 import { CalculatorView } from "./CalculatorView";
@@ -48,6 +49,8 @@ export function DashboardApp() {
   const [backendOnline, setBackendOnline] = useState(false);
   const [saveLabel, setSaveLabel] = useState("Save");
   const [themeMode, setThemeMode] = useState<ThemeMode>("light");
+  const [language, setLanguage] = useState<Language>("en");
+  const [japanStats, setJapanStats] = useState<Record<JapanStatKey, JapanStatRecord> | null>(null);
 
   const mediumProjection = useMemo(
     () => projectScenario("medium", assumptions),
@@ -70,6 +73,11 @@ export function DashboardApp() {
 
         const taskResponse = await apiGet<{ tasks: PilotTasks }>("/api/tasks");
         setPilotTasks(taskResponse.tasks ?? {});
+
+        const statsResponse = await apiGet<{
+          metrics: Record<JapanStatKey, JapanStatRecord>;
+        }>("/api/japan-stats");
+        setJapanStats(statsResponse.metrics);
       } catch {
         setBackendOnline(false);
       }
@@ -90,9 +98,21 @@ export function DashboardApp() {
   }, []);
 
   useEffect(() => {
+    const storedLanguage = window.localStorage.getItem("ppd-language");
+    if (storedLanguage === "en" || storedLanguage === "ja") {
+      setLanguage(storedLanguage);
+    }
+  }, []);
+
+  useEffect(() => {
     document.documentElement.dataset.theme = themeMode;
     window.localStorage.setItem("ppd-theme", themeMode);
   }, [themeMode]);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    window.localStorage.setItem("ppd-language", language);
+  }, [language]);
 
   async function persistAssumptions(nextAssumptions: Assumptions) {
     if (!backendOnline) return;
@@ -168,15 +188,22 @@ export function DashboardApp() {
         y5Flow={y5Flow}
         backendOnline={backendOnline}
         themeMode={themeMode}
+        language={language}
         onThemeToggle={toggleTheme}
+        onLanguageChange={setLanguage}
         onReset={resetModel}
         onSave={saveSnapshot}
       />
       <div className="save-status" aria-live="polite">{saveLabel !== "Save" ? saveLabel : ""}</div>
-      <Tabs activeTab={activeTab} onChange={changeTab} />
+      <Tabs activeTab={activeTab} language={language} onChange={changeTab} />
       <main>
         {activeTab === "overview" && (
-          <OverviewView assumptions={assumptions} mediumProjection={mediumProjection} />
+          <OverviewView
+            assumptions={assumptions}
+            mediumProjection={mediumProjection}
+            japanStats={japanStats}
+            language={language}
+          />
         )}
         {activeTab === "calculator" && (
           <CalculatorView
@@ -196,10 +223,10 @@ export function DashboardApp() {
           <PilotTaskBoard tasks={pilotTasks} onTaskChange={updateTask} />
         )}
         {activeTab === "data" && <DataConnectionView />}
-        {activeTab === "about" && <AboutView />}
+        {activeTab === "about" && <AboutView language={language} />}
         {activeTab === "investor" && <InvestorRoom />}
       </main>
-      <AppFooter />
+      <AppFooter language={language} />
     </div>
   );
 }
