@@ -16,10 +16,7 @@ export function PilotTaskBoard({ tasks, onTaskChange }: PilotTaskBoardProps) {
       <section className="span-12 section-title">
         <div>
           <h2>90-day pilot operating dashboard</h2>
-          <p>
-            This is the execution view investors should see after they understand the story.
-            It shows what must be proven before scaling.
-          </p>
+          <p>What must be proven before scaling.</p>
         </div>
       </section>
 
@@ -27,7 +24,7 @@ export function PilotTaskBoard({ tasks, onTaskChange }: PilotTaskBoardProps) {
         <div className="task-toolbar">
           <div>
             <h3>Task checklist</h3>
-            <p>Progress saves through the local SQLite-backed API when the backend is online.</p>
+            <p>Saved locally when backend is online.</p>
           </div>
           <div>
             <div className="kpi-label">{percent}% complete</div>
@@ -58,28 +55,28 @@ export function PilotTaskBoard({ tasks, onTaskChange }: PilotTaskBoardProps) {
       <aside className="span-4 panel">
         <h3>Partner triangle</h3>
         <div className="partner-grid single">
-          <PartnerCard title="Design employer" body="Back-office intensive, measurable workflow data, senior HR and CFO sponsorship." />
-          <PartnerCard title="Regulated rail partner" body="Insurer, trust bank, payroll, DC, or benefits partner executes under existing infrastructure." />
-          <PartnerCard title="Assurance partner" body="Validates baseline integrity, evidence samples, exclusion of layoff gains, and reporting consistency." />
+          <PartnerCard title="Design employer" body="Measurable workflow data. HR and CFO sponsor." />
+          <PartnerCard title="Regulated rail partner" body="Executes through existing infrastructure." />
+          <PartnerCard title="Assurance partner" body="Validates method and evidence." />
         </div>
       </aside>
 
       <section className="span-6 panel">
         <h3>Risk board</h3>
         <div className="risk-list">
-          <RiskRow title="Measurement trust" severity="High" body="Publish a rigorous method, net AI costs, apply confidence haircuts, and use third-party verification." />
-          <RiskRow title="Regulatory overreach" severity="High" body="Do not touch custody, payments, investment advice, or pension administration. Generate instructions only." />
-          <RiskRow title="Employer resistance" severity="Med" body="Sell retention, responsible AI legitimacy, and CFO-grade reporting before selling a public mission." />
-          <RiskRow title="Copycat incumbents" severity="Med" body="Build a benchmark dataset, certification mark, coalition trust, and partner sequencing advantage." />
+          <RiskRow title="Measurement trust" severity="High" body="Use rigorous method and third-party checks." />
+          <RiskRow title="Regulatory overreach" severity="High" body="Instructions only. No custody or advice." />
+          <RiskRow title="Employer resistance" severity="Med" body="Lead with retention and CFO reporting." />
+          <RiskRow title="Copycat incumbents" severity="Med" body="Build benchmarks and partner trust." />
         </div>
       </section>
 
       <section className="span-6 panel">
         <h3>Candidate partner roles</h3>
         <div className="partner-grid">
-          <PartnerCard title="Sompo-like insurer" body="Credibility, wellbeing narrative, retirement-security distribution, and employer access." />
-          <PartnerCard title="SoftBank-like sponsor" body="AI ecosystem relevance, strategic capital, and portfolio pilot channels." />
-          <PartnerCard title="METI / MHLW observers" body="Policy relevance after the measurement method is proven. Observer first, sponsor later." />
+          <PartnerCard title="Sompo-like insurer" body="Credibility and employer access." />
+          <PartnerCard title="SoftBank-like sponsor" body="AI ecosystem and pilot channels." />
+          <PartnerCard title="METI / MHLW observers" body="Observer first, sponsor later." />
         </div>
       </section>
     </div>
@@ -104,4 +101,3 @@ function RiskRow({ title, severity, body }: { title: string; severity: string; b
     </div>
   );
 }
-

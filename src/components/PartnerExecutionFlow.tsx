@@ -1,10 +1,10 @@
 const executionSteps = [
-  ["Customer data", "Aggregated workflow, HR group, finance, and assurance evidence."],
-  ["PPD verification", "Net AI costs, apply baseline checks, and exclude disallowed gains."],
-  ["Dividend calculation", "Apply confidence haircut and dividend rule to verified value."],
-  ["Instruction file/API", "Generate partner-ready contribution instructions only."],
-  ["Regulated partner", "Insurer, trust bank, payroll, DC, or benefits provider executes rails."],
-  ["Employee account", "Contribution reaches existing regulated retirement infrastructure."]
+  ["Customer data", "Aggregated workflow evidence."],
+  ["PPD verification", "Net costs and baseline checks."],
+  ["Dividend calculation", "Rule applied to verified value."],
+  ["Instruction file/API", "Partner-ready instructions."],
+  ["Regulated partner", "Licensed rail executes."],
+  ["Employee account", "Existing pension infrastructure."]
 ];
 
 export function PartnerExecutionFlow() {
@@ -13,10 +13,7 @@ export function PartnerExecutionFlow() {
       <div className="section-title">
         <div>
           <h2>Partner execution flow</h2>
-          <p>
-            The SaaS is the measurement and instruction layer. Funds, accounts,
-            and regulated execution stay with licensed partners.
-          </p>
+          <p>Measurement layer only. Licensed partners execute funds and accounts.</p>
         </div>
       </div>
 

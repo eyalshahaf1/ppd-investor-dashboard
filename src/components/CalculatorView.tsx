@@ -25,10 +25,7 @@ export function CalculatorView({
       <section className="span-12 section-title">
         <div>
           <h2>Live calculation room</h2>
-          <p>
-            Use this with investors when they ask what creates value and how the
-            platform gets paid. The calculations update instantly.
-          </p>
+          <p>Change assumptions. See pension impact and SaaS revenue instantly.</p>
         </div>
       </section>
 
@@ -70,10 +67,7 @@ export function CalculatorView({
 
       <section className="span-7 panel">
         <h3>Operational gain calculator</h3>
-        <p>
-          This translates process evidence into the dividend base. It keeps the
-          model close to audit-grade accounting rather than generic productivity storytelling.
-        </p>
+        <p>Turns pilot evidence into the dividend base.</p>
         <div className="control-grid">
           <AssumptionControl name="hoursSaved" label="Verified hours saved" help="annual" value={assumptions.hoursSaved} min={0} max={3000000} step={25000} onChange={(value) => onAssumptionChange("hoursSaved", value)} />
           <AssumptionControl name="costPerHour" label="Fully loaded cost" help="JPY / hour" value={assumptions.costPerHour} min={1000} max={12000} step={100} onChange={(value) => onAssumptionChange("costPerHour", value)} />
@@ -90,7 +84,7 @@ export function CalculatorView({
             <button className="action-btn primary" type="button" onClick={onApplyOperationalGain}>
               Apply operational gain
             </button>
-            <p className="kpi-note">Use when a pilot evidence pack replaces top-down assumptions.</p>
+            <p className="kpi-note">Use after pilot evidence is reviewed.</p>
           </article>
         </div>
       </section>

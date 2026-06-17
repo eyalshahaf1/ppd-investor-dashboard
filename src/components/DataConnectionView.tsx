@@ -141,11 +141,7 @@ export function DataConnectionView() {
       <section className="span-12 section-title">
         <div>
           <h2>Customer data connection</h2>
-          <p>
-            The SaaS path is simple: aggregated operating evidence in, verified
-            productivity dividend calculations in the middle, partner-ready
-            contribution instructions out.
-          </p>
+          <p>Evidence in. Dividend calculation. Partner instructions out.</p>
         </div>
       </section>
 
@@ -155,17 +151,17 @@ export function DataConnectionView() {
           <ConnectionStep
             index="1"
             title="Customer export"
-            body="Workflow and cost data are exported by period and business group."
+            body="Workflow and cost data."
           />
           <ConnectionStep
             index="2"
             title="PPD verification"
-            body="The model nets out AI cost, applies confidence haircuts, and excludes disallowed gains."
+            body="Net AI cost and apply controls."
           />
           <ConnectionStep
             index="3"
             title="Partner instruction"
-            body="The app produces contribution instructions for regulated execution partners."
+            body="Contribution instructions only."
           />
         </div>
       </section>
@@ -189,8 +185,7 @@ export function DataConnectionView() {
           <div>
             <h3>Secure pilot upload</h3>
             <p>
-              Local CSV/TXT storage for demo and pilot evidence, saved under ignored{" "}
-              <code>data/uploads</code>.
+              Local CSV/TXT evidence under <code>data/uploads</code>.
             </p>
           </div>
           <span className="upload-status" aria-live="polite">{uploadMessage}</span>
