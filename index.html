@@ -1,0 +1,2201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pension from AI Productivity - Investor Demo Dashboard</title>
+  <style>
+    :root {
+      --bg: #f6f7f4;
+      --surface: #ffffff;
+      --surface-2: #eef5f1;
+      --ink: #17201d;
+      --muted: #65736c;
+      --line: #d8e0da;
+      --teal: #0b6b5a;
+      --teal-2: #159a83;
+      --coral: #d84c3f;
+      --amber: #f0b342;
+      --indigo: #4f5aa8;
+      --blue: #2f7da1;
+      --good: #14724f;
+      --warn: #a65d14;
+      --bad: #b83a31;
+      --shadow: 0 18px 40px rgba(23, 32, 29, 0.08);
+      --radius: 8px;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(11, 107, 90, 0.08), rgba(246, 247, 244, 0) 330px),
+        var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(216, 224, 218, 0.9);
+      background: rgba(246, 247, 244, 0.94);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .brand {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 4px;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 980px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill,
+    .action-btn,
+    .tab-btn,
+    .scenario-btn {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      border-radius: var(--radius);
+    }
+
+    .pill {
+      min-height: 36px;
+      padding: 8px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pill strong {
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .action-btn {
+      min-height: 36px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: border-color 0.18s, background 0.18s, transform 0.18s;
+    }
+
+    .action-btn:hover,
+    .tab-btn:hover,
+    .scenario-btn:hover {
+      border-color: var(--teal);
+      transform: translateY(-1px);
+    }
+
+    .action-btn.primary {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #fff;
+    }
+
+    .tabs-wrap {
+      border-bottom: 1px solid rgba(216, 224, 218, 0.72);
+      background: rgba(255, 255, 255, 0.52);
+    }
+
+    .tabs {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 8px 24px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      min-width: 122px;
+      min-height: 40px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--muted);
+      transition: border-color 0.18s, color 0.18s, background 0.18s, transform 0.18s;
+    }
+
+    .tab-btn[aria-selected="true"] {
+      color: #fff;
+      border-color: var(--teal);
+      background: var(--teal);
+    }
+
+    main {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-7 { grid-column: span 7; }
+    .span-6 { grid-column: span 6; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+    .span-3 { grid-column: span 3; }
+
+    .section-title {
+      margin: 0 0 14px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.18;
+    }
+
+    .section-title p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      max-width: 780px;
+    }
+
+    .panel,
+    .kpi-card,
+    .metric-card,
+    .flow-step,
+    .risk-row,
+    .task-card,
+    .partner-card,
+    .formula-row,
+    .demo-step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .panel {
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .panel.plain {
+      box-shadow: none;
+    }
+
+    .panel h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .panel p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi-card {
+      padding: 14px;
+      min-height: 128px;
+      display: grid;
+      align-content: space-between;
+      gap: 10px;
+      box-shadow: none;
+    }
+
+    .kpi-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+
+    .kpi-value {
+      font-family: var(--mono);
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--ink);
+      overflow-wrap: anywhere;
+    }
+
+    .kpi-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .accent-teal { border-top: 4px solid var(--teal); }
+    .accent-coral { border-top: 4px solid var(--coral); }
+    .accent-amber { border-top: 4px solid var(--amber); }
+    .accent-indigo { border-top: 4px solid var(--indigo); }
+    .accent-blue { border-top: 4px solid var(--blue); }
+
+    .thesis-band {
+      background: linear-gradient(90deg, rgba(11, 107, 90, 0.11), rgba(240, 179, 66, 0.15));
+      border: 1px solid rgba(11, 107, 90, 0.18);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .thesis-band h2 {
+      margin-bottom: 8px;
+      font-size: 26px;
+      line-height: 1.15;
+    }
+
+    .thesis-band p {
+      margin-bottom: 0;
+      color: #34423d;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .ask-box {
+      border-left: 4px solid var(--teal);
+      background: rgba(255, 255, 255, 0.66);
+      padding: 14px;
+      border-radius: var(--radius);
+    }
+
+    .ask-box .kpi-label {
+      color: var(--teal);
+    }
+
+    .ask-box ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: #34423d;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .flow-step {
+      min-height: 156px;
+      padding: 14px;
+      box-shadow: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flow-step::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 4px;
+      background: var(--teal);
+    }
+
+    .flow-step:nth-child(2)::after { background: var(--blue); }
+    .flow-step:nth-child(3)::after { background: var(--amber); }
+    .flow-step:nth-child(4)::after { background: var(--coral); }
+    .flow-step:nth-child(5)::after { background: var(--indigo); }
+
+    .flow-index {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      background: var(--surface-2);
+      color: var(--teal);
+      font-family: var(--mono);
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .flow-step h3 {
+      margin-bottom: 6px;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .mini-bars {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 145px minmax(0, 1fr) 74px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .bar-track {
+      height: 12px;
+      border-radius: 999px;
+      background: #e7ede9;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--teal);
+    }
+
+    .bar-fill.coral { background: var(--coral); }
+    .bar-fill.amber { background: var(--amber); }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .field small {
+      color: var(--muted);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .control-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 118px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--teal);
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 8px 9px;
+      background: #fff;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    select {
+      font-family: var(--sans);
+      font-weight: 800;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-card {
+      padding: 14px;
+      min-height: 118px;
+      box-shadow: none;
+    }
+
+    .metric-card strong {
+      display: block;
+      margin: 7px 0 6px;
+      font-family: var(--mono);
+      font-size: 24px;
+      line-height: 1;
+      overflow-wrap: anywhere;
+    }
+
+    .metric-card span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .formula-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .formula-row {
+      box-shadow: none;
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: 12px;
+      padding: 10px 12px;
+      align-items: center;
+    }
+
+    .formula-row b {
+      font-size: 13px;
+    }
+
+    .formula-row code {
+      color: #26332f;
+      font-family: var(--mono);
+      font-size: 12px;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .chart-frame {
+      min-height: 360px;
+      display: grid;
+      grid-template-rows: auto minmax(280px, 1fr);
+      gap: 12px;
+    }
+
+    .chart-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .chart-head h3 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend i {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+      background: var(--teal);
+    }
+
+    .legend .aum i { background: var(--coral); }
+    .legend .revenue i { background: var(--indigo); }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      background: linear-gradient(180deg, #ffffff, #fbfcfb);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .scenario-controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .scenario-btn {
+      min-height: 38px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--muted);
+      transition: border-color 0.18s, color 0.18s, background 0.18s, transform 0.18s;
+    }
+
+    .scenario-btn.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 11px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .data-table th:first-child,
+    .data-table td:first-child {
+      text-align: left;
+      white-space: normal;
+    }
+
+    .data-table th {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .data-table td {
+      font-family: var(--mono);
+      color: #24302c;
+    }
+
+    .task-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 170px;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .progress-shell {
+      height: 14px;
+      border-radius: 999px;
+      background: #e3ebe6;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--teal), var(--amber));
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .task-card {
+      padding: 14px;
+      box-shadow: none;
+      min-height: 154px;
+    }
+
+    .task-card h3 {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .checkline {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      margin: 8px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .checkline input {
+      width: 17px;
+      height: 17px;
+      margin-top: 1px;
+      accent-color: var(--teal);
+      flex: 0 0 auto;
+    }
+
+    .risk-list,
+    .partner-grid,
+    .demo-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .risk-row {
+      box-shadow: none;
+      display: grid;
+      grid-template-columns: 150px 90px minmax(0, 1fr);
+      gap: 12px;
+      padding: 12px;
+      align-items: start;
+    }
+
+    .risk-row b {
+      font-size: 13px;
+    }
+
+    .risk-badge {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 900;
+      color: #fff;
+      background: var(--warn);
+    }
+
+    .risk-badge.high { background: var(--bad); }
+    .risk-badge.medium { background: var(--warn); }
+    .risk-badge.low { background: var(--good); }
+
+    .risk-row p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .partner-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .partner-card {
+      box-shadow: none;
+      padding: 14px;
+      min-height: 148px;
+    }
+
+    .partner-card h3 {
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .partner-card p {
+      margin-bottom: 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .demo-step {
+      box-shadow: none;
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 12px;
+      padding: 13px;
+      align-items: start;
+    }
+
+    .demo-step .num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--teal);
+      color: #fff;
+      font-family: var(--mono);
+      font-weight: 900;
+    }
+
+    .demo-step h3 {
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
+    .demo-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .callout {
+      border-left: 4px solid var(--coral);
+      background: rgba(216, 76, 63, 0.08);
+      padding: 14px;
+      border-radius: var(--radius);
+    }
+
+    .callout h3 {
+      margin-bottom: 6px;
+      color: #842b25;
+      font-size: 15px;
+    }
+
+    .callout p {
+      margin: 0;
+      color: #5a302c;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .source-note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .source-note strong {
+      color: var(--ink);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1180px) {
+      .span-8,
+      .span-7,
+      .span-6,
+      .span-5,
+      .span-4,
+      .span-3 {
+        grid-column: span 12;
+      }
+
+      .kpi-grid,
+      .metric-grid,
+      .flow,
+      .task-grid,
+      .partner-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .thesis-band {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        grid-template-columns: 1fr;
+        padding: 12px 16px;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+      }
+
+      main {
+        padding: 16px;
+      }
+
+      .tabs {
+        padding: 8px 16px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .section-title,
+      .chart-head {
+        display: block;
+      }
+
+      .kpi-grid,
+      .metric-grid,
+      .flow,
+      .task-grid,
+      .partner-grid,
+      .control-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .control-row,
+      .formula-row,
+      .risk-row,
+      .task-toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .bar-row {
+        grid-template-columns: 1fr;
+      }
+
+      .data-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .topbar,
+      .tabs-wrap,
+      .action-btn,
+      .scenario-controls {
+        display: none !important;
+      }
+
+      main {
+        padding: 0;
+        max-width: none;
+      }
+
+      .tab-panel {
+        display: block !important;
+        page-break-after: always;
+      }
+
+      .panel,
+      .kpi-card,
+      .metric-card,
+      .flow-step,
+      .task-card,
+      .risk-row,
+      .partner-card,
+      .demo-step {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="eyebrow">Japan investor demo app</div>
+          <h1>Pension from AI Productivity</h1>
+          <p class="subtitle">A working dashboard for the AI Pension Productivity Dividend concept. Prepared by Eyal Shahaf. The product wedge is measurement, allocation, and reporting while regulated partners handle pension execution.</p>
+        </div>
+        <div class="top-actions">
+          <div class="pill" title="Base-case source scenario"><span>Base case</span><strong id="topCase">Medium</strong></div>
+          <div class="pill" title="Calculated live from current assumptions"><span>Y5 flow</span><strong id="topFlow">&yen;120.0B</strong></div>
+          <div class="pill" title="Local backend and SQLite status"><span>Backend</span><strong id="backendStatus">Offline</strong></div>
+          <button class="action-btn" id="resetBtn" type="button" title="Restore source assumptions">Reset</button>
+          <button class="action-btn" id="saveBtn" type="button" title="Save current assumptions and calculation snapshot to SQLite">Save</button>
+          <button class="action-btn primary" id="printBtn" type="button" title="Print or save a PDF snapshot">Snapshot</button>
+        </div>
+      </div>
+      <div class="tabs-wrap">
+        <nav class="tabs" aria-label="Dashboard views" role="tablist">
+          <button class="tab-btn" id="tab-overview" type="button" role="tab" aria-selected="true" aria-controls="overview" data-tab="overview">Overview</button>
+          <button class="tab-btn" id="tab-calculator" type="button" role="tab" aria-selected="false" aria-controls="calculator" data-tab="calculator">Calculator</button>
+          <button class="tab-btn" id="tab-scenarios" type="button" role="tab" aria-selected="false" aria-controls="scenarios" data-tab="scenarios">Scenarios</button>
+          <button class="tab-btn" id="tab-pilot" type="button" role="tab" aria-selected="false" aria-controls="pilot" data-tab="pilot">Pilot Tasks</button>
+          <button class="tab-btn" id="tab-investor" type="button" role="tab" aria-selected="false" aria-controls="investor" data-tab="investor">Investor Room</button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="tab-panel active" id="overview" role="tabpanel" aria-labelledby="tab-overview">
+        <div class="dashboard-grid">
+          <div class="span-12 thesis-band">
+            <div>
+              <h2>Show investors the linking layer, not a new pension system.</h2>
+              <p>The clean venture story is a B2B fintech infrastructure product: quantify verified AI productivity gains, apply a rules-based dividend, generate contribution instructions, and report impact for CFO, HR, ESG, and policy stakeholders.</p>
+            </div>
+            <div class="ask-box">
+              <div class="kpi-label">90-day proof-of-concept ask</div>
+              <ul>
+                <li>Two pilot employers with measurable workflows.</li>
+                <li>One regulated pension, insurer, payroll, or trust-bank rail partner.</li>
+                <li>One assurance partner to validate the method.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="span-12">
+            <div class="section-title">
+              <div>
+                <h2>Investor opening dashboard</h2>
+                <p>Lead with Japan's structural need, then immediately separate retirement value created from platform revenue earned.</p>
+              </div>
+            </div>
+            <div class="kpi-grid">
+              <article class="kpi-card accent-teal">
+                <div class="kpi-label">Japan population 65+</div>
+                <div class="kpi-value">29.3%</div>
+                <p class="kpi-note">As of Oct 2024 in the source deck.</p>
+              </article>
+              <article class="kpi-card accent-coral">
+                <div class="kpi-label">2024 births</div>
+                <div class="kpi-value">686k</div>
+                <p class="kpi-note">Record low, reinforcing long-run contributor pressure.</p>
+              </article>
+              <article class="kpi-card accent-amber">
+                <div class="kpi-label">Default dividend rule</div>
+                <div class="kpi-value" id="overviewDividend">5.0%</div>
+                <p class="kpi-note">Editable. Source one-pager frames 1% to 5%.</p>
+              </article>
+              <article class="kpi-card accent-indigo">
+                <div class="kpi-label">Medium Y5 retirement flow</div>
+                <div class="kpi-value" id="overviewY5">&yen;120.0B</div>
+                <p class="kpi-note">Retirement contributions created, not startup revenue.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="span-8 panel">
+            <div class="section-title">
+              <div>
+                <h2>Operating flow</h2>
+                <p>The demo should make regulatory restraint visible. The platform does not custody assets, recommend investments, or operate as the pension administrator.</p>
+              </div>
+            </div>
+            <div class="flow" aria-label="Product operating flow">
+              <article class="flow-step">
+                <div class="flow-index">1</div>
+                <h3>AI deployment inside employer</h3>
+                <p>Choose measurable workflows such as claims, invoices, HR admin, or call-center wrap-up time.</p>
+              </article>
+              <article class="flow-step">
+                <div class="flow-index">2</div>
+                <h3>Measurement and audit trail</h3>
+                <p>Calculate verified net efficiency value after AI costs, baseline checks, and confidence haircut.</p>
+              </article>
+              <article class="flow-step">
+                <div class="flow-index">3</div>
+                <h3>Dividend rule</h3>
+                <p>Allocate an editable share of eligible gains to retirement support while excluding layoff gains.</p>
+              </article>
+              <article class="flow-step">
+                <div class="flow-index">4</div>
+                <h3>Regulated rails</h3>
+                <p>Contribution instructions flow through existing DC, iDeCo, insurer, trust-bank, payroll, or benefits partners.</p>
+              </article>
+              <article class="flow-step">
+                <div class="flow-index">5</div>
+                <h3>Impact reporting</h3>
+                <p>Generate CFO, HR, employee, assurance, and policy reports under a consistent PPD methodology.</p>
+              </article>
+            </div>
+          </div>
+
+          <aside class="span-4 panel">
+            <h3>Holistic value split</h3>
+            <p>Use this as a strategic frame, not the primary pilot pricing promise. The calculator keeps the source default at 5%.</p>
+            <div class="mini-bars" aria-label="Illustrative holistic value split">
+              <div class="bar-row">
+                <b>Employer retained</b>
+                <div class="bar-track"><div class="bar-fill" style="width: 66%;"></div></div>
+                <span>60%-70%</span>
+              </div>
+              <div class="bar-row">
+                <b>Employee pension</b>
+                <div class="bar-track"><div class="bar-fill amber" style="width: 25%;"></div></div>
+                <span>20%-30%</span>
+              </div>
+              <div class="bar-row">
+                <b>Social resilience</b>
+                <div class="bar-track"><div class="bar-fill coral" style="width: 8%;"></div></div>
+                <span>future layer</span>
+              </div>
+            </div>
+            <p class="source-note"><strong>Investor positioning:</strong> start with voluntary B2B pilots, then keep coalition and policy pathways as upside optionality.</p>
+          </aside>
+
+          <div class="span-12 panel chart-frame">
+            <div class="chart-head">
+              <h3>Medium scenario: retirement value, tracked assets, and platform revenue</h3>
+              <div class="legend">
+                <span><i></i>Annual contributions</span>
+                <span class="aum"><i></i>End-year AUM tracked</span>
+                <span class="revenue"><i></i>Platform revenue</span>
+              </div>
+            </div>
+            <canvas id="overviewChart" aria-label="Medium scenario projection chart" role="img"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="calculator" role="tabpanel" aria-labelledby="tab-calculator">
+        <div class="dashboard-grid">
+          <div class="span-12">
+            <div class="section-title">
+              <div>
+                <h2>Live calculation room</h2>
+                <p>Use this with investors when they ask, "What exactly creates value and how do you get paid?" The calculations update instantly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="span-5 panel">
+            <h3>Employer and dividend assumptions</h3>
+            <div class="control-grid">
+              <div class="field">
+                <label for="coveredEmployeesRange">Covered employees <small>per modeled employer</small></label>
+                <div class="control-row">
+                  <input id="coveredEmployeesRange" type="range" min="1000" max="50000" step="1000" data-bind="coveredEmployees">
+                  <input id="coveredEmployeesInput" type="number" min="1000" max="50000" step="1000" data-bind="coveredEmployees">
+                </div>
+              </div>
+              <div class="field">
+                <label for="employersRange">Employers <small>rollout count</small></label>
+                <div class="control-row">
+                  <input id="employersRange" type="range" min="1" max="250" step="1" data-bind="employers">
+                  <input id="employersInput" type="number" min="1" max="250" step="1" data-bind="employers">
+                </div>
+              </div>
+              <div class="field">
+                <label for="gainPerEmployeeRange">Verified net gain <small>JPY / employee / year</small></label>
+                <div class="control-row">
+                  <input id="gainPerEmployeeRange" type="range" min="200000" max="3000000" step="50000" data-bind="gainPerEmployee">
+                  <input id="gainPerEmployeeInput" type="number" min="200000" max="3000000" step="50000" data-bind="gainPerEmployee">
+                </div>
+              </div>
+              <div class="field">
+                <label for="dividendRateRange">Dividend rule <small>% of verified gain</small></label>
+                <div class="control-row">
+                  <input id="dividendRateRange" type="range" min="1" max="10" step="0.25" data-bind="dividendRate">
+                  <input id="dividendRateInput" type="number" min="1" max="10" step="0.25" data-bind="dividendRate">
+                </div>
+              </div>
+              <div class="field">
+                <label for="confidenceRange">Confidence haircut <small>% paid from eligible base</small></label>
+                <div class="control-row">
+                  <input id="confidenceRange" type="range" min="50" max="100" step="1" data-bind="confidence">
+                  <input id="confidenceInput" type="number" min="50" max="100" step="1" data-bind="confidence">
+                </div>
+              </div>
+              <div class="field">
+                <label for="returnRange">AUM tracking return <small>illustrative, not a forecast</small></label>
+                <div class="control-row">
+                  <input id="returnRange" type="range" min="0" max="6" step="0.25" data-bind="annualReturn">
+                  <input id="returnInput" type="number" min="0" max="6" step="0.25" data-bind="annualReturn">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="span-7 panel">
+            <h3>Calculated outputs</h3>
+            <div class="metric-grid">
+              <article class="metric-card accent-teal">
+                <div class="kpi-label">Annual retirement pool</div>
+                <strong id="outRetirementPool">&yen;600.0M</strong>
+                <span>Value routed to retirement rails. Not platform revenue.</span>
+              </article>
+              <article class="metric-card accent-amber">
+                <div class="kpi-label">Annual per employee</div>
+                <strong id="outPerEmployee">&yen;60.0k</strong>
+                <span>Contribution generated by the dividend rule.</span>
+              </article>
+              <article class="metric-card accent-coral">
+                <div class="kpi-label">Employer retained value</div>
+                <strong id="outEmployerRetained">&yen;11.4B</strong>
+                <span>Verified gain remaining after retirement allocation.</span>
+              </article>
+              <article class="metric-card accent-blue">
+                <div class="kpi-label">Recurring platform revenue</div>
+                <strong id="outRecurringRevenue">&yen;65.0M</strong>
+                <span>SaaS plus take rate plus verification fee.</span>
+              </article>
+              <article class="metric-card accent-indigo">
+                <div class="kpi-label">Gross-profit LTV</div>
+                <strong id="outLtv">&yen;232.5M</strong>
+                <span>Retention-period gross profit after setup cost.</span>
+              </article>
+              <article class="metric-card accent-teal">
+                <div class="kpi-label">CAC payback</div>
+                <strong id="outPayback">6.6 mo</strong>
+                <span>Based on recurring gross profit per month.</span>
+              </article>
+            </div>
+          </div>
+
+          <div class="span-5 panel">
+            <h3>Platform pricing assumptions</h3>
+            <div class="control-grid">
+              <div class="field">
+                <label for="setupFeeRange">Setup fee <small>JPY millions / new employer</small></label>
+                <div class="control-row">
+                  <input id="setupFeeRange" type="range" min="0" max="50" step="1" data-bind="setupFeeM">
+                  <input id="setupFeeInput" type="number" min="0" max="50" step="1" data-bind="setupFeeM">
+                </div>
+              </div>
+              <div class="field">
+                <label for="monthlySaasRange">SaaS fee <small>JPY / employee / month</small></label>
+                <div class="control-row">
+                  <input id="monthlySaasRange" type="range" min="100" max="1500" step="50" data-bind="monthlySaas">
+                  <input id="monthlySaasInput" type="number" min="100" max="1500" step="50" data-bind="monthlySaas">
+                </div>
+              </div>
+              <div class="field">
+                <label for="takeRateRange">Take rate <small>% of contributions routed</small></label>
+                <div class="control-row">
+                  <input id="takeRateRange" type="range" min="0" max="2" step="0.05" data-bind="takeRate">
+                  <input id="takeRateInput" type="number" min="0" max="2" step="0.05" data-bind="takeRate">
+                </div>
+              </div>
+              <div class="field">
+                <label for="auditFeeRange">Verification fee <small>JPY millions / employer / year</small></label>
+                <div class="control-row">
+                  <input id="auditFeeRange" type="range" min="0" max="10" step="0.5" data-bind="auditFeeM">
+                  <input id="auditFeeInput" type="number" min="0" max="10" step="0.5" data-bind="auditFeeM">
+                </div>
+              </div>
+              <div class="field">
+                <label for="grossMarginRange">Gross margin <small>% recurring revenue</small></label>
+                <div class="control-row">
+                  <input id="grossMarginRange" type="range" min="40" max="90" step="1" data-bind="grossMargin">
+                  <input id="grossMarginInput" type="number" min="40" max="90" step="1" data-bind="grossMargin">
+                </div>
+              </div>
+              <div class="field">
+                <label for="cacRange">CAC <small>JPY millions / employer</small></label>
+                <div class="control-row">
+                  <input id="cacRange" type="range" min="1" max="80" step="1" data-bind="cacM">
+                  <input id="cacInput" type="number" min="1" max="80" step="1" data-bind="cacM">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="span-7 panel">
+            <h3>Operational gain calculator</h3>
+            <p>This translates process evidence into the dividend base. It keeps the model close to audit-grade accounting rather than generic productivity storytelling.</p>
+            <div class="control-grid">
+              <div class="field">
+                <label for="hoursSavedRange">Verified hours saved <small>annual</small></label>
+                <div class="control-row">
+                  <input id="hoursSavedRange" type="range" min="0" max="3000000" step="25000" data-bind="hoursSaved">
+                  <input id="hoursSavedInput" type="number" min="0" max="3000000" step="25000" data-bind="hoursSaved">
+                </div>
+              </div>
+              <div class="field">
+                <label for="costHourRange">Fully loaded cost <small>JPY / hour</small></label>
+                <div class="control-row">
+                  <input id="costHourRange" type="range" min="1000" max="12000" step="100" data-bind="costPerHour">
+                  <input id="costHourInput" type="number" min="1000" max="12000" step="100" data-bind="costPerHour">
+                </div>
+              </div>
+              <div class="field">
+                <label for="overtimeRange">Overtime savings <small>JPY millions</small></label>
+                <div class="control-row">
+                  <input id="overtimeRange" type="range" min="0" max="5000" step="50" data-bind="overtimeM">
+                  <input id="overtimeInput" type="number" min="0" max="5000" step="50" data-bind="overtimeM">
+                </div>
+              </div>
+              <div class="field">
+                <label for="outsourcingRange">Outsourcing savings <small>JPY millions</small></label>
+                <div class="control-row">
+                  <input id="outsourcingRange" type="range" min="0" max="5000" step="50" data-bind="outsourcingM">
+                  <input id="outsourcingInput" type="number" min="0" max="5000" step="50" data-bind="outsourcingM">
+                </div>
+              </div>
+              <div class="field">
+                <label for="qualityRange">Quality benefit <small>JPY millions</small></label>
+                <div class="control-row">
+                  <input id="qualityRange" type="range" min="0" max="5000" step="50" data-bind="qualityM">
+                  <input id="qualityInput" type="number" min="0" max="5000" step="50" data-bind="qualityM">
+                </div>
+              </div>
+              <div class="field">
+                <label for="aiCostRange">AI costs <small>JPY millions</small></label>
+                <div class="control-row">
+                  <input id="aiCostRange" type="range" min="0" max="5000" step="50" data-bind="aiCostM">
+                  <input id="aiCostInput" type="number" min="0" max="5000" step="50" data-bind="aiCostM">
+                </div>
+              </div>
+            </div>
+            <div class="metric-grid" style="margin-top: 12px;">
+              <article class="metric-card accent-teal">
+                <div class="kpi-label">Operational net gain</div>
+                <strong id="outOperationalGain">&yen;12.0B</strong>
+                <span>N = (H*C) + O + S + Q - A</span>
+              </article>
+              <article class="metric-card accent-amber">
+                <div class="kpi-label">Per-employee implied gain</div>
+                <strong id="outOperationalPerEmployee">&yen;1.2M</strong>
+                <span>Operational gain divided by covered employees.</span>
+              </article>
+              <article class="metric-card accent-coral">
+                <div class="kpi-label">Validation move</div>
+                <button class="action-btn primary" id="applyOperationalBtn" type="button">Apply operational gain</button>
+                <span>Use when a pilot evidence pack replaces top-down assumptions.</span>
+              </article>
+            </div>
+          </div>
+
+          <div class="span-12 panel plain">
+            <div class="section-title">
+              <div>
+                <h2>Formula trail</h2>
+                <p>Keep this visible when investors challenge the math. It lowers trust friction.</p>
+              </div>
+            </div>
+            <div class="formula-list">
+              <div class="formula-row"><b>Net efficiency value</b><code>N = (verified hours saved * fully loaded hourly cost) + overtime savings + outsourcing savings + quality benefit - AI costs</code></div>
+              <div class="formula-row"><b>Dividend contribution</b><code>Total retirement pool = covered employees * verified net gain per employee * confidence haircut * dividend rate</code></div>
+              <div class="formula-row"><b>Platform recurring revenue</b><code>SaaS + take rate on contributions + annual verification fee</code></div>
+              <div class="formula-row"><b>Gross-profit LTV</b><code>(recurring revenue * gross margin * retention years) + setup gross profit</code></div>
+              <div class="formula-row"><b>CAC payback</b><code>CAC per employer / monthly recurring gross profit per employer</code></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="scenarios" role="tabpanel" aria-labelledby="tab-scenarios">
+        <div class="dashboard-grid">
+          <div class="span-12">
+            <div class="section-title">
+              <div>
+                <h2>Adoption scenarios and five-year projection</h2>
+                <p>Switch between source scenarios. Medium uses the full source trajectory: 30k, 150k, 500k, 1.2M, and 2.0M covered employees.</p>
+              </div>
+              <div class="scenario-controls" aria-label="Scenario selector">
+                <button class="scenario-btn" type="button" data-scenario="low">Low</button>
+                <button class="scenario-btn active" type="button" data-scenario="medium">Medium</button>
+                <button class="scenario-btn" type="button" data-scenario="high">High</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="span-8 panel chart-frame">
+            <div class="chart-head">
+              <h3 id="scenarioChartTitle">Medium adoption projection</h3>
+              <div class="legend">
+                <span><i></i>Annual contributions</span>
+                <span class="aum"><i></i>End-year AUM tracked</span>
+                <span class="revenue"><i></i>Platform revenue</span>
+              </div>
+            </div>
+            <canvas id="scenarioChart" aria-label="Scenario projection chart" role="img"></canvas>
+          </div>
+
+          <div class="span-4 panel">
+            <h3>Scenario snapshot</h3>
+            <div class="metric-grid" style="grid-template-columns: 1fr;">
+              <article class="metric-card accent-teal">
+                <div class="kpi-label">Y5 covered employees</div>
+                <strong id="scenarioY5Employees">2.0M</strong>
+                <span>Scale assumption at year five.</span>
+              </article>
+              <article class="metric-card accent-amber">
+                <div class="kpi-label">Y5 annual contributions</div>
+                <strong id="scenarioY5Contribution">&yen;120.0B</strong>
+                <span>Retirement value created in year five.</span>
+              </article>
+              <article class="metric-card accent-indigo">
+                <div class="kpi-label">Y5 platform revenue</div>
+                <strong id="scenarioY5Revenue">&yen;14.6B</strong>
+                <span>Startup revenue earned from the platform model.</span>
+              </article>
+            </div>
+            <div class="callout" style="margin-top: 12px;">
+              <h3>Investor-safe phrasing</h3>
+              <p>"AUM tracked" means assets verified through the program. The startup should not imply that it legally manages pension assets.</p>
+            </div>
+          </div>
+
+          <div class="span-12 panel">
+            <h3>Projection table</h3>
+            <table class="data-table" aria-label="Five year scenario projection table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Employees</th>
+                  <th>Annual contribution</th>
+                  <th>End-year AUM tracked</th>
+                  <th>Platform revenue</th>
+                  <th>New employers</th>
+                </tr>
+              </thead>
+              <tbody id="scenarioTable"></tbody>
+            </table>
+          </div>
+
+          <div class="span-12 panel chart-frame">
+            <div class="chart-head">
+              <h3>Dividend sensitivity for current calculator assumptions</h3>
+              <div class="legend"><span><i></i>Retirement pool</span><span class="revenue"><i></i>Platform revenue</span></div>
+            </div>
+            <canvas id="sensitivityChart" aria-label="Dividend sensitivity chart" role="img"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="pilot" role="tabpanel" aria-labelledby="tab-pilot">
+        <div class="dashboard-grid">
+          <div class="span-12">
+            <div class="section-title">
+              <div>
+                <h2>90-day pilot operating dashboard</h2>
+                <p>This is the execution view investors should see after they understand the story. It shows what must be proven before scaling.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="span-8 panel">
+            <div class="task-toolbar">
+              <div>
+                <h3>Task checklist</h3>
+                <p style="margin-bottom: 0;">Progress is stored locally in this browser for demo continuity.</p>
+              </div>
+              <div>
+                <div class="kpi-label" id="taskProgressLabel">0% complete</div>
+                <div class="progress-shell" aria-hidden="true"><div class="progress-fill" id="taskProgress"></div></div>
+              </div>
+            </div>
+            <div class="task-grid">
+              <article class="task-card">
+                <h3>Weeks 1-3: baseline</h3>
+                <label class="checkline"><input type="checkbox" data-task="kpi-dictionary">KPI dictionary for 3-5 measurable workflows.</label>
+                <label class="checkline"><input type="checkbox" data-task="privacy-pack">Privacy and labor-management communication pack.</label>
+                <label class="checkline"><input type="checkbox" data-task="counterfactual">Matched control or counterfactual design.</label>
+              </article>
+              <article class="task-card">
+                <h3>Weeks 4-8: deployment</h3>
+                <label class="checkline"><input type="checkbox" data-task="ai-use-cases">One or two AI use cases deployed per employer.</label>
+                <label class="checkline"><input type="checkbox" data-task="net-costs">AI costs captured and netted from gains.</label>
+                <label class="checkline"><input type="checkbox" data-task="dividend-file">Contribution instruction file drafted for rail partner.</label>
+              </article>
+              <article class="task-card">
+                <h3>Weeks 9-12: verification</h3>
+                <label class="checkline"><input type="checkbox" data-task="assurance-sampling">Third-party evidence sampling completed.</label>
+                <label class="checkline"><input type="checkbox" data-task="ppd-report">PPD Pilot Report drafted for CFO, HR, and labor stakeholders.</label>
+                <label class="checkline"><input type="checkbox" data-task="board-readout">Investor and partner readout scheduled.</label>
+              </article>
+            </div>
+          </div>
+
+          <div class="span-4 panel">
+            <h3>Partner triangle</h3>
+            <div class="partner-grid" style="grid-template-columns: 1fr;">
+              <article class="partner-card">
+                <h3>Design employer</h3>
+                <p>Back-office intensive, measurable workflow data, senior HR and CFO sponsorship.</p>
+              </article>
+              <article class="partner-card">
+                <h3>Regulated rail partner</h3>
+                <p>Insurer, trust bank, payroll, DC, or benefits partner executes under existing infrastructure.</p>
+              </article>
+              <article class="partner-card">
+                <h3>Assurance partner</h3>
+                <p>Validates baseline integrity, evidence samples, exclusion of layoff gains, and reporting consistency.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="span-6 panel">
+            <h3>Risk board</h3>
+            <div class="risk-list">
+              <div class="risk-row">
+                <b>Measurement trust</b>
+                <span class="risk-badge high">High</span>
+                <p>Publish a rigorous method, net AI costs, apply confidence haircuts, and use third-party verification.</p>
+              </div>
+              <div class="risk-row">
+                <b>Regulatory overreach</b>
+                <span class="risk-badge high">High</span>
+                <p>Do not touch custody, payments, investment advice, or pension administration. Generate instructions only.</p>
+              </div>
+              <div class="risk-row">
+                <b>Employer resistance</b>
+                <span class="risk-badge medium">Med</span>
+                <p>Sell retention, responsible AI legitimacy, and CFO-grade reporting before selling a public mission.</p>
+              </div>
+              <div class="risk-row">
+                <b>Copycat incumbents</b>
+                <span class="risk-badge medium">Med</span>
+                <p>Build a benchmark dataset, certification mark, coalition trust, and partner sequencing advantage.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="span-6 panel">
+            <h3>Candidate partner roles</h3>
+            <div class="partner-grid">
+              <article class="partner-card">
+                <h3>Sompo-like insurer</h3>
+                <p>Credibility, wellbeing narrative, retirement-security distribution, and employer access.</p>
+              </article>
+              <article class="partner-card">
+                <h3>SoftBank-like sponsor</h3>
+                <p>AI ecosystem relevance, strategic capital, and portfolio pilot channels.</p>
+              </article>
+              <article class="partner-card">
+                <h3>METI / MHLW observers</h3>
+                <p>Policy relevance after the measurement method is proven. Observer first, sponsor later.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="investor" role="tabpanel" aria-labelledby="tab-investor">
+        <div class="dashboard-grid">
+          <div class="span-12">
+            <div class="section-title">
+              <div>
+                <h2>Best-practice investor demonstration</h2>
+                <p>Run this app like a proof of operating discipline. The point is not to dazzle with big TAM; it is to show that the model survives scrutiny.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="span-7 panel">
+            <h3>Recommended demo sequence</h3>
+            <div class="demo-grid">
+              <article class="demo-step">
+                <div class="num">1</div>
+                <div>
+                  <h3>Open with the wedge</h3>
+                  <p>"We are not replacing Japan's pension system. We are the measurement, allocation, and reporting layer for responsible AI gains."</p>
+                </div>
+              </article>
+              <article class="demo-step">
+                <div class="num">2</div>
+                <div>
+                  <h3>Show the operating flow</h3>
+                  <p>Walk left to right: AI workflow, verified gain, dividend rule, regulated rails, impact reporting.</p>
+                </div>
+              </article>
+              <article class="demo-step">
+                <div class="num">3</div>
+                <div>
+                  <h3>Stress-test the math live</h3>
+                  <p>Change dividend rate from 5% to 3%, apply a confidence haircut, then show the retirement pool and platform revenue still remain legible.</p>
+                </div>
+              </article>
+              <article class="demo-step">
+                <div class="num">4</div>
+                <div>
+                  <h3>Separate value buckets</h3>
+                  <p>Repeat that retirement contributions are worker value. Startup revenue is SaaS, verification, setup, and a modest flow fee.</p>
+                </div>
+              </article>
+              <article class="demo-step">
+                <div class="num">5</div>
+                <div>
+                  <h3>Make risk feel managed</h3>
+                  <p>Show the risk board and emphasize measurement integrity, privacy, anti-layoff guardrails, and regulated partner execution.</p>
+                </div>
+              </article>
+              <article class="demo-step">
+                <div class="num">6</div>
+                <div>
+                  <h3>Close with the partner triangle</h3>
+                  <p>Ask for two pilots, one regulated rail partner, and one assurance partner to validate a 90-day proof of concept in Japan.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="span-5 panel">
+            <h3>Do and avoid</h3>
+            <div class="callout" style="border-left-color: var(--teal); background: rgba(11, 107, 90, 0.08);">
+              <h3 style="color: var(--teal);">Do</h3>
+              <p>Use conservative assumptions, show formulas, invite challenge, name the regulated partners, and keep policy upside as optionality.</p>
+            </div>
+            <div class="callout" style="margin-top: 12px;">
+              <h3>Avoid</h3>
+              <p>Do not imply custody, guaranteed returns, investment advice, national legislation dependency, or that layoff savings count as eligible gains.</p>
+            </div>
+            <div class="panel plain" style="margin-top: 12px; padding: 0; border: 0;">
+              <h3>Investor close</h3>
+              <p class="source-note">"If a 90-day pilot can produce a verified PPD report with real workflow data and a regulated rail partner, then we have the seed of a defensible responsible-AI infrastructure company."</p>
+            </div>
+          </div>
+
+          <div class="span-12 panel">
+            <h3>Source and caution</h3>
+            <p class="source-note"><strong>Source basis:</strong> Built from Eyal Shahaf's master deep-dive, investor one-pager, and VC concept deck supplied in this workspace. Figures are illustrative planning assumptions unless otherwise sourced in those materials.</p>
+            <p class="source-note"><strong>Important:</strong> This demo is for discussion only. It is not financial, legal, pension, tax, or investment advice. Final investor materials should be reviewed by Japan-qualified legal, pension, privacy, and regulatory experts.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const YEN = "\u00a5";
+
+    const defaults = {
+      coveredEmployees: 10000,
+      employers: 1,
+      gainPerEmployee: 1200000,
+      dividendRate: 5,
+      confidence: 100,
+      annualReturn: 3,
+      setupFeeM: 20,
+      monthlySaas: 500,
+      takeRate: 0.5,
+      auditFeeM: 2,
+      grossMargin: 70,
+      implementationCostM: 15,
+      cacM: 25,
+      retentionYears: 5,
+      hoursSaved: 1600000,
+      costPerHour: 5500,
+      overtimeM: 2400,
+      outsourcingM: 1200,
+      qualityM: 900,
+      aiCostM: 1300
+    };
+
+    const scenarios = {
+      low: {
+        label: "Low adoption",
+        employees: [20000, 75000, 200000, 350000, 500000],
+        contributionPerEmployee: 30000,
+        gainPerEmployee: 600000
+      },
+      medium: {
+        label: "Medium adoption",
+        employees: [30000, 150000, 500000, 1200000, 2000000],
+        contributionPerEmployee: 60000,
+        gainPerEmployee: 1200000
+      },
+      high: {
+        label: "High adoption",
+        employees: [30000, 300000, 1000000, 2500000, 5000000],
+        contributionPerEmployee: 120000,
+        gainPerEmployee: 2400000
+      }
+    };
+
+    let state = { ...defaults };
+    let activeScenario = "medium";
+    let backendOnline = false;
+    const years = ["Y1", "Y2", "Y3", "Y4", "Y5"];
+
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function formatNumber(value, decimals = 0) {
+      return Number(value).toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+    }
+
+    function formatEmployees(value) {
+      if (value >= 1000000) return `${formatNumber(value / 1000000, value % 1000000 === 0 ? 1 : 2)}M`;
+      if (value >= 1000) return `${formatNumber(value / 1000, value % 1000 === 0 ? 0 : 1)}k`;
+      return formatNumber(value);
+    }
+
+    function formatYen(value, decimals = 1) {
+      const abs = Math.abs(value);
+      if (abs >= 1000000000000) return `${YEN}${formatNumber(value / 1000000000000, decimals)}T`;
+      if (abs >= 1000000000) return `${YEN}${formatNumber(value / 1000000000, decimals)}B`;
+      if (abs >= 1000000) return `${YEN}${formatNumber(value / 1000000, decimals)}M`;
+      if (abs >= 1000) return `${YEN}${formatNumber(value / 1000, decimals)}k`;
+      return `${YEN}${formatNumber(value, 0)}`;
+    }
+
+    function getCalculator() {
+      const eligibleBase = state.coveredEmployees * state.gainPerEmployee * (state.confidence / 100);
+      const retirementPool = eligibleBase * (state.dividendRate / 100);
+      const perEmployee = state.coveredEmployees ? retirementPool / state.coveredEmployees : 0;
+      const employerRetained = Math.max(0, eligibleBase - retirementPool);
+      const saas = state.coveredEmployees * state.monthlySaas * 12 * state.employers;
+      const take = retirementPool * state.takeRate / 100 * state.employers;
+      const audit = state.auditFeeM * 1000000 * state.employers;
+      const recurringRevenue = saas + take + audit;
+      const setupRevenue = state.setupFeeM * 1000000 * state.employers;
+      const setupGrossProfit = setupRevenue - (state.implementationCostM * 1000000 * state.employers);
+      const recurringGrossProfit = recurringRevenue * state.grossMargin / 100;
+      const ltv = setupGrossProfit + recurringGrossProfit * state.retentionYears;
+      const cac = state.cacM * 1000000 * state.employers;
+      const monthlyRecurringGrossProfit = recurringGrossProfit / 12;
+      const paybackMonths = monthlyRecurringGrossProfit > 0 ? cac / monthlyRecurringGrossProfit : 0;
+
+      return {
+        eligibleBase,
+        retirementPool,
+        perEmployee,
+        employerRetained,
+        saas,
+        take,
+        audit,
+        recurringRevenue,
+        setupRevenue,
+        setupGrossProfit,
+        recurringGrossProfit,
+        ltv,
+        paybackMonths
+      };
+    }
+
+    function getOperational() {
+      const savingsFromHours = state.hoursSaved * state.costPerHour;
+      const otherSavings = (state.overtimeM + state.outsourcingM + state.qualityM - state.aiCostM) * 1000000;
+      const netGain = Math.max(0, savingsFromHours + otherSavings);
+      const perEmployee = state.coveredEmployees ? netGain / state.coveredEmployees : 0;
+      return { netGain, perEmployee };
+    }
+
+    function getSnapshotOutputs() {
+      const calc = getCalculator();
+      const op = getOperational();
+      const scenario = scenarioProjection(activeScenario);
+      return {
+        activeScenario,
+        retirementPool: calc.retirementPool,
+        contributionPerEmployee: calc.perEmployee,
+        employerRetained: calc.employerRetained,
+        recurringRevenue: calc.recurringRevenue,
+        ltv: calc.ltv,
+        paybackMonths: calc.paybackMonths,
+        operationalNetGain: op.netGain,
+        operationalGainPerEmployee: op.perEmployee,
+        scenarioY5: scenario[scenario.length - 1]
+      };
+    }
+
+    async function apiGet(path) {
+      const response = await fetch(path, { headers: { "Accept": "application/json" } });
+      if (!response.ok) throw new Error(`GET ${path} failed`);
+      return response.json();
+    }
+
+    async function apiPost(path, payload) {
+      const response = await fetch(path, {
+        method: "POST",
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) throw new Error(`POST ${path} failed`);
+      return response.json();
+    }
+
+    function setBackendStatus(online, label) {
+      backendOnline = online;
+      const status = $("#backendStatus");
+      if (!status) return;
+      status.textContent = label || (online ? "SQLite" : "Offline");
+      status.style.color = online ? "var(--teal)" : "var(--coral)";
+    }
+
+    async function loadBackendState() {
+      try {
+        await apiGet("/api/health");
+        setBackendStatus(true, "SQLite");
+        const assumptionsResponse = await apiGet("/api/assumptions");
+        if (assumptionsResponse.assumptions) {
+          state = { ...state, ...assumptionsResponse.assumptions };
+        }
+        const tasksResponse = await apiGet("/api/tasks");
+        applyTaskState(tasksResponse.tasks || {});
+      } catch (error) {
+        setBackendStatus(false, "Offline");
+      }
+    }
+
+    async function saveAssumptionsToBackend() {
+      if (!backendOnline) return;
+      try {
+        await apiPost("/api/assumptions", state);
+      } catch (error) {
+        setBackendStatus(false, "Offline");
+      }
+    }
+
+    async function saveTasksToBackend(tasks) {
+      if (!backendOnline) return;
+      try {
+        await apiPost("/api/tasks", tasks);
+      } catch (error) {
+        setBackendStatus(false, "Offline");
+      }
+    }
+
+    async function saveSnapshotToBackend() {
+      if (!backendOnline) {
+        alert("Backend is offline. Run: python3 server.py");
+        return;
+      }
+      const payload = {
+        name: `Investor dashboard snapshot - ${new Date().toISOString()}`,
+        assumptions: state,
+        outputs: getSnapshotOutputs()
+      };
+      try {
+        await apiPost("/api/snapshots", payload);
+        const button = $("#saveBtn");
+        const oldText = button.textContent;
+        button.textContent = "Saved";
+        setTimeout(() => { button.textContent = oldText; }, 1200);
+      } catch (error) {
+        alert("Could not save snapshot to SQLite.");
+      }
+    }
+
+    function scenarioProjection(key) {
+      const scenario = scenarios[key];
+      let previousAum = 0;
+      let previousEmployers = 0;
+      const returnRate = state.annualReturn / 100;
+      return scenario.employees.map((employees, index) => {
+        const annualContribution = employees * scenario.contributionPerEmployee;
+        const aum = previousAum * (1 + returnRate) + annualContribution * (1 + returnRate / 2);
+        const employerCount = Math.ceil(employees / state.coveredEmployees);
+        const newEmployers = Math.max(0, employerCount - previousEmployers);
+        const setup = newEmployers * state.setupFeeM * 1000000;
+        const saas = employees * state.monthlySaas * 12;
+        const take = annualContribution * state.takeRate / 100;
+        const audit = employerCount * state.auditFeeM * 1000000;
+        const platformRevenue = setup + saas + take + audit;
+        previousAum = aum;
+        previousEmployers = employerCount;
+        return { year: years[index], employees, annualContribution, aum, platformRevenue, newEmployers };
+      });
+    }
+
+    function updateInputs() {
+      $$("[data-bind]").forEach((input) => {
+        const key = input.dataset.bind;
+        if (state[key] === undefined) return;
+        input.value = state[key];
+      });
+    }
+
+    function updateOutputs() {
+      const calc = getCalculator();
+      const op = getOperational();
+      $("#outRetirementPool").textContent = formatYen(calc.retirementPool);
+      $("#outPerEmployee").textContent = formatYen(calc.perEmployee);
+      $("#outEmployerRetained").textContent = formatYen(calc.employerRetained);
+      $("#outRecurringRevenue").textContent = formatYen(calc.recurringRevenue);
+      $("#outLtv").textContent = formatYen(calc.ltv);
+      $("#outPayback").textContent = `${formatNumber(calc.paybackMonths, 1)} mo`;
+      $("#outOperationalGain").textContent = formatYen(op.netGain);
+      $("#outOperationalPerEmployee").textContent = formatYen(op.perEmployee);
+
+      $("#overviewDividend").textContent = `${formatNumber(state.dividendRate, 1)}%`;
+      const med = scenarioProjection("medium")[4];
+      $("#overviewY5").textContent = formatYen(med.annualContribution);
+      $("#topFlow").textContent = formatYen(scenarioProjection(activeScenario)[4].annualContribution);
+      $("#topCase").textContent = scenarios[activeScenario].label.replace(" adoption", "");
+
+      updateScenario();
+      drawAllCharts();
+    }
+
+    function updateScenario() {
+      const rows = scenarioProjection(activeScenario);
+      const last = rows[rows.length - 1];
+      $("#scenarioChartTitle").textContent = `${scenarios[activeScenario].label} projection`;
+      $("#scenarioY5Employees").textContent = formatEmployees(last.employees);
+      $("#scenarioY5Contribution").textContent = formatYen(last.annualContribution);
+      $("#scenarioY5Revenue").textContent = formatYen(last.platformRevenue);
+      $("#scenarioTable").innerHTML = rows.map((row) => `
+        <tr>
+          <td>${row.year}</td>
+          <td>${formatEmployees(row.employees)}</td>
+          <td>${formatYen(row.annualContribution)}</td>
+          <td>${formatYen(row.aum)}</td>
+          <td>${formatYen(row.platformRevenue)}</td>
+          <td>${formatNumber(row.newEmployers)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function setupInputs() {
+      $$("[data-bind]").forEach((input) => {
+        input.addEventListener("input", () => {
+          const key = input.dataset.bind;
+          const numeric = Number(input.value);
+          state[key] = Number.isFinite(numeric) ? numeric : defaults[key];
+          const min = Number(input.min);
+          const max = Number(input.max);
+          if (Number.isFinite(min) && Number.isFinite(max)) {
+            state[key] = clamp(state[key], min, max);
+          }
+          updateInputs();
+          updateOutputs();
+          saveAssumptionsToBackend();
+        });
+      });
+    }
+
+    function setupTabs() {
+      $$(".tab-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          const tab = button.dataset.tab;
+          $$(".tab-btn").forEach((btn) => btn.setAttribute("aria-selected", String(btn === button)));
+          $$(".tab-panel").forEach((panel) => panel.classList.toggle("active", panel.id === tab));
+          window.scrollTo({ top: 0, behavior: "auto" });
+          requestAnimationFrame(drawAllCharts);
+        });
+      });
+    }
+
+    function setupScenarios() {
+      $$(".scenario-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          activeScenario = button.dataset.scenario;
+          $$(".scenario-btn").forEach((btn) => btn.classList.toggle("active", btn === button));
+          updateOutputs();
+        });
+      });
+    }
+
+    function setupTasks() {
+      const storageKey = "ppd-pilot-tasks";
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      applyTaskState(saved);
+      $$("[data-task]").forEach((box) => {
+        box.addEventListener("change", () => {
+          const next = collectTaskState();
+          localStorage.setItem(storageKey, JSON.stringify(next));
+          saveTasksToBackend(next);
+          updateTaskProgress();
+        });
+      });
+      updateTaskProgress();
+    }
+
+    function collectTaskState() {
+      const tasks = {};
+      $$("[data-task]").forEach((item) => { tasks[item.dataset.task] = item.checked; });
+      return tasks;
+    }
+
+    function applyTaskState(saved) {
+      $$("[data-task]").forEach((box) => {
+        box.checked = Boolean(saved[box.dataset.task]);
+      });
+      updateTaskProgress();
+    }
+
+    function updateTaskProgress() {
+      const boxes = $$("[data-task]");
+      const complete = boxes.filter((box) => box.checked).length;
+      const percent = boxes.length ? Math.round((complete / boxes.length) * 100) : 0;
+      $("#taskProgress").style.width = `${percent}%`;
+      $("#taskProgressLabel").textContent = `${percent}% complete`;
+    }
+
+    function setupActions() {
+      $("#resetBtn").addEventListener("click", () => {
+        state = { ...defaults };
+        activeScenario = "medium";
+        $$(".scenario-btn").forEach((btn) => btn.classList.toggle("active", btn.dataset.scenario === activeScenario));
+        updateInputs();
+        updateOutputs();
+        saveAssumptionsToBackend();
+      });
+      $("#saveBtn").addEventListener("click", saveSnapshotToBackend);
+      $("#printBtn").addEventListener("click", () => window.print());
+      $("#applyOperationalBtn").addEventListener("click", () => {
+        const op = getOperational();
+        state.gainPerEmployee = Math.round(op.perEmployee / 10000) * 10000;
+        updateInputs();
+        updateOutputs();
+        saveAssumptionsToBackend();
+      });
+    }
+
+    function clearCanvas(canvas) {
+      const ctx = canvas.getContext("2d");
+      const rect = canvas.getBoundingClientRect();
+      const ratio = window.devicePixelRatio || 1;
+      const width = Math.max(1, Math.floor(rect.width * ratio));
+      const height = Math.max(1, Math.floor(rect.height * ratio));
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+      }
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      ctx.clearRect(0, 0, rect.width, rect.height);
+      return { ctx, width: rect.width, height: rect.height };
+    }
+
+    function drawProjectionChart(canvas, rows) {
+      if (!canvas || !canvas.offsetParent) return;
+      const { ctx, width, height } = clearCanvas(canvas);
+      const pad = { left: 58, right: 24, top: 28, bottom: 46 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+      const maxValue = Math.max(...rows.flatMap((row) => [row.annualContribution, row.aum, row.platformRevenue]));
+      const scale = plotH / (maxValue * 1.12 || 1);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, width, height);
+      ctx.strokeStyle = "#d8e0da";
+      ctx.lineWidth = 1;
+      ctx.font = "12px " + getComputedStyle(document.body).fontFamily;
+      ctx.fillStyle = "#65736c";
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+
+      for (let i = 0; i <= 4; i += 1) {
+        const y = pad.top + plotH * (i / 4);
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+        const value = maxValue * (1 - i / 4);
+        ctx.fillText(formatYen(value, value >= 100000000000 ? 0 : 1), pad.left - 8, y);
+      }
+
+      const groupW = plotW / rows.length;
+      const barW = Math.max(20, groupW * 0.28);
+      const annualPoints = [];
+      const aumPoints = [];
+      const revenuePoints = [];
+
+      rows.forEach((row, index) => {
+        const center = pad.left + groupW * index + groupW / 2;
+        const annualH = row.annualContribution * scale;
+        const revenueH = row.platformRevenue * scale;
+        const annualX = center - barW - 3;
+        const revenueX = center + 3;
+        const annualY = pad.top + plotH - annualH;
+        const revenueY = pad.top + plotH - revenueH;
+
+        ctx.fillStyle = "#0b6b5a";
+        ctx.fillRect(annualX, annualY, barW, annualH);
+        ctx.fillStyle = "#4f5aa8";
+        ctx.fillRect(revenueX, revenueY, barW, revenueH);
+
+        annualPoints.push([annualX + barW / 2, annualY]);
+        revenuePoints.push([revenueX + barW / 2, revenueY]);
+        aumPoints.push([center, pad.top + plotH - row.aum * scale]);
+
+        ctx.fillStyle = "#17201d";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.font = "700 12px " + getComputedStyle(document.body).fontFamily;
+        ctx.fillText(row.year, center, pad.top + plotH + 13);
+      });
+
+      drawLine(ctx, aumPoints, "#d84c3f", 3);
+      aumPoints.forEach(([x, y]) => {
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = "#d84c3f";
+        ctx.fill();
+      });
+    }
+
+    function drawLine(ctx, points, color, lineWidth) {
+      if (!points.length) return;
+      ctx.beginPath();
+      points.forEach(([x, y], index) => {
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = color;
+      ctx.lineWidth = lineWidth;
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
+      ctx.stroke();
+    }
+
+    function drawSensitivityChart(canvas) {
+      if (!canvas || !canvas.offsetParent) return;
+      const { ctx, width, height } = clearCanvas(canvas);
+      const rates = [1, 3, 5, 7, 10];
+      const baseState = { ...state };
+      const rows = rates.map((rate) => {
+        state.dividendRate = rate;
+        const calc = getCalculator();
+        return { rate, retirementPool: calc.retirementPool, platformRevenue: calc.recurringRevenue };
+      });
+      state = baseState;
+
+      const pad = { left: 58, right: 24, top: 28, bottom: 48 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+      const maxValue = Math.max(...rows.flatMap((row) => [row.retirementPool, row.platformRevenue]));
+      const scale = plotH / (maxValue * 1.15 || 1);
+      const groupW = plotW / rows.length;
+      const barW = Math.max(22, groupW * 0.25);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, width, height);
+      ctx.strokeStyle = "#d8e0da";
+      ctx.lineWidth = 1;
+      ctx.font = "12px " + getComputedStyle(document.body).fontFamily;
+      ctx.fillStyle = "#65736c";
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+
+      for (let i = 0; i <= 4; i += 1) {
+        const y = pad.top + plotH * (i / 4);
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+        ctx.fillText(formatYen(maxValue * (1 - i / 4)), pad.left - 8, y);
+      }
+
+      rows.forEach((row, index) => {
+        const center = pad.left + groupW * index + groupW / 2;
+        const retH = row.retirementPool * scale;
+        const revH = row.platformRevenue * scale;
+
+        ctx.fillStyle = "#0b6b5a";
+        ctx.fillRect(center - barW - 4, pad.top + plotH - retH, barW, retH);
+        ctx.fillStyle = "#4f5aa8";
+        ctx.fillRect(center + 4, pad.top + plotH - revH, barW, revH);
+
+        ctx.fillStyle = "#17201d";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.font = "700 12px " + getComputedStyle(document.body).fontFamily;
+        ctx.fillText(`${row.rate}%`, center, pad.top + plotH + 13);
+      });
+    }
+
+    function drawAllCharts() {
+      drawProjectionChart($("#overviewChart"), scenarioProjection("medium"));
+      drawProjectionChart($("#scenarioChart"), scenarioProjection(activeScenario));
+      drawSensitivityChart($("#sensitivityChart"));
+    }
+
+    async function init() {
+      setupTabs();
+      setupInputs();
+      setupScenarios();
+      setupTasks();
+      setupActions();
+      await loadBackendState();
+      updateInputs();
+      updateOutputs();
+      window.addEventListener("resize", () => requestAnimationFrame(drawAllCharts));
+    }
+
+    init();
+  </script>
+</body>
+</html>
