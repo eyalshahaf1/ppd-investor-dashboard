@@ -195,6 +195,8 @@ Start simple:
 3. API integrations after pilot validation.
 4. Direct partner APIs only after legal and security review.
 
+The current Next.js demo implements step 1 in the **Data Connect** tab. It stores CSV/TXT files locally under `data/uploads/` and records upload metadata in SQLite. This is enough to demonstrate the customer-data path to investors, but it is not production customer-data infrastructure.
+
 ## What Not To Do
 
 Do not:
@@ -274,4 +276,3 @@ Recommended external users:
 - assurance partner,
 - legal/regulatory counsel,
 - optional government observer after pilot credibility is proven.
-

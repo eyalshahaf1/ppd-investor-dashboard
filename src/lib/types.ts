@@ -73,9 +73,18 @@ export type CustomerConnection = {
   updated_at: number;
 };
 
+export type DataUpload = {
+  id: number;
+  upload_type: string;
+  original_name: string;
+  stored_name: string;
+  size_bytes: number;
+  status: string;
+  created_at: number;
+};
+
 export type SnapshotPayload = {
   name: string;
   assumptions: Assumptions;
   outputs: Record<string, unknown>;
 };
-

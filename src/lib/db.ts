@@ -2,7 +2,13 @@ import Database from "better-sqlite3";
 import { mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { defaultAssumptions } from "./defaults";
-import type { Assumptions, CustomerConnection, PilotTasks, SnapshotPayload } from "./types";
+import type {
+  Assumptions,
+  CustomerConnection,
+  DataUpload,
+  PilotTasks,
+  SnapshotPayload
+} from "./types";
 
 type DbRow<T> = T & Record<string, unknown>;
 
@@ -54,6 +60,16 @@ function initializeDb(database: Database.Database) {
       data_connection text not null,
       rail_partner text not null,
       updated_at integer not null
+    );
+
+    create table if not exists data_uploads (
+      id integer primary key autoincrement,
+      upload_type text not null,
+      original_name text not null,
+      stored_name text not null,
+      size_bytes integer not null,
+      status text not null,
+      created_at integer not null
     );
   `);
 
@@ -159,6 +175,41 @@ export function listCustomers(): CustomerConnection[] {
     .all() as CustomerConnection[];
 }
 
+export function createDataUpload(payload: Omit<DataUpload, "id" | "created_at">): DataUpload {
+  const createdAt = nowMs();
+  const result = getDb()
+    .prepare(
+      `insert into data_uploads
+        (upload_type, original_name, stored_name, size_bytes, status, created_at)
+       values (?, ?, ?, ?, ?, ?)`
+    )
+    .run(
+      payload.upload_type,
+      payload.original_name,
+      payload.stored_name,
+      payload.size_bytes,
+      payload.status,
+      createdAt
+    );
+
+  return {
+    id: Number(result.lastInsertRowid),
+    ...payload,
+    created_at: createdAt
+  };
+}
+
+export function listDataUploads(limit = 20): DataUpload[] {
+  return getDb()
+    .prepare(
+      `select id, upload_type, original_name, stored_name, size_bytes, status, created_at
+       from data_uploads
+       order by id desc
+       limit ?`
+    )
+    .all(limit) as DataUpload[];
+}
+
 export function createSnapshot(payload: SnapshotPayload) {
   const result = getDb()
     .prepare(
@@ -200,4 +251,3 @@ export function listSnapshots(limit = 20) {
     created_at: row.created_at
   }));
 }
-

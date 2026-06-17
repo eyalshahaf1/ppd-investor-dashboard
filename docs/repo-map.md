@@ -1,7 +1,7 @@
 # Repository Map
 
 ```text
-ppd-investor-dashboard-github/
+ppd-investor-dashboard-nextjs/
   package.json
   next.config.ts
   tsconfig.json
@@ -12,6 +12,7 @@ ppd-investor-dashboard-github/
       layout.tsx
       page.tsx
     components/
+      DataConnectionView.tsx
     lib/
   index.html
   server.py
@@ -23,6 +24,7 @@ ppd-investor-dashboard-github/
     backend-run-manual.md
     github-upload-instructions.md
     customer-integration-manual.md
+    security-data-handling.md
     saas-model.md
     repo-map.md
   assets/
@@ -30,16 +32,9 @@ ppd-investor-dashboard-github/
 
 ## What To Upload To GitHub
 
-Upload the entire `ppd-investor-dashboard-github` folder.
+Upload the entire `ppd-investor-dashboard-nextjs` folder, excluding ignored local files such as `node_modules/`, `.next/`, `data/`, and real `.env` files.
 
-The minimum required files are:
-
-```text
-index.html
-server.py
-README.md
-docs/
-```
+The minimum required production demo files are the Next.js app files, `package.json`, `package-lock.json`, `README.md`, and `docs/`.
 
 ## What The Current App Is
 
@@ -52,6 +47,7 @@ The production SaaS should become:
 ```text
 Next.js SaaS MVP
   + secure customer data ingestion
+  + local pilot upload registry
   + measurement engine
   + dividend rules engine
   + partner export/API layer

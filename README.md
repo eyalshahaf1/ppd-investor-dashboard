@@ -17,6 +17,7 @@ The current version is a local SaaS-style prototype. It uses Next.js components,
 - `docs/calculations-manual.md` - explanation of all model calculations.
 - `docs/backend-run-manual.md` - how to run the earlier local Python backend.
 - `docs/customer-integration-manual.md` - where the product connects at customer sites.
+- `docs/security-data-handling.md` - secrets, upload safety, and pilot data rules.
 - `docs/saas-model.md` - recommended SaaS model, modules, pricing, and roadmap.
 - `docs/github-upload-instructions.md` - simple GitHub upload and hosting steps.
 
@@ -47,6 +48,14 @@ data/ppd_next.sqlite3
 ```
 
 The app saves calculator assumptions, pilot task status, calculation snapshots, and demo customer records through Next.js API routes.
+
+The **Data Connect** tab also supports local CSV/TXT pilot uploads. Uploaded files are stored under:
+
+```text
+data/uploads/
+```
+
+This folder is ignored by Git and should not be force-added.
 
 Detailed run instructions:
 
@@ -82,7 +91,8 @@ http://127.0.0.1:8765
 4. Show how retirement value and platform revenue are separate.
 5. Open **Scenarios** and switch Low / Medium / High.
 6. Open **Pilot Tasks** to show the 90-day proof-of-concept plan.
-7. Close in **Investor Room** with the partner ask:
+7. Open **Data Connect** to show how customer evidence will enter the system safely.
+8. Close in **Investor Room** with the partner ask:
    - two pilot employers,
    - one regulated rail partner,
    - one assurance partner.
@@ -96,8 +106,9 @@ This is a prototype app:
 - TypeScript calculation utilities,
 - local Next.js API routes,
 - local SQLite database,
+- local CSV/TXT pilot upload registry,
 - no production login,
-- no live customer data upload,
+- no production customer-data connector,
 - no pension-fund movement,
 - no production pension partner integration yet.
 

@@ -56,6 +56,22 @@ PPD_DB_PATH=./data/my_local_demo.sqlite3 npm run dev
 
 The database is intentionally ignored by Git.
 
+## Local Uploads
+
+The Data Connect tab stores pilot CSV/TXT uploads under:
+
+```text
+data/uploads/
+```
+
+Override with:
+
+```bash
+PPD_UPLOAD_DIR=./data/my_local_uploads npm run dev
+```
+
+The upload folder is intentionally ignored by Git.
+
 ## Useful Checks
 
 TypeScript:
@@ -87,6 +103,8 @@ POST /api/tasks
 GET  /api/customers
 GET  /api/snapshots
 POST /api/snapshots
+GET  /api/uploads
+POST /api/uploads
 ```
 
 ## Code Structure
@@ -104,6 +122,7 @@ src/components/
   CalculatorView.tsx
   ScenarioView.tsx
   PilotTaskBoard.tsx
+  DataConnectionView.tsx
   InvestorRoom.tsx
   small reusable UI components
 
@@ -124,4 +143,3 @@ Keep display/UI in `src/components/`.
 Keep persistence/API logic in `src/lib/db.ts` and `src/app/api/`.
 
 This avoids spaghetti code and makes the model easy to audit.
-

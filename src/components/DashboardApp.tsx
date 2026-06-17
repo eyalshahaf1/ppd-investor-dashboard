@@ -10,6 +10,7 @@ import { defaultAssumptions, scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
 import type { Assumptions, PilotTasks, ScenarioKey } from "@/lib/types";
 import { CalculatorView } from "./CalculatorView";
+import { DataConnectionView } from "./DataConnectionView";
 import type { DashboardTab } from "./Tabs";
 import { InvestorRoom } from "./InvestorRoom";
 import { OverviewView } from "./OverviewView";
@@ -168,9 +169,9 @@ export function DashboardApp() {
         {activeTab === "pilot" && (
           <PilotTaskBoard tasks={pilotTasks} onTaskChange={updateTask} />
         )}
+        {activeTab === "data" && <DataConnectionView />}
         {activeTab === "investor" && <InvestorRoom />}
       </main>
     </div>
   );
 }
-

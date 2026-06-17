@@ -1,10 +1,17 @@
-export type DashboardTab = "overview" | "calculator" | "scenarios" | "pilot" | "investor";
+export type DashboardTab =
+  | "overview"
+  | "calculator"
+  | "scenarios"
+  | "pilot"
+  | "data"
+  | "investor";
 
 const tabs: Array<{ key: DashboardTab; label: string }> = [
   { key: "overview", label: "Overview" },
   { key: "calculator", label: "Calculator" },
   { key: "scenarios", label: "Scenarios" },
   { key: "pilot", label: "Pilot Tasks" },
+  { key: "data", label: "Data Connect" },
   { key: "investor", label: "Investor Room" }
 ];
 

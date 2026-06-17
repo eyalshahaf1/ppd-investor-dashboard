@@ -1,5 +1,10 @@
 .DS_Store
-data/
+.env
+.env.*
+!.env.example
+/data/
+/uploads/
+/customer-data/
 *.sqlite3
 __pycache__/
 node_modules/
