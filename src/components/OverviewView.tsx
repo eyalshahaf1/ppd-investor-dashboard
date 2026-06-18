@@ -24,6 +24,7 @@ export function OverviewView({
   const t = getCopy(language);
   const population65 = japanStats?.population_65_share;
   const births2024 = japanStats?.births_2024;
+  const workingAgeShare = japanStats?.working_age_share;
 
   return (
     <div className="dashboard-grid">
@@ -49,36 +50,59 @@ export function OverviewView({
             <p>{t.overview.dashboardBody}</p>
           </div>
         </div>
-        <div className="kpi-grid">
-          <KpiCard
-            label={t.overview.population65}
-            value={population65 ? `${population65.value.toFixed(1)}%` : "29.3%"}
-            note={formatStatNote(population65, language)}
-          />
-          <KpiCard
-            label={t.overview.births2024}
-            value={births2024 ? `${Math.round(births2024.value / 1000).toLocaleString("en-US")}k` : "686k"}
-            note={formatStatNote(births2024, language)}
-            accent="coral"
-          />
-          <KpiCard
-            label={t.overview.defaultDividend}
-            value={`${assumptions.dividendRate.toFixed(1)}%`}
-            note={t.overview.dividendNote}
-            accent="amber"
-          />
-          <KpiCard
-            label={t.overview.y5RetirementFlow}
-            value={formatYen(y5.annualContribution)}
-            note={t.overview.y5Note}
-            accent="indigo"
-          />
+        <div className="overview-kpi-groups">
+          <div className="overview-kpi-group">
+            <div className="kpi-group-head">
+              <h3>{t.overview.macroContextTitle}</h3>
+              <span>{t.overview.cachedOfficialSource}</span>
+            </div>
+            <div className="kpi-grid macro-kpi-grid">
+              <KpiCard
+                label={t.overview.population65}
+                value={population65 ? `${population65.value.toFixed(1)}%` : "29.3%"}
+                note={formatOfficialNote(population65, language, t.overview.officialEstimateNote)}
+              />
+              <KpiCard
+                label={t.overview.births2024}
+                value={births2024 ? `${Math.round(births2024.value / 1000).toLocaleString("en-US")}k` : "686k"}
+                note={formatOfficialNote(births2024, language, t.overview.officialAnnualNote)}
+                accent="coral"
+              />
+              <KpiCard
+                label={t.overview.workingAgeShare}
+                value={workingAgeShare ? `${workingAgeShare.value.toFixed(1)}%` : "59.6%"}
+                note={formatOfficialNote(workingAgeShare, language, t.overview.officialEstimateNote)}
+                accent="blue"
+              />
+            </div>
+            <p className="source-note macro-note">
+              <strong>{t.overview.macroSource}:</strong>{" "}
+              {population65?.source_name ?? "Statistics Bureau of Japan"} ·{" "}
+              {population65?.period ?? "Oct 1, 2024"}
+            </p>
+          </div>
+
+          <div className="overview-kpi-group">
+            <div className="kpi-group-head">
+              <h3>{t.overview.modelOutputTitle}</h3>
+              <span>{t.overview.modelOutputNote}</span>
+            </div>
+            <div className="kpi-grid model-kpi-grid">
+              <KpiCard
+                label={t.overview.defaultDividend}
+                value={`${assumptions.dividendRate.toFixed(1)}%`}
+                note={t.overview.dividendNote}
+                accent="amber"
+              />
+              <KpiCard
+                label={t.overview.y5RetirementFlow}
+                value={formatYen(y5.annualContribution)}
+                note={t.overview.y5Note}
+                accent="indigo"
+              />
+            </div>
+          </div>
         </div>
-        <p className="source-note macro-note">
-          <strong>{t.overview.macroSource}:</strong>{" "}
-          {population65?.source_name ?? "Statistics Bureau of Japan"} ·{" "}
-          {population65?.period ?? "Oct 1, 2024"}
-        </p>
       </section>
 
       <section className="span-8 panel">
@@ -138,25 +162,20 @@ export function OverviewView({
   );
 }
 
-function formatStatNote(record: JapanStatRecord | undefined, language: Language) {
+function formatOfficialNote(
+  record: JapanStatRecord | undefined,
+  language: Language,
+  officialNote: string
+) {
   if (!record) {
     return language === "ja"
       ? "バックエンド接続待ち。デモの初期値を表示中。"
       : "Waiting for backend connection. Showing demo seed value.";
   }
 
-  const status =
-    record.status === "refreshed"
-      ? language === "ja"
-        ? "取得済み"
-        : "Refreshed"
-      : language === "ja"
-        ? "キャッシュ"
-        : "Cached";
-
   return language === "ja"
-    ? `${record.period}、${record.source_name}。${status}。`
-    : `${record.period}, ${record.source_name}. ${status}.`;
+    ? `${record.period}。${officialNote} キャッシュ済み出所。`
+    : `${record.period}. ${officialNote} Cached source.`;
 }
 
 function ValueBar({

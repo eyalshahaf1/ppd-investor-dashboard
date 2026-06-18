@@ -32,6 +32,17 @@ const defaultJapanStats: JapanStatRecord[] = [
     status: "seeded"
   },
   {
+    metric_key: "working_age_share",
+    value: 59.6,
+    unit: "%",
+    period: "Oct 1, 2024",
+    source_name: "Statistics Bureau of Japan, Current Population Estimates",
+    source_url: STATS_BUREAU_POPULATION_URL,
+    source_date: "2024-10-01",
+    fetched_at: 0,
+    status: "seeded"
+  },
+  {
     metric_key: "births_2024",
     value: 686061,
     unit: "births",
@@ -74,25 +85,37 @@ async function fetchStatsBureauPopulation(): Promise<JapanStatRecord[]> {
   if (!response.ok) throw new Error(`Statistics Bureau fetch failed: ${response.status}`);
 
   const normalized = (await response.text()).replace(/\s+/g, " ");
-  const match = normalized.match(
+  const seniorMatch = normalized.match(
     /population aged 65 years old and over was ([\d,]+)\s*thousand\s*\(([\d.]+)\s*percent/i
   );
+  const workingAgeMatch = normalized.match(
+    /population aged 15 to 64 was ([\d,]+)\s*thousand\s*\(([\d.]+)\s*percent/i
+  );
 
-  if (!match) throw new Error("Could not parse Statistics Bureau population 65+ values");
+  if (!seniorMatch || !workingAgeMatch) {
+    throw new Error("Could not parse Statistics Bureau population age-share values");
+  }
 
-  const count = Number(match[1].replace(/,/g, "")) * 1000;
-  const share = Number(match[2]);
+  const seniorCount = Number(seniorMatch[1].replace(/,/g, "")) * 1000;
+  const seniorShare = Number(seniorMatch[2]);
+  const workingAgeShare = Number(workingAgeMatch[2]);
 
   return [
     {
       ...defaultJapanStats[0],
-      value: share,
+      value: seniorShare,
       fetched_at: nowMs(),
       status: "refreshed"
     },
     {
       ...defaultJapanStats[1],
-      value: count,
+      value: seniorCount,
+      fetched_at: nowMs(),
+      status: "refreshed"
+    },
+    {
+      ...defaultJapanStats[2],
+      value: workingAgeShare,
       fetched_at: nowMs(),
       status: "refreshed"
     }
