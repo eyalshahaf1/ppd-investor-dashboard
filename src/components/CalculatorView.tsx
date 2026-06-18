@@ -26,8 +26,8 @@ export function CalculatorView({
   const tips = calculatorHelp[language];
 
   return (
-    <div className="dashboard-grid">
-      <section className="span-12 section-title">
+    <div className="dashboard-grid calculator-grid">
+      <section className="span-12 section-title calc-intro">
         <div>
           <h2>Live calculation room</h2>
           <p>Change assumptions. See pension impact and SaaS revenue instantly.</p>
@@ -36,7 +36,7 @@ export function CalculatorView({
 
       <CalculationExplainer title={copy.title} items={copy.items} />
 
-      <section className="span-6 panel">
+      <section className="span-6 panel calc-assumptions">
         <h3>Employer and dividend assumptions</h3>
         <div className="control-grid">
           <AssumptionControl name="coveredEmployees" label={tips.coveredEmployees.label} help={tips.coveredEmployees.help} value={assumptions.coveredEmployees} min={1000} max={50000} step={1000} onChange={(value) => onAssumptionChange("coveredEmployees", value)} />
@@ -48,7 +48,7 @@ export function CalculatorView({
         </div>
       </section>
 
-      <section className="span-6 panel">
+      <section className="span-6 panel calc-outputs">
         <h3>Calculated outputs</h3>
         <div className="metric-grid">
           <KpiCard label="Annual retirement pool" value={formatYen(economics.retirementPool)} note="Value routed to retirement rails. Not platform revenue." />
@@ -60,7 +60,7 @@ export function CalculatorView({
         </div>
       </section>
 
-      <section className="span-6 panel">
+      <section className="span-6 panel calc-pricing">
         <h3>Platform pricing assumptions</h3>
         <div className="control-grid">
           <AssumptionControl name="setupFeeM" label="Setup fee" help="JPY millions / new employer" value={assumptions.setupFeeM} min={0} max={50} step={1} onChange={(value) => onAssumptionChange("setupFeeM", value)} />
@@ -72,7 +72,7 @@ export function CalculatorView({
         </div>
       </section>
 
-      <section className="span-6 panel">
+      <section className="span-6 panel calc-operational">
         <h3>Operational gain calculator</h3>
         <p>Turns pilot evidence into an operational net gain. The operational calculator does not update the dividend base until applied.</p>
         <div className="control-grid">
@@ -96,8 +96,8 @@ export function CalculatorView({
         </div>
       </section>
 
-      <ProductivityWaterfallChart assumptions={assumptions} />
-      <SensitivityTornadoChart assumptions={assumptions} />
+      <ProductivityWaterfallChart assumptions={assumptions} className="calc-waterfall" />
+      <SensitivityTornadoChart assumptions={assumptions} className="calc-tornado" />
     </div>
   );
 }
@@ -110,7 +110,7 @@ function CalculationExplainer({
   items: ReadonlyArray<{ heading: string; body: string; formula: string }>;
 }) {
   return (
-    <section className="span-12 panel calculation-explainer">
+    <section className="span-12 panel calculation-explainer calc-guide">
       <h3>{title}</h3>
       <div className="calculation-list">
         {items.map((item, index) => (

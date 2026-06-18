@@ -4,6 +4,7 @@ import type { Assumptions } from "@/lib/types";
 
 type SensitivityTornadoChartProps = {
   assumptions: Assumptions;
+  className?: string;
 };
 
 type SensitivityInput = {
@@ -22,7 +23,7 @@ const sensitivityInputs: SensitivityInput[] = [
   { key: "takeRate", label: "Take rate", swing: 0.2, floor: 0 }
 ];
 
-export function SensitivityTornadoChart({ assumptions }: SensitivityTornadoChartProps) {
+export function SensitivityTornadoChart({ assumptions, className = "" }: SensitivityTornadoChartProps) {
   const base = calculateEmployerEconomics(assumptions).retirementPool;
   const rows = sensitivityInputs
     .map((input) => {
@@ -50,7 +51,7 @@ export function SensitivityTornadoChart({ assumptions }: SensitivityTornadoChart
   const maxImpact = Math.max(1, ...rows.map((row) => row.impact));
 
   return (
-    <section className="span-6 panel chart-frame">
+    <section className={`span-6 panel chart-frame ${className}`}>
       <div className="chart-head">
         <div>
           <h3>Sensitivity tornado</h3>

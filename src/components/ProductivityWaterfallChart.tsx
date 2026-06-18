@@ -4,6 +4,7 @@ import type { Assumptions } from "@/lib/types";
 
 type ProductivityWaterfallChartProps = {
   assumptions: Assumptions;
+  className?: string;
 };
 
 type WaterfallStep = {
@@ -12,7 +13,7 @@ type WaterfallStep = {
   kind: "positive" | "negative" | "total" | "allocation";
 };
 
-export function ProductivityWaterfallChart({ assumptions }: ProductivityWaterfallChartProps) {
+export function ProductivityWaterfallChart({ assumptions, className = "" }: ProductivityWaterfallChartProps) {
   const economics = calculateEmployerEconomics(assumptions);
   const rolloutMultiplier = assumptions.employers;
   const savingsFromHours = assumptions.hoursSaved * assumptions.costPerHour * rolloutMultiplier;
@@ -29,7 +30,7 @@ export function ProductivityWaterfallChart({ assumptions }: ProductivityWaterfal
   const maxValue = Math.max(1, ...steps.map((step) => Math.abs(step.value)));
 
   return (
-    <section className="span-6 panel chart-frame">
+    <section className={`span-6 panel chart-frame ${className}`}>
       <div className="chart-head">
         <div>
           <h3>Productivity gain waterfall</h3>
