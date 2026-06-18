@@ -809,17 +809,21 @@ input[type="number"] {
 
 .calculation-list {
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
 .calculation-step {
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--line);
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
 }
 
 .calculation-step:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
 }
 
 .calculation-step b {
@@ -840,7 +844,7 @@ input[type="number"] {
   padding: 7px 8px;
   border: 1px solid var(--line);
   border-radius: 7px;
-  background: var(--soft);
+  background: var(--surface);
   color: var(--ink);
   font-family: var(--mono);
   font-size: 11px;
@@ -1779,6 +1783,7 @@ code {
   .execution-flow,
   .quality-grid,
   .connection-flow,
+  .calculation-list,
   .localization-grid,
   .resource-group-grid,
   .about-footer {
@@ -1828,6 +1833,7 @@ code {
   .execution-flow,
   .quality-grid,
   .connection-flow,
+  .calculation-list,
   .upload-form,
   .upload-type-note,
   .localization-grid,

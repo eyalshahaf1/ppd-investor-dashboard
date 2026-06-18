@@ -109,7 +109,7 @@ function CalculationExplainer({
   items: ReadonlyArray<{ heading: string; body: string; formula: string }>;
 }) {
   return (
-    <section className="span-5 panel calculation-explainer">
+    <section className="span-12 panel calculation-explainer">
       <h3>{title}</h3>
       <div className="calculation-list">
         {items.map((item, index) => (
