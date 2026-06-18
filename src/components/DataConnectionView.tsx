@@ -64,6 +64,8 @@ const guardrails = [
 ];
 
 const templateLinks = [
+  ["Secure pilot Excel sample", "/templates/secure-pilot-upload-sample.xlsx"],
+  ["Verified gain Excel calculator", "/templates/verified-ai-gain-calculator-sample.xlsx"],
   ["Workflow CSV template", "/templates/pilot-workflow-metrics.csv"],
   ["Assumptions JSON", "/templates/assumptions-template.json"],
   ["Partner instruction JSON", "/templates/contribution-instruction-template.json"]
@@ -105,7 +107,7 @@ export function DataConnectionView() {
     const file = fileInputRef.current?.files?.[0];
 
     if (!file) {
-      setUploadMessage("Choose a CSV or TXT pilot export first.");
+      setUploadMessage("Choose a CSV, TXT, or XLSX pilot export first.");
       return;
     }
 
@@ -144,7 +146,13 @@ export function DataConnectionView() {
 
     if (!file) {
       setCsvPreview(null);
-      setUploadMessage("Choose a CSV or TXT pilot export first.");
+      setUploadMessage("Choose a CSV, TXT, or XLSX pilot export first.");
+      return;
+    }
+
+    if (file.name.toLowerCase().endsWith(".xlsx")) {
+      setCsvPreview(null);
+      setUploadMessage("Excel sample selected. It will be stored for review; CSV preview is not available yet.");
       return;
     }
 
@@ -234,11 +242,11 @@ export function DataConnectionView() {
           </label>
 
           <label className="stacked-field">
-            <span>CSV or TXT file</span>
+            <span>CSV, TXT, or XLSX file</span>
             <input
               ref={fileInputRef}
               type="file"
-              accept=".csv,.txt,text/csv,text/plain"
+              accept=".csv,.txt,.xlsx,text/csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
               onChange={previewFile}
             />
           </label>

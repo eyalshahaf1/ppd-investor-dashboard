@@ -1,4 +1,8 @@
-import { calculateEmployerEconomics, projectScenario } from "./calculations";
+import {
+  calculateEmployerEconomics,
+  calculateVerifiedAiGain,
+  projectScenario
+} from "./calculations";
 import { scenarios } from "./defaults";
 import { formatEmployees, formatYen } from "./format";
 import type { Assumptions, DataUpload, ProjectionRow, ScenarioKey } from "./types";
@@ -75,6 +79,7 @@ export function generateInvestorReport(
   uploads: DataUpload[] = []
 ) {
   const economics = calculateEmployerEconomics(assumptions);
+  const verified = calculateVerifiedAiGain(assumptions);
   const projection = projectScenario(activeScenario, assumptions);
   const y5 = projection[projection.length - 1];
   const uploadedTypes = uploads.length
@@ -94,6 +99,13 @@ export function generateInvestorReport(
     `Annual retirement pool: ${formatYen(economics.retirementPool)}`,
     `Annual per employee: ${formatYen(economics.perEmployee)}`,
     `Recurring platform revenue: ${formatYen(economics.recurringRevenue)}`,
+    "",
+    "## Verified AI Gain Calculation",
+    `Gross AI gain: ${formatYen(verified.grossAiGain)}`,
+    `Net verified AI gain: ${formatYen(verified.netVerifiedAiGain)}`,
+    `Pension allocation: ${formatYen(verified.pensionAllocation)}`,
+    `Company retained gain: ${formatYen(verified.companyRetainedGain)}`,
+    `Pension value per employee: ${formatYen(verified.pensionValuePerEmployee)}`,
     "",
     "## Five-Year Illustrative Scenario",
     `Y5 covered employees: ${formatEmployees(y5.employees)}`,

@@ -27,7 +27,13 @@ export const defaultAssumptions: Assumptions = {
   overtimeM: 2400,
   outsourcingM: 1200,
   qualityM: 900,
-  aiCostM: 1300
+  aiCostM: 1300,
+  baselineAnnualProcessCostM: 12000,
+  postAiAnnualProcessCostM: 8200,
+  verifiedAnnualAiCostsM: 600,
+  adjustmentRate: 15,
+  allocationRate: 5,
+  verifiedEmployeesCovered: 10000
 };
 
 export const scenarios: Record<ScenarioKey, ScenarioDefinition> = {

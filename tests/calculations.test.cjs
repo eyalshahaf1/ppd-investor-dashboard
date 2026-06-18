@@ -1,7 +1,8 @@
 const assert = require("node:assert/strict");
 const {
   calculateEmployerEconomics,
-  calculateOperationalGain
+  calculateOperationalGain,
+  calculateVerifiedAiGain
 } = require("../.test-build/calculations.js");
 const { defaultAssumptions } = require("../.test-build/defaults.js");
 const {
@@ -44,6 +45,32 @@ function withAssumptions(overrides) {
   assert.equal(outputs.savingsFromHours, 26_400_000_000);
   assert.equal(outputs.netGain, 36_000_000_000);
   assert.equal(outputs.perEmployee, 1_200_000);
+}
+
+{
+  const outputs = calculateVerifiedAiGain(defaultAssumptions);
+  assert.equal(outputs.grossAiGain, 3_800_000_000);
+  assert.equal(outputs.adjustedGrossAiGain, 3_230_000_000);
+  assert.equal(outputs.netVerifiedAiGain, 2_630_000_000);
+  assert.equal(outputs.pensionAllocation, 131_500_000);
+  assert.equal(outputs.companyRetainedGain, 2_498_500_000);
+  assert.equal(outputs.pensionValuePerEmployee, 13_150);
+  assert.equal(outputs.hasVerifiedGain, true);
+}
+
+{
+  const outputs = calculateVerifiedAiGain(
+    withAssumptions({
+      baselineAnnualProcessCostM: 1000,
+      postAiAnnualProcessCostM: 950,
+      verifiedAnnualAiCostsM: 100,
+      adjustmentRate: 0
+    })
+  );
+  assert.equal(outputs.netVerifiedAiGain, 0);
+  assert.equal(outputs.pensionAllocation, 0);
+  assert.equal(outputs.pensionValuePerEmployee, 0);
+  assert.equal(outputs.hasVerifiedGain, false);
 }
 
 {

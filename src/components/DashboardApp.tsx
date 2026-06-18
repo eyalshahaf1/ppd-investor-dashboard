@@ -135,8 +135,9 @@ export function DashboardApp() {
   }
 
   function applyAssumptions(nextAssumptions: Assumptions) {
-    setAssumptions(nextAssumptions);
-    persistAssumptions(nextAssumptions);
+    const normalized = { ...defaultAssumptions, ...nextAssumptions };
+    setAssumptions(normalized);
+    persistAssumptions(normalized);
   }
 
   async function updateTask(taskKey: string, completed: boolean) {

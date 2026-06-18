@@ -4,7 +4,8 @@ import type {
   CalculatorOutputs,
   OperationalOutputs,
   ProjectionRow,
-  ScenarioKey
+  ScenarioKey,
+  VerifiedAiGainOutputs
 } from "./types";
 
 export function calculateEmployerEconomics(assumptions: Assumptions): CalculatorOutputs {
@@ -71,6 +72,35 @@ export function calculateOperationalGain(assumptions: Assumptions): OperationalO
   return { savingsFromHours, netGain, perEmployee };
 }
 
+export function calculateVerifiedAiGain(assumptions: Assumptions): VerifiedAiGainOutputs {
+  const baselineCost = assumptions.baselineAnnualProcessCostM * 1000000;
+  const postAiCost = assumptions.postAiAnnualProcessCostM * 1000000;
+  const annualAiCosts = assumptions.verifiedAnnualAiCostsM * 1000000;
+  const grossAiGain = baselineCost - postAiCost;
+  const adjustedGrossAiGain = grossAiGain * (1 - assumptions.adjustmentRate / 100);
+  const rawNetVerifiedAiGain = adjustedGrossAiGain - annualAiCosts;
+  const hasVerifiedGain = rawNetVerifiedAiGain > 0;
+  const netVerifiedAiGain = hasVerifiedGain ? rawNetVerifiedAiGain : 0;
+  const pensionAllocation = hasVerifiedGain
+    ? netVerifiedAiGain * (assumptions.allocationRate / 100)
+    : 0;
+  const companyRetainedGain = hasVerifiedGain ? netVerifiedAiGain - pensionAllocation : 0;
+  const pensionValuePerEmployee =
+    hasVerifiedGain && assumptions.verifiedEmployeesCovered > 0
+      ? pensionAllocation / assumptions.verifiedEmployeesCovered
+      : 0;
+
+  return {
+    grossAiGain,
+    adjustedGrossAiGain,
+    netVerifiedAiGain,
+    pensionAllocation,
+    companyRetainedGain,
+    pensionValuePerEmployee,
+    hasVerifiedGain
+  };
+}
+
 export function projectScenario(
   scenarioKey: ScenarioKey,
   assumptions: Assumptions
@@ -108,6 +138,7 @@ export function projectScenario(
 export function getDashboardSnapshot(assumptions: Assumptions, scenarioKey: ScenarioKey) {
   const economics = calculateEmployerEconomics(assumptions);
   const operational = calculateOperationalGain(assumptions);
+  const verifiedAiGain = calculateVerifiedAiGain(assumptions);
   const projection = projectScenario(scenarioKey, assumptions);
 
   return {
@@ -120,6 +151,7 @@ export function getDashboardSnapshot(assumptions: Assumptions, scenarioKey: Scen
     paybackMonths: economics.paybackMonths,
     operationalNetGain: operational.netGain,
     operationalGainPerEmployee: operational.perEmployee,
+    verifiedAiGain,
     scenarioY5: projection[projection.length - 1]
   };
 }

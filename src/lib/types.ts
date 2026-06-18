@@ -21,6 +21,12 @@ export type Assumptions = {
   outsourcingM: number;
   qualityM: number;
   aiCostM: number;
+  baselineAnnualProcessCostM: number;
+  postAiAnnualProcessCostM: number;
+  verifiedAnnualAiCostsM: number;
+  adjustmentRate: number;
+  allocationRate: number;
+  verifiedEmployeesCovered: number;
 };
 
 export type ScenarioDefinition = {
@@ -59,6 +65,16 @@ export type OperationalOutputs = {
   savingsFromHours: number;
   netGain: number;
   perEmployee: number;
+};
+
+export type VerifiedAiGainOutputs = {
+  grossAiGain: number;
+  adjustedGrossAiGain: number;
+  netVerifiedAiGain: number;
+  pensionAllocation: number;
+  companyRetainedGain: number;
+  pensionValuePerEmployee: number;
+  hasVerifiedGain: boolean;
 };
 
 export type PilotTasks = Record<string, boolean>;

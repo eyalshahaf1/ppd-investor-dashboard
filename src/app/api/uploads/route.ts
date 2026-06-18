@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 const defaultUploadDir = process.env.VERCEL ? "/tmp/ppd_uploads" : "./data/uploads";
 const uploadDir = resolve(process.env.PPD_UPLOAD_DIR ?? defaultUploadDir);
-const allowedExtensions = new Set([".csv", ".txt"]);
+const allowedExtensions = new Set([".csv", ".txt", ".xlsx"]);
 const allowedUploadTypes = new Set([
   "workflow_metrics",
   "aggregated_hr",
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     const extension = extname(entry.name).toLowerCase();
     if (!allowedExtensions.has(extension)) {
       return NextResponse.json(
-        { ok: false, error: "Only CSV and TXT pilot exports are accepted." },
+        { ok: false, error: "Only CSV, TXT, and XLSX pilot exports are accepted." },
         { status: 400 }
       );
     }
