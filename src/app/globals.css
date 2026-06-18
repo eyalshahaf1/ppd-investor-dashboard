@@ -493,6 +493,218 @@ main {
   grid-template-columns: 1fr;
 }
 
+.scenario-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.saved-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.saved-scenario-card {
+  min-height: 150px;
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 13px;
+  background: var(--surface-2);
+}
+
+.saved-scenario-card > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.saved-scenario-card b {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.saved-scenario-card span,
+.saved-scenario-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.saved-scenario-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-self: end;
+}
+
+.scenario-compare-card {
+  min-height: 190px;
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.scenario-compare-card.active {
+  border-color: var(--teal);
+  box-shadow: inset 0 0 0 1px var(--teal);
+}
+
+.scenario-compare-card > span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.scenario-compare-card > strong {
+  font-family: var(--mono);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.compare-bar-track,
+.unit-track {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+.compare-bar-fill,
+.unit-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--teal);
+}
+
+.scenario-compare-card dl {
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.scenario-compare-card dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.scenario-compare-card dt,
+.scenario-compare-card dd {
+  margin: 0;
+}
+
+.scenario-compare-card dd {
+  color: var(--ink);
+  font-family: var(--mono);
+  font-weight: 800;
+  text-align: right;
+}
+
+.unit-economics-list,
+.readiness-list,
+.mapping-grid,
+.red-flag-list {
+  display: grid;
+  gap: 10px;
+}
+
+.unit-row {
+  display: grid;
+  gap: 8px;
+}
+
+.unit-row > div:first-child,
+.readiness-item,
+.mapping-head,
+.investor-console,
+.mapping-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.unit-row b,
+.readiness-item b,
+.mapping-row b {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.unit-row span,
+.readiness-item p,
+.mapping-row span {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.unit-row span,
+.mapping-score strong {
+  font-family: var(--mono);
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.unit-fill.amber { background: var(--amber); }
+.unit-fill.blue { background: var(--blue); }
+.unit-fill.indigo { background: var(--indigo); }
+.unit-fill.coral { background: var(--coral); }
+
+.unit-foot {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 4px;
+}
+
+.unit-foot b {
+  color: var(--teal);
+  font-family: var(--mono);
+  font-size: 22px;
+}
+
+.unit-foot span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.readiness-item,
+.mapping-row {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.readiness-item span,
+.mapping-score,
+.overall-score {
+  min-width: 72px;
+  text-align: center;
+  border-radius: var(--radius);
+  padding: 7px 8px;
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .kpi-card {
   padding: 14px;
   min-height: 124px;
@@ -1418,6 +1630,83 @@ input[type="number"] {
   margin-top: 12px;
 }
 
+.mapping-preview {
+  margin-top: 14px;
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface-2) 72%, transparent);
+}
+
+.mapping-preview.empty {
+  background: transparent;
+}
+
+.mapping-preview h3,
+.mapping-preview p {
+  margin: 0;
+}
+
+.mapping-head p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.mapping-score {
+  display: grid;
+  gap: 2px;
+}
+
+.mapping-score span {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mapping-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mapping-row {
+  background: var(--surface);
+}
+
+.mapping-row.mapped {
+  border-color: color-mix(in srgb, var(--teal) 42%, var(--line));
+}
+
+.red-flag-list p {
+  margin: 0;
+  padding-left: 12px;
+  border-left: 3px solid var(--amber);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.investor-console {
+  align-items: flex-start;
+}
+
+.investor-console p {
+  margin-bottom: 0;
+}
+
+.investor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.investor-actions a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
 .connection-flow {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1844,7 +2133,10 @@ code {
   .calculation-list,
   .localization-grid,
   .resource-group-grid,
-  .about-footer {
+  .about-footer,
+  .scenario-compare-grid,
+  .saved-scenario-grid,
+  .mapping-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1857,6 +2149,14 @@ code {
   .thesis-band,
   .about-hero {
     grid-template-columns: 1fr;
+  }
+
+  .investor-console {
+    display: grid;
+  }
+
+  .investor-actions {
+    justify-content: flex-start;
   }
 }
 
@@ -1904,7 +2204,10 @@ code {
   .resource-group-grid,
   .about-footer,
   .footer-inner,
-  .control-grid {
+  .control-grid,
+  .scenario-compare-grid,
+  .saved-scenario-grid,
+  .mapping-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1920,6 +2223,20 @@ code {
 
   .kpi-group-head span {
     text-align: left;
+  }
+
+  .scenario-compare-card,
+  .mapping-preview,
+  .readiness-item,
+  .mapping-row {
+    min-width: 0;
+  }
+
+  .unit-row > div:first-child,
+  .readiness-item,
+  .mapping-head,
+  .mapping-row {
+    align-items: flex-start;
   }
 
   .control-row,

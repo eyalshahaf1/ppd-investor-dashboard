@@ -9,6 +9,7 @@ import {
 import { defaultAssumptions, scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
 import type { Language } from "@/lib/i18n";
+import { generateInvestorReport } from "@/lib/productFeatures";
 import type { Assumptions, JapanStatKey, JapanStatRecord, PilotTasks, ScenarioKey } from "@/lib/types";
 import { AboutView } from "./AboutView";
 import { AppFooter } from "./AppFooter";
@@ -61,6 +62,10 @@ export function DashboardApp() {
     [activeScenario, assumptions]
   );
   const y5Flow = formatYen(activeProjection[activeProjection.length - 1].annualContribution);
+  const investorReport = useMemo(
+    () => generateInvestorReport(assumptions, activeScenario),
+    [assumptions, activeScenario]
+  );
 
   useEffect(() => {
     async function loadBackendState() {
@@ -127,6 +132,11 @@ export function DashboardApp() {
     const next = { ...assumptions, [key]: value };
     setAssumptions(next);
     persistAssumptions(next);
+  }
+
+  function applyAssumptions(nextAssumptions: Assumptions) {
+    setAssumptions(nextAssumptions);
+    persistAssumptions(nextAssumptions);
   }
 
   async function updateTask(taskKey: string, completed: boolean) {
@@ -220,6 +230,7 @@ export function DashboardApp() {
             assumptions={assumptions}
             activeScenario={activeScenario}
             onScenarioChange={setActiveScenario}
+            onApplyAssumptions={applyAssumptions}
           />
         )}
         {activeTab === "pilot" && (
@@ -227,7 +238,9 @@ export function DashboardApp() {
         )}
         {activeTab === "data" && <DataConnectionView />}
         {activeTab === "about" && <AboutView language={language} />}
-        {activeTab === "investor" && <InvestorRoom />}
+        {activeTab === "investor" && (
+          <InvestorRoom reportText={investorReport} onNavigate={changeTab} />
+        )}
       </main>
       <AppFooter language={language} />
     </div>

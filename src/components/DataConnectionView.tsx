@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { parseCsvPreview, type CsvPreview } from "@/lib/productFeatures";
 import type { DataUpload } from "@/lib/types";
 import { DataQualityScorecard } from "./DataQualityScorecard";
 
@@ -82,6 +83,7 @@ export function DataConnectionView() {
   const [uploadType, setUploadType] = useState<UploadTypeKey>("workflow_metrics");
   const [isUploading, setIsUploading] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("Ready for aggregated pilot data.");
+  const [csvPreview, setCsvPreview] = useState<CsvPreview | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -128,11 +130,36 @@ export function DataConnectionView() {
       const savedUpload = payload.upload;
       setUploads((current) => [savedUpload, ...current].slice(0, 20));
       setUploadMessage("Stored locally for review.");
+      setCsvPreview(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (error) {
       setUploadMessage(error instanceof Error ? error.message : "Upload failed.");
     } finally {
       setIsUploading(false);
+    }
+  }
+
+  async function previewFile() {
+    const file = fileInputRef.current?.files?.[0];
+
+    if (!file) {
+      setCsvPreview(null);
+      setUploadMessage("Choose a CSV or TXT pilot export first.");
+      return;
+    }
+
+    try {
+      const text = await file.text();
+      const preview = parseCsvPreview(text);
+      setCsvPreview(preview);
+      setUploadMessage(
+        preview.readinessScore >= 75
+          ? "Pilot file looks usable for mapping."
+          : "Pilot file needs mapping review."
+      );
+    } catch {
+      setCsvPreview(null);
+      setUploadMessage("Could not preview this file.");
     }
   }
 
@@ -208,7 +235,12 @@ export function DataConnectionView() {
 
           <label className="stacked-field">
             <span>CSV or TXT file</span>
-            <input ref={fileInputRef} type="file" accept=".csv,.txt,text/csv,text/plain" />
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".csv,.txt,text/csv,text/plain"
+              onChange={previewFile}
+            />
           </label>
 
           <button className="action-btn primary upload-btn" type="submit" disabled={isUploading}>
@@ -223,6 +255,8 @@ export function DataConnectionView() {
             </p>
           ))}
         </div>
+
+        <CsvMappingPreview preview={csvPreview} />
 
         <div className="template-link-row" aria-label="Static data templates">
           {templateLinks.map(([label, href]) => (
@@ -279,6 +313,47 @@ export function DataConnectionView() {
           </p>
         )}
       </section>
+    </div>
+  );
+}
+
+function CsvMappingPreview({ preview }: { preview: CsvPreview | null }) {
+  if (!preview) {
+    return (
+      <div className="mapping-preview empty">
+        <h3>Upload mapping preview</h3>
+        <p>Choose a pilot CSV to preview headers, mapped fields, and evidence red flags before storage.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mapping-preview">
+      <div className="mapping-head">
+        <div>
+          <h3>Upload mapping preview</h3>
+          <p>{preview.rows.toLocaleString("en-US")} rows detected.</p>
+        </div>
+        <div className="mapping-score">
+          <span>Readiness</span>
+          <strong>{preview.readinessScore}</strong>
+        </div>
+      </div>
+
+      <div className="mapping-grid">
+        {preview.mappedFields.map((item) => (
+          <div className={`mapping-row ${item.source ? "mapped" : ""}`} key={item.field}>
+            <b>{item.field}</b>
+            <span>{item.source ?? "Not mapped"}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="red-flag-list">
+        {preview.redFlags.map((flag) => (
+          <p key={flag}>{flag}</p>
+        ))}
+      </div>
     </div>
   );
 }

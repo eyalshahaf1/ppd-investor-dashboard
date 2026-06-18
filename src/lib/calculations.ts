@@ -55,15 +55,18 @@ export function calculateEmployerEconomics(assumptions: Assumptions): Calculator
 }
 
 export function calculateOperationalGain(assumptions: Assumptions): OperationalOutputs {
-  const savingsFromHours = assumptions.hoursSaved * assumptions.costPerHour;
+  const totalCoveredEmployees = assumptions.coveredEmployees * assumptions.employers;
+  const savingsFromHours =
+    assumptions.hoursSaved * assumptions.costPerHour * assumptions.employers;
   const otherSavings =
     (assumptions.overtimeM +
       assumptions.outsourcingM +
       assumptions.qualityM -
       assumptions.aiCostM) *
-    1000000;
+    1000000 *
+    assumptions.employers;
   const netGain = Math.max(0, savingsFromHours + otherSavings);
-  const perEmployee = assumptions.coveredEmployees ? netGain / assumptions.coveredEmployees : 0;
+  const perEmployee = totalCoveredEmployees ? netGain / totalCoveredEmployees : 0;
 
   return { savingsFromHours, netGain, perEmployee };
 }

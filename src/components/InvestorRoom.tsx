@@ -1,4 +1,11 @@
-export function InvestorRoom() {
+import type { DashboardTab } from "./Tabs";
+
+type InvestorRoomProps = {
+  reportText: string;
+  onNavigate: (tab: DashboardTab) => void;
+};
+
+export function InvestorRoom({ reportText, onNavigate }: InvestorRoomProps) {
   const steps = [
     ["Open with the wedge", "We are not replacing Japan's pension system. We are the measurement, allocation, and reporting layer for responsible AI gains."],
     ["Show the operating flow", "Walk left to right: AI workflow, verified gain, dividend rule, regulated rails, impact reporting."],
@@ -7,6 +14,8 @@ export function InvestorRoom() {
     ["Make risk feel managed", "Show the risk board and emphasize measurement integrity, privacy, anti-layoff guardrails, and regulated partner execution."],
     ["Close with the partner triangle", "Ask for two pilots, one regulated rail partner, and one assurance partner to validate a 90-day proof of concept in Japan."]
   ];
+
+  const reportHref = `data:text/markdown;charset=utf-8,${encodeURIComponent(reportText)}`;
 
   return (
     <div className="dashboard-grid">
@@ -17,6 +26,30 @@ export function InvestorRoom() {
             Run this app like a proof of operating discipline. The point is not
             to dazzle with big TAM; it is to show that the model survives scrutiny.
           </p>
+        </div>
+      </section>
+
+      <section className="span-12 panel investor-console">
+        <div>
+          <h3>Investor demo mode</h3>
+          <p>
+            A guided path for live meetings: open the story, stress-test the math,
+            show customer data discipline, then close with the partner execution room.
+          </p>
+        </div>
+        <div className="investor-actions">
+          <button className="action-btn" type="button" onClick={() => onNavigate("overview")}>
+            1. Overview
+          </button>
+          <button className="action-btn" type="button" onClick={() => onNavigate("calculator")}>
+            2. Calculator
+          </button>
+          <button className="action-btn" type="button" onClick={() => onNavigate("data")}>
+            3. Data connect
+          </button>
+          <a className="action-btn primary" download="ppd-investor-demo-snapshot.md" href={reportHref}>
+            Export report
+          </a>
         </div>
       </section>
 
@@ -63,4 +96,3 @@ export function InvestorRoom() {
     </div>
   );
 }
-

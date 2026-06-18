@@ -1,6 +1,14 @@
 const assert = require("node:assert/strict");
-const { calculateEmployerEconomics } = require("../.test-build/calculations.js");
+const {
+  calculateEmployerEconomics,
+  calculateOperationalGain
+} = require("../.test-build/calculations.js");
 const { defaultAssumptions } = require("../.test-build/defaults.js");
+const {
+  buildScenarioSummaries,
+  generateInvestorReport,
+  parseCsvPreview
+} = require("../.test-build/productFeatures.js");
 
 function withAssumptions(overrides) {
   return { ...defaultAssumptions, ...overrides };
@@ -29,6 +37,35 @@ function withAssumptions(overrides) {
 {
   const outputs = calculateEmployerEconomics(withAssumptions({ coveredEmployees: 0 }));
   assert.equal(outputs.perEmployee, 0);
+}
+
+{
+  const outputs = calculateOperationalGain(withAssumptions({ employers: 3 }));
+  assert.equal(outputs.savingsFromHours, 26_400_000_000);
+  assert.equal(outputs.netGain, 36_000_000_000);
+  assert.equal(outputs.perEmployee, 1_200_000);
+}
+
+{
+  const preview = parseCsvPreview(
+    "workflow_id,period_start,period_end,baseline_volume,post_ai_volume,ai_cost\nclaims,2026-01-01,2026-03-31,1000,1240,1200000\n"
+  );
+  assert.equal(preview.rows, 1);
+  assert.equal(preview.mappedFields.filter((field) => field.source).length >= 6, true);
+  assert.equal(preview.redFlags.includes("AI cost evidence is not mapped yet."), false);
+}
+
+{
+  const summaries = buildScenarioSummaries(defaultAssumptions);
+  assert.equal(summaries.length, 3);
+  assert.equal(summaries.find((item) => item.key === "medium").y5AnnualContribution, 120_000_000_000);
+}
+
+{
+  const report = generateInvestorReport(defaultAssumptions, "medium");
+  assert.match(report, /Investor Demo Snapshot/);
+  assert.match(report, /Y5 contribution flow/);
+  assert.match(report, /not platform revenue/);
 }
 
 console.log("calculation tests passed");

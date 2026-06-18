@@ -12,6 +12,8 @@
   "include": [
     "src/lib/calculations.ts",
     "src/lib/defaults.ts",
+    "src/lib/format.ts",
+    "src/lib/productFeatures.ts",
     "src/lib/types.ts"
   ]
 }

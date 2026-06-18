@@ -6,6 +6,7 @@ import { KpiCard } from "./KpiCard";
 import { PartnerExecutionFlow } from "./PartnerExecutionFlow";
 import { PilotEvidenceChart } from "./PilotEvidenceChart";
 import { ProjectionChart } from "./ProjectionChart";
+import { UnitEconomicsChart } from "./UnitEconomicsChart";
 
 type OverviewViewProps = {
   assumptions: Assumptions;
@@ -146,6 +147,17 @@ export function OverviewView({
 
       <PartnerExecutionFlow />
       <PilotEvidenceChart assumptions={assumptions} />
+      <UnitEconomicsChart assumptions={assumptions} />
+
+      <section className="span-6 panel">
+        <h3>SaaS readiness path</h3>
+        <div className="readiness-list">
+          <ReadinessItem title="Workspace accounts" value="Next" body="Employer, assurance, and partner roles." />
+          <ReadinessItem title="Cloud database" value="Next" body="Managed Postgres for multi-customer pilots." />
+          <ReadinessItem title="Security controls" value="Next" body="Audit trail, role-based access, and upload retention rules." />
+          <ReadinessItem title="Signup flow" value="Later" body="Invite-only pilot onboarding before public signup." />
+        </div>
+      </section>
 
       <section className="span-12 panel chart-frame">
         <div className="chart-head">
@@ -158,6 +170,18 @@ export function OverviewView({
         </div>
         <ProjectionChart rows={mediumProjection} />
       </section>
+    </div>
+  );
+}
+
+function ReadinessItem({ title, value, body }: { title: string; value: string; body: string }) {
+  return (
+    <div className="readiness-item">
+      <div>
+        <b>{title}</b>
+        <p>{body}</p>
+      </div>
+      <span>{value}</span>
     </div>
   );
 }
