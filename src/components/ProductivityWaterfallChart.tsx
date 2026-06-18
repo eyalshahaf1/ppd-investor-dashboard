@@ -14,13 +14,14 @@ type WaterfallStep = {
 
 export function ProductivityWaterfallChart({ assumptions }: ProductivityWaterfallChartProps) {
   const economics = calculateEmployerEconomics(assumptions);
-  const savingsFromHours = assumptions.hoursSaved * assumptions.costPerHour;
+  const rolloutMultiplier = assumptions.employers;
+  const savingsFromHours = assumptions.hoursSaved * assumptions.costPerHour * rolloutMultiplier;
   const steps: WaterfallStep[] = [
     { label: "Hours saved", value: savingsFromHours, kind: "positive" },
-    { label: "Overtime", value: assumptions.overtimeM * 1000000, kind: "positive" },
-    { label: "Outsourcing", value: assumptions.outsourcingM * 1000000, kind: "positive" },
-    { label: "Quality", value: assumptions.qualityM * 1000000, kind: "positive" },
-    { label: "AI costs", value: -assumptions.aiCostM * 1000000, kind: "negative" },
+    { label: "Overtime", value: assumptions.overtimeM * 1000000 * rolloutMultiplier, kind: "positive" },
+    { label: "Outsourcing", value: assumptions.outsourcingM * 1000000 * rolloutMultiplier, kind: "positive" },
+    { label: "Quality", value: assumptions.qualityM * 1000000 * rolloutMultiplier, kind: "positive" },
+    { label: "AI costs", value: -assumptions.aiCostM * 1000000 * rolloutMultiplier, kind: "negative" },
     { label: "Verified gain", value: economics.eligibleBase, kind: "total" },
     { label: "Pension pool", value: economics.retirementPool, kind: "allocation" }
   ];
@@ -28,7 +29,7 @@ export function ProductivityWaterfallChart({ assumptions }: ProductivityWaterfal
   const maxValue = Math.max(1, ...steps.map((step) => Math.abs(step.value)));
 
   return (
-    <section className="span-7 panel chart-frame">
+    <section className="span-6 panel chart-frame">
       <div className="chart-head">
         <div>
           <h3>Productivity gain waterfall</h3>

@@ -50,7 +50,7 @@ export function SensitivityTornadoChart({ assumptions }: SensitivityTornadoChart
   const maxImpact = Math.max(1, ...rows.map((row) => row.impact));
 
   return (
-    <section className="span-5 panel chart-frame">
+    <section className="span-6 panel chart-frame">
       <div className="chart-head">
         <div>
           <h3>Sensitivity tornado</h3>
