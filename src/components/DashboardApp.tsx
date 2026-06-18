@@ -183,19 +183,21 @@ export function DashboardApp() {
 
   return (
     <div className="app">
-      <TopBar
-        activeScenario={activeScenario}
-        y5Flow={y5Flow}
-        backendOnline={backendOnline}
-        themeMode={themeMode}
-        language={language}
-        onThemeToggle={toggleTheme}
-        onLanguageChange={setLanguage}
-        onReset={resetModel}
-        onSave={saveSnapshot}
-      />
+      <div className="app-chrome">
+        <TopBar
+          activeScenario={activeScenario}
+          y5Flow={y5Flow}
+          backendOnline={backendOnline}
+          themeMode={themeMode}
+          language={language}
+          onThemeToggle={toggleTheme}
+          onLanguageChange={setLanguage}
+          onReset={resetModel}
+          onSave={saveSnapshot}
+        />
+        <Tabs activeTab={activeTab} language={language} onChange={changeTab} />
+      </div>
       <div className="save-status" aria-live="polite">{saveLabel !== "Save" ? saveLabel : ""}</div>
-      <Tabs activeTab={activeTab} language={language} onChange={changeTab} />
       <main>
         {activeTab === "overview" && (
           <OverviewView

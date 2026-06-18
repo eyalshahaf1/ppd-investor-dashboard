@@ -86,10 +86,19 @@ p {
   min-height: 100vh;
 }
 
-.topbar {
+.app-chrome {
   position: sticky;
   top: 0;
   z-index: 20;
+  box-shadow: 0 10px 26px rgba(23, 32, 29, 0.08);
+}
+
+:root[data-theme="dark"] .app-chrome {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);
+}
+
+.topbar {
+  position: relative;
   border-bottom: 1px solid rgba(216, 224, 218, 0.9);
   background: rgba(246, 247, 244, 0.94);
   backdrop-filter: blur(14px);
