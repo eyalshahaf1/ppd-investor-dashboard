@@ -19,7 +19,13 @@ export function ScenarioComparisonPanel({
   return (
     <section className="span-12 panel">
       <div className="chart-head">
-        <h3>Scenario comparison cockpit</h3>
+        <div>
+          <h3>Scenario comparison cockpit</h3>
+          <p className="source-note">
+            Illustrative adoption scenarios only. They are useful for investor scale
+            discussion but are not verified pilot results.
+          </p>
+        </div>
         <div className="legend">
           <span><i />Y5 contribution flow</span>
           <span className="aum"><i />Y5 AUM influenced</span>

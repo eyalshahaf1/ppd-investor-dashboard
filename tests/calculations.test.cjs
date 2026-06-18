@@ -49,12 +49,12 @@ function withAssumptions(overrides) {
 
 {
   const outputs = calculateVerifiedAiGain(defaultAssumptions);
-  assert.equal(outputs.grossAiGain, 3_800_000_000);
-  assert.equal(outputs.adjustedGrossAiGain, 3_230_000_000);
-  assert.equal(outputs.netVerifiedAiGain, 2_630_000_000);
-  assert.equal(outputs.pensionAllocation, 131_500_000);
-  assert.equal(outputs.companyRetainedGain, 2_498_500_000);
-  assert.equal(outputs.pensionValuePerEmployee, 13_150);
+  assert.equal(outputs.grossAiGain, 15_000_000_000);
+  assert.equal(outputs.adjustedGrossAiGain, 13_500_000_000);
+  assert.equal(outputs.netVerifiedAiGain, 12_000_000_000);
+  assert.equal(outputs.pensionAllocation, 600_000_000);
+  assert.equal(outputs.companyRetainedGain, 11_400_000_000);
+  assert.equal(outputs.pensionValuePerEmployee, 60_000);
   assert.equal(outputs.hasVerifiedGain, true);
 }
 

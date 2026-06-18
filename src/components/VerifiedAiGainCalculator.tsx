@@ -32,8 +32,10 @@ export function VerifiedAiGainCalculator({
           <span className="mode-label">CFO-friendly verified calculation mode</span>
           <h3>Verified AI Gain Calculator</h3>
           <p>
-            The company keeps most of the verified AI gain. Only a small pre-agreed
-            share is converted into pension value.
+            CFO-friendly source of truth for measured process-level AI gain. The
+            company keeps most of the verified AI gain; only a small pre-agreed
+            share is converted into pension value. The default case is aligned
+            to the Medium shortcut at roughly ¥60,000 per employee per year.
           </p>
         </div>
         {!outputs.hasVerifiedGain && (
@@ -45,9 +47,9 @@ export function VerifiedAiGainCalculator({
         <div className="verified-inputs">
           <h4>Inputs</h4>
           <div className="control-grid">
-            <AssumptionControl name="baselineAnnualProcessCostM" label="Baseline annual process cost" help="JPY millions" value={assumptions.baselineAnnualProcessCostM} min={0} max={50000} step={100} onChange={(value) => onAssumptionChange("baselineAnnualProcessCostM", value)} />
-            <AssumptionControl name="postAiAnnualProcessCostM" label="Post-AI annual process cost" help="JPY millions" value={assumptions.postAiAnnualProcessCostM} min={0} max={50000} step={100} onChange={(value) => onAssumptionChange("postAiAnnualProcessCostM", value)} />
-            <AssumptionControl name="verifiedAnnualAiCostsM" label="Annual AI costs" help="JPY millions" value={assumptions.verifiedAnnualAiCostsM} min={0} max={10000} step={50} onChange={(value) => onAssumptionChange("verifiedAnnualAiCostsM", value)} />
+            <AssumptionControl name="baselineAnnualProcessCostM" label="Baseline annual process cost (JPY millions)" help="Example: 25000 = ¥25.0B" value={assumptions.baselineAnnualProcessCostM} min={0} max={50000} step={100} onChange={(value) => onAssumptionChange("baselineAnnualProcessCostM", value)} />
+            <AssumptionControl name="postAiAnnualProcessCostM" label="Post-AI annual process cost (JPY millions)" help="Example: 10000 = ¥10.0B" value={assumptions.postAiAnnualProcessCostM} min={0} max={50000} step={100} onChange={(value) => onAssumptionChange("postAiAnnualProcessCostM", value)} />
+            <AssumptionControl name="verifiedAnnualAiCostsM" label="Annual AI costs (JPY millions)" help="Example: 1500 = ¥1.5B" value={assumptions.verifiedAnnualAiCostsM} min={0} max={10000} step={50} onChange={(value) => onAssumptionChange("verifiedAnnualAiCostsM", value)} />
             <AssumptionControl name="adjustmentRate" label="Adjustment rate" help="% haircut for evidence quality" value={assumptions.adjustmentRate} min={0} max={60} step={1} onChange={(value) => onAssumptionChange("adjustmentRate", value)} />
             <AssumptionControl name="allocationRate" label="Allocation rate" help="% of verified gain to pension value" value={assumptions.allocationRate} min={0} max={10} step={0.25} onChange={(value) => onAssumptionChange("allocationRate", value)} />
             <AssumptionControl name="verifiedEmployeesCovered" label="Employees covered" help="employees eligible in this calculation" value={assumptions.verifiedEmployeesCovered} min={0} max={100000} step={1000} onChange={(value) => onAssumptionChange("verifiedEmployeesCovered", value)} />
@@ -69,8 +71,13 @@ export function VerifiedAiGainCalculator({
             disabled={!outputs.hasVerifiedGain}
             onClick={applyToQuickScenario}
           >
-            Apply to Quick Scenario Mode
+            Copy to Quick Mode inputs
           </button>
+          <p className="source-note">
+            Copies verified per-employee gain, allocation rate, and employee count
+            into the quick calculator only. Low / Medium / High remain illustrative
+            adoption scenarios, not verified pilot results.
+          </p>
         </div>
       </div>
 

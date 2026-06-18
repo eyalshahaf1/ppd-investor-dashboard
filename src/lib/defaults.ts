@@ -28,10 +28,10 @@ export const defaultAssumptions: Assumptions = {
   outsourcingM: 1200,
   qualityM: 900,
   aiCostM: 1300,
-  baselineAnnualProcessCostM: 12000,
-  postAiAnnualProcessCostM: 8200,
-  verifiedAnnualAiCostsM: 600,
-  adjustmentRate: 15,
+  baselineAnnualProcessCostM: 25000,
+  postAiAnnualProcessCostM: 10000,
+  verifiedAnnualAiCostsM: 1500,
+  adjustmentRate: 10,
   allocationRate: 5,
   verifiedEmployeesCovered: 10000
 };

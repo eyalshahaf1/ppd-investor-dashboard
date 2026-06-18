@@ -76,8 +76,9 @@ export function ScenarioView({
         <div>
           <h2>Adoption scenarios and five-year projection</h2>
           <p>
-            Switch between source scenarios. Medium uses the full source trajectory:
-            30k, 150k, 500k, 1.2M, and 2.0M covered employees.
+            Low / Medium / High are illustrative adoption scenarios for investor
+            storytelling, not verified pilot results. Verified Calculation Mode is
+            the source of truth for CFO-reviewed process economics.
           </p>
         </div>
         <div className="scenario-controls">
