@@ -8,23 +8,23 @@ import type {
 } from "./types";
 
 export function calculateEmployerEconomics(assumptions: Assumptions): CalculatorOutputs {
+  const totalCoveredEmployees = assumptions.coveredEmployees * assumptions.employers;
   const eligibleBase =
-    assumptions.coveredEmployees *
+    totalCoveredEmployees *
     assumptions.gainPerEmployee *
     (assumptions.confidence / 100);
 
   const retirementPool = eligibleBase * (assumptions.dividendRate / 100);
-  const perEmployee = assumptions.coveredEmployees
-    ? retirementPool / assumptions.coveredEmployees
+  const perEmployee = totalCoveredEmployees
+    ? retirementPool / totalCoveredEmployees
     : 0;
   const employerRetained = Math.max(0, eligibleBase - retirementPool);
 
   const saas =
-    assumptions.coveredEmployees *
+    totalCoveredEmployees *
     assumptions.monthlySaas *
-    12 *
-    assumptions.employers;
-  const take = retirementPool * (assumptions.takeRate / 100) * assumptions.employers;
+    12;
+  const take = retirementPool * (assumptions.takeRate / 100);
   const audit = assumptions.auditFeeM * 1000000 * assumptions.employers;
   const recurringRevenue = saas + take + audit;
 
@@ -120,4 +120,3 @@ export function getDashboardSnapshot(assumptions: Assumptions, scenarioKey: Scen
     scenarioY5: projection[projection.length - 1]
   };
 }
-

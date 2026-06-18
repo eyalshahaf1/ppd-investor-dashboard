@@ -69,6 +69,8 @@ data/uploads/
 
 This folder is ignored by Git and should not be force-added.
 
+On Vercel, local file persistence is demo-only. When the `VERCEL` environment variable is present, the app defaults SQLite and upload storage to `/tmp`. For production SaaS, replace local SQLite with managed storage such as Postgres plus object storage.
+
 Detailed run instructions:
 
 ```text

@@ -33,8 +33,9 @@ export function ProductivityWaterfallChart({ assumptions }: ProductivityWaterfal
         <div>
           <h3>Productivity gain waterfall</h3>
           <p>
-            Shows how operating evidence becomes verified value, then the
-            retirement dividend pool.
+            Shows how the current verified gain assumption becomes the retirement
+            dividend pool. Use the operational calculator above to update the
+            verified gain base after pilot evidence is reviewed.
           </p>
         </div>
       </div>

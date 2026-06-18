@@ -13,7 +13,8 @@ import type {
 
 type DbRow<T> = T & Record<string, unknown>;
 
-const dbPath = resolve(process.env.PPD_DB_PATH ?? "./data/ppd_next.sqlite3");
+const defaultDbPath = process.env.VERCEL ? "/tmp/ppd_next.sqlite3" : "./data/ppd_next.sqlite3";
+const dbPath = resolve(process.env.PPD_DB_PATH ?? defaultDbPath);
 
 let db: Database.Database | null = null;
 

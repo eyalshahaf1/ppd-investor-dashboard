@@ -92,7 +92,7 @@ export const copy = {
     },
     footer: {
       disclaimer:
-        "Disclaimer: The data provided here is for educational purposes only. Renewable energy terminology may evolve over time."
+        "Demo version for discussion purposes only. Calculations are based on simplified assumptions and do not represent financial, legal, tax, actuarial, investment, or pension advice."
     }
   },
   ja: {
@@ -181,7 +181,7 @@ export const copy = {
     },
     footer: {
       disclaimer:
-        "免責事項: ここで提供されるデータは教育目的のみです。再生可能エネルギーに関する用語は時間とともに変化する可能性があります。"
+        "本ダッシュボードは議論用のデモ版です。計算は簡略化された前提に基づくものであり、金融、法律、税務、年金数理、投資、または年金制度に関する助言ではありません。"
     }
   }
 } as const;

@@ -28,7 +28,7 @@ export function AssumptionControl({
     <div className="field">
       <label>
         <span>{label}</span>
-        <small>{help}</small>
+        <small title={help}>{help}</small>
       </label>
       <div className="control-row">
         <input

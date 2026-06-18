@@ -803,6 +803,51 @@ input[type="number"] {
   line-height: 1.25;
 }
 
+.calculation-explainer {
+  align-self: start;
+}
+
+.calculation-list {
+  display: grid;
+  gap: 10px;
+}
+
+.calculation-step {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.calculation-step:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.calculation-step b {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.calculation-step p {
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.calculation-step code {
+  display: block;
+  padding: 7px 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--soft);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.35;
+  white-space: normal;
+}
+
 .tornado-chart {
   display: grid;
   gap: 12px;

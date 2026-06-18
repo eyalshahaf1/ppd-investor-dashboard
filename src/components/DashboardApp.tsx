@@ -208,6 +208,7 @@ export function DashboardApp() {
         {activeTab === "calculator" && (
           <CalculatorView
             assumptions={assumptions}
+            language={language}
             onAssumptionChange={updateAssumption}
             onApplyOperationalGain={applyOperationalGain}
           />

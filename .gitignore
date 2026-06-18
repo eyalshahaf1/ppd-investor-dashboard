@@ -9,6 +9,7 @@
 __pycache__/
 node_modules/
 .next/
+.test-build/
 out/
 npm-debug.log*
 tsconfig.tsbuildinfo

@@ -7,7 +7,8 @@ import { createDataUpload, listDataUploads } from "@/lib/db";
 export const runtime = "nodejs";
 
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
-const uploadDir = resolve(process.env.PPD_UPLOAD_DIR ?? "./data/uploads");
+const defaultUploadDir = process.env.VERCEL ? "/tmp/ppd_uploads" : "./data/uploads";
+const uploadDir = resolve(process.env.PPD_UPLOAD_DIR ?? defaultUploadDir);
 const allowedExtensions = new Set([".csv", ".txt"]);
 const allowedUploadTypes = new Set([
   "workflow_metrics",

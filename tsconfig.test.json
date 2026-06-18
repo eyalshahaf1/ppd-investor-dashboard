@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["es2022"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": ".test-build"
+  },
+  "include": [
+    "src/lib/calculations.ts",
+    "src/lib/defaults.ts",
+    "src/lib/types.ts"
+  ]
+}

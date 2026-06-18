@@ -57,6 +57,22 @@ PPD_DB_PATH=./data/my_local_demo.sqlite3 npm run dev
 
 The database is intentionally ignored by Git.
 
+## Vercel Demo Note
+
+Vercel serverless functions should not rely on persistent local files. When `VERCEL` is present, the app defaults the local SQLite database to:
+
+```text
+/tmp/ppd_next.sqlite3
+```
+
+and upload storage to:
+
+```text
+/tmp/ppd_uploads
+```
+
+This is acceptable for a demo, but it is not durable production storage. Production SaaS should use managed Postgres and object storage.
+
 ## Local Uploads
 
 The Data Connect tab stores pilot CSV/TXT uploads under:
@@ -79,6 +95,12 @@ TypeScript:
 
 ```bash
 npm run typecheck
+```
+
+Calculation tests:
+
+```bash
+npm test
 ```
 
 Production build:

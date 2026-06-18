@@ -1,5 +1,6 @@
 import { calculateEmployerEconomics, calculateOperationalGain } from "@/lib/calculations";
 import { formatNumber, formatYen } from "@/lib/format";
+import type { Language } from "@/lib/i18n";
 import type { Assumptions } from "@/lib/types";
 import { AssumptionControl } from "./AssumptionControl";
 import { KpiCard } from "./KpiCard";
@@ -8,17 +9,21 @@ import { SensitivityTornadoChart } from "./SensitivityTornadoChart";
 
 type CalculatorViewProps = {
   assumptions: Assumptions;
+  language: Language;
   onAssumptionChange: (key: keyof Assumptions, value: number) => void;
   onApplyOperationalGain: () => void;
 };
 
 export function CalculatorView({
   assumptions,
+  language,
   onAssumptionChange,
   onApplyOperationalGain
 }: CalculatorViewProps) {
   const economics = calculateEmployerEconomics(assumptions);
   const operational = calculateOperationalGain(assumptions);
+  const copy = calculationCopy[language];
+  const tips = calculatorHelp[language];
 
   return (
     <div className="dashboard-grid">
@@ -32,12 +37,12 @@ export function CalculatorView({
       <section className="span-5 panel">
         <h3>Employer and dividend assumptions</h3>
         <div className="control-grid">
-          <AssumptionControl name="coveredEmployees" label="Covered employees" help="per modeled employer" value={assumptions.coveredEmployees} min={1000} max={50000} step={1000} onChange={(value) => onAssumptionChange("coveredEmployees", value)} />
-          <AssumptionControl name="employers" label="Employers" help="rollout count" value={assumptions.employers} min={1} max={250} step={1} onChange={(value) => onAssumptionChange("employers", value)} />
-          <AssumptionControl name="gainPerEmployee" label="Verified net gain" help="JPY / employee / year" value={assumptions.gainPerEmployee} min={200000} max={3000000} step={50000} onChange={(value) => onAssumptionChange("gainPerEmployee", value)} />
-          <AssumptionControl name="dividendRate" label="Dividend rule" help="% of verified gain" value={assumptions.dividendRate} min={1} max={10} step={0.25} onChange={(value) => onAssumptionChange("dividendRate", value)} />
-          <AssumptionControl name="confidence" label="Confidence haircut" help="% paid from eligible base" value={assumptions.confidence} min={50} max={100} step={1} onChange={(value) => onAssumptionChange("confidence", value)} />
-          <AssumptionControl name="annualReturn" label="AUM tracking return" help="illustrative, not a forecast" value={assumptions.annualReturn} min={0} max={6} step={0.25} onChange={(value) => onAssumptionChange("annualReturn", value)} />
+          <AssumptionControl name="coveredEmployees" label={tips.coveredEmployees.label} help={tips.coveredEmployees.help} value={assumptions.coveredEmployees} min={1000} max={50000} step={1000} onChange={(value) => onAssumptionChange("coveredEmployees", value)} />
+          <AssumptionControl name="employers" label={tips.employers.label} help={tips.employers.help} value={assumptions.employers} min={1} max={250} step={1} onChange={(value) => onAssumptionChange("employers", value)} />
+          <AssumptionControl name="gainPerEmployee" label={tips.gainPerEmployee.label} help={tips.gainPerEmployee.help} value={assumptions.gainPerEmployee} min={200000} max={3000000} step={50000} onChange={(value) => onAssumptionChange("gainPerEmployee", value)} />
+          <AssumptionControl name="dividendRate" label={tips.dividendRate.label} help={tips.dividendRate.help} value={assumptions.dividendRate} min={1} max={10} step={0.25} onChange={(value) => onAssumptionChange("dividendRate", value)} />
+          <AssumptionControl name="confidence" label={tips.confidence.label} help={tips.confidence.help} value={assumptions.confidence} min={50} max={100} step={1} onChange={(value) => onAssumptionChange("confidence", value)} />
+          <AssumptionControl name="annualReturn" label={tips.annualReturn.label} help={tips.annualReturn.help} value={assumptions.annualReturn} min={0} max={6} step={0.25} onChange={(value) => onAssumptionChange("annualReturn", value)} />
         </div>
       </section>
 
@@ -67,7 +72,7 @@ export function CalculatorView({
 
       <section className="span-7 panel">
         <h3>Operational gain calculator</h3>
-        <p>Turns pilot evidence into the dividend base.</p>
+        <p>Turns pilot evidence into an operational net gain. The operational calculator does not update the dividend base until applied.</p>
         <div className="control-grid">
           <AssumptionControl name="hoursSaved" label="Verified hours saved" help="annual" value={assumptions.hoursSaved} min={0} max={3000000} step={25000} onChange={(value) => onAssumptionChange("hoursSaved", value)} />
           <AssumptionControl name="costPerHour" label="Fully loaded cost" help="JPY / hour" value={assumptions.costPerHour} min={1000} max={12000} step={100} onChange={(value) => onAssumptionChange("costPerHour", value)} />
@@ -82,15 +87,167 @@ export function CalculatorView({
           <article className="kpi-card accent-coral">
             <div className="kpi-label">Validation move</div>
             <button className="action-btn primary" type="button" onClick={onApplyOperationalGain}>
-              Apply operational gain
+              Apply as verified gain
             </button>
-            <p className="kpi-note">Use after pilot evidence is reviewed.</p>
+            <p className="kpi-note">Use only after pilot evidence is reviewed. This updates the verified net gain assumption.</p>
           </article>
         </div>
       </section>
 
+      <CalculationExplainer title={copy.title} items={copy.items} />
       <ProductivityWaterfallChart assumptions={assumptions} />
       <SensitivityTornadoChart assumptions={assumptions} />
     </div>
   );
 }
+
+function CalculationExplainer({
+  title,
+  items
+}: {
+  title: string;
+  items: ReadonlyArray<{ heading: string; body: string; formula: string }>;
+}) {
+  return (
+    <section className="span-5 panel calculation-explainer">
+      <h3>{title}</h3>
+      <div className="calculation-list">
+        {items.map((item, index) => (
+          <article className="calculation-step" key={item.heading}>
+            <b>{index + 1}. {item.heading}</b>
+            <p>{item.body}</p>
+            <code>{item.formula}</code>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const calculatorHelp = {
+  en: {
+    coveredEmployees: {
+      label: "Covered employees",
+      help: "Employees included in the model per employer."
+    },
+    employers: {
+      label: "Employers",
+      help: "Number of companies in the rollout scenario."
+    },
+    gainPerEmployee: {
+      label: "Verified net gain",
+      help: "Annual verified productivity gain per employee."
+    },
+    dividendRate: {
+      label: "Dividend rule",
+      help: "Share of verified gain routed to retirement."
+    },
+    confidence: {
+      label: "Validation confidence",
+      help: "% of gain accepted as eligible"
+    },
+    annualReturn: {
+      label: "AUM tracking return",
+      help: "Illustrative return on tracked retirement assets. Not a forecast."
+    }
+  },
+  ja: {
+    coveredEmployees: {
+      label: "対象従業員数",
+      help: "企業1社あたりのモデル対象従業員数。"
+    },
+    employers: {
+      label: "参加企業数",
+      help: "展開シナリオに含まれる企業数。"
+    },
+    gainPerEmployee: {
+      label: "検証済み純効果",
+      help: "従業員一人あたりの年間検証済み生産性効果。"
+    },
+    dividendRate: {
+      label: "配当ルール",
+      help: "検証済み効果のうち退職・年金拠出に回す割合。"
+    },
+    confidence: {
+      label: "検証信頼度",
+      help: "測定された効果のうち、対象として認める割合。"
+    },
+    annualReturn: {
+      label: "AUM追跡リターン",
+      help: "積立資産に対する参考リターン。予測ではありません。"
+    }
+  }
+} as const;
+
+const calculationCopy = {
+  en: {
+    title: "How the calculations work",
+    items: [
+      {
+        heading: "Verified gain base",
+        body: "The model starts with covered employees, verified annual gain per employee, and validation confidence.",
+        formula: "Covered employees × Employers × Verified net gain per employee × Validation confidence"
+      },
+      {
+        heading: "Annual retirement pool",
+        body: "A defined percentage of the verified gain base is routed to retirement contributions.",
+        formula: "Verified gain base × Dividend rule"
+      },
+      {
+        heading: "Annual per employee",
+        body: "The retirement pool is divided by total covered employees.",
+        formula: "Annual retirement pool ÷ Total covered employees"
+      },
+      {
+        heading: "Employer retained value",
+        body: "The employer keeps the remaining verified gain after the retirement allocation.",
+        formula: "Verified gain base - Annual retirement pool"
+      },
+      {
+        heading: "Recurring platform revenue",
+        body: "Platform revenue combines SaaS fees, take-rate revenue, and verification fees. It excludes setup revenue.",
+        formula: "Annual SaaS revenue + Take-rate revenue + Verification revenue"
+      },
+      {
+        heading: "Operational net gain",
+        body: "Pilot evidence is converted into a net productivity gain.",
+        formula: "Verified hours saved × Fully loaded hourly cost + Overtime savings + Outsourcing savings + Quality benefit - AI costs"
+      }
+    ]
+  },
+  ja: {
+    title: "計算の仕組み",
+    items: [
+      {
+        heading: "検証済み効果ベース",
+        body: "対象従業員数、従業員一人あたりの年間検証済み効果、検証信頼度から始まります。",
+        formula: "対象従業員数 × 参加企業数 × 従業員一人あたりの検証済み純効果 × 検証信頼度"
+      },
+      {
+        heading: "年間年金原資",
+        body: "検証済み効果ベースの一定割合を、退職・年金拠出に回します。",
+        formula: "検証済み効果ベース × 配当ルール"
+      },
+      {
+        heading: "従業員一人あたり年間拠出額",
+        body: "年間年金原資を、対象従業員総数で割ります。",
+        formula: "年間年金原資 ÷ 対象従業員総数"
+      },
+      {
+        heading: "企業に残る価値",
+        body: "年金配分後に、企業側に残る検証済み効果です。",
+        formula: "検証済み効果ベース - 年間年金原資"
+      },
+      {
+        heading: "継続的プラットフォーム収益",
+        body: "SaaS収益、テイクレート収益、検証収益を合計します。一回限りの初期設定収益は含みません。",
+        formula: "年間SaaS収益 + テイクレート収益 + 検証収益"
+      },
+      {
+        heading: "業務上の純効果",
+        body: "パイロットで得られた証拠を、純粋な生産性効果に変換します。",
+        formula: "検証済み削減時間 × 時間あたり総コスト + 残業削減 + 外注費削減 + 品質改善効果 - AI関連コスト"
+      }
+    ]
+  }
+} as const;
