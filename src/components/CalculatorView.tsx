@@ -34,6 +34,8 @@ export function CalculatorView({
         </div>
       </section>
 
+      <CalculationExplainer title={copy.title} items={copy.items} />
+
       <section className="span-6 panel">
         <h3>Employer and dividend assumptions</h3>
         <div className="control-grid">
@@ -94,7 +96,6 @@ export function CalculatorView({
         </div>
       </section>
 
-      <CalculationExplainer title={copy.title} items={copy.items} />
       <ProductivityWaterfallChart assumptions={assumptions} />
       <SensitivityTornadoChart assumptions={assumptions} />
     </div>
