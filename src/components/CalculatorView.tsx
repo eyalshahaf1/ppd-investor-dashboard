@@ -34,7 +34,7 @@ export function CalculatorView({
         </div>
       </section>
 
-      <section className="span-5 panel">
+      <section className="span-6 panel">
         <h3>Employer and dividend assumptions</h3>
         <div className="control-grid">
           <AssumptionControl name="coveredEmployees" label={tips.coveredEmployees.label} help={tips.coveredEmployees.help} value={assumptions.coveredEmployees} min={1000} max={50000} step={1000} onChange={(value) => onAssumptionChange("coveredEmployees", value)} />
@@ -46,7 +46,7 @@ export function CalculatorView({
         </div>
       </section>
 
-      <section className="span-7 panel">
+      <section className="span-6 panel">
         <h3>Calculated outputs</h3>
         <div className="metric-grid">
           <KpiCard label="Annual retirement pool" value={formatYen(economics.retirementPool)} note="Value routed to retirement rails. Not platform revenue." />
@@ -58,7 +58,7 @@ export function CalculatorView({
         </div>
       </section>
 
-      <section className="span-5 panel">
+      <section className="span-6 panel">
         <h3>Platform pricing assumptions</h3>
         <div className="control-grid">
           <AssumptionControl name="setupFeeM" label="Setup fee" help="JPY millions / new employer" value={assumptions.setupFeeM} min={0} max={50} step={1} onChange={(value) => onAssumptionChange("setupFeeM", value)} />
@@ -70,7 +70,7 @@ export function CalculatorView({
         </div>
       </section>
 
-      <section className="span-7 panel">
+      <section className="span-6 panel">
         <h3>Operational gain calculator</h3>
         <p>Turns pilot evidence into an operational net gain. The operational calculator does not update the dividend base until applied.</p>
         <div className="control-grid">
