@@ -1,1 +1,169 @@
-<svg xmlns="http://w3.org" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc"><script src="chrome-extension://necpbmbhhdiplmfhmjicabdeighkndkn/frame_ant/frame_ant.js"/><title id="title">Pension from AI Productivity social preview</title><desc id="desc">Preview image for the Pension Productivity Dividend investor dashboard.</desc><rect width="1200" height="630" fill="#f6f7f4"/><rect x="64" y="64" width="1072" height="502" rx="28" fill="#ffffff" stroke="#d8e0da" stroke-width="2"/><rect x="108" y="108" width="136" height="136" rx="24" fill="#0b6b5a"/><path d="M142 193v-54h35c14 0 23 8.5 23 21s-9 21-23 21h-16v12h-19Zm19-28h15c4.4 0 7-1.8 7-5s-2.6-5-7-5h-15v10Z" fill="#ffffff"/><path d="M142 207h65" stroke="#f0b342" stroke-width="7" stroke-linecap="round"/><text x="286" y="151" fill="#0b6b5a" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="3">AI PENSION PRODUCTIVITY DIVIDEND</text><text x="286" y="231" fill="#17201d" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="900">Pension from AI Productivity</text><text x="286" y="292" fill="#17201d" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800">Investor Dashboard for Japan</text><!-- Multi-line description block --><text x="286" fill="#65736c" font-family="Inter, Arial, sans-serif" font-size="24" line-height="1.4"><tspan x="286" y="345">Measurement layer for responsible AI gains, partner-ready</tspan><tspan x="286" y="378">contribution instructions, and assurance-grade reporting.</tspan></text><!-- Shifted the action badges down to make room for the text --><rect x="286" y="434" width="206" height="64" rx="8" fill="#eef5f1" stroke="#d8e0da"/><text x="310" y="474" fill="#0b6b5a" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Measure</text><rect x="516" y="434" width="206" height="64" rx="8" fill="#fff7df" stroke="#e8d8a8"/><text x="540" y="474" fill="#a65d14" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Verify</text><rect x="746" y="434" width="256" height="64" rx="8" fill="#f7ecea" stroke="#e4c4bf"/><text x="770" y="474" fill="#b83a31" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Allocate via partners</text><text x="108" y="526" fill="#65736c" font-family="Inter, Arial, sans-serif" font-size="20">Prepared by Eyal Shahaf</text></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="630"
+  viewBox="0 0 1200 630"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Pension from AI Productivity social preview</title>
+  <desc id="desc">
+    Preview image for the Pension Productivity Dividend investor dashboard.
+  </desc>
+
+  <rect width="1200" height="630" fill="#f6f7f4"/>
+
+  <rect
+    x="64"
+    y="64"
+    width="1072"
+    height="502"
+    rx="28"
+    fill="#ffffff"
+    stroke="#d8e0da"
+    stroke-width="2"
+  />
+
+  <rect
+    x="108"
+    y="108"
+    width="136"
+    height="136"
+    rx="24"
+    fill="#0b6b5a"
+  />
+
+  <path
+    d="M142 193v-54h35c14 0 23 8.5 23 21s-9 21-23 21h-16v12h-19Zm19-28h15c4.4 0 7-1.8 7-5s-2.6-5-7-5h-15v10Z"
+    fill="#ffffff"
+  />
+
+  <path
+    d="M142 207h65"
+    stroke="#f0b342"
+    stroke-width="7"
+    stroke-linecap="round"
+  />
+
+  <text
+    x="286"
+    y="151"
+    fill="#0b6b5a"
+    font-family="Inter, Arial, sans-serif"
+    font-size="24"
+    font-weight="800"
+    letter-spacing="3"
+  >
+    AI PENSION PRODUCTIVITY DIVIDEND
+  </text>
+
+  <text
+    x="286"
+    y="231"
+    fill="#17201d"
+    font-family="Inter, Arial, sans-serif"
+    font-size="58"
+    font-weight="900"
+  >
+    Pension from AI Productivity
+  </text>
+
+  <text
+    x="286"
+    y="292"
+    fill="#17201d"
+    font-family="Inter, Arial, sans-serif"
+    font-size="44"
+    font-weight="800"
+  >
+    Investor Dashboard for Japan
+  </text>
+
+  <text
+    x="286"
+    fill="#65736c"
+    font-family="Inter, Arial, sans-serif"
+    font-size="24"
+  >
+    <tspan x="286" y="345">
+      Measurement layer for responsible AI gains, partner-ready
+    </tspan>
+    <tspan x="286" y="378">
+      contribution instructions, and assurance-grade reporting.
+    </tspan>
+  </text>
+
+  <rect
+    x="286"
+    y="434"
+    width="206"
+    height="64"
+    rx="8"
+    fill="#eef5f1"
+    stroke="#d8e0da"
+  />
+
+  <text
+    x="310"
+    y="474"
+    fill="#0b6b5a"
+    font-family="Inter, Arial, sans-serif"
+    font-size="22"
+    font-weight="800"
+  >
+    Measure
+  </text>
+
+  <rect
+    x="516"
+    y="434"
+    width="206"
+    height="64"
+    rx="8"
+    fill="#fff7df"
+    stroke="#e8d8a8"
+  />
+
+  <text
+    x="540"
+    y="474"
+    fill="#a65d14"
+    font-family="Inter, Arial, sans-serif"
+    font-size="22"
+    font-weight="800"
+  >
+    Verify
+  </text>
+
+  <rect
+    x="746"
+    y="434"
+    width="256"
+    height="64"
+    rx="8"
+    fill="#f7ecea"
+    stroke="#e4c4bf"
+  />
+
+  <text
+    x="770"
+    y="474"
+    fill="#b83a31"
+    font-family="Inter, Arial, sans-serif"
+    font-size="22"
+    font-weight="800"
+  >
+    Allocate via partners
+  </text>
+
+  <text
+    x="108"
+    y="526"
+    fill="#65736c"
+    font-family="Inter, Arial, sans-serif"
+    font-size="20"
+  >
+    Prepared by Eyal Shahaf
+  </text>
+</svg>
