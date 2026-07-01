@@ -1267,7 +1267,7 @@ input[type="number"] {
 .waterfall-chart {
   min-height: 320px;
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 10px;
   align-items: end;
 }
@@ -1275,9 +1275,9 @@ input[type="number"] {
 .waterfall-step {
   min-width: 0;
   display: grid;
-  grid-template-rows: minmax(170px, 1fr) auto auto;
+  grid-template-rows: 190px 34px 44px;
   gap: 8px;
-  align-items: end;
+  align-items: stretch;
   text-align: center;
 }
 
@@ -1308,6 +1308,9 @@ input[type="number"] {
 }
 
 .waterfall-step b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--ink);
   font-family: var(--mono);
   font-size: 12px;
@@ -1316,6 +1319,9 @@ input[type="number"] {
 }
 
 .waterfall-step span {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   color: var(--muted);
   font-size: 12px;
   font-weight: 800;
@@ -2663,6 +2669,11 @@ code {
   .calc-operational { grid-area: operational; }
   .calc-waterfall { grid-area: waterfall; }
   .calc-tornado { grid-area: tornado; }
+
+  .waterfall-chart {
+    overflow-x: auto;
+    grid-template-columns: repeat(8, minmax(86px, 1fr));
+  }
 
   .calculation-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
