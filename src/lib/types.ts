@@ -27,6 +27,15 @@ export type Assumptions = {
   adjustmentRate: number;
   allocationRate: number;
   verifiedEmployeesCovered: number;
+  avoidedOvertimeCostM: number;
+  avoidedOutsourcingCostM: number;
+  qualitySavingsM: number;
+  incrementalContributionMarginM: number;
+  incrementalAiRelatedCostsM: number;
+  evidenceAdjustmentRate: number;
+  eligibleEmployees: number;
+  qualityGatePassed: boolean;
+  allocationPopulationAgreed: boolean;
 };
 
 export type ScenarioDefinition = {
@@ -68,6 +77,7 @@ export type OperationalOutputs = {
 };
 
 export type VerifiedAiGainOutputs = {
+  eligibleGrossGain: number;
   grossAiGain: number;
   adjustedGrossAiGain: number;
   netVerifiedAiGain: number;
@@ -75,6 +85,8 @@ export type VerifiedAiGainOutputs = {
   companyRetainedGain: number;
   pensionValuePerEmployee: number;
   hasVerifiedGain: boolean;
+  canAllocate: boolean;
+  allocationBlockers: string[];
 };
 
 export type PilotTasks = Record<string, boolean>;

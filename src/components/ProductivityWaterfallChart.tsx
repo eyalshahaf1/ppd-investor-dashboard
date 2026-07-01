@@ -1,4 +1,4 @@
-import { calculateEmployerEconomics } from "@/lib/calculations";
+import { calculateVerifiedAiGain } from "@/lib/calculations";
 import { formatYen } from "@/lib/format";
 import type { Assumptions } from "@/lib/types";
 
@@ -14,17 +14,16 @@ type WaterfallStep = {
 };
 
 export function ProductivityWaterfallChart({ assumptions, className = "" }: ProductivityWaterfallChartProps) {
-  const economics = calculateEmployerEconomics(assumptions);
-  const rolloutMultiplier = assumptions.employers;
-  const savingsFromHours = assumptions.hoursSaved * assumptions.costPerHour * rolloutMultiplier;
+  const verified = calculateVerifiedAiGain(assumptions);
   const steps: WaterfallStep[] = [
-    { label: "Hours saved", value: savingsFromHours, kind: "positive" },
-    { label: "Overtime", value: assumptions.overtimeM * 1000000 * rolloutMultiplier, kind: "positive" },
-    { label: "Outsourcing", value: assumptions.outsourcingM * 1000000 * rolloutMultiplier, kind: "positive" },
-    { label: "Quality", value: assumptions.qualityM * 1000000 * rolloutMultiplier, kind: "positive" },
-    { label: "AI costs", value: -assumptions.aiCostM * 1000000 * rolloutMultiplier, kind: "negative" },
-    { label: "Verified gain", value: economics.eligibleBase, kind: "total" },
-    { label: "Pension pool", value: economics.retirementPool, kind: "allocation" }
+    { label: "O", value: assumptions.avoidedOvertimeCostM * 1000000, kind: "positive" },
+    { label: "S", value: assumptions.avoidedOutsourcingCostM * 1000000, kind: "positive" },
+    { label: "Q", value: assumptions.qualitySavingsM * 1000000, kind: "positive" },
+    { label: "M", value: assumptions.incrementalContributionMarginM * 1000000, kind: "positive" },
+    { label: "Adjustment", value: -(verified.eligibleGrossGain - verified.adjustedGrossAiGain), kind: "negative" },
+    { label: "AI costs", value: -assumptions.incrementalAiRelatedCostsM * 1000000, kind: "negative" },
+    { label: "Net verified gain", value: verified.netVerifiedAiGain, kind: "total" },
+    { label: "Pension allocation", value: verified.pensionAllocation, kind: "allocation" }
   ];
 
   const maxValue = Math.max(1, ...steps.map((step) => Math.abs(step.value)));
@@ -35,9 +34,8 @@ export function ProductivityWaterfallChart({ assumptions, className = "" }: Prod
         <div>
           <h3>Productivity gain waterfall</h3>
           <p>
-            Shows how the current verified gain assumption becomes the retirement
-            dividend pool. Use the operational calculator above to update the
-            verified gain base after pilot evidence is reviewed.
+            Shows how documented O/S/Q/M outcomes, conservative adjustment, and
+            AI-related costs become net verified gain and pension allocation.
           </p>
         </div>
       </div>

@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  calculateOperationalGain,
-  getDashboardSnapshot,
-  projectScenario
-} from "@/lib/calculations";
+import { getDashboardSnapshot, projectScenario } from "@/lib/calculations";
 import { defaultAssumptions, scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
 import type { Language } from "@/lib/i18n";
@@ -128,7 +124,7 @@ export function DashboardApp() {
     }
   }
 
-  function updateAssumption(key: keyof Assumptions, value: number) {
+  function updateAssumption<K extends keyof Assumptions>(key: K, value: Assumptions[K]) {
     const next = { ...assumptions, [key]: value };
     setAssumptions(next);
     persistAssumptions(next);
@@ -149,11 +145,6 @@ export function DashboardApp() {
     } catch {
       setBackendOnline(false);
     }
-  }
-
-  function applyOperationalGain() {
-    const operational = calculateOperationalGain(assumptions);
-    updateAssumption("gainPerEmployee", Math.round(operational.perEmployee / 10000) * 10000);
   }
 
   async function saveSnapshot() {
@@ -223,7 +214,6 @@ export function DashboardApp() {
             assumptions={assumptions}
             language={language}
             onAssumptionChange={updateAssumption}
-            onApplyOperationalGain={applyOperationalGain}
           />
         )}
         {activeTab === "scenarios" && (

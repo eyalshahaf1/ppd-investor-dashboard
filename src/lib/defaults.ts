@@ -33,7 +33,16 @@ export const defaultAssumptions: Assumptions = {
   verifiedAnnualAiCostsM: 1500,
   adjustmentRate: 10,
   allocationRate: 5,
-  verifiedEmployeesCovered: 10000
+  verifiedEmployeesCovered: 10000,
+  avoidedOvertimeCostM: 3000,
+  avoidedOutsourcingCostM: 2000,
+  qualitySavingsM: 1500,
+  incrementalContributionMarginM: 8000,
+  incrementalAiRelatedCostsM: 1050,
+  evidenceAdjustmentRate: 10,
+  eligibleEmployees: 10000,
+  qualityGatePassed: true,
+  allocationPopulationAgreed: true
 };
 
 export const scenarios: Record<ScenarioKey, ScenarioDefinition> = {
@@ -71,7 +80,7 @@ export const defaultPilotTasks: PilotTaskPhase[] = [
     tasks: [
       ["ai-use-cases", "One or two AI use cases deployed per employer."],
       ["net-costs", "AI costs captured and netted from gains."],
-      ["dividend-file", "Contribution instruction file drafted for rail partner."]
+      ["dividend-file", "Measurement-only pilot report prepared; no contribution is routed during the pilot."]
     ]
   },
   {

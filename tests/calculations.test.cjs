@@ -41,16 +41,23 @@ function withAssumptions(overrides) {
 }
 
 {
+  const outputs = calculateEmployerEconomics(withAssumptions({ confidence: 50 }));
+  assert.equal(outputs.eligibleBase, 12_000_000_000);
+  assert.equal(outputs.retirementPool, 600_000_000);
+}
+
+{
   const outputs = calculateOperationalGain(withAssumptions({ employers: 3 }));
-  assert.equal(outputs.savingsFromHours, 26_400_000_000);
-  assert.equal(outputs.netGain, 36_000_000_000);
-  assert.equal(outputs.perEmployee, 1_200_000);
+  assert.equal(outputs.savingsFromHours, 0);
+  assert.equal(outputs.netGain, 0);
+  assert.equal(outputs.perEmployee, 0);
 }
 
 {
   const outputs = calculateVerifiedAiGain(defaultAssumptions);
-  assert.equal(outputs.grossAiGain, 15_000_000_000);
-  assert.equal(outputs.adjustedGrossAiGain, 13_500_000_000);
+  assert.equal(outputs.eligibleGrossGain, 14_500_000_000);
+  assert.equal(outputs.grossAiGain, 14_500_000_000);
+  assert.equal(outputs.adjustedGrossAiGain, 13_050_000_000);
   assert.equal(outputs.netVerifiedAiGain, 12_000_000_000);
   assert.equal(outputs.pensionAllocation, 600_000_000);
   assert.equal(outputs.companyRetainedGain, 11_400_000_000);
@@ -59,12 +66,22 @@ function withAssumptions(overrides) {
 }
 
 {
+  const outputs = calculateVerifiedAiGain(withAssumptions({ qualityGatePassed: false }));
+  assert.equal(outputs.netVerifiedAiGain, 12_000_000_000);
+  assert.equal(outputs.pensionAllocation, 0);
+  assert.equal(outputs.pensionValuePerEmployee, 0);
+  assert.equal(outputs.canAllocate, false);
+}
+
+{
   const outputs = calculateVerifiedAiGain(
     withAssumptions({
-      baselineAnnualProcessCostM: 1000,
-      postAiAnnualProcessCostM: 950,
-      verifiedAnnualAiCostsM: 100,
-      adjustmentRate: 0
+      avoidedOvertimeCostM: 0,
+      avoidedOutsourcingCostM: 0,
+      qualitySavingsM: 0,
+      incrementalContributionMarginM: 50,
+      incrementalAiRelatedCostsM: 100,
+      evidenceAdjustmentRate: 0
     })
   );
   assert.equal(outputs.netVerifiedAiGain, 0);

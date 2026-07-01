@@ -8,10 +8,10 @@ export const languages: Array<{ key: Language; label: string }> = [
 export const copy = {
   en: {
     topbar: {
-      eyebrow: "Japan investor demo app",
+      eyebrow: "Japan Pilot Feasibility Concept",
       title: "Pension from AI Productivity",
       subtitle:
-        "Measurement, dividend calculation, and partner-ready pension instructions. Prepared by Eyal Shahaf.",
+        "Measure verified AI gains. Allocate a small pre-agreed share. Generate validated contribution instructions for partner-operated rails.",
       baseCase: "Base case",
       y5Flow: "Y5 flow",
       backend: "Backend",
@@ -33,11 +33,11 @@ export const copy = {
     overview: {
       thesisTitle: "AI productivity dividend layer for Japan.",
       thesisBody:
-        "Measure gains. Apply a transparent rule. Send instructions to regulated partners.",
-      askTitle: "90-day proof ask",
+        "Measurement is the product. Pension value is the outcome. Existing partner-operated rails execute approved contribution routes.",
+      askTitle: "90-day measurement-only pilot",
       asks: [
-        "2 pilot employers",
-        "1 regulated rail partner",
+        "1 operating employer",
+        "1 benefits / pension rail partner",
         "1 assurance partner"
       ],
       dashboardTitle: "Investor opening dashboard",
@@ -60,7 +60,7 @@ export const copy = {
       refreshed: "Refreshed",
       operatingFlowTitle: "Operating flow",
       operatingFlowBody:
-        "Where the SaaS stops and regulated partners execute.",
+        "PPD measures, validates, reports, and prepares instructions. Regulated partners custody assets and execute approved routes.",
       flowSteps: [
         [
           "AI workflow",
@@ -76,7 +76,7 @@ export const copy = {
         ],
         [
           "Regulated rails",
-          "Existing pension partners execute."
+          "Partner-operated benefits or pension rails execute."
         ],
         [
           "Impact reporting",
@@ -104,10 +104,10 @@ export const copy = {
   },
   ja: {
     topbar: {
-      eyebrow: "日本向け投資家デモアプリ",
-      title: "AI生産性から年金原資へ",
+      eyebrow: "日本向け実証可能性コンセプト",
+      title: "Pension from AI Productivity",
       subtitle:
-        "測定、配分計算、パートナー向け年金指示。作成: Eyal Shahaf。",
+        "検証済みAI効果を測定し、事前合意された小さな割合を配分し、パートナー運営レール向けの検証済み拠出指示を生成します。",
       baseCase: "基本ケース",
       y5Flow: "5年目フロー",
       backend: "バックエンド",
@@ -129,12 +129,12 @@ export const copy = {
     overview: {
       thesisTitle: "日本向けAI生産性配当レイヤー。",
       thesisBody:
-        "生産性向上を測定し、透明なルールを適用し、規制対象パートナーへ指示します。",
-      askTitle: "90日PoCの要点",
+        "測定がプロダクトであり、年金価値が成果です。既存のパートナー運営レールが承認済み拠出ルートを実行します。",
+      askTitle: "90日間の測定限定パイロット",
       asks: [
-        "パイロット企業2社",
-        "規制対象パートナー1社",
-        "保証パートナー1社"
+        "実証参加企業 1社",
+        "福利厚生・年金レールパートナー 1社",
+        "保証・検証パートナー 1社"
       ],
       dashboardTitle: "投資家向けオープニング指標",
       dashboardBody:
@@ -156,7 +156,7 @@ export const copy = {
       refreshed: "更新",
       operatingFlowTitle: "運用フロー",
       operatingFlowBody:
-        "SaaSの役割とパートナー実行を分離。",
+        "PPDは測定、検証、報告、拠出指示の作成を行います。資産保管と実行は規制対象パートナーが担います。",
       flowSteps: [
         [
           "AI業務",
@@ -172,7 +172,7 @@ export const copy = {
         ],
         [
           "規制対象レール",
-          "既存パートナーが実行。"
+          "パートナー運営の福利厚生・年金レールが実行。"
         ],
         [
           "インパクト報告",

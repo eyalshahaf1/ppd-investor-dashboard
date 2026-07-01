@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     default: "Pension from AI Productivity",
     template: "%s | Pension Productivity Dividend"
   },
-  description: "Investor dashboard and SaaS MVP for the AI Pension Productivity Dividend model in Japan.",
+  description:
+    "A pilot dashboard for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
   applicationName: "Pension Productivity Dividend Dashboard",
   authors: [{ name: "Eyal Shahaf" }],
   creator: "Eyal Shahaf",
@@ -25,13 +26,14 @@ export const metadata: Metadata = {
   ],
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    shortcut: "/favicon.svg",
-    apple: "/apple-touch-icon.svg"
+    icon: [{ url: "/PPD_App_Icon_Teal_White.svg", type: "image/svg+xml" }],
+    shortcut: "/PPD_App_Icon_Teal_White.svg",
+    apple: "/PPD_App_Icon_Teal_White.svg"
   },
   openGraph: {
     title: "Pension from AI Productivity",
-    description: "SaaS MVP for measuring responsible AI productivity gains and translating verified value into retirement contribution capacity.",
+    description:
+      "A pilot dashboard for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
     type: "website",
     images: [
       {
@@ -45,7 +47,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Pension from AI Productivity",
-    description: "Investor dashboard and SaaS MVP for the AI Pension Productivity Dividend model in Japan.",
+    description:
+      "A pilot dashboard for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
     images: ["/social-preview.svg"]
   }
 };

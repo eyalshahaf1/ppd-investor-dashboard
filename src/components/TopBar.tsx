@@ -34,7 +34,10 @@ export function TopBar({
       <div className="topbar-inner">
         <div className="brand">
           <div className="eyebrow">{t.topbar.eyebrow}</div>
-          <h1>{t.topbar.title}</h1>
+          <div className="title-row">
+            <h1>{t.topbar.title}</h1>
+            <img src="/PPD_Icon_Only_Teal.svg" alt="" aria-hidden="true" />
+          </div>
           <p className="subtitle">
             {t.topbar.subtitle}
           </p>

@@ -12,8 +12,7 @@ export function calculateEmployerEconomics(assumptions: Assumptions): Calculator
   const totalCoveredEmployees = assumptions.coveredEmployees * assumptions.employers;
   const eligibleBase =
     totalCoveredEmployees *
-    assumptions.gainPerEmployee *
-    (assumptions.confidence / 100);
+    assumptions.gainPerEmployee;
 
   const retirementPool = eligibleBase * (assumptions.dividendRate / 100);
   const perEmployee = totalCoveredEmployees
@@ -56,48 +55,51 @@ export function calculateEmployerEconomics(assumptions: Assumptions): Calculator
 }
 
 export function calculateOperationalGain(assumptions: Assumptions): OperationalOutputs {
-  const totalCoveredEmployees = assumptions.coveredEmployees * assumptions.employers;
-  const savingsFromHours =
-    assumptions.hoursSaved * assumptions.costPerHour * assumptions.employers;
-  const otherSavings =
-    (assumptions.overtimeM +
-      assumptions.outsourcingM +
-      assumptions.qualityM -
-      assumptions.aiCostM) *
-    1000000 *
-    assumptions.employers;
-  const netGain = Math.max(0, savingsFromHours + otherSavings);
-  const perEmployee = totalCoveredEmployees ? netGain / totalCoveredEmployees : 0;
-
-  return { savingsFromHours, netGain, perEmployee };
+  void assumptions;
+  return { savingsFromHours: 0, netGain: 0, perEmployee: 0 };
 }
 
 export function calculateVerifiedAiGain(assumptions: Assumptions): VerifiedAiGainOutputs {
-  const baselineCost = assumptions.baselineAnnualProcessCostM * 1000000;
-  const postAiCost = assumptions.postAiAnnualProcessCostM * 1000000;
-  const annualAiCosts = assumptions.verifiedAnnualAiCostsM * 1000000;
-  const grossAiGain = baselineCost - postAiCost;
-  const adjustedGrossAiGain = grossAiGain * (1 - assumptions.adjustmentRate / 100);
-  const rawNetVerifiedAiGain = adjustedGrossAiGain - annualAiCosts;
+  const eligibleGrossGain =
+    (assumptions.avoidedOvertimeCostM +
+      assumptions.avoidedOutsourcingCostM +
+      assumptions.qualitySavingsM +
+      assumptions.incrementalContributionMarginM) *
+    1000000;
+  const aiRelatedCosts = assumptions.incrementalAiRelatedCostsM * 1000000;
+  const adjustedGrossAiGain =
+    eligibleGrossGain * (1 - assumptions.evidenceAdjustmentRate / 100);
+  const rawNetVerifiedAiGain = adjustedGrossAiGain - aiRelatedCosts;
   const hasVerifiedGain = rawNetVerifiedAiGain > 0;
   const netVerifiedAiGain = hasVerifiedGain ? rawNetVerifiedAiGain : 0;
-  const pensionAllocation = hasVerifiedGain
+  const allocationBlockers = [
+    !hasVerifiedGain ? "No verified gain." : "",
+    !assumptions.qualityGatePassed ? "Quality gate has not passed." : "",
+    !assumptions.allocationPopulationAgreed
+      ? "Allocation population was not agreed before measurement began."
+      : ""
+  ].filter(Boolean);
+  const canAllocate = allocationBlockers.length === 0;
+  const pensionAllocation = canAllocate
     ? netVerifiedAiGain * (assumptions.allocationRate / 100)
     : 0;
   const companyRetainedGain = hasVerifiedGain ? netVerifiedAiGain - pensionAllocation : 0;
   const pensionValuePerEmployee =
-    hasVerifiedGain && assumptions.verifiedEmployeesCovered > 0
-      ? pensionAllocation / assumptions.verifiedEmployeesCovered
+    canAllocate && assumptions.eligibleEmployees > 0
+      ? pensionAllocation / assumptions.eligibleEmployees
       : 0;
 
   return {
-    grossAiGain,
+    eligibleGrossGain,
+    grossAiGain: eligibleGrossGain,
     adjustedGrossAiGain,
     netVerifiedAiGain,
     pensionAllocation,
     companyRetainedGain,
     pensionValuePerEmployee,
-    hasVerifiedGain
+    hasVerifiedGain,
+    canAllocate,
+    allocationBlockers
   };
 }
 

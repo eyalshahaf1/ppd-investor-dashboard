@@ -7,8 +7,12 @@ type SensitivityTornadoChartProps = {
   className?: string;
 };
 
+type NumericAssumptionKey = {
+  [Key in keyof Assumptions]: Assumptions[Key] extends number ? Key : never;
+}[keyof Assumptions];
+
 type SensitivityInput = {
-  key: keyof Assumptions;
+  key: NumericAssumptionKey;
   label: string;
   swing: number;
   floor?: number;
@@ -17,10 +21,9 @@ type SensitivityInput = {
 const sensitivityInputs: SensitivityInput[] = [
   { key: "gainPerEmployee", label: "Gain / employee", swing: 0.2, floor: 0 },
   { key: "dividendRate", label: "Dividend rule", swing: 0.2, floor: 0 },
-  { key: "confidence", label: "Confidence", swing: 0.15, floor: 0 },
   { key: "coveredEmployees", label: "Covered employees", swing: 0.2, floor: 1 },
   { key: "monthlySaas", label: "SaaS fee", swing: 0.2, floor: 0 },
-  { key: "takeRate", label: "Take rate", swing: 0.2, floor: 0 }
+  { key: "takeRate", label: "Instruction fee", swing: 0.2, floor: 0 }
 ];
 
 export function SensitivityTornadoChart({ assumptions, className = "" }: SensitivityTornadoChartProps) {

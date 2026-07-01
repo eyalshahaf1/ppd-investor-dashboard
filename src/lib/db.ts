@@ -134,10 +134,18 @@ export function getStoredAssumptions(): Assumptions {
 }
 
 export function saveAssumptions(payload: Partial<Assumptions>): Assumptions {
-  const next = { ...defaultAssumptions };
+  const next: Assumptions = { ...defaultAssumptions };
   for (const [key, value] of Object.entries(payload)) {
-    if (key in next && typeof value === "number" && Number.isFinite(value)) {
-      next[key as keyof Assumptions] = value;
+    if (!(key in next)) continue;
+    const assumptionKey = key as keyof Assumptions;
+    const currentValue = next[assumptionKey];
+
+    if (typeof currentValue === "number" && typeof value === "number" && Number.isFinite(value)) {
+      (next[assumptionKey] as number) = value;
+    }
+
+    if (typeof currentValue === "boolean" && typeof value === "boolean") {
+      (next[assumptionKey] as boolean) = value;
     }
   }
 

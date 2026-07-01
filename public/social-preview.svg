@@ -4,12 +4,12 @@
   <rect width="1200" height="630" fill="#f6f7f4"/>
   <rect x="64" y="64" width="1072" height="502" rx="28" fill="#ffffff" stroke="#d8e0da" stroke-width="2"/>
   <rect x="108" y="108" width="136" height="136" rx="24" fill="#0b6b5a"/>
-  <path d="M142 193v-54h35c14 0 23 8.5 23 21s-9 21-23 21h-16v12h-19Zm19-28h15c4.4 0 7-1.8 7-5s-2.6-5-7-5h-15v10Z" fill="#ffffff"/>
-  <path d="M142 207h65" stroke="#f0b342" stroke-width="7" stroke-linecap="round"/>
+  <path d="M139 194v-58h31c14 0 23 8.4 23 21.2s-9 21.1-23 21.1h-13.8V194H139Zm17.2-31.1h12.4c4.6 0 7.3-2.1 7.3-5.7s-2.7-5.8-7.3-5.8h-12.4v11.5Z" fill="#ffffff"/>
+  <path d="M199 194v-58h16v58h-16Z" fill="#ffffff" opacity=".86"/>
   <text x="286" y="151" fill="#0b6b5a" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="3">AI PENSION PRODUCTIVITY DIVIDEND</text>
   <text x="286" y="231" fill="#17201d" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="900">Pension from AI Productivity</text>
   <text x="286" y="292" fill="#17201d" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800">Investor Dashboard for Japan</text>
-  <text x="286" y="352" fill="#65736c" font-family="Inter, Arial, sans-serif" font-size="26">Measurement layer for responsible AI gains, partner-ready contribution instructions, and assurance-grade reporting.</text>
+  <text x="286" y="352" fill="#65736c" font-family="Inter, Arial, sans-serif" font-size="26">Measure verified AI gains and prepare validated contribution instructions for partner-operated rails.</text>
   <rect x="286" y="414" width="206" height="64" rx="8" fill="#eef5f1" stroke="#d8e0da"/>
   <text x="310" y="454" fill="#0b6b5a" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Measure</text>
   <rect x="516" y="414" width="206" height="64" rx="8" fill="#fff7df" stroke="#e8d8a8"/>

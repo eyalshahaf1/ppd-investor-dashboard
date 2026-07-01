@@ -20,7 +20,7 @@ const staticResourceGroups = [
     title: "Demo identity",
     body: "Deck and sharing assets.",
     links: [
-      ["Brand mark", "/brand-mark.svg"],
+      ["Official horizontal logo", "/PPD_Horizontal_Primary_Teal.svg"],
       ["Social preview", "/social-preview.svg"]
     ]
   },

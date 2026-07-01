@@ -6,7 +6,7 @@ import { KpiCard } from "./KpiCard";
 
 type VerifiedAiGainCalculatorProps = {
   assumptions: Assumptions;
-  onAssumptionChange: (key: keyof Assumptions, value: number) => void;
+  onAssumptionChange: <K extends keyof Assumptions>(key: K, value: Assumptions[K]) => void;
 };
 
 export function VerifiedAiGainCalculator({
@@ -23,11 +23,11 @@ export function VerifiedAiGainCalculator({
     : 0;
 
   function applyToQuickScenario() {
-    if (!outputs.hasVerifiedGain || assumptions.verifiedEmployeesCovered <= 0) return;
-    onAssumptionChange("coveredEmployees", assumptions.verifiedEmployeesCovered);
+    if (!outputs.hasVerifiedGain || assumptions.eligibleEmployees <= 0) return;
+    onAssumptionChange("coveredEmployees", assumptions.eligibleEmployees);
     onAssumptionChange(
       "gainPerEmployee",
-      Math.round(outputs.netVerifiedAiGain / assumptions.verifiedEmployeesCovered)
+      Math.round(outputs.netVerifiedAiGain / assumptions.eligibleEmployees)
     );
     onAssumptionChange("dividendRate", assumptions.allocationRate);
   }
@@ -44,8 +44,10 @@ export function VerifiedAiGainCalculator({
             ¥60,000 per employee per year.
           </p>
         </div>
-        {!outputs.hasVerifiedGain && (
-          <div className="verified-warning">No verified gain, no pension allocation.</div>
+        {!outputs.canAllocate && (
+          <div className="verified-warning">
+            {outputs.allocationBlockers.join(" ")} No pension allocation is routed.
+          </div>
         )}
       </div>
 
@@ -53,21 +55,41 @@ export function VerifiedAiGainCalculator({
         <div className="verified-inputs">
           <h4>Process-level inputs</h4>
           <div className="control-grid">
-            <AssumptionControl name="baselineAnnualProcessCostM" label="Baseline annual process cost (JPY millions)" help="Example: 25000 = ¥25.0B" value={assumptions.baselineAnnualProcessCostM} min={0} max={50000} step={100} onChange={(value) => onAssumptionChange("baselineAnnualProcessCostM", value)} />
-            <AssumptionControl name="postAiAnnualProcessCostM" label="Post-AI annual process cost (JPY millions)" help="Example: 10000 = ¥10.0B" value={assumptions.postAiAnnualProcessCostM} min={0} max={50000} step={100} onChange={(value) => onAssumptionChange("postAiAnnualProcessCostM", value)} />
-            <AssumptionControl name="verifiedAnnualAiCostsM" label="Annual AI costs (JPY millions)" help="Example: 1500 = ¥1.5B" value={assumptions.verifiedAnnualAiCostsM} min={0} max={10000} step={50} onChange={(value) => onAssumptionChange("verifiedAnnualAiCostsM", value)} />
-            <AssumptionControl name="adjustmentRate" label="Adjustment rate" help="% haircut for evidence quality" value={assumptions.adjustmentRate} min={0} max={60} step={1} onChange={(value) => onAssumptionChange("adjustmentRate", value)} />
+            <AssumptionControl name="avoidedOvertimeCostM" label="Avoided overtime cost (O, JPY millions)" help="Verified avoided overtime cost" value={assumptions.avoidedOvertimeCostM} min={0} max={10000} step={50} onChange={(value) => onAssumptionChange("avoidedOvertimeCostM", value)} />
+            <AssumptionControl name="avoidedOutsourcingCostM" label="Avoided outsourcing / contractor cost (S, JPY millions)" help="Verified avoided external labor cost" value={assumptions.avoidedOutsourcingCostM} min={0} max={10000} step={50} onChange={(value) => onAssumptionChange("avoidedOutsourcingCostM", value)} />
+            <AssumptionControl name="qualitySavingsM" label="Quality / rework / compliance savings (Q, JPY millions)" help="Verified reduction in error-related cost" value={assumptions.qualitySavingsM} min={0} max={10000} step={50} onChange={(value) => onAssumptionChange("qualitySavingsM", value)} />
+            <AssumptionControl name="incrementalContributionMarginM" label="Evidenced incremental contribution margin (M, JPY millions)" help="Throughput margin only where evidenced" value={assumptions.incrementalContributionMarginM} min={0} max={20000} step={100} onChange={(value) => onAssumptionChange("incrementalContributionMarginM", value)} />
+            <AssumptionControl name="incrementalAiRelatedCostsM" label="Incremental AI-related costs (A, JPY millions)" help="Licenses, cloud, integration, training, security, maintenance, change management" value={assumptions.incrementalAiRelatedCostsM} min={0} max={10000} step={50} onChange={(value) => onAssumptionChange("incrementalAiRelatedCostsM", value)} />
+            <AssumptionControl name="evidenceAdjustmentRate" label="Evidence adjustment rate (a)" help="% conservative haircut" value={assumptions.evidenceAdjustmentRate} min={0} max={60} step={1} onChange={(value) => onAssumptionChange("evidenceAdjustmentRate", value)} />
             <AssumptionControl name="allocationRate" label="Allocation rate" help="% of verified gain to pension value" value={assumptions.allocationRate} min={0} max={10} step={0.25} onChange={(value) => onAssumptionChange("allocationRate", value)} />
-            <AssumptionControl name="verifiedEmployeesCovered" label="Employees covered" help="employees eligible in this calculation" value={assumptions.verifiedEmployeesCovered} min={0} max={100000} step={1000} onChange={(value) => onAssumptionChange("verifiedEmployeesCovered", value)} />
+            <AssumptionControl name="eligibleEmployees" label="Eligible employees (E)" help="Pre-agreed allocation population" value={assumptions.eligibleEmployees} min={0} max={100000} step={1000} onChange={(value) => onAssumptionChange("eligibleEmployees", value)} />
+          </div>
+          <div className="gate-grid">
+            <label className="gate-check">
+              <input
+                type="checkbox"
+                checked={assumptions.qualityGatePassed}
+                onChange={(event) => onAssumptionChange("qualityGatePassed", event.target.checked)}
+              />
+              <span>Quality gate passed</span>
+            </label>
+            <label className="gate-check">
+              <input
+                type="checkbox"
+                checked={assumptions.allocationPopulationAgreed}
+                onChange={(event) => onAssumptionChange("allocationPopulationAgreed", event.target.checked)}
+              />
+              <span>Allocation population agreed before measurement</span>
+            </label>
           </div>
         </div>
 
         <div className="verified-results">
           <h4>Verified outputs</h4>
           <div className="metric-grid">
-            <KpiCard label="Gross AI gain" value={formatYen(outputs.grossAiGain)} note="Baseline cost minus post-AI process cost." />
-            <KpiCard label="Adjusted gross AI gain" value={formatYen(outputs.adjustedGrossAiGain)} note="Gross gain after evidence-quality haircut." accent="blue" />
-            <KpiCard label="Net verified AI gain" value={formatYen(outputs.netVerifiedAiGain)} note="Adjusted gain after AI costs." accent={outputs.hasVerifiedGain ? "teal" : "coral"} />
+            <KpiCard label="Eligible gross gain" value={formatYen(outputs.eligibleGrossGain)} note="O + S + Q + M." />
+            <KpiCard label="Adjusted gross AI gain" value={formatYen(outputs.adjustedGrossAiGain)} note="Eligible gross gain after evidence adjustment rate." accent="blue" />
+            <KpiCard label="Net verified AI gain" value={formatYen(outputs.netVerifiedAiGain)} note="Adjusted gain after incremental AI-related costs." accent={outputs.hasVerifiedGain ? "teal" : "coral"} />
             <KpiCard label="Pension allocation" value={formatYen(outputs.pensionAllocation)} note="Small pre-agreed share converted into pension value." accent="amber" />
             <KpiCard label="Company retained gain" value={formatYen(outputs.companyRetainedGain)} note="Verified gain retained by the company after pension allocation." accent="indigo" />
             <KpiCard label="Pension value / employee" value={formatYen(outputs.pensionValuePerEmployee)} note="Pension allocation divided by covered employees." accent="blue" />
@@ -114,10 +136,10 @@ export function VerifiedAiGainCalculator({
         <details className="calculation-method">
           <summary>View calculation method</summary>
           <div>
-            <FormulaLine label="Gross AI Gain" formula="Baseline Annual Process Cost - Post-AI Annual Process Cost" />
-            <FormulaLine label="Adjusted Gross AI Gain" formula="Gross AI Gain × (1 - Adjustment Rate)" />
-            <FormulaLine label="Net Verified AI Gain" formula="Adjusted Gross AI Gain - Annual AI Costs" />
-            <FormulaLine label="Pension Allocation" formula="Net Verified AI Gain × Allocation Rate" />
+            <FormulaLine label="Eligible Gross Gain" formula="O + S + Q + M" />
+            <FormulaLine label="Adjusted Gross AI Gain" formula="Eligible Gross Gain × (1 - a)" />
+            <FormulaLine label="Net Verified AI Gain" formula="max(0, Eligible Gross Gain × (1 - a) - A)" />
+            <FormulaLine label="Pension Allocation" formula="Net Verified AI Gain × d, only when both gates pass" />
             <FormulaLine label="Company Retained Gain" formula="Net Verified AI Gain - Pension Allocation" />
           </div>
         </details>

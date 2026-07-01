@@ -10,7 +10,7 @@ export function UnitEconomicsChart({ assumptions }: UnitEconomicsChartProps) {
   const economics = calculateEmployerEconomics(assumptions);
   const rows = [
     { label: "SaaS ARR", value: economics.saas, tone: "teal" },
-    { label: "Take-rate revenue", value: economics.take, tone: "amber" },
+    { label: "Instruction / reconciliation fee", value: economics.take, tone: "amber" },
     { label: "Verification revenue", value: economics.audit, tone: "blue" },
     { label: "Recurring gross profit", value: economics.recurringGrossProfit, tone: "indigo" },
     { label: "CAC", value: assumptions.cacM * 1000000 * assumptions.employers, tone: "coral" }

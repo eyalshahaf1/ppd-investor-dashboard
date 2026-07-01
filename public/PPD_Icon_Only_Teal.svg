@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">PPD icon</title>
+  <rect width="96" height="96" rx="22" fill="#0b6b5a"/>
+  <path d="M26 68V28h19c9.4 0 15.6 5.4 15.6 13.6S54.4 55.2 45 55.2H37.8V68H26Zm11.8-22.4h6.3c3.2 0 5.1-1.5 5.1-4s-1.9-4.1-5.1-4.1h-6.3v8.1Z" fill="#fff"/>
+  <path d="M60 68V28h10v40H60Z" fill="#fff" opacity=".86"/>
+</svg>
