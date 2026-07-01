@@ -134,19 +134,37 @@ h1 {
 }
 
 .title-row {
-  display: inline-flex;
+  max-width: 100%;
+  display: flex;
   align-items: center;
-  gap: 10px;
+  flex-wrap: nowrap;
+  gap: 12px;
 }
 
 .title-row h1 {
   margin-bottom: 4px;
+  min-width: 0;
+  flex: 0 1 auto;
 }
 
-.title-row img {
+.brand-symbol-frame {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(216, 224, 218, 0.95);
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.brand-symbol {
   width: auto;
   height: 30px;
   flex: 0 0 auto;
+  object-fit: contain;
+  display: block;
 }
 
 .subtitle {
@@ -2146,6 +2164,24 @@ code {
   line-height: 1.12;
 }
 
+.about-brand-lockup-frame {
+  width: min(430px, 100%);
+  display: block;
+  margin-bottom: 16px;
+  border: 1px solid rgba(216, 224, 218, 0.95);
+  border-radius: 10px;
+  padding: 14px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.about-brand-lockup {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
 .about-hero p {
   margin-bottom: 0;
   max-width: 850px;
@@ -2341,6 +2377,16 @@ code {
   line-height: 1.45;
 }
 
+@media (max-width: 1360px) {
+  .topbar-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .top-actions {
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 1180px) {
   .span-8,
   .span-7,
@@ -2419,8 +2465,14 @@ code {
     font-size: 25px;
   }
 
-  .title-row img {
-    height: 26px;
+  .brand-symbol-frame {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+  }
+
+  .brand-symbol {
+    height: 25px;
   }
 
   .section-title,

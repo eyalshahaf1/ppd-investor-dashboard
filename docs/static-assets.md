@@ -10,9 +10,9 @@ The `public/` folder contains static files that are served directly by Next.js. 
 
 ```text
 public/
-  favicon.svg
-  apple-touch-icon.svg
-  brand-mark.svg
+  PPD_App_Icon_Teal_White.svg
+  PPD_Icon_Only_Teal.svg
+  PPD_Horizontal_Primary_Teal.svg
   social-preview.svg
   manifest.webmanifest
   robots.txt
@@ -28,10 +28,10 @@ public/
 
 ## File Purposes
 
-- `favicon.svg` - browser tab icon.
-- `apple-touch-icon.svg` - app-style icon for mobile and saved shortcuts.
-- `brand-mark.svg` - simple identity asset for decks, docs, and the About section.
-- `social-preview.svg` - share preview image referenced from app metadata.
+- `PPD_App_Icon_Teal_White.svg` - favicon, app icon, Apple touch icon, and manifest icon source.
+- `PPD_Icon_Only_Teal.svg` - compact symbol for the app title and other small placements.
+- `PPD_Horizontal_Primary_Teal.svg` - full horizontal logo for wide brand lockup placements only.
+- `social-preview.svg` - static website/social-card preview image referenced from app metadata. It is not a Canva editing master.
 - `manifest.webmanifest` - installable web-app metadata and theme color.
 - `robots.txt` - basic crawler guidance. Add a sitemap only after a real production domain exists.
 - `humans.txt` - project credit and repository note.

@@ -68,6 +68,13 @@ export function AboutView({ language }: AboutViewProps) {
     <div className="dashboard-grid">
       <section className="span-12 about-hero">
         <div>
+          <div className="about-brand-lockup-frame">
+            <img
+              className="about-brand-lockup"
+              src="/PPD_Horizontal_Primary_Teal.svg"
+              alt="Pension Productivity Dividend"
+            />
+          </div>
           <p className="eyebrow">{isJapanese ? "プロジェクト概要" : "About the project"}</p>
           <h2>
             {isJapanese

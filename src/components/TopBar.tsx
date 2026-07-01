@@ -35,8 +35,10 @@ export function TopBar({
         <div className="brand">
           <div className="eyebrow">{t.topbar.eyebrow}</div>
           <div className="title-row">
+            <span className="brand-symbol-frame" aria-hidden="true">
+              <img className="brand-symbol" src="/PPD_Icon_Only_Teal.svg" alt="" />
+            </span>
             <h1>{t.topbar.title}</h1>
-            <img src="/PPD_Icon_Only_Teal.svg" alt="" aria-hidden="true" />
           </div>
           <p className="subtitle">
             {t.topbar.subtitle}
