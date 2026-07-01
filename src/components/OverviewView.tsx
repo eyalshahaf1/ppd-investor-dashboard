@@ -35,7 +35,7 @@ export function OverviewView({
   language
 }: OverviewViewProps) {
   const y5 = mediumProjection[mediumProjection.length - 1];
-  const [impactHorizon, setImpactHorizon] = useState<ImpactHorizon>("monthly");
+  const [impactHorizon, setImpactHorizon] = useState<ImpactHorizon>("immediate");
   const impactRows = useMemo(
     () => buildImpactRows(impactHorizon, assumptions, mediumProjection),
     [impactHorizon, assumptions, mediumProjection]
@@ -125,6 +125,33 @@ export function OverviewView({
         </div>
       </section>
 
+      <section className="span-12 panel chart-frame">
+        <div className="chart-head">
+          <div>
+            <h3>{t.overview.chartTitle}</h3>
+            <p className="source-note">{horizonSummary}</p>
+          </div>
+          <div className="impact-horizon-controls" aria-label="Impact horizon">
+            {impactHorizons.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                aria-pressed={impactHorizon === item.key}
+                onClick={() => setImpactHorizon(item.key)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+          <div className="legend impact-legend">
+            <span><i />{t.overview.contributionFlow}</span>
+            <span className="aum"><i />{t.overview.aumTracked}</span>
+            <span className="revenue"><i />{t.overview.platformRevenue}</span>
+          </div>
+        </div>
+        <ImpactHorizonChart rows={impactRows} />
+      </section>
+
       <section className="span-8 panel">
         <div className="section-title">
           <div>
@@ -178,32 +205,6 @@ export function OverviewView({
         </div>
       </section>
 
-      <section className="span-12 panel chart-frame">
-        <div className="chart-head">
-          <div>
-            <h3>{t.overview.chartTitle}</h3>
-            <p className="source-note">{horizonSummary}</p>
-          </div>
-          <div className="impact-horizon-controls" aria-label="Impact horizon">
-            {impactHorizons.map((item) => (
-              <button
-                key={item.key}
-                type="button"
-                aria-pressed={impactHorizon === item.key}
-                onClick={() => setImpactHorizon(item.key)}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-          <div className="legend impact-legend">
-            <span><i />{t.overview.contributionFlow}</span>
-            <span className="aum"><i />{t.overview.aumTracked}</span>
-            <span className="revenue"><i />{t.overview.platformRevenue}</span>
-          </div>
-        </div>
-        <ImpactHorizonChart rows={impactRows} />
-      </section>
     </div>
   );
 }

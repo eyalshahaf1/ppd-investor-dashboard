@@ -1485,6 +1485,23 @@ input[type="number"] {
   line-height: 1.35;
 }
 
+.calc-pricing .field label {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+}
+
+.calc-pricing .field small {
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.calc-waterfall.chart-frame,
+.calc-tornado.chart-frame {
+  min-height: 0;
+}
+
 .operational-note-card,
 .operational-formula-strip {
   border: 1px solid var(--line);
@@ -2819,11 +2836,16 @@ code {
 
   .calc-assumptions,
   .calc-outputs,
-  .calc-pricing,
   .calc-operational,
-  .calc-verified,
-  .calc-tornado {
+  .calc-verified {
     height: 100%;
+  }
+
+  .calc-pricing,
+  .calc-waterfall,
+  .calc-tornado {
+    align-self: start;
+    height: auto;
   }
 
   .calc-waterfall {
