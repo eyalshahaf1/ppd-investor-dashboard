@@ -1332,6 +1332,57 @@ input[type="number"] {
   align-self: start;
 }
 
+.pilot-workflow-strip {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.pilot-workflow-strip article {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px;
+  background: var(--surface);
+}
+
+.pilot-workflow-strip article.active {
+  border-color: color-mix(in srgb, var(--teal) 50%, var(--line));
+  background: color-mix(in srgb, var(--teal) 10%, var(--surface));
+}
+
+.pilot-workflow-strip span {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--soft);
+  color: var(--teal);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.pilot-workflow-strip b {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.pilot-workflow-strip p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 .calculation-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2599,6 +2650,7 @@ code {
   .resource-group-grid,
   .operational-note-grid,
   .operational-mapping-list,
+  .pilot-workflow-strip,
   .about-footer,
   .footer-inner,
   .control-grid,
@@ -2704,6 +2756,7 @@ code {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
       "intro intro"
+      "workflow workflow"
       "guide guide"
       "verified verified"
       "assumptions outputs"
@@ -2717,6 +2770,7 @@ code {
   }
 
   .calc-intro { grid-area: intro; }
+  .calc-workflow { grid-area: workflow; }
   .calc-guide { grid-area: guide; }
   .calc-verified { grid-area: verified; }
   .calc-assumptions { grid-area: assumptions; }
@@ -2745,6 +2799,7 @@ code {
     grid-template-columns: 1fr;
     grid-template-areas:
       "intro"
+      "workflow"
       "guide"
       "verified"
       "assumptions"
@@ -2760,6 +2815,7 @@ code {
   }
 
   .calc-intro { grid-area: intro; }
+  .calc-workflow { grid-area: workflow; }
   .calc-guide { grid-area: guide; }
   .calc-verified { grid-area: verified; }
   .calc-assumptions { grid-area: assumptions; }

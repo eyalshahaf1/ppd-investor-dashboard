@@ -42,10 +42,10 @@ export function InvestorRoom({ reportText, onNavigate }: InvestorRoomProps) {
             1. Overview
           </button>
           <button className="action-btn" type="button" onClick={() => onNavigate("calculator")}>
-            2. Calculator
+            2. Verified Ledger
           </button>
           <button className="action-btn" type="button" onClick={() => onNavigate("data")}>
-            3. Data connect
+            3. Partner Execution
           </button>
           <a className="action-btn primary" download="ppd-investor-demo-snapshot.md" href={reportHref}>
             Export report

@@ -27,9 +27,21 @@ export function CalculatorView({
     <div className="dashboard-grid calculator-grid">
       <section className="span-12 section-title calc-intro">
         <div>
-          <h2>Live calculation room</h2>
-          <p>Change assumptions. See pension impact and SaaS revenue instantly.</p>
+          <h2>Verified ledger room</h2>
+          <p>Move from pilot evidence to CFO-reconciled gain, pension allocation, and investor scenario outputs.</p>
         </div>
+      </section>
+
+      <section className="span-12 pilot-workflow-strip calc-workflow" aria-label="PPD pilot workflow">
+        {pilotWorkflowSteps.map((step, index) => (
+          <article className={index === 1 ? "active" : ""} key={step.title}>
+            <span>{index + 1}</span>
+            <div>
+              <b>{step.title}</b>
+              <p>{step.body}</p>
+            </div>
+          </article>
+        ))}
       </section>
 
       <CalculationExplainer title={copy.title} items={copy.items} />
@@ -157,6 +169,25 @@ function CalculationExplainer({
     </section>
   );
 }
+
+const pilotWorkflowSteps = [
+  {
+    title: "Pilot Evidence",
+    body: "Baseline, post-AI workflow change, and evidence quality."
+  },
+  {
+    title: "Verified Ledger",
+    body: "Reconcile evidence into O, S, Q, M, A and calculate net gain."
+  },
+  {
+    title: "Investor Scenario",
+    body: "Translate the verified logic into adoption and revenue cases."
+  },
+  {
+    title: "Partner Execution",
+    body: "Generate instructions for regulated benefit or pension rails."
+  }
+] as const;
 
 const calculatorHelp = {
   en: {

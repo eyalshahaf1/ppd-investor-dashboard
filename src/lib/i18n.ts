@@ -23,10 +23,10 @@ export const copy = {
     },
     tabs: {
       overview: "Overview",
-      calculator: "Calculator",
-      scenarios: "Scenarios",
-      pilot: "Pilot Tasks",
-      data: "Data Connect",
+      calculator: "Verified Ledger",
+      scenarios: "Investor Scenario",
+      pilot: "Pilot Evidence",
+      data: "Partner Execution",
       about: "About",
       investor: "Investor Room"
     },
@@ -119,10 +119,10 @@ export const copy = {
     },
     tabs: {
       overview: "概要",
-      calculator: "計算",
-      scenarios: "シナリオ",
-      pilot: "パイロット",
-      data: "データ接続",
+      calculator: "検証台帳",
+      scenarios: "投資家シナリオ",
+      pilot: "実証エビデンス",
+      data: "パートナー実行",
       about: "概要説明",
       investor: "投資家向け"
     },
