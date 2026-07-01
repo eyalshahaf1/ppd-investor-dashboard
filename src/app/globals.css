@@ -1339,7 +1339,7 @@ input[type="number"] {
   gap: 10px;
 }
 
-.pilot-workflow-strip article {
+.pilot-workflow-strip button {
   display: grid;
   grid-template-columns: 30px minmax(0, 1fr);
   gap: 10px;
@@ -1348,9 +1348,18 @@ input[type="number"] {
   border-radius: 8px;
   padding: 11px;
   background: var(--surface);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
 }
 
-.pilot-workflow-strip article.active {
+.pilot-workflow-strip button:hover {
+  border-color: color-mix(in srgb, var(--teal) 36%, var(--line));
+  transform: translateY(-1px);
+}
+
+.pilot-workflow-strip button.active {
   border-color: color-mix(in srgb, var(--teal) 50%, var(--line));
   background: color-mix(in srgb, var(--teal) 10%, var(--surface));
 }

@@ -3,6 +3,7 @@ import { formatNumber, formatYen } from "@/lib/format";
 import type { Language } from "@/lib/i18n";
 import type { Assumptions } from "@/lib/types";
 import { AssumptionControl } from "./AssumptionControl";
+import type { DashboardTab } from "./Tabs";
 import { KpiCard } from "./KpiCard";
 import { ProductivityWaterfallChart } from "./ProductivityWaterfallChart";
 import { SensitivityTornadoChart } from "./SensitivityTornadoChart";
@@ -12,12 +13,14 @@ type CalculatorViewProps = {
   assumptions: Assumptions;
   language: Language;
   onAssumptionChange: <K extends keyof Assumptions>(key: K, value: Assumptions[K]) => void;
+  onNavigate: (tab: DashboardTab) => void;
 };
 
 export function CalculatorView({
   assumptions,
   language,
-  onAssumptionChange
+  onAssumptionChange,
+  onNavigate
 }: CalculatorViewProps) {
   const economics = calculateEmployerEconomics(assumptions);
   const copy = calculationCopy[language];
@@ -34,13 +37,19 @@ export function CalculatorView({
 
       <section className="span-12 pilot-workflow-strip calc-workflow" aria-label="PPD pilot workflow">
         {pilotWorkflowSteps.map((step, index) => (
-          <article className={index === 1 ? "active" : ""} key={step.title}>
+          <button
+            className={step.tab === "calculator" ? "active" : ""}
+            key={step.title}
+            type="button"
+            aria-current={step.tab === "calculator" ? "step" : undefined}
+            onClick={() => onNavigate(step.tab)}
+          >
             <span>{index + 1}</span>
             <div>
               <b>{step.title}</b>
               <p>{step.body}</p>
             </div>
-          </article>
+          </button>
         ))}
       </section>
 
@@ -173,21 +182,25 @@ function CalculationExplainer({
 const pilotWorkflowSteps = [
   {
     title: "Pilot Evidence",
-    body: "Baseline, post-AI workflow change, and evidence quality."
+    body: "Baseline, post-AI workflow change, and evidence quality.",
+    tab: "pilot"
   },
   {
     title: "Verified Ledger",
-    body: "Reconcile evidence into O, S, Q, M, A and calculate net gain."
+    body: "Reconcile evidence into O, S, Q, M, A and calculate net gain.",
+    tab: "calculator"
   },
   {
     title: "Investor Scenario",
-    body: "Translate the verified logic into adoption and revenue cases."
+    body: "Translate the verified logic into adoption and revenue cases.",
+    tab: "scenarios"
   },
   {
     title: "Partner Execution",
-    body: "Generate instructions for regulated benefit or pension rails."
+    body: "Generate instructions for regulated benefit or pension rails.",
+    tab: "data"
   }
-] as const;
+] as const satisfies ReadonlyArray<{ title: string; body: string; tab: DashboardTab }>;
 
 const calculatorHelp = {
   en: {

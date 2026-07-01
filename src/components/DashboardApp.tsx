@@ -214,6 +214,7 @@ export function DashboardApp() {
             assumptions={assumptions}
             language={language}
             onAssumptionChange={updateAssumption}
+            onNavigate={changeTab}
           />
         )}
         {activeTab === "scenarios" && (
