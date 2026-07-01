@@ -139,10 +139,12 @@ h1 {
   align-items: center;
   flex-wrap: nowrap;
   gap: 12px;
+  margin-top: 8px;
+  margin-bottom: 6px;
 }
 
 .title-row h1 {
-  margin-bottom: 4px;
+  margin: 0;
   min-width: 0;
   flex: 0 1 auto;
 }
