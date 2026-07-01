@@ -92,7 +92,7 @@ export const copy = {
       futureLayer: "future layer",
       positioning:
         "Investor positioning: start with voluntary B2B pilots.",
-      chartTitle: "5-year SaaS revenue vs pension impact",
+      chartTitle: "Impact horizon: value now and at scale",
       contributionFlow: "Retirement contribution flow",
       aumTracked: "End-year AUM tracked",
       platformRevenue: "Platform revenue"
@@ -188,7 +188,7 @@ export const copy = {
       futureLayer: "将来レイヤー",
       positioning:
         "投資家向け位置づけ: 任意のB2Bパイロットから開始。",
-      chartTitle: "5年間のSaaS収益と年金インパクト",
+      chartTitle: "インパクト期間: 現在と拡大時の価値",
       contributionFlow: "退職拠出フロー",
       aumTracked: "年末AUMトラッキング",
       platformRevenue: "プラットフォーム収益"

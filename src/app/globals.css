@@ -1220,6 +1220,35 @@ input[type="number"] {
 .legend .aum i { background: var(--coral); }
 .legend .revenue i { background: var(--indigo); }
 
+.impact-horizon-controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.impact-horizon-controls button {
+  min-height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 9px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.impact-horizon-controls button[aria-pressed="true"] {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: #fff;
+}
+
+.impact-legend {
+  flex-basis: 100%;
+  justify-content: flex-end;
+}
+
 .projection-chart {
   width: 100%;
   min-height: 280px;

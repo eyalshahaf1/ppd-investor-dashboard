@@ -1,11 +1,14 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import { scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
 import { getCopy, type Language } from "@/lib/i18n";
 import type { Assumptions, JapanStatKey, JapanStatRecord, ProjectionRow } from "@/lib/types";
+import { ImpactHorizonChart, type ImpactHorizonRow } from "./ImpactHorizonChart";
 import { KpiCard } from "./KpiCard";
 import { PartnerExecutionFlow } from "./PartnerExecutionFlow";
 import { PilotEvidenceChart } from "./PilotEvidenceChart";
-import { ProjectionChart } from "./ProjectionChart";
 import { UnitEconomicsChart } from "./UnitEconomicsChart";
 
 type OverviewViewProps = {
@@ -15,6 +18,16 @@ type OverviewViewProps = {
   language: Language;
 };
 
+type ImpactHorizon = "immediate" | "daily" | "monthly" | "annual" | "multiYear";
+
+const impactHorizons: Array<{ key: ImpactHorizon; label: string }> = [
+  { key: "immediate", label: "Immediate" },
+  { key: "daily", label: "Daily" },
+  { key: "monthly", label: "Monthly" },
+  { key: "annual", label: "Annual" },
+  { key: "multiYear", label: "Multi-year" }
+];
+
 export function OverviewView({
   assumptions,
   mediumProjection,
@@ -22,6 +35,12 @@ export function OverviewView({
   language
 }: OverviewViewProps) {
   const y5 = mediumProjection[mediumProjection.length - 1];
+  const [impactHorizon, setImpactHorizon] = useState<ImpactHorizon>("monthly");
+  const impactRows = useMemo(
+    () => buildImpactRows(impactHorizon, assumptions, mediumProjection),
+    [impactHorizon, assumptions, mediumProjection]
+  );
+  const horizonSummary = getHorizonSummary(impactHorizon, impactRows);
   const t = getCopy(language);
   const population65 = japanStats?.population_65_share;
   const births2024 = japanStats?.births_2024;
@@ -161,17 +180,121 @@ export function OverviewView({
 
       <section className="span-12 panel chart-frame">
         <div className="chart-head">
-          <h3>{t.overview.chartTitle}</h3>
-          <div className="legend">
+          <div>
+            <h3>{t.overview.chartTitle}</h3>
+            <p className="source-note">{horizonSummary}</p>
+          </div>
+          <div className="impact-horizon-controls" aria-label="Impact horizon">
+            {impactHorizons.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                aria-pressed={impactHorizon === item.key}
+                onClick={() => setImpactHorizon(item.key)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+          <div className="legend impact-legend">
             <span><i />{t.overview.contributionFlow}</span>
             <span className="aum"><i />{t.overview.aumTracked}</span>
             <span className="revenue"><i />{t.overview.platformRevenue}</span>
           </div>
         </div>
-        <ProjectionChart rows={mediumProjection} />
+        <ImpactHorizonChart rows={impactRows} />
       </section>
     </div>
   );
+}
+
+function buildImpactRows(
+  horizon: ImpactHorizon,
+  assumptions: Assumptions,
+  projection: ProjectionRow[]
+): ImpactHorizonRow[] {
+  const y1 = projection[0];
+  const perEmployeeContribution = scenarios.medium.contributionPerEmployee;
+  const perEmployeePlatformRevenue =
+    assumptions.monthlySaas * 12 +
+    perEmployeeContribution * (assumptions.takeRate / 100);
+
+  if (horizon === "immediate") {
+    return [
+      buildScaleRow("1 emp", 1, perEmployeeContribution, perEmployeePlatformRevenue),
+      buildScaleRow("100", 100, perEmployeeContribution, perEmployeePlatformRevenue),
+      buildScaleRow("1k", 1000, perEmployeeContribution, perEmployeePlatformRevenue),
+      buildScaleRow("10k", assumptions.coveredEmployees, perEmployeeContribution, perEmployeePlatformRevenue)
+    ];
+  }
+
+  if (horizon === "daily") {
+    return [1, 7, 14, 30].map((days) => ({
+      label: `${days}d`,
+      contribution: (y1.annualContribution / 365) * days,
+      platformRevenue: (y1.platformRevenue / 365) * days,
+      trackedValue: (y1.annualContribution / 365) * days
+    }));
+  }
+
+  if (horizon === "monthly") {
+    return [1, 3, 6, 12].map((months) => ({
+      label: `${months}m`,
+      contribution: (y1.annualContribution / 12) * months,
+      platformRevenue: (y1.platformRevenue / 12) * months,
+      trackedValue: (y1.annualContribution / 12) * months
+    }));
+  }
+
+  if (horizon === "annual") {
+    return [1, 2, 3, 4].map((quarter) => ({
+      label: `Q${quarter}`,
+      contribution: (y1.annualContribution / 4) * quarter,
+      platformRevenue: (y1.platformRevenue / 4) * quarter,
+      trackedValue: (y1.annualContribution / 4) * quarter
+    }));
+  }
+
+  let cumulativeContribution = 0;
+  let cumulativeRevenue = 0;
+  return projection.map((row) => {
+    cumulativeContribution += row.annualContribution;
+    cumulativeRevenue += row.platformRevenue;
+    return {
+      label: row.year,
+      contribution: cumulativeContribution,
+      platformRevenue: cumulativeRevenue,
+      trackedValue: row.aum
+    };
+  });
+}
+
+function buildScaleRow(
+  label: string,
+  employees: number,
+  perEmployeeContribution: number,
+  perEmployeePlatformRevenue: number
+) {
+  const contribution = employees * perEmployeeContribution;
+  return {
+    label,
+    contribution,
+    platformRevenue: employees * perEmployeePlatformRevenue,
+    trackedValue: contribution
+  };
+}
+
+function getHorizonSummary(horizon: ImpactHorizon, rows: ImpactHorizonRow[]) {
+  const last = rows[rows.length - 1];
+  const prefix = {
+    immediate: "Immediate view shows contribution and platform run-rate by covered employee scale.",
+    daily: "Daily view shows cumulative first-month run-rate from the medium Year 1 adoption case.",
+    monthly: "Monthly view shows how the medium Year 1 case becomes visible inside the first year.",
+    annual: "Annual view shows quarterly build-up inside Year 1.",
+    multiYear: "Multi-year view shows cumulative five-year contribution and platform scale."
+  }[horizon];
+
+  return `${prefix} Last point: ${formatYen(last.contribution)} retirement value and ${formatYen(last.platformRevenue)} platform revenue.`;
 }
 
 function ReadinessItem({ title, value, body }: { title: string; value: string; body: string }) {
