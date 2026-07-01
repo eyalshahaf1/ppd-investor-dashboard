@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img">
 
-<g transform="translate(-160,-84) scale(1.25)">
-<path fill="#0B2B40" opacity="1.000000" stroke="none" 
+<circle cx="540" cy="540" r="540" fill="#0B2B40"/>
+<g transform="translate(-107,-40) scale(1.29)">
+<path fill="#FFFFFF" opacity="1.000000" stroke="none" 
 	d="
 M719.491455,281.564056 
 	C735.022095,307.762970 743.936584,335.920868 748.022095,365.531372 
@@ -45,7 +46,7 @@ M719.491455,281.564056
 	C570.877625,192.016830 599.275879,195.251495 626.583679,205.074951 
 	C666.538696,219.447983 697.273743,245.052765 719.491455,281.564056 
 z"/>
-<ellipse cx="505" cy="471" rx="34" ry="44" fill="#0B2B40"/>
+<ellipse cx="505" cy="471" rx="34" ry="44" fill="#FFFFFF"/>
 </g>
 
 </svg>

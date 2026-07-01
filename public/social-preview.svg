@@ -1,6 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="630"
+  viewBox="0 0 1200 630"
+  role="img"
+  aria-labelledby="title desc"
+>
   <title id="title">Pension from AI Productivity social preview</title>
-  <desc id="desc">Preview image for the Pension Productivity Dividend investor dashboard.</desc>
+  <desc id="desc">
+    Preview image for the Pension Productivity Dividend investor dashboard.
+  </desc>
+
   <rect width="1200" height="630" fill="#f6f7f4"/>
   <rect x="64" y="64" width="1072" height="502" rx="28" fill="#ffffff" stroke="#d8e0da" stroke-width="2"/>
   <rect x="108" y="108" width="136" height="136" rx="24" fill="#0b6b5a"/>
