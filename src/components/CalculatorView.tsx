@@ -85,15 +85,15 @@ export function CalculatorView({
       <section className="span-6 panel calc-operational">
         <h3>How operational evidence supports the Verified AI Gain Ledger</h3>
         <p>
-          These operational inputs help explain how AI changed the workflow. They do not create eligible financial value automatically. Eligible value enters the Verified AI Gain Ledger only after reconciliation to a documented O, S, Q, M, or A outcome.
+          Use the first two sliders to describe time evidence: verified hours saved and fully loaded hourly cost. Use overtime, outsourcing, and quality sliders as possible evidence for O, S, and Q. Use AI costs as possible A to subtract. None of these sliders creates eligible financial value automatically; eligible value enters the Verified AI Gain Ledger only after documented reconciliation.
         </p>
         <div className="control-grid">
           <AssumptionControl name="hoursSaved" label="Verified hours saved" help="Operational evidence only. May support O, S, or M after documented financial reconciliation." value={assumptions.hoursSaved} min={0} max={3000000} step={25000} onChange={(value) => onAssumptionChange("hoursSaved", value)} />
           <AssumptionControl name="costPerHour" label="Fully loaded cost" help="Context only. Hours saved × hourly cost is not automatically eligible financial value." value={assumptions.costPerHour} min={1000} max={12000} step={100} onChange={(value) => onAssumptionChange("costPerHour", value)} />
-          <AssumptionControl name="overtimeM" label="Overtime savings" help="May support O — avoided overtime cost, when supported by payroll or time-record evidence." value={assumptions.overtimeM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("overtimeM", value)} />
-          <AssumptionControl name="outsourcingM" label="Outsourcing savings" help="May support S — avoided outsourcing or contractor cost, when supported by documented external-spend reduction." value={assumptions.outsourcingM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("outsourcingM", value)} />
-          <AssumptionControl name="qualityM" label="Quality benefit" help="May support Q — quality, rework, error, waste, or compliance savings, when financially evidenced." value={assumptions.qualityM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("qualityM", value)} />
-          <AssumptionControl name="aiCostM" label="AI costs" help="Reconciles to A — incremental AI-related costs to subtract from eligible gain." value={assumptions.aiCostM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("aiCostM", value)} />
+          <AssumptionControl name="overtimeM" label="Overtime savings" help="May support O - avoided overtime cost, when supported by payroll or time-record evidence." value={assumptions.overtimeM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("overtimeM", value)} />
+          <AssumptionControl name="outsourcingM" label="Outsourcing savings" help="May support S - avoided outsourcing or contractor cost, when supported by documented external-spend reduction." value={assumptions.outsourcingM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("outsourcingM", value)} />
+          <AssumptionControl name="qualityM" label="Quality benefit" help="May support Q - quality, rework, error, waste, or compliance savings, when financially evidenced." value={assumptions.qualityM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("qualityM", value)} />
+          <AssumptionControl name="aiCostM" label="AI costs" help="Reconciles to A - incremental AI-related costs to subtract from eligible gain." value={assumptions.aiCostM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("aiCostM", value)} />
         </div>
         <div className="operational-note-grid">
           <article className="operational-note-card">
