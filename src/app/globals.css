@@ -1265,24 +1265,24 @@ input[type="number"] {
 }
 
 .waterfall-chart {
-  min-height: 320px;
+  min-height: 245px;
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
   align-items: end;
 }
 
 .waterfall-step {
   min-width: 0;
   display: grid;
-  grid-template-rows: 190px 34px 44px;
-  gap: 8px;
+  grid-template-rows: 150px 30px 38px;
+  gap: 6px;
   align-items: stretch;
   text-align: center;
 }
 
 .waterfall-bar-shell {
-  height: 190px;
+  height: 150px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -1290,7 +1290,7 @@ input[type="number"] {
 }
 
 .waterfall-bar {
-  width: min(100%, 44px);
+  width: min(100%, 38px);
   border-radius: 8px 8px 0 0;
   background: var(--teal);
 }
@@ -2635,9 +2635,12 @@ code {
   .calc-pricing,
   .calc-operational,
   .calc-verified,
-  .calc-waterfall,
   .calc-tornado {
     height: 100%;
+  }
+
+  .calc-waterfall {
+    align-self: start;
   }
 }
 
