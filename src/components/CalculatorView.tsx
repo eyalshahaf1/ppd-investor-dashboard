@@ -83,27 +83,50 @@ export function CalculatorView({
       </section>
 
       <section className="span-6 panel calc-operational">
-        <h3>Operational evidence context</h3>
-        <p>Hours saved, throughput, and cycle-time reduction help explain the pilot, but they do not automatically become eligible financial value.</p>
+        <h3>How operational evidence supports the Verified AI Gain Ledger</h3>
+        <p>
+          These operational inputs help explain how AI changed the workflow. They do not create eligible financial value automatically. Eligible value enters the Verified AI Gain Ledger only after reconciliation to a documented O, S, Q, M, or A outcome.
+        </p>
         <div className="control-grid">
-          <AssumptionControl name="hoursSaved" label="Verified hours saved" help="annual" value={assumptions.hoursSaved} min={0} max={3000000} step={25000} onChange={(value) => onAssumptionChange("hoursSaved", value)} />
-          <AssumptionControl name="costPerHour" label="Fully loaded cost" help="JPY / hour" value={assumptions.costPerHour} min={1000} max={12000} step={100} onChange={(value) => onAssumptionChange("costPerHour", value)} />
-          <AssumptionControl name="overtimeM" label="Overtime savings" help="JPY millions" value={assumptions.overtimeM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("overtimeM", value)} />
-          <AssumptionControl name="outsourcingM" label="Outsourcing savings" help="JPY millions" value={assumptions.outsourcingM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("outsourcingM", value)} />
-          <AssumptionControl name="qualityM" label="Quality benefit" help="JPY millions" value={assumptions.qualityM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("qualityM", value)} />
-          <AssumptionControl name="aiCostM" label="AI costs" help="JPY millions" value={assumptions.aiCostM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("aiCostM", value)} />
+          <AssumptionControl name="hoursSaved" label="Verified hours saved" help="Operational evidence only. May support O, S, or M after documented financial reconciliation." value={assumptions.hoursSaved} min={0} max={3000000} step={25000} onChange={(value) => onAssumptionChange("hoursSaved", value)} />
+          <AssumptionControl name="costPerHour" label="Fully loaded cost" help="Context only. Hours saved × hourly cost is not automatically eligible financial value." value={assumptions.costPerHour} min={1000} max={12000} step={100} onChange={(value) => onAssumptionChange("costPerHour", value)} />
+          <AssumptionControl name="overtimeM" label="Overtime savings" help="May support O — avoided overtime cost, when supported by payroll or time-record evidence." value={assumptions.overtimeM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("overtimeM", value)} />
+          <AssumptionControl name="outsourcingM" label="Outsourcing savings" help="May support S — avoided outsourcing or contractor cost, when supported by documented external-spend reduction." value={assumptions.outsourcingM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("outsourcingM", value)} />
+          <AssumptionControl name="qualityM" label="Quality benefit" help="May support Q — quality, rework, error, waste, or compliance savings, when financially evidenced." value={assumptions.qualityM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("qualityM", value)} />
+          <AssumptionControl name="aiCostM" label="AI costs" help="Reconciles to A — incremental AI-related costs to subtract from eligible gain." value={assumptions.aiCostM} min={0} max={5000} step={50} onChange={(value) => onAssumptionChange("aiCostM", value)} />
         </div>
-        <div className="metric-grid compact">
-          <KpiCard label="Evidence only" value="Context" note="Operational evidence must reconcile to documented O, S, Q, or M outcomes." />
-          <KpiCard label="Excluded sources" value="Guardrail" note="Exclude layoffs, hiring freezes, attrition non-replacement, and direct workforce reductions." accent="amber" />
-          <article className="kpi-card accent-coral">
-            <div className="kpi-label">Guardrail</div>
-            <p className="kpi-note">
-              Operational evidence does not create eligible financial value by itself.
-              It must reconcile to documented O, S, Q, or M outcomes.
+        <div className="operational-note-grid">
+          <article className="operational-note-card">
+            <h4>How operational evidence enters the ledger</h4>
+            <p>
+              Hours saved, cycle-time reduction, throughput, and workflow improvements are evidence. They enter the pension model only after they are reconciled to a documented financial outcome: O, S, Q, M, or A.
+            </p>
+          </article>
+          <article className="operational-note-card">
+            <h4>What does not count automatically</h4>
+            <p>
+              Salary cost, hours saved, throughput, or projected benefit do not automatically become eligible gain. Savings created directly by involuntary layoffs, hiring freezes, non-replacement of attrition, or direct workforce reductions are excluded.
             </p>
           </article>
         </div>
+        <div className="operational-formula-strip">
+          <h4>From evidence to pension allocation</h4>
+          <div className="operational-formulas">
+            <code>Eligible Gross Gain = O + S + Q + M</code>
+            <code>Net Verified AI Gain = max(0, Eligible Gross Gain × (1 − a) − A)</code>
+            <code>Pension Allocation = Net Verified AI Gain × d</code>
+          </div>
+          <p>
+            Allocation is permitted only when the quality gate passes and the eligible employee population was agreed before measurement began.
+          </p>
+        </div>
+        <ul className="operational-mapping-list" aria-label="Operational evidence mapping examples">
+          <li>Hours saved / cycle-time reduction → may support O, S, or M</li>
+          <li>Reduced contractor or temporary labour → S</li>
+          <li>Fewer errors, defects, rework, or compliance events → Q</li>
+          <li>Additional throughput with evidenced margin → M</li>
+          <li>AI licences, cloud, integration, training, security, maintenance, and change management → A</li>
+        </ul>
       </section>
 
       <ProductivityWaterfallChart assumptions={assumptions} className="calc-waterfall" />

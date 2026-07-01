@@ -1377,6 +1377,100 @@ input[type="number"] {
   white-space: normal;
 }
 
+.operational-note-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.calc-operational .field label {
+  display: grid;
+  gap: 3px;
+}
+
+.calc-operational .field small {
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.operational-note-card,
+.operational-formula-strip {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px;
+  background: var(--soft);
+}
+
+.operational-note-card h4,
+.operational-formula-strip h4 {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.operational-note-card p,
+.operational-formula-strip p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.operational-formula-strip {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.operational-formulas {
+  display: grid;
+  gap: 6px;
+}
+
+.operational-formulas code {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 7px 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.operational-mapping-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 12px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.operational-mapping-list li {
+  position: relative;
+  padding-left: 13px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.operational-mapping-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
 .tornado-chart {
   display: grid;
   gap: 12px;
@@ -2503,6 +2597,8 @@ code {
   .upload-type-note,
   .localization-grid,
   .resource-group-grid,
+  .operational-note-grid,
+  .operational-mapping-list,
   .about-footer,
   .footer-inner,
   .control-grid,
