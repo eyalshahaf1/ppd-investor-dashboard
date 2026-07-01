@@ -494,10 +494,8 @@ main {
 }
 
 .kpi-group-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 14px;
+  display: grid;
+  gap: 4px;
 }
 
 .kpi-group-head h3 {
@@ -513,7 +511,7 @@ main {
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  text-align: right;
+  text-align: left;
 }
 
 .macro-kpi-grid {
