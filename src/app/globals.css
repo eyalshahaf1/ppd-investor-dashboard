@@ -1337,6 +1337,7 @@ input[type="number"] {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
+  margin-bottom: 16px;
 }
 
 .pilot-workflow-strip button {
@@ -2765,7 +2766,6 @@ code {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
       "intro intro"
-      "workflow workflow"
       "guide guide"
       "verified verified"
       "assumptions outputs"
@@ -2779,7 +2779,6 @@ code {
   }
 
   .calc-intro { grid-area: intro; }
-  .calc-workflow { grid-area: workflow; }
   .calc-guide { grid-area: guide; }
   .calc-verified { grid-area: verified; }
   .calc-assumptions { grid-area: assumptions; }
@@ -2808,7 +2807,6 @@ code {
     grid-template-columns: 1fr;
     grid-template-areas:
       "intro"
-      "workflow"
       "guide"
       "verified"
       "assumptions"
@@ -2824,7 +2822,6 @@ code {
   }
 
   .calc-intro { grid-area: intro; }
-  .calc-workflow { grid-area: workflow; }
   .calc-guide { grid-area: guide; }
   .calc-verified { grid-area: verified; }
   .calc-assumptions { grid-area: assumptions; }
