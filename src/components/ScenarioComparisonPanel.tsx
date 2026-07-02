@@ -1,35 +1,38 @@
 import { buildScenarioSummaries } from "@/lib/productFeatures";
 import { formatEmployees, formatYen } from "@/lib/format";
+import { getCopy, type Language } from "@/lib/i18n";
 import type { Assumptions, ScenarioKey } from "@/lib/types";
 
 type ScenarioComparisonPanelProps = {
   assumptions: Assumptions;
   activeScenario: ScenarioKey;
+  language: Language;
   onScenarioChange: (scenario: ScenarioKey) => void;
 };
 
 export function ScenarioComparisonPanel({
   assumptions,
   activeScenario,
+  language,
   onScenarioChange
 }: ScenarioComparisonPanelProps) {
   const summaries = buildScenarioSummaries(assumptions);
   const maxContribution = Math.max(...summaries.map((summary) => summary.y5AnnualContribution));
+  const copy = getCopy(language).scenario;
 
   return (
     <section className="span-12 panel">
       <div className="chart-head">
         <div>
-          <h3>Scenario comparison cockpit</h3>
+          <h3>{copy.comparisonTitle}</h3>
           <p className="source-note">
-            Illustrative adoption scenarios only. They are useful for investor scale
-            discussion but are not verified pilot results.
+            {copy.comparisonBody}
           </p>
         </div>
         <div className="legend">
-          <span><i />Y5 contribution flow</span>
-          <span className="aum"><i />Y5 AUM influenced</span>
-          <span className="revenue"><i />Y5 platform revenue</span>
+          <span><i />{copy.y5ContributionFlow}</span>
+          <span className="aum"><i />{copy.y5AumInfluenced}</span>
+          <span className="revenue"><i />{copy.y5PlatformRevenue}</span>
         </div>
       </div>
 
@@ -41,7 +44,7 @@ export function ScenarioComparisonPanel({
             type="button"
             onClick={() => onScenarioChange(summary.key)}
           >
-            <span>{summary.label}</span>
+            <span>{copy.scenarioLabels[summary.key]}</span>
             <strong>{formatYen(summary.y5AnnualContribution)}</strong>
             <div className="compare-bar-track">
               <div
@@ -51,15 +54,15 @@ export function ScenarioComparisonPanel({
             </div>
             <dl>
               <div>
-                <dt>Employees</dt>
+                <dt>{copy.metricLabels.employees}</dt>
                 <dd>{formatEmployees(summary.y5Employees)}</dd>
               </div>
               <div>
-                <dt>AUM</dt>
+                <dt>{copy.metricLabels.aum}</dt>
                 <dd>{formatYen(summary.y5Aum)}</dd>
               </div>
               <div>
-                <dt>Revenue</dt>
+                <dt>{copy.metricLabels.revenue}</dt>
                 <dd>{formatYen(summary.y5PlatformRevenue)}</dd>
               </div>
             </dl>

@@ -227,12 +227,12 @@ export function DashboardApp() {
           />
         )}
         {activeTab === "pilot" && (
-          <PilotTaskBoard tasks={pilotTasks} onTaskChange={updateTask} />
+          <PilotTaskBoard tasks={pilotTasks} language={language} onTaskChange={updateTask} />
         )}
         {activeTab === "data" && <DataConnectionView language={language} />}
         {activeTab === "about" && <AboutView language={language} />}
         {activeTab === "investor" && (
-          <InvestorRoom reportText={investorReport} onNavigate={changeTab} />
+          <InvestorRoom reportText={investorReport} language={language} onNavigate={changeTab} />
         )}
       </main>
       <AppFooter language={language} />

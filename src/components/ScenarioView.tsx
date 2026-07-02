@@ -57,7 +57,7 @@ export function ScenarioView({
   function saveCurrentScenario() {
     const next: SavedScenario = {
       id: `${Date.now()}`,
-      name: `${scenarios[activeScenario].label} - ${new Date().toLocaleDateString("en-GB")}`,
+      name: `${copy.scenarioLabels[activeScenario]} - ${new Date().toLocaleDateString("en-GB")}`,
       scenario: activeScenario,
       assumptions,
       createdAt: Date.now()
@@ -89,7 +89,7 @@ export function ScenarioView({
               type="button"
               onClick={() => onScenarioChange(key)}
             >
-              {scenarios[key].label.replace(" adoption", "")}
+              {copy.scenarioLabels[key]}
             </button>
           ))}
         </div>
@@ -114,8 +114,8 @@ export function ScenarioView({
                   <span>{formatDate(saved.createdAt)}</span>
                 </div>
                 <p>
-                  {saved.assumptions.coveredEmployees.toLocaleString("en-US")} employees per employer ·{" "}
-                  {saved.assumptions.employers} employer(s) · {saved.assumptions.dividendRate.toFixed(1)}% rule
+                  {saved.assumptions.coveredEmployees.toLocaleString("en-US")} {copy.savedScenarioMeta.employeesPerEmployer} ·{" "}
+                  {saved.assumptions.employers} {copy.savedScenarioMeta.employers} · {saved.assumptions.dividendRate.toFixed(1)}% {copy.savedScenarioMeta.rule}
                 </p>
                 <div className="saved-scenario-actions">
                   <button className="action-btn" type="button" onClick={() => applySavedScenario(saved)}>
@@ -138,48 +138,43 @@ export function ScenarioView({
       <ScenarioComparisonPanel
         assumptions={assumptions}
         activeScenario={activeScenario}
+        language={language}
         onScenarioChange={onScenarioChange}
       />
 
       <section className="span-8 panel chart-frame">
         <div className="chart-head">
-          <h3>{scenarios[activeScenario].label} projection</h3>
+          <h3>{copy.scenarioLabels[activeScenario]} {copy.projectionSuffix}</h3>
           <div className="legend">
-            <span><i />Annual contributions</span>
-            <span className="aum"><i />End-year AUM tracked</span>
-            <span className="revenue"><i />Platform revenue</span>
+            <span><i />{copy.annualContributions}</span>
+            <span className="aum"><i />{copy.endYearAumTracked}</span>
+            <span className="revenue"><i />{copy.platformRevenue}</span>
           </div>
         </div>
         <ProjectionChart rows={rows} />
       </section>
 
       <aside className="span-4 panel">
-        <h3>Scenario snapshot</h3>
+        <h3>{copy.snapshotTitle}</h3>
         <div className="metric-grid single">
-          <KpiCard label="Y5 covered employees" value={formatEmployees(y5.employees)} note="Scale assumption at year five." />
-          <KpiCard label="Y5 annual contributions" value={formatYen(y5.annualContribution)} note="Retirement value created in year five." accent="amber" />
-          <KpiCard label="Y5 platform revenue" value={formatYen(y5.platformRevenue)} note="Startup revenue earned from the platform model." accent="indigo" />
+          <KpiCard label={copy.snapshotKpis[0][0]} value={formatEmployees(y5.employees)} note={copy.snapshotKpis[0][1]} />
+          <KpiCard label={copy.snapshotKpis[1][0]} value={formatYen(y5.annualContribution)} note={copy.snapshotKpis[1][1]} accent="amber" />
+          <KpiCard label={copy.snapshotKpis[2][0]} value={formatYen(y5.platformRevenue)} note={copy.snapshotKpis[2][1]} accent="indigo" />
         </div>
         <div className="callout">
-          <h3>Investor-safe phrasing</h3>
-          <p>
-            AUM tracked means assets verified through the program. The startup should
-            not imply that it legally manages pension assets.
-          </p>
+          <h3>{copy.investorSafeTitle}</h3>
+          <p>{copy.investorSafeBody}</p>
         </div>
       </aside>
 
       <section className="span-12 panel">
-        <h3>Projection table</h3>
+        <h3>{copy.tableTitle}</h3>
         <table className="data-table">
           <thead>
             <tr>
-              <th>Year</th>
-              <th>Employees</th>
-              <th>Annual contribution</th>
-              <th>End-year AUM tracked</th>
-              <th>Platform revenue</th>
-              <th>New employers</th>
+              {copy.tableHeaders.map((header) => (
+                <th key={header}>{header}</th>
+              ))}
             </tr>
           </thead>
           <tbody>

@@ -96,6 +96,24 @@ export const copy = {
       contributionFlow: "Retirement contribution flow",
       aumTracked: "End-year AUM tracked",
       platformRevenue: "Platform revenue",
+      impactHorizons: ["Immediate", "Daily", "Monthly", "Annual", "Multi-year"],
+      horizonSummaries: {
+        immediate: "Immediate view shows contribution and platform run-rate by covered employee scale.",
+        daily: "Daily view shows cumulative first-month run-rate from the medium Year 1 adoption case.",
+        monthly: "Monthly view shows how the medium Year 1 case becomes visible inside the first year.",
+        annual: "Annual view shows quarterly build-up inside Year 1.",
+        multiYear: "Multi-year view shows cumulative five-year contribution and platform scale.",
+        lastPoint: "Last point",
+        retirementValue: "retirement value",
+        platformRevenue: "platform revenue"
+      },
+      readinessTitle: "SaaS readiness path",
+      readinessItems: [
+        ["Workspace accounts", "Next", "Employer, assurance, and partner roles."],
+        ["Cloud database", "Next", "Managed Postgres for multi-customer pilots."],
+        ["Security controls", "Next", "Audit trail, role-based access, and upload retention rules."],
+        ["Signup flow", "Later", "Invite-only pilot onboarding before public signup."]
+      ],
       enterprise: {
         mode: "Enterprise pilot demo",
         title: "Measurement workflow for a corporate customer",
@@ -150,15 +168,106 @@ export const copy = {
       title: "Adoption scenarios and five-year projection",
       body:
         "Low / Medium / High are illustrative adoption scenarios for investor storytelling, not verified pilot results. Verified Calculation Mode is the source of truth for CFO-reviewed process economics.",
+      scenarioLabels: {
+        low: "Low",
+        medium: "Medium",
+        high: "High"
+      },
       savedWorkspaceTitle: "Saved scenario workspace",
       savedWorkspaceNote: "Local browser storage for investor demo prep",
       saveCurrent: "Save current scenario",
       emptySaved:
         "Save an assumption set before an investor meeting, then switch back to it during Q&A.",
       apply: "Apply",
-      delete: "Delete"
+      delete: "Delete",
+      savedScenarioMeta: {
+        employeesPerEmployer: "employees per employer",
+        employers: "employer(s)",
+        rule: "rule"
+      },
+      comparisonTitle: "Scenario comparison cockpit",
+      comparisonBody:
+        "Illustrative adoption scenarios only. They are useful for investor scale discussion but are not verified pilot results.",
+      y5ContributionFlow: "Y5 contribution flow",
+      y5AumInfluenced: "Y5 AUM influenced",
+      y5PlatformRevenue: "Y5 platform revenue",
+      projectionSuffix: "projection",
+      annualContributions: "Annual contributions",
+      endYearAumTracked: "End-year AUM tracked",
+      platformRevenue: "Platform revenue",
+      snapshotTitle: "Scenario snapshot",
+      snapshotKpis: [
+        ["Y5 covered employees", "Scale assumption at year five."],
+        ["Y5 annual contributions", "Retirement value created in year five."],
+        ["Y5 platform revenue", "Startup revenue earned from the platform model."]
+      ],
+      investorSafeTitle: "Investor-safe phrasing",
+      investorSafeBody:
+        "AUM tracked means assets verified through the program. The startup should not imply that it legally manages pension assets.",
+      tableTitle: "Projection table",
+      tableHeaders: ["Year", "Employees", "Annual contribution", "End-year AUM tracked", "Platform revenue", "New employers"],
+      metricLabels: {
+        employees: "Employees",
+        aum: "AUM",
+        revenue: "Revenue"
+      }
     },
     dataConnection: {
+      title: "Customer data connection",
+      body: "Evidence in. Dividend calculation. Partner instructions out.",
+      connectionModelTitle: "Connection model",
+      connectionSteps: [
+        ["Customer export", "Workflow and cost data."],
+        ["PPD verification", "Net AI cost and apply controls."],
+        ["Partner instruction", "Contribution instructions only."]
+      ],
+      privacyTitle: "Privacy guardrails",
+      guardrails: [
+        "Use aggregated workflow, team, or department-level data wherever possible.",
+        "Do not upload national IDs, bank details, pension account numbers, salaries, or secrets.",
+        "Do not count involuntary-layoff savings as eligible productivity dividend gains.",
+        "Keep customer exports in ignored local storage during the demo and pilot."
+      ],
+      uploadTypes: [
+        ["Workflow metrics", "Throughput, cycle time, volume, error, and rework metrics by workflow."],
+        ["Aggregated HR", "Covered employee counts by eligible group, department, or period."],
+        ["Finance costs", "AI costs, overtime savings, outsourcing savings, and implementation costs."],
+        ["Partner instruction test", "Dry-run contribution instruction payloads for regulated partners."],
+        ["Assurance evidence", "Evidence extracts for baseline validation and audit review."]
+      ],
+      messages: {
+        ready: "Ready for aggregated pilot data.",
+        unavailable: "Upload registry unavailable.",
+        chooseFile: "Choose a CSV, TXT, or XLSX pilot export first.",
+        uploading: "Uploading local pilot file...",
+        stored: "Stored locally for review.",
+        failed: "Upload failed.",
+        excelSelected: "Excel sample selected. It will be stored for review; CSV preview is not available yet.",
+        usable: "Pilot file looks usable for mapping.",
+        needsReview: "Pilot file needs mapping review.",
+        previewFailed: "Could not preview this file."
+      },
+      uploadTitle: "Secure pilot upload",
+      uploadBody: "Local CSV/TXT evidence under",
+      datasetType: "Dataset type",
+      fileLabel: "CSV, TXT, or XLSX file",
+      uploadButton: "Upload pilot data",
+      uploadingButton: "Uploading",
+      connectorTitle: "SaaS connector roadmap",
+      connectorLanes: [
+        ["Pilot", "Secure CSV upload", "Fastest path for a 90-day proof of concept."],
+        ["Scale", "SFTP import/export", "Standard enterprise transfer for larger employers."],
+        ["Enterprise", "HRIS, payroll, ERP APIs", "Automated data sync after security and legal review."],
+        ["Execution", "Regulated partner API", "Contribution instructions only; partners execute the rails."]
+      ],
+      recentUploadsTitle: "Recent local uploads",
+      tableHeaders: ["Dataset", "File", "Status", "Size", "Created"],
+      noUploads: "No uploads yet. The first pilot file will appear here after it is stored locally.",
+      mappingTitle: "Upload mapping preview",
+      mappingEmpty: "Choose a pilot CSV to preview headers, mapped fields, and evidence red flags before storage.",
+      rowsDetected: "rows detected.",
+      readiness: "Readiness",
+      notMapped: "Not mapped",
       templateLinks: [
         "Conservative pilot CSV",
         "Medium pilot CSV",
@@ -265,6 +374,24 @@ export const copy = {
       contributionFlow: "退職拠出フロー",
       aumTracked: "年末AUMトラッキング",
       platformRevenue: "プラットフォーム収益",
+      impactHorizons: ["即時", "日次", "月次", "年次", "複数年"],
+      horizonSummaries: {
+        immediate: "即時ビューは、対象従業員規模ごとの拠出額とプラットフォーム収益ランレートを示します。",
+        daily: "日次ビューは、中位シナリオYear 1の初月累計ランレートを示します。",
+        monthly: "月次ビューは、中位シナリオYear 1が初年度内にどう可視化されるかを示します。",
+        annual: "年次ビューは、Year 1内の四半期ごとの積み上がりを示します。",
+        multiYear: "複数年ビューは、5年間の累計拠出額とプラットフォーム規模を示します。",
+        lastPoint: "最終点",
+        retirementValue: "退職価値",
+        platformRevenue: "プラットフォーム収益"
+      },
+      readinessTitle: "SaaS準備ロードマップ",
+      readinessItems: [
+        ["ワークスペースアカウント", "次", "雇用主、保証、パートナーの役割。"],
+        ["クラウドデータベース", "次", "複数顧客パイロット向けのManaged Postgres。"],
+        ["セキュリティ管理", "次", "監査証跡、ロールベースアクセス、アップロード保持ルール。"],
+        ["サインアップ導線", "後続", "公開登録前の招待制パイロットオンボーディング。"]
+      ],
       enterprise: {
         mode: "企業向けパイロットデモ",
         title: "企業顧客向けの測定ワークフロー",
@@ -319,15 +446,106 @@ export const copy = {
       title: "導入シナリオと5年予測",
       body:
         "Low / Medium / Highは投資家向け説明用の例示導入シナリオであり、検証済みパイロット結果ではありません。Verified Calculation ModeがCFOレビュー済みプロセス経済性の基準です。",
+      scenarioLabels: {
+        low: "低位",
+        medium: "中位",
+        high: "高位"
+      },
       savedWorkspaceTitle: "保存済みシナリオ作業領域",
       savedWorkspaceNote: "投資家デモ準備用のローカルブラウザ保存",
       saveCurrent: "現在のシナリオを保存",
       emptySaved:
         "投資家ミーティング前に前提セットを保存し、Q&A中に戻せるようにします。",
       apply: "適用",
-      delete: "削除"
+      delete: "削除",
+      savedScenarioMeta: {
+        employeesPerEmployer: "従業員 / 企業",
+        employers: "企業",
+        rule: "ルール"
+      },
+      comparisonTitle: "シナリオ比較コックピット",
+      comparisonBody:
+        "例示導入シナリオのみです。投資家向けの拡大議論には有用ですが、検証済みパイロット結果ではありません。",
+      y5ContributionFlow: "5年目拠出フロー",
+      y5AumInfluenced: "5年目AUM影響額",
+      y5PlatformRevenue: "5年目プラットフォーム収益",
+      projectionSuffix: "予測",
+      annualContributions: "年間拠出",
+      endYearAumTracked: "年末AUMトラッキング",
+      platformRevenue: "プラットフォーム収益",
+      snapshotTitle: "シナリオ概要",
+      snapshotKpis: [
+        ["5年目対象従業員数", "5年目の規模前提。"],
+        ["5年目年間拠出額", "5年目に創出される退職価値。"],
+        ["5年目プラットフォーム収益", "プラットフォームモデルから得るスタートアップ収益。"]
+      ],
+      investorSafeTitle: "投資家向けの安全な表現",
+      investorSafeBody:
+        "AUM trackedは、このプログラムを通じて確認された資産を意味します。スタートアップが法的に年金資産を運用しているとは示唆しません。",
+      tableTitle: "予測テーブル",
+      tableHeaders: ["年", "従業員数", "年間拠出", "年末AUMトラッキング", "プラットフォーム収益", "新規雇用主"],
+      metricLabels: {
+        employees: "従業員数",
+        aum: "AUM",
+        revenue: "収益"
+      }
     },
     dataConnection: {
+      title: "顧客データ接続",
+      body: "エビデンス入力、配当計算、パートナー指示出力。",
+      connectionModelTitle: "接続モデル",
+      connectionSteps: [
+        ["顧客エクスポート", "業務データとコストデータ。"],
+        ["PPD検証", "AI純コストと管理条件を確認。"],
+        ["パートナー指示", "拠出指示のみ。"]
+      ],
+      privacyTitle: "プライバシー管理",
+      guardrails: [
+        "可能な限り、業務・チーム・部門レベルの集計データを使用します。",
+        "国民ID、銀行情報、年金口座番号、給与、秘密情報はアップロードしません。",
+        "非自発的な人員削減による節減は、生産性配当の適格利益に含めません。",
+        "顧客エクスポートはデモ・パイロット中、除外されたローカル保存に保持します。"
+      ],
+      uploadTypes: [
+        ["業務指標", "ワークフロー別の処理量、サイクル時間、件数、エラー、手戻り指標。"],
+        ["集計HR", "対象グループ、部門、期間別の対象従業員数。"],
+        ["財務コスト", "AIコスト、残業削減、外部委託削減、導入コスト。"],
+        ["パートナー指示テスト", "規制対象パートナー向けのドライラン拠出指示ペイロード。"],
+        ["保証エビデンス", "基準値検証と監査レビュー用のエビデンス抽出。"]
+      ],
+      messages: {
+        ready: "集計パイロットデータの準備ができています。",
+        unavailable: "アップロード台帳を利用できません。",
+        chooseFile: "CSV、TXT、またはXLSXのパイロット出力を選択してください。",
+        uploading: "ローカルパイロットファイルをアップロード中...",
+        stored: "レビュー用にローカル保存しました。",
+        failed: "アップロードに失敗しました。",
+        excelSelected: "Excelサンプルが選択されました。レビュー用に保存されますが、CSVプレビューはまだ利用できません。",
+        usable: "パイロットファイルはマッピングに使用できそうです。",
+        needsReview: "パイロットファイルはマッピングレビューが必要です。",
+        previewFailed: "このファイルをプレビューできませんでした。"
+      },
+      uploadTitle: "安全なパイロットアップロード",
+      uploadBody: "ローカルCSV/TXTエビデンス保存先",
+      datasetType: "データセット種別",
+      fileLabel: "CSV、TXT、またはXLSXファイル",
+      uploadButton: "パイロットデータをアップロード",
+      uploadingButton: "アップロード中",
+      connectorTitle: "SaaS接続ロードマップ",
+      connectorLanes: [
+        ["Pilot", "安全なCSVアップロード", "90日間PoCの最短ルート。"],
+        ["Scale", "SFTPインポート/エクスポート", "大規模雇用主向けの標準的な企業転送。"],
+        ["Enterprise", "HRIS、給与、ERP API", "セキュリティ・法務レビュー後の自動データ同期。"],
+        ["Execution", "規制対象パートナーAPI", "拠出指示のみ。実行はパートナーが担います。"]
+      ],
+      recentUploadsTitle: "最近のローカルアップロード",
+      tableHeaders: ["データセット", "ファイル", "ステータス", "サイズ", "作成日時"],
+      noUploads: "アップロードはまだありません。最初のパイロットファイルはローカル保存後にここへ表示されます。",
+      mappingTitle: "アップロードマッピングプレビュー",
+      mappingEmpty: "保存前にヘッダー、マッピング項目、エビデンス上の注意点を確認するには、パイロットCSVを選択してください。",
+      rowsDetected: "行を検出しました。",
+      readiness: "準備度",
+      notMapped: "未マッピング",
       templateLinks: [
         "保守的パイロットCSV",
         "中位パイロットCSV",

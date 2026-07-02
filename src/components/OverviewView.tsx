@@ -21,12 +21,12 @@ type OverviewViewProps = {
 
 type ImpactHorizon = "immediate" | "daily" | "monthly" | "annual" | "multiYear";
 
-const impactHorizons: Array<{ key: ImpactHorizon; label: string }> = [
-  { key: "immediate", label: "Immediate" },
-  { key: "daily", label: "Daily" },
-  { key: "monthly", label: "Monthly" },
-  { key: "annual", label: "Annual" },
-  { key: "multiYear", label: "Multi-year" }
+const impactHorizonKeys: ImpactHorizon[] = [
+  "immediate",
+  "daily",
+  "monthly",
+  "annual",
+  "multiYear"
 ];
 
 export function OverviewView({
@@ -42,8 +42,8 @@ export function OverviewView({
     () => buildImpactRows(impactHorizon, assumptions, mediumProjection),
     [impactHorizon, assumptions, mediumProjection]
   );
-  const horizonSummary = getHorizonSummary(impactHorizon, impactRows);
   const t = getCopy(language);
+  const horizonSummary = getHorizonSummary(impactHorizon, impactRows, language);
   const population65 = japanStats?.population_65_share;
   const births2024 = japanStats?.births_2024;
   const workingAgeShare = japanStats?.working_age_share;
@@ -136,14 +136,14 @@ export function OverviewView({
             <p className="source-note">{horizonSummary}</p>
           </div>
           <div className="impact-horizon-controls" aria-label="Impact horizon">
-            {impactHorizons.map((item) => (
+            {impactHorizonKeys.map((key, index) => (
               <button
-                key={item.key}
+                key={key}
                 type="button"
-                aria-pressed={impactHorizon === item.key}
-                onClick={() => setImpactHorizon(item.key)}
+                aria-pressed={impactHorizon === key}
+                onClick={() => setImpactHorizon(key)}
               >
-                {item.label}
+                {t.overview.impactHorizons[index]}
               </button>
             ))}
           </div>
@@ -177,16 +177,15 @@ export function OverviewView({
         </p>
       </section>
 
-      <PilotEvidenceChart assumptions={assumptions} />
-      <UnitEconomicsChart assumptions={assumptions} />
+      <PilotEvidenceChart assumptions={assumptions} language={language} />
+      <UnitEconomicsChart assumptions={assumptions} language={language} />
 
       <section className="span-6 panel">
-        <h3>SaaS readiness path</h3>
+        <h3>{t.overview.readinessTitle}</h3>
         <div className="readiness-list">
-          <ReadinessItem title="Workspace accounts" value="Next" body="Employer, assurance, and partner roles." />
-          <ReadinessItem title="Cloud database" value="Next" body="Managed Postgres for multi-customer pilots." />
-          <ReadinessItem title="Security controls" value="Next" body="Audit trail, role-based access, and upload retention rules." />
-          <ReadinessItem title="Signup flow" value="Later" body="Invite-only pilot onboarding before public signup." />
+          {t.overview.readinessItems.map(([title, value, body]) => (
+            <ReadinessItem key={title} title={title} value={value} body={body} />
+          ))}
         </div>
       </section>
 
@@ -270,17 +269,12 @@ function buildScaleRow(
   };
 }
 
-function getHorizonSummary(horizon: ImpactHorizon, rows: ImpactHorizonRow[]) {
+function getHorizonSummary(horizon: ImpactHorizon, rows: ImpactHorizonRow[], language: Language) {
   const last = rows[rows.length - 1];
-  const prefix = {
-    immediate: "Immediate view shows contribution and platform run-rate by covered employee scale.",
-    daily: "Daily view shows cumulative first-month run-rate from the medium Year 1 adoption case.",
-    monthly: "Monthly view shows how the medium Year 1 case becomes visible inside the first year.",
-    annual: "Annual view shows quarterly build-up inside Year 1.",
-    multiYear: "Multi-year view shows cumulative five-year contribution and platform scale."
-  }[horizon];
+  const copy = getCopy(language).overview.horizonSummaries;
+  const prefix = copy[horizon];
 
-  return `${prefix} Last point: ${formatYen(last.contribution)} retirement value and ${formatYen(last.platformRevenue)} platform revenue.`;
+  return `${prefix} ${copy.lastPoint}: ${formatYen(last.contribution)} ${copy.retirementValue} / ${formatYen(last.platformRevenue)} ${copy.platformRevenue}.`;
 }
 
 function ReadinessItem({ title, value, body }: { title: string; value: string; body: string }) {

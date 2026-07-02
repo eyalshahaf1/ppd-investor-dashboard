@@ -6,63 +6,13 @@ import { parseCsvPreview, type CsvPreview } from "@/lib/productFeatures";
 import type { DataUpload } from "@/lib/types";
 import { DataQualityScorecard } from "./DataQualityScorecard";
 
-const uploadTypes = [
-  {
-    key: "workflow_metrics",
-    label: "Workflow metrics",
-    detail: "Throughput, cycle time, volume, error, and rework metrics by workflow."
-  },
-  {
-    key: "aggregated_hr",
-    label: "Aggregated HR",
-    detail: "Covered employee counts by eligible group, department, or period."
-  },
-  {
-    key: "finance_costs",
-    label: "Finance costs",
-    detail: "AI costs, overtime savings, outsourcing savings, and implementation costs."
-  },
-  {
-    key: "partner_instruction_test",
-    label: "Partner instruction test",
-    detail: "Dry-run contribution instruction payloads for regulated partners."
-  },
-  {
-    key: "assurance_evidence",
-    label: "Assurance evidence",
-    detail: "Evidence extracts for baseline validation and audit review."
-  }
+const uploadTypeKeys = [
+  "workflow_metrics",
+  "aggregated_hr",
+  "finance_costs",
+  "partner_instruction_test",
+  "assurance_evidence"
 ] as const;
-
-const connectorLanes = [
-  {
-    stage: "Pilot",
-    title: "Secure CSV upload",
-    body: "Fastest path for a 90-day proof of concept."
-  },
-  {
-    stage: "Scale",
-    title: "SFTP import/export",
-    body: "Standard enterprise transfer for larger employers."
-  },
-  {
-    stage: "Enterprise",
-    title: "HRIS, payroll, ERP APIs",
-    body: "Automated data sync after security and legal review."
-  },
-  {
-    stage: "Execution",
-    title: "Regulated partner API",
-    body: "Contribution instructions only; partners execute the rails."
-  }
-];
-
-const guardrails = [
-  "Use aggregated workflow, team, or department-level data wherever possible.",
-  "Do not upload national IDs, bank details, pension account numbers, salaries, or secrets.",
-  "Do not count involuntary-layoff savings as eligible productivity dividend gains.",
-  "Keep customer exports in ignored local storage during the demo and pilot."
-];
 
 const templateHrefs = [
   "/templates/demo-scenarios/conservative-pilot-workflow.csv",
@@ -75,7 +25,7 @@ const templateHrefs = [
   "/templates/contribution-instruction-template.json"
 ];
 
-type UploadTypeKey = (typeof uploadTypes)[number]["key"];
+type UploadTypeKey = (typeof uploadTypeKeys)[number];
 
 type UploadResponse = {
   ok: boolean;
@@ -92,20 +42,25 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
   const [uploads, setUploads] = useState<DataUpload[]>([]);
   const [uploadType, setUploadType] = useState<UploadTypeKey>("workflow_metrics");
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadMessage, setUploadMessage] = useState("Ready for aggregated pilot data.");
+  const copy = getCopy(language).dataConnection;
+  const [uploadMessage, setUploadMessage] = useState<string>(copy.messages.ready);
   const [csvPreview, setCsvPreview] = useState<CsvPreview | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const templateLabels = getCopy(language).dataConnection.templateLinks;
+  const templateLabels = copy.templateLinks;
 
   useEffect(() => {
-    loadUploads().catch(() => setUploadMessage("Upload registry unavailable."));
-  }, []);
+    setUploadMessage(copy.messages.ready);
+  }, [copy.messages.ready]);
+
+  useEffect(() => {
+    loadUploads().catch(() => setUploadMessage(copy.messages.unavailable));
+  }, [copy.messages.unavailable]);
 
   async function loadUploads() {
     const response = await fetch("/api/uploads?limit=20", {
       headers: { Accept: "application/json" }
     });
-    if (!response.ok) throw new Error("Upload registry unavailable.");
+    if (!response.ok) throw new Error(copy.messages.unavailable);
 
     const payload = (await response.json()) as UploadResponse;
     setUploads(payload.uploads ?? []);
@@ -116,7 +71,7 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
     const file = fileInputRef.current?.files?.[0];
 
     if (!file) {
-      setUploadMessage("Choose a CSV, TXT, or XLSX pilot export first.");
+      setUploadMessage(copy.messages.chooseFile);
       return;
     }
 
@@ -125,7 +80,7 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
     formData.append("file", file);
 
     setIsUploading(true);
-    setUploadMessage("Uploading local pilot file...");
+    setUploadMessage(copy.messages.uploading);
 
     try {
       const response = await fetch("/api/uploads", {
@@ -135,16 +90,16 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
       const payload = (await response.json()) as UploadResponse;
 
       if (!response.ok || !payload.upload) {
-        throw new Error(payload.error ?? "Upload failed.");
+        throw new Error(payload.error ?? copy.messages.failed);
       }
 
       const savedUpload = payload.upload;
       setUploads((current) => [savedUpload, ...current].slice(0, 20));
-      setUploadMessage("Stored locally for review.");
+      setUploadMessage(copy.messages.stored);
       setCsvPreview(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (error) {
-      setUploadMessage(error instanceof Error ? error.message : "Upload failed.");
+      setUploadMessage(error instanceof Error ? error.message : copy.messages.failed);
     } finally {
       setIsUploading(false);
     }
@@ -155,13 +110,13 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
 
     if (!file) {
       setCsvPreview(null);
-      setUploadMessage("Choose a CSV, TXT, or XLSX pilot export first.");
+      setUploadMessage(copy.messages.chooseFile);
       return;
     }
 
     if (file.name.toLowerCase().endsWith(".xlsx")) {
       setCsvPreview(null);
-      setUploadMessage("Excel sample selected. It will be stored for review; CSV preview is not available yet.");
+      setUploadMessage(copy.messages.excelSelected);
       return;
     }
 
@@ -171,12 +126,12 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
       setCsvPreview(preview);
       setUploadMessage(
         preview.readinessScore >= 75
-          ? "Pilot file looks usable for mapping."
-          : "Pilot file needs mapping review."
+          ? copy.messages.usable
+          : copy.messages.needsReview
       );
     } catch {
       setCsvPreview(null);
-      setUploadMessage("Could not preview this file.");
+      setUploadMessage(copy.messages.previewFailed);
     }
   }
 
@@ -184,36 +139,24 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
     <div className="dashboard-grid">
       <section className="span-12 section-title">
         <div>
-          <h2>Customer data connection</h2>
-          <p>Evidence in. Dividend calculation. Partner instructions out.</p>
+          <h2>{copy.title}</h2>
+          <p>{copy.body}</p>
         </div>
       </section>
 
       <section className="span-8 panel">
-        <h3>Connection model</h3>
+        <h3>{copy.connectionModelTitle}</h3>
         <div className="connection-flow">
-          <ConnectionStep
-            index="1"
-            title="Customer export"
-            body="Workflow and cost data."
-          />
-          <ConnectionStep
-            index="2"
-            title="PPD verification"
-            body="Net AI cost and apply controls."
-          />
-          <ConnectionStep
-            index="3"
-            title="Partner instruction"
-            body="Contribution instructions only."
-          />
+          {copy.connectionSteps.map(([title, body], index) => (
+            <ConnectionStep key={title} index={`${index + 1}`} title={title} body={body} />
+          ))}
         </div>
       </section>
 
       <aside className="span-4 panel">
-        <h3>Privacy guardrails</h3>
+        <h3>{copy.privacyTitle}</h3>
         <div className="guardrail-list">
-          {guardrails.map((item) => (
+          {copy.guardrails.map((item) => (
             <div className="guardrail-row" key={item}>
               <span aria-hidden="true">!</span>
               <p>{item}</p>
@@ -222,14 +165,14 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
         </div>
       </aside>
 
-      <DataQualityScorecard uploads={uploads} />
+      <DataQualityScorecard uploads={uploads} language={language} />
 
       <section className="span-7 panel">
         <div className="upload-head">
           <div>
-            <h3>Secure pilot upload</h3>
+            <h3>{copy.uploadTitle}</h3>
             <p>
-              Local CSV/TXT evidence under <code>data/uploads</code>.
+              {copy.uploadBody} <code>data/uploads</code>.
             </p>
           </div>
           <span className="upload-status" aria-live="polite">{uploadMessage}</span>
@@ -237,21 +180,21 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
 
         <form className="upload-form" onSubmit={submitUpload}>
           <label className="stacked-field">
-            <span>Dataset type</span>
+            <span>{copy.datasetType}</span>
             <select
               value={uploadType}
               onChange={(event) => setUploadType(event.target.value as UploadTypeKey)}
             >
-              {uploadTypes.map((option) => (
-                <option key={option.key} value={option.key}>
-                  {option.label}
+              {uploadTypeKeys.map((key, index) => (
+                <option key={key} value={key}>
+                  {copy.uploadTypes[index][0]}
                 </option>
               ))}
             </select>
           </label>
 
           <label className="stacked-field">
-            <span>CSV, TXT, or XLSX file</span>
+            <span>{copy.fileLabel}</span>
             <input
               ref={fileInputRef}
               type="file"
@@ -261,19 +204,19 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
           </label>
 
           <button className="action-btn primary upload-btn" type="submit" disabled={isUploading}>
-            {isUploading ? "Uploading" : "Upload pilot data"}
+            {isUploading ? copy.uploadingButton : copy.uploadButton}
           </button>
         </form>
 
         <div className="upload-type-note">
-          {uploadTypes.map((option) => (
-            <p key={option.key}>
-              <b>{option.label}:</b> {option.detail}
+          {copy.uploadTypes.map(([label, detail], index) => (
+            <p key={uploadTypeKeys[index]}>
+              <b>{label}:</b> {detail}
             </p>
           ))}
         </div>
 
-        <CsvMappingPreview preview={csvPreview} />
+        <CsvMappingPreview preview={csvPreview} language={language} />
 
         <div className="template-link-row" aria-label="Static data templates">
           {templateLabels.map((label, index) => (
@@ -285,9 +228,9 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
       </section>
 
       <aside className="span-5 panel">
-        <h3>SaaS connector roadmap</h3>
+        <h3>{copy.connectorTitle}</h3>
         <div className="connector-list">
-          {connectorLanes.map(({ stage, title, body }) => (
+          {copy.connectorLanes.map(([stage, title, body]) => (
             <article className="connector-card" key={stage}>
               <span>{stage}</span>
               <h3>{title}</h3>
@@ -298,23 +241,21 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
       </aside>
 
       <section className="span-12 panel">
-        <h3>Recent local uploads</h3>
+        <h3>{copy.recentUploadsTitle}</h3>
         {uploads.length > 0 ? (
           <div className="table-wrap">
             <table className="data-table upload-table">
               <thead>
                 <tr>
-                  <th>Dataset</th>
-                  <th>File</th>
-                  <th>Status</th>
-                  <th>Size</th>
-                  <th>Created</th>
+                  {copy.tableHeaders.map((header) => (
+                    <th key={header}>{header}</th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
                 {uploads.map((upload) => (
                   <tr key={upload.id}>
-                    <td>{labelForUploadType(upload.upload_type)}</td>
+                    <td>{labelForUploadType(upload.upload_type, language)}</td>
                     <td>{upload.original_name}</td>
                     <td>{upload.status.replace(/_/g, " ")}</td>
                     <td>{formatBytes(upload.size_bytes)}</td>
@@ -326,7 +267,7 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
           </div>
         ) : (
           <p className="source-note">
-            No uploads yet. The first pilot file will appear here after it is stored locally.
+            {copy.noUploads}
           </p>
         )}
       </section>
@@ -334,12 +275,14 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
   );
 }
 
-function CsvMappingPreview({ preview }: { preview: CsvPreview | null }) {
+function CsvMappingPreview({ preview, language }: { preview: CsvPreview | null; language: Language }) {
+  const copy = getCopy(language).dataConnection;
+
   if (!preview) {
     return (
       <div className="mapping-preview empty">
-        <h3>Upload mapping preview</h3>
-        <p>Choose a pilot CSV to preview headers, mapped fields, and evidence red flags before storage.</p>
+        <h3>{copy.mappingTitle}</h3>
+        <p>{copy.mappingEmpty}</p>
       </div>
     );
   }
@@ -348,11 +291,11 @@ function CsvMappingPreview({ preview }: { preview: CsvPreview | null }) {
     <div className="mapping-preview">
       <div className="mapping-head">
         <div>
-          <h3>Upload mapping preview</h3>
-          <p>{preview.rows.toLocaleString("en-US")} rows detected.</p>
+          <h3>{copy.mappingTitle}</h3>
+          <p>{preview.rows.toLocaleString("en-US")} {copy.rowsDetected}</p>
         </div>
         <div className="mapping-score">
-          <span>Readiness</span>
+          <span>{copy.readiness}</span>
           <strong>{preview.readinessScore}</strong>
         </div>
       </div>
@@ -361,7 +304,7 @@ function CsvMappingPreview({ preview }: { preview: CsvPreview | null }) {
         {preview.mappedFields.map((item) => (
           <div className={`mapping-row ${item.source ? "mapped" : ""}`} key={item.field}>
             <b>{item.field}</b>
-            <span>{item.source ?? "Not mapped"}</span>
+            <span>{item.source ?? copy.notMapped}</span>
           </div>
         ))}
       </div>
@@ -385,8 +328,9 @@ function ConnectionStep({ index, title, body }: { index: string; title: string; 
   );
 }
 
-function labelForUploadType(value: string) {
-  return uploadTypes.find((option) => option.key === value)?.label ?? value;
+function labelForUploadType(value: string, language: Language) {
+  const index = uploadTypeKeys.findIndex((key) => key === value);
+  return index >= 0 ? getCopy(language).dataConnection.uploadTypes[index][0] : value;
 }
 
 function formatBytes(bytes: number) {
