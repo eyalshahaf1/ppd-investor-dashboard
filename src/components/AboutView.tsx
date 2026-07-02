@@ -23,6 +23,13 @@ const aboutCopy = {
     role: "Role",
     roleValue: "Measurement layer",
     roleBody: "Not custody, not investment advice, not pension administration.",
+    founderTitle: "Founder",
+    founderParagraphs: [
+      "Eyal Shahaf is the founder of Pension Productivity Dividend.",
+      "He brings more than 20 years of international business-development experience across industries, alongside long-standing engagement with Japan and cross-border partnership work.",
+      "At PPD, Eyal leads market development, pilot design, partner engagement, and the coalition-building needed to connect employers, assurance providers, and regulated benefit or pension partners.",
+      "PPD is deliberately not built around a claim that one founder can replace pension operators, auditors, legal advisers, or security specialists. Those capabilities are assembled through expert partners and advisers."
+    ],
     productTitle: "What the product does",
     principles: [
       "Measure verified AI productivity gains.",
@@ -90,6 +97,13 @@ const aboutCopy = {
     role: "役割",
     roleValue: "測定レイヤー",
     roleBody: "資産保管、投資助言、年金管理ではありません。",
+    founderTitle: "創業者",
+    founderParagraphs: [
+      "シャハフ・エヤールは、Pension Productivity Dividendの創業者です。",
+      "複数業界で20年以上にわたる国際事業開発の経験と、日本との長年の関わり、国境を越えたパートナーシップ構築の経験を持ちます。",
+      "PPDでは、市場開拓、パイロット設計、パートナー連携、そして雇用主・第三者検証機関・規制対象の福利厚生／年金パートナーを結ぶ連携体制づくりを主導します。",
+      "PPDは、一人の創業者が年金運営、監査、法務、セキュリティをすべて担うという考え方ではありません。これらの専門性は、専門家とパートナーとともに構築します。"
+    ],
     productTitle: "プロダクトの役割",
     principles: [
       "検証済みAI生産性効果を測定します。",
@@ -173,6 +187,15 @@ export function AboutView({ language }: AboutViewProps) {
           <span>{copy.role}</span>
           <strong>{copy.roleValue}</strong>
           <p>{copy.roleBody}</p>
+        </div>
+      </section>
+
+      <section className="span-12 panel">
+        <h3>{copy.founderTitle}</h3>
+        <div className="about-founder-copy">
+          {copy.founderParagraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
       </section>
 
