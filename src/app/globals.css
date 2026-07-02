@@ -2003,9 +2003,15 @@ input[type="number"] {
 }
 
 .scenario-btn.active {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--teal);
+  border-color: var(--teal);
   color: #fff;
+}
+
+:root[data-theme="dark"] .scenario-btn.active {
+  background: color-mix(in srgb, var(--teal) 34%, var(--surface-2));
+  border-color: var(--teal);
+  color: var(--ink);
 }
 
 .data-table {
