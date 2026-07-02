@@ -2723,7 +2723,7 @@ code {
   line-height: 1.45;
 }
 
-@media (max-width: 1360px) {
+@media (max-width: 1500px) {
   .topbar-inner {
     grid-template-columns: 1fr;
   }

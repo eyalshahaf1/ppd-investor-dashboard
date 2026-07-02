@@ -296,7 +296,7 @@ export const copy = {
       offline: "オフライン",
       reset: "リセット",
       save: "保存",
-      snapshot: "スナップショット",
+      snapshot: "印刷",
       switchTheme: "テーマ切替"
     },
     tabs: {
