@@ -4,10 +4,17 @@ import { useEffect, useMemo, useState } from "react";
 import { getDashboardSnapshot, projectScenario } from "@/lib/calculations";
 import { defaultAssumptions, scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
+import {
+  accessibilityStorageKey,
+  defaultAccessibilityPreferences,
+  normalizeAccessibilityPreferences,
+  type AccessibilityPreferences
+} from "@/lib/accessibility";
 import type { Language } from "@/lib/i18n";
 import { generateInvestorReport } from "@/lib/productFeatures";
 import type { Assumptions, JapanStatKey, JapanStatRecord, PilotTasks, ScenarioKey } from "@/lib/types";
 import { AboutView } from "./AboutView";
+import { AccessibilityStatement } from "./AccessibilityStatement";
 import { AppFooter } from "./AppFooter";
 import { CalculatorView } from "./CalculatorView";
 import { DataConnectionView } from "./DataConnectionView";
@@ -47,6 +54,9 @@ export function DashboardApp() {
   const [saveLabel, setSaveLabel] = useState("Save");
   const [themeMode, setThemeMode] = useState<ThemeMode>("light");
   const [language, setLanguage] = useState<Language>("en");
+  const [accessibilityPreferences, setAccessibilityPreferences] =
+    useState<AccessibilityPreferences>(defaultAccessibilityPreferences);
+  const [showAccessibilityStatement, setShowAccessibilityStatement] = useState(false);
   const [japanStats, setJapanStats] = useState<Record<JapanStatKey, JapanStatRecord> | null>(null);
 
   const mediumProjection = useMemo(
@@ -106,6 +116,28 @@ export function DashboardApp() {
   }, []);
 
   useEffect(() => {
+    const storedAccessibility = window.localStorage.getItem(accessibilityStorageKey);
+
+    if (storedAccessibility) {
+      try {
+        setAccessibilityPreferences(
+          normalizeAccessibilityPreferences(JSON.parse(storedAccessibility))
+        );
+        return;
+      } catch {
+        setAccessibilityPreferences(defaultAccessibilityPreferences);
+      }
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setAccessibilityPreferences({
+        ...defaultAccessibilityPreferences,
+        reducedMotion: true
+      });
+    }
+  }, []);
+
+  useEffect(() => {
     document.documentElement.dataset.theme = themeMode;
     window.localStorage.setItem("ppd-theme", themeMode);
   }, [themeMode]);
@@ -114,6 +146,19 @@ export function DashboardApp() {
     document.documentElement.lang = language;
     window.localStorage.setItem("ppd-language", language);
   }, [language]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.dataset.textSize = accessibilityPreferences.textSize;
+    root.dataset.highContrast = accessibilityPreferences.highContrast ? "true" : "false";
+    root.dataset.reducedMotion = accessibilityPreferences.reducedMotion ? "true" : "false";
+    root.dataset.underlineLinks = accessibilityPreferences.underlineLinks ? "true" : "false";
+    root.dataset.enhancedFocus = accessibilityPreferences.enhancedFocus ? "true" : "false";
+    window.localStorage.setItem(
+      accessibilityStorageKey,
+      JSON.stringify(accessibilityPreferences)
+    );
+  }, [accessibilityPreferences]);
 
   async function persistAssumptions(nextAssumptions: Assumptions) {
     if (!backendOnline) return;
@@ -185,6 +230,9 @@ export function DashboardApp() {
 
   return (
     <div className="app">
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <div className="app-chrome">
         <TopBar
           activeScenario={activeScenario}
@@ -192,15 +240,17 @@ export function DashboardApp() {
           backendOnline={backendOnline}
           themeMode={themeMode}
           language={language}
+          accessibilityPreferences={accessibilityPreferences}
           onThemeToggle={toggleTheme}
           onLanguageChange={setLanguage}
+          onAccessibilityChange={setAccessibilityPreferences}
           onReset={resetModel}
           onSave={saveSnapshot}
         />
         <Tabs activeTab={activeTab} language={language} onChange={changeTab} />
       </div>
       <div className="save-status" aria-live="polite">{saveLabel !== "Save" ? saveLabel : ""}</div>
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {activeTab === "overview" && (
           <OverviewView
             assumptions={assumptions}
@@ -235,7 +285,16 @@ export function DashboardApp() {
           <InvestorRoom reportText={investorReport} language={language} onNavigate={changeTab} />
         )}
       </main>
-      <AppFooter language={language} />
+      <AppFooter
+        language={language}
+        onAccessibilityOpen={() => setShowAccessibilityStatement(true)}
+      />
+      {showAccessibilityStatement && (
+        <AccessibilityStatement
+          language={language}
+          onClose={() => setShowAccessibilityStatement(false)}
+        />
+      )}
     </div>
   );
 }

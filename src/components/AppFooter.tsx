@@ -2,9 +2,10 @@ import { getCopy, type Language } from "@/lib/i18n";
 
 type AppFooterProps = {
   language: Language;
+  onAccessibilityOpen: () => void;
 };
 
-export function AppFooter({ language }: AppFooterProps) {
+export function AppFooter({ language, onAccessibilityOpen }: AppFooterProps) {
   const t = getCopy(language);
 
   return (
@@ -29,7 +30,12 @@ export function AppFooter({ language }: AppFooterProps) {
           </a>
         </div>
 
-        <p>{t.footer.disclaimer}</p>
+        <div className="footer-disclaimer">
+          <p>{t.footer.disclaimer}</p>
+          <button type="button" onClick={onAccessibilityOpen}>
+            Accessibility
+          </button>
+        </div>
       </div>
     </footer>
   );

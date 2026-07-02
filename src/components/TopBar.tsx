@@ -1,6 +1,8 @@
 import type { ScenarioKey } from "@/lib/types";
 import { scenarios } from "@/lib/defaults";
+import type { AccessibilityPreferences } from "@/lib/accessibility";
 import { getCopy, languages, type Language } from "@/lib/i18n";
+import { AccessibilitySettings } from "./AccessibilitySettings";
 
 export type ThemeMode = "light" | "dark";
 
@@ -10,8 +12,10 @@ type TopBarProps = {
   backendOnline: boolean;
   themeMode: ThemeMode;
   language: Language;
+  accessibilityPreferences: AccessibilityPreferences;
   onThemeToggle: () => void;
   onLanguageChange: (language: Language) => void;
+  onAccessibilityChange: (preferences: AccessibilityPreferences) => void;
   onReset: () => void;
   onSave: () => void;
 };
@@ -22,8 +26,10 @@ export function TopBar({
   backendOnline,
   themeMode,
   language,
+  accessibilityPreferences,
   onThemeToggle,
   onLanguageChange,
+  onAccessibilityChange,
   onReset,
   onSave
 }: TopBarProps) {
@@ -57,6 +63,11 @@ export function TopBar({
               </button>
             ))}
           </div>
+          <AccessibilitySettings
+            language={language}
+            preferences={accessibilityPreferences}
+            onChange={onAccessibilityChange}
+          />
           <div className="pill">
             <span>{t.topbar.baseCase}</span>
             <strong>{scenarios[activeScenario].label.replace(" adoption", "")}</strong>
