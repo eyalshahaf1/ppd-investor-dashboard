@@ -2572,6 +2572,21 @@ code {
   line-height: 1.45;
 }
 
+.about-market-proof {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.about-market-copy {
+  max-width: 720px;
+}
+
+.about-market-copy p {
+  margin-bottom: 0;
+}
+
 .boundary-row,
 .proof-row,
 .localization-step {
@@ -2729,7 +2744,8 @@ code {
   }
 
   .thesis-band,
-  .about-hero {
+  .about-hero,
+  .about-market-proof {
     grid-template-columns: 1fr;
   }
 
@@ -2816,6 +2832,10 @@ code {
   .macro-kpi-grid,
   .model-kpi-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-market-proof {
+    gap: 14px;
   }
 
   .enterprise-console-head,

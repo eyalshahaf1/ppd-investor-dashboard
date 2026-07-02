@@ -223,20 +223,21 @@ export function AboutView({ language }: AboutViewProps) {
         </div>
       </aside>
 
-      <section className="span-6 panel">
-        <h3>{copy.japanTitle}</h3>
-        <p>{copy.japanBody}</p>
-      </section>
-
-      <section className="span-6 panel">
-        <h3>{copy.proofTitle}</h3>
-        <div className="proof-list">
-          {copy.proofPoints.map(([title, body]) => (
-            <div className="proof-row" key={title}>
-              <b>{title}</b>
-              <p>{body}</p>
-            </div>
-          ))}
+      <section className="span-12 panel about-market-proof">
+        <div className="about-market-copy">
+          <h3>{copy.japanTitle}</h3>
+          <p>{copy.japanBody}</p>
+        </div>
+        <div>
+          <h3>{copy.proofTitle}</h3>
+          <div className="proof-list">
+            {copy.proofPoints.map(([title, body]) => (
+              <div className="proof-row" key={title}>
+                <b>{title}</b>
+                <p>{body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
