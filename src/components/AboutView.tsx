@@ -23,6 +23,7 @@ const aboutCopy = {
     role: "Role",
     roleValue: "Measurement layer",
     roleBody: "Not custody, not investment advice, not pension administration.",
+    roleChips: ["Measurement layer", "No custody", "Partner-operated rails"],
     founderTitle: "Founder",
     founderParagraphs: [
       "Eyal Shahaf is the founder of Pension Productivity Dividend.",
@@ -97,6 +98,7 @@ const aboutCopy = {
     role: "役割",
     roleValue: "測定レイヤー",
     roleBody: "資産保管、投資助言、年金管理ではありません。",
+    roleChips: ["測定レイヤー", "資産保管なし", "パートナー運営レール"],
     founderTitle: "創業者",
     founderParagraphs: [
       "シャハフ・エヤールは、Pension Productivity Dividendの創業者です。",
@@ -182,11 +184,11 @@ export function AboutView({ language }: AboutViewProps) {
           <p className="eyebrow">{copy.eyebrow}</p>
           <h2>{copy.title}</h2>
           <p>{copy.body}</p>
-        </div>
-        <div className="about-hero-stat">
-          <span>{copy.role}</span>
-          <strong>{copy.roleValue}</strong>
-          <p>{copy.roleBody}</p>
+          <div className="about-role-strip" aria-label={copy.role}>
+            {copy.roleChips.map((chip) => (
+              <span key={chip}>{chip}</span>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -199,29 +201,30 @@ export function AboutView({ language }: AboutViewProps) {
         </div>
       </section>
 
-      <section className="span-7 panel">
-        <h3>{copy.productTitle}</h3>
-        <div className="principle-list">
-          {copy.principles.map((item, index) => (
-            <div className="principle-row" key={item}>
-              <span>{index + 1}</span>
-              <p>{item}</p>
-            </div>
-          ))}
+      <section className="span-12 panel about-two-column">
+        <div>
+          <h3>{copy.productTitle}</h3>
+          <div className="principle-list">
+            {copy.principles.map((item, index) => (
+              <div className="principle-row" key={item}>
+                <span>{index + 1}</span>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h3>{copy.boundariesTitle}</h3>
+          <div className="boundary-list">
+            {copy.productBoundaries.map(([title, body]) => (
+              <div className="boundary-row" key={title}>
+                <b>{title}</b>
+                <p>{body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-
-      <aside className="span-5 panel">
-        <h3>{copy.boundariesTitle}</h3>
-        <div className="boundary-list">
-          {copy.productBoundaries.map(([title, body]) => (
-            <div className="boundary-row" key={title}>
-              <b>{title}</b>
-              <p>{body}</p>
-            </div>
-          ))}
-        </div>
-      </aside>
 
       <section className="span-12 panel about-market-proof">
         <div className="about-market-copy">
