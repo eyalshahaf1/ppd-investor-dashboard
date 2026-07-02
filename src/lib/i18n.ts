@@ -95,7 +95,80 @@ export const copy = {
       chartTitle: "Impact horizon: value now and at scale",
       contributionFlow: "Retirement contribution flow",
       aumTracked: "End-year AUM tracked",
-      platformRevenue: "Platform revenue"
+      platformRevenue: "Platform revenue",
+      enterprise: {
+        mode: "Enterprise pilot demo",
+        title: "Measurement workflow for a corporate customer",
+        body:
+          "A customer can test the full flow with safe sample files: evidence upload, verified gain ledger, approval gate, and partner instruction export.",
+        allocationLabel: "Current verified allocation",
+        allocationNote: "Instruction value only. No custody by PPD.",
+        steps: [
+          {
+            status: "Pilot input",
+            title: "1. Upload evidence",
+            body: "Workflow, finance, HR aggregate, and assurance files enter the pilot workspace."
+          },
+          {
+            status: "CFO source",
+            title: "2. Verify ledger",
+            body: "Map evidence to the ledger categories below before any pension allocation."
+          },
+          {
+            status: "Control gate",
+            title: "3. Review approval",
+            body: "CFO, HR, compliance, assurance, and partner readiness are checked."
+          },
+          {
+            status: "Partner rail",
+            title: "4. Export instruction",
+            body: "Generate a dry-run instruction for regulated partner rails. PPD does not custody funds."
+          }
+        ],
+        ledgerKeyTitle: "Ledger key",
+        ledgerKeyItems: [
+          "O = avoided overtime",
+          "S = reduced outsourcing",
+          "Q = quality / rework savings",
+          "M = incremental margin",
+          "A = AI-related costs to subtract"
+        ],
+        ledgerKeyNote:
+          "Only documented financial outcomes enter the ledger. Hours saved alone are evidence, not eligible gain.",
+        demoFilesTitle: "Demo scenario files",
+        demoFilesBody:
+          "Use these files in Partner Execution / Secure pilot upload to test conservative, medium, and strong pilot evidence.",
+        demoFiles: [
+          "Conservative pilot CSV",
+          "Medium pilot CSV",
+          "Strong pilot CSV",
+          "Partner instruction JSON"
+        ]
+      }
+    },
+    scenario: {
+      title: "Adoption scenarios and five-year projection",
+      body:
+        "Low / Medium / High are illustrative adoption scenarios for investor storytelling, not verified pilot results. Verified Calculation Mode is the source of truth for CFO-reviewed process economics.",
+      savedWorkspaceTitle: "Saved scenario workspace",
+      savedWorkspaceNote: "Local browser storage for investor demo prep",
+      saveCurrent: "Save current scenario",
+      emptySaved:
+        "Save an assumption set before an investor meeting, then switch back to it during Q&A.",
+      apply: "Apply",
+      delete: "Delete"
+    },
+    dataConnection: {
+      templateLinks: [
+        "Conservative pilot CSV",
+        "Medium pilot CSV",
+        "Strong pilot CSV",
+        "Secure pilot Excel sample",
+        "Verified gain Excel calculator",
+        "Workflow CSV template",
+        "Assumptions JSON",
+        "Partner instruction JSON"
+      ]
     },
     footer: {
       disclaimer:
@@ -191,7 +264,80 @@ export const copy = {
       chartTitle: "インパクト期間: 現在と拡大時の価値",
       contributionFlow: "退職拠出フロー",
       aumTracked: "年末AUMトラッキング",
-      platformRevenue: "プラットフォーム収益"
+      platformRevenue: "プラットフォーム収益",
+      enterprise: {
+        mode: "企業向けパイロットデモ",
+        title: "企業顧客向けの測定ワークフロー",
+        body:
+          "顧客は安全なサンプルファイルで、エビデンスアップロード、検証台帳、承認ゲート、パートナー向け指示書出力までを確認できます。",
+        allocationLabel: "現在の検証済み配分額",
+        allocationNote: "指示額のみ。PPDは資産を保管しません。",
+        steps: [
+          {
+            status: "パイロット入力",
+            title: "1. エビデンス登録",
+            body: "業務、財務、人事集計、保証資料をパイロット作業領域に入れます。"
+          },
+          {
+            status: "CFO基準",
+            title: "2. 台帳検証",
+            body: "年金配分の前に、エビデンスを下の台帳カテゴリに照合します。"
+          },
+          {
+            status: "管理ゲート",
+            title: "3. 承認レビュー",
+            body: "CFO、人事、コンプライアンス、保証、パートナー準備状況を確認します。"
+          },
+          {
+            status: "パートナーレール",
+            title: "4. 指示書出力",
+            body: "規制対象パートナー向けのドライラン指示を生成します。PPDは資金を保管しません。"
+          }
+        ],
+        ledgerKeyTitle: "台帳キー",
+        ledgerKeyItems: [
+          "O = 回避された残業費",
+          "S = 外部委託費の削減",
+          "Q = 品質・手戻り削減",
+          "M = 追加限界利益",
+          "A = 控除するAI関連コスト"
+        ],
+        ledgerKeyNote:
+          "台帳に入るのは文書化された財務成果のみです。時間削減だけでは適格利益になりません。",
+        demoFilesTitle: "デモ用シナリオファイル",
+        demoFilesBody:
+          "Partner Execution / Secure pilot uploadで、保守的・中位・強めのパイロットエビデンスをテストできます。",
+        demoFiles: [
+          "保守的パイロットCSV",
+          "中位パイロットCSV",
+          "強めパイロットCSV",
+          "パートナー指示JSON"
+        ]
+      }
+    },
+    scenario: {
+      title: "導入シナリオと5年予測",
+      body:
+        "Low / Medium / Highは投資家向け説明用の例示導入シナリオであり、検証済みパイロット結果ではありません。Verified Calculation ModeがCFOレビュー済みプロセス経済性の基準です。",
+      savedWorkspaceTitle: "保存済みシナリオ作業領域",
+      savedWorkspaceNote: "投資家デモ準備用のローカルブラウザ保存",
+      saveCurrent: "現在のシナリオを保存",
+      emptySaved:
+        "投資家ミーティング前に前提セットを保存し、Q&A中に戻せるようにします。",
+      apply: "適用",
+      delete: "削除"
+    },
+    dataConnection: {
+      templateLinks: [
+        "保守的パイロットCSV",
+        "中位パイロットCSV",
+        "強めパイロットCSV",
+        "安全なパイロットExcelサンプル",
+        "検証済みAI効果Excel計算サンプル",
+        "業務CSVテンプレート",
+        "前提条件JSON",
+        "パートナー指示JSON"
+      ]
     },
     footer: {
       disclaimer:

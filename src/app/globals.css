@@ -910,6 +910,43 @@ main {
   line-height: 1.45;
 }
 
+.enterprise-ledger-key {
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  background: color-mix(in srgb, var(--teal) 7%, var(--surface));
+}
+
+.enterprise-ledger-key > b {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.enterprise-ledger-key div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.enterprise-ledger-key span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.enterprise-ledger-key p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
 .enterprise-demo-row {
   border-top: 1px solid var(--line);
   padding-top: 14px;

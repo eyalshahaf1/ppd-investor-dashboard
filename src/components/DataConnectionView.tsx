@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { getCopy, type Language } from "@/lib/i18n";
 import { parseCsvPreview, type CsvPreview } from "@/lib/productFeatures";
 import type { DataUpload } from "@/lib/types";
 import { DataQualityScorecard } from "./DataQualityScorecard";
@@ -63,15 +64,15 @@ const guardrails = [
   "Keep customer exports in ignored local storage during the demo and pilot."
 ];
 
-const templateLinks = [
-  ["Conservative pilot CSV", "/templates/demo-scenarios/conservative-pilot-workflow.csv"],
-  ["Medium pilot CSV", "/templates/demo-scenarios/medium-pilot-workflow.csv"],
-  ["Strong pilot CSV", "/templates/demo-scenarios/strong-pilot-workflow.csv"],
-  ["Secure pilot Excel sample", "/templates/secure-pilot-upload-sample.xlsx"],
-  ["Verified gain Excel calculator", "/templates/verified-ai-gain-calculator-sample.xlsx"],
-  ["Workflow CSV template", "/templates/pilot-workflow-metrics.csv"],
-  ["Assumptions JSON", "/templates/assumptions-template.json"],
-  ["Partner instruction JSON", "/templates/contribution-instruction-template.json"]
+const templateHrefs = [
+  "/templates/demo-scenarios/conservative-pilot-workflow.csv",
+  "/templates/demo-scenarios/medium-pilot-workflow.csv",
+  "/templates/demo-scenarios/strong-pilot-workflow.csv",
+  "/templates/secure-pilot-upload-sample.xlsx",
+  "/templates/verified-ai-gain-calculator-sample.xlsx",
+  "/templates/pilot-workflow-metrics.csv",
+  "/templates/assumptions-template.json",
+  "/templates/contribution-instruction-template.json"
 ];
 
 type UploadTypeKey = (typeof uploadTypes)[number]["key"];
@@ -83,13 +84,18 @@ type UploadResponse = {
   error?: string;
 };
 
-export function DataConnectionView() {
+type DataConnectionViewProps = {
+  language: Language;
+};
+
+export function DataConnectionView({ language }: DataConnectionViewProps) {
   const [uploads, setUploads] = useState<DataUpload[]>([]);
   const [uploadType, setUploadType] = useState<UploadTypeKey>("workflow_metrics");
   const [isUploading, setIsUploading] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("Ready for aggregated pilot data.");
   const [csvPreview, setCsvPreview] = useState<CsvPreview | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const templateLabels = getCopy(language).dataConnection.templateLinks;
 
   useEffect(() => {
     loadUploads().catch(() => setUploadMessage("Upload registry unavailable."));
@@ -270,8 +276,8 @@ export function DataConnectionView() {
         <CsvMappingPreview preview={csvPreview} />
 
         <div className="template-link-row" aria-label="Static data templates">
-          {templateLinks.map(([label, href]) => (
-            <a href={href} key={href}>
+          {templateLabels.map((label, index) => (
+            <a href={templateHrefs[index]} key={templateHrefs[index]}>
               {label}
             </a>
           ))}

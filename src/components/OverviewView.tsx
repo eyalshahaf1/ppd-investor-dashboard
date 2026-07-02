@@ -65,7 +65,7 @@ export function OverviewView({
         </div>
       </section>
 
-      <EnterprisePilotConsole assumptions={assumptions} onNavigate={onNavigate} />
+      <EnterprisePilotConsole assumptions={assumptions} language={language} onNavigate={onNavigate} />
 
       <section className="span-12">
         <div className="section-title">

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { projectScenario } from "@/lib/calculations";
 import { scenarios } from "@/lib/defaults";
 import { formatEmployees, formatYen } from "@/lib/format";
+import { getCopy, type Language } from "@/lib/i18n";
 import type { Assumptions, ScenarioKey } from "@/lib/types";
 import { KpiCard } from "./KpiCard";
 import { ProjectionChart } from "./ProjectionChart";
@@ -12,6 +13,7 @@ import { ScenarioComparisonPanel } from "./ScenarioComparisonPanel";
 type ScenarioViewProps = {
   assumptions: Assumptions;
   activeScenario: ScenarioKey;
+  language: Language;
   onScenarioChange: (scenario: ScenarioKey) => void;
   onApplyAssumptions: (assumptions: Assumptions) => void;
 };
@@ -29,11 +31,13 @@ const savedScenarioKey = "ppd-saved-scenarios";
 export function ScenarioView({
   assumptions,
   activeScenario,
+  language,
   onScenarioChange,
   onApplyAssumptions
 }: ScenarioViewProps) {
   const rows = projectScenario(activeScenario, assumptions);
   const y5 = rows[rows.length - 1];
+  const copy = getCopy(language).scenario;
   const [savedScenarios, setSavedScenarios] = useState<SavedScenario[]>([]);
 
   useEffect(() => {
@@ -74,12 +78,8 @@ export function ScenarioView({
     <div className="dashboard-grid">
       <section className="span-12 section-title">
         <div>
-          <h2>Adoption scenarios and five-year projection</h2>
-          <p>
-            Low / Medium / High are illustrative adoption scenarios for investor
-            storytelling, not verified pilot results. Verified Calculation Mode is
-            the source of truth for CFO-reviewed process economics.
-          </p>
+          <h2>{copy.title}</h2>
+          <p>{copy.body}</p>
         </div>
         <div className="scenario-controls">
           {(Object.keys(scenarios) as ScenarioKey[]).map((key) => (
@@ -98,11 +98,11 @@ export function ScenarioView({
       <section className="span-12 panel">
         <div className="chart-head">
           <div>
-            <h3>Saved scenario workspace</h3>
-            <span className="source-note">Local browser storage for investor demo prep</span>
+            <h3>{copy.savedWorkspaceTitle}</h3>
+            <span className="source-note">{copy.savedWorkspaceNote}</span>
           </div>
           <button className="action-btn primary" type="button" onClick={saveCurrentScenario}>
-            Save current scenario
+            {copy.saveCurrent}
           </button>
         </div>
         {savedScenarios.length > 0 ? (
@@ -119,10 +119,10 @@ export function ScenarioView({
                 </p>
                 <div className="saved-scenario-actions">
                   <button className="action-btn" type="button" onClick={() => applySavedScenario(saved)}>
-                    Apply
+                    {copy.apply}
                   </button>
                   <button className="action-btn" type="button" onClick={() => deleteSavedScenario(saved.id)}>
-                    Delete
+                    {copy.delete}
                   </button>
                 </div>
               </article>
@@ -130,7 +130,7 @@ export function ScenarioView({
           </div>
         ) : (
           <p className="source-note">
-            Save an assumption set before an investor meeting, then switch back to it during Q&A.
+            {copy.emptySaved}
           </p>
         )}
       </section>

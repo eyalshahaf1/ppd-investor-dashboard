@@ -221,6 +221,7 @@ export function DashboardApp() {
           <ScenarioView
             assumptions={assumptions}
             activeScenario={activeScenario}
+            language={language}
             onScenarioChange={setActiveScenario}
             onApplyAssumptions={applyAssumptions}
           />
@@ -228,7 +229,7 @@ export function DashboardApp() {
         {activeTab === "pilot" && (
           <PilotTaskBoard tasks={pilotTasks} onTaskChange={updateTask} />
         )}
-        {activeTab === "data" && <DataConnectionView />}
+        {activeTab === "data" && <DataConnectionView language={language} />}
         {activeTab === "about" && <AboutView language={language} />}
         {activeTab === "investor" && (
           <InvestorRoom reportText={investorReport} onNavigate={changeTab} />
