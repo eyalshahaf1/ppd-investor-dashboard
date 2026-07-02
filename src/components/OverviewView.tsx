@@ -8,7 +8,6 @@ import type { Assumptions, JapanStatKey, JapanStatRecord, ProjectionRow } from "
 import { EnterprisePilotConsole } from "./EnterprisePilotConsole";
 import { ImpactHorizonChart, type ImpactHorizonRow } from "./ImpactHorizonChart";
 import { KpiCard } from "./KpiCard";
-import { PartnerExecutionFlow } from "./PartnerExecutionFlow";
 import { PilotEvidenceChart } from "./PilotEvidenceChart";
 import { UnitEconomicsChart } from "./UnitEconomicsChart";
 
@@ -157,25 +156,7 @@ export function OverviewView({
         <ImpactHorizonChart rows={impactRows} />
       </section>
 
-      <section className="span-8 panel">
-        <div className="section-title">
-          <div>
-            <h2>{t.overview.operatingFlowTitle}</h2>
-            <p>{t.overview.operatingFlowBody}</p>
-          </div>
-        </div>
-        <div className="flow">
-          {t.overview.flowSteps.map(([title, body], index) => (
-            <article className="flow-step" key={title}>
-              <div className="flow-index">{index + 1}</div>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <aside className="span-4 panel">
+      <section className="span-12 panel">
         <h3>{t.overview.valueSplitTitle}</h3>
         <p>
           {t.overview.valueSplitBody.replace(
@@ -194,9 +175,8 @@ export function OverviewView({
             ? t.overview.positioning.slice(t.overview.positioning.indexOf(":") + 1)
             : t.overview.positioning}
         </p>
-      </aside>
+      </section>
 
-      <PartnerExecutionFlow />
       <PilotEvidenceChart assumptions={assumptions} />
       <UnitEconomicsChart assumptions={assumptions} />
 

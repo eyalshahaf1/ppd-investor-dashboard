@@ -82,9 +82,6 @@ export function ScenarioView({
           </p>
         </div>
         <div className="scenario-controls">
-          <button className="scenario-btn" type="button" onClick={saveCurrentScenario}>
-            Save scenario
-          </button>
           {(Object.keys(scenarios) as ScenarioKey[]).map((key) => (
             <button
               key={key}
@@ -100,8 +97,13 @@ export function ScenarioView({
 
       <section className="span-12 panel">
         <div className="chart-head">
-          <h3>Saved scenario workspace</h3>
-          <span className="source-note">Local browser storage for investor demo prep</span>
+          <div>
+            <h3>Saved scenario workspace</h3>
+            <span className="source-note">Local browser storage for investor demo prep</span>
+          </div>
+          <button className="action-btn primary" type="button" onClick={saveCurrentScenario}>
+            Save current scenario
+          </button>
         </div>
         {savedScenarios.length > 0 ? (
           <div className="saved-scenario-grid">
