@@ -2009,9 +2009,9 @@ input[type="number"] {
 }
 
 :root[data-theme="dark"] .scenario-btn.active {
-  background: color-mix(in srgb, var(--teal) 34%, var(--surface-2));
+  background: var(--teal);
   border-color: var(--teal);
-  color: var(--ink);
+  color: #fff;
 }
 
 .data-table {
