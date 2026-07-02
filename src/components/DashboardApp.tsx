@@ -218,6 +218,7 @@ export function DashboardApp() {
             mediumProjection={mediumProjection}
             japanStats={japanStats}
             language={language}
+            onNavigate={changeTab}
           />
         )}
         {activeTab === "calculator" && (

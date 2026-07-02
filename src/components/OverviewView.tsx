@@ -5,6 +5,7 @@ import { scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
 import { getCopy, type Language } from "@/lib/i18n";
 import type { Assumptions, JapanStatKey, JapanStatRecord, ProjectionRow } from "@/lib/types";
+import { EnterprisePilotConsole } from "./EnterprisePilotConsole";
 import { ImpactHorizonChart, type ImpactHorizonRow } from "./ImpactHorizonChart";
 import { KpiCard } from "./KpiCard";
 import { PartnerExecutionFlow } from "./PartnerExecutionFlow";
@@ -16,6 +17,7 @@ type OverviewViewProps = {
   mediumProjection: ProjectionRow[];
   japanStats: Record<JapanStatKey, JapanStatRecord> | null;
   language: Language;
+  onNavigate: (tab: "calculator" | "pilot" | "data") => void;
 };
 
 type ImpactHorizon = "immediate" | "daily" | "monthly" | "annual" | "multiYear";
@@ -32,7 +34,8 @@ export function OverviewView({
   assumptions,
   mediumProjection,
   japanStats,
-  language
+  language,
+  onNavigate
 }: OverviewViewProps) {
   const y5 = mediumProjection[mediumProjection.length - 1];
   const [impactHorizon, setImpactHorizon] = useState<ImpactHorizon>("immediate");
@@ -62,6 +65,8 @@ export function OverviewView({
           </ul>
         </div>
       </section>
+
+      <EnterprisePilotConsole assumptions={assumptions} onNavigate={onNavigate} />
 
       <section className="span-12">
         <div className="section-title">

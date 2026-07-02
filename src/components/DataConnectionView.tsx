@@ -64,6 +64,9 @@ const guardrails = [
 ];
 
 const templateLinks = [
+  ["Conservative pilot CSV", "/templates/demo-scenarios/conservative-pilot-workflow.csv"],
+  ["Medium pilot CSV", "/templates/demo-scenarios/medium-pilot-workflow.csv"],
+  ["Strong pilot CSV", "/templates/demo-scenarios/strong-pilot-workflow.csv"],
   ["Secure pilot Excel sample", "/templates/secure-pilot-upload-sample.xlsx"],
   ["Verified gain Excel calculator", "/templates/verified-ai-gain-calculator-sample.xlsx"],
   ["Workflow CSV template", "/templates/pilot-workflow-metrics.csv"],

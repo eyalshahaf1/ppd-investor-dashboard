@@ -818,6 +818,130 @@ main {
   line-height: 1.55;
 }
 
+.enterprise-console {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: var(--surface);
+}
+
+.enterprise-console-head,
+.enterprise-demo-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.38fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.enterprise-console-head h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.enterprise-console-head p,
+.enterprise-demo-row p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.enterprise-outcome {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: var(--surface-2);
+}
+
+.enterprise-outcome span,
+.enterprise-outcome small,
+.enterprise-workflow span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.enterprise-outcome strong {
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.enterprise-workflow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.enterprise-workflow button {
+  min-height: 148px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: var(--surface-2);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.enterprise-workflow button:hover {
+  border-color: var(--teal);
+}
+
+.enterprise-workflow b {
+  display: block;
+  margin: 8px 0 6px;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.enterprise-workflow p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.enterprise-demo-row {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.enterprise-demo-row h3 {
+  margin-bottom: 4px;
+}
+
+.enterprise-file-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.enterprise-file-links a {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.enterprise-file-links a:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
 .flow {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -2719,6 +2843,19 @@ code {
     grid-template-columns: 1fr;
   }
 
+  .enterprise-console-head,
+  .enterprise-demo-row {
+    grid-template-columns: 1fr;
+  }
+
+  .enterprise-workflow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .enterprise-file-links {
+    justify-content: flex-start;
+  }
+
   .kpi-group-head {
     display: grid;
     gap: 4px;
@@ -2891,6 +3028,14 @@ code {
 }
 
 @media (max-width: 760px) {
+  .enterprise-workflow {
+    grid-template-columns: 1fr;
+  }
+
+  .enterprise-workflow button {
+    min-height: 0;
+  }
+
   .calculation-list {
     grid-template-columns: 1fr;
   }
