@@ -14,7 +14,6 @@ import { DataConnectionView } from "./DataConnectionView";
 import type { DashboardTab } from "./Tabs";
 import { InvestorRoom } from "./InvestorRoom";
 import { OverviewView } from "./OverviewView";
-import { PilotWorkflowTabs } from "./PilotWorkflowTabs";
 import { PilotTaskBoard } from "./PilotTaskBoard";
 import { ScenarioView } from "./ScenarioView";
 import { Tabs } from "./Tabs";
@@ -184,13 +183,6 @@ export function DashboardApp() {
     setThemeMode((current) => (current === "dark" ? "light" : "dark"));
   }
 
-  const showPilotWorkflowTabs = (
-    activeTab === "pilot" ||
-    activeTab === "calculator" ||
-    activeTab === "scenarios" ||
-    activeTab === "data"
-  );
-
   return (
     <div className="app">
       <div className="app-chrome">
@@ -209,9 +201,6 @@ export function DashboardApp() {
       </div>
       <div className="save-status" aria-live="polite">{saveLabel !== "Save" ? saveLabel : ""}</div>
       <main>
-        {showPilotWorkflowTabs && (
-          <PilotWorkflowTabs activeTab={activeTab} onChange={changeTab} />
-        )}
         {activeTab === "overview" && (
           <OverviewView
             assumptions={assumptions}

@@ -1483,68 +1483,6 @@ input[type="number"] {
   align-self: start;
 }
 
-.pilot-workflow-strip {
-  grid-column: span 12;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.pilot-workflow-label {
-  margin-right: 4px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.pilot-workflow-strip button {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 7px 10px 7px 7px;
-  background: var(--surface);
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
-}
-
-.pilot-workflow-strip button:hover {
-  border-color: color-mix(in srgb, var(--teal) 36%, var(--line));
-  transform: translateY(-1px);
-}
-
-.pilot-workflow-strip button.active {
-  border-color: color-mix(in srgb, var(--teal) 50%, var(--line));
-  background: color-mix(in srgb, var(--teal) 10%, var(--surface));
-}
-
-.pilot-workflow-strip span {
-  width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--soft);
-  color: var(--teal);
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.pilot-workflow-strip b {
-  display: block;
-  color: var(--ink);
-  font-size: 12px;
-  line-height: 1.25;
-}
-
 .calculation-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2829,7 +2767,6 @@ code {
   .resource-group-grid,
   .operational-note-grid,
   .operational-mapping-list,
-  .pilot-workflow-strip,
   .about-footer,
   .footer-inner,
   .control-grid,
