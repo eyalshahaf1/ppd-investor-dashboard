@@ -316,6 +316,7 @@ h1 {
 .accessibility-settings {
   position: relative;
   flex: 0 0 auto;
+  margin-inline-start: 12px;
 }
 
 .accessibility-settings summary {
