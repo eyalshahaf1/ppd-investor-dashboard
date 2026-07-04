@@ -354,11 +354,14 @@ h1 {
 }
 
 .accessibility-panel {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  z-index: 40;
-  width: min(320px, calc(100vw - 32px));
+  position: fixed;
+  top: 112px;
+  right: 24px;
+  left: auto;
+  z-index: 70;
+  width: min(360px, calc(100vw - 48px));
+  max-height: calc(100vh - 136px);
+  overflow: auto;
   display: grid;
   gap: 12px;
   border: 1px solid var(--line);
@@ -3107,6 +3110,18 @@ code {
 
   .top-actions .action-btn {
     flex: 1 1 auto;
+  }
+
+  .accessibility-settings {
+    margin-inline-start: 0;
+  }
+
+  .accessibility-panel {
+    top: 96px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    max-height: calc(100vh - 120px);
   }
 
   main {
