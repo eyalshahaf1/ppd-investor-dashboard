@@ -5,6 +5,7 @@ import { getCopy, type Language } from "@/lib/i18n";
 import { parseCsvPreview, type CsvPreview } from "@/lib/productFeatures";
 import type { DataUpload } from "@/lib/types";
 import { DataQualityScorecard } from "./DataQualityScorecard";
+import { SecurityDataBoundary } from "./SecurityDataBoundary";
 
 const uploadTypeKeys = [
   "workflow_metrics",
@@ -164,6 +165,8 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
           ))}
         </div>
       </aside>
+
+      <SecurityDataBoundary language={language} />
 
       <DataQualityScorecard uploads={uploads} language={language} />
 

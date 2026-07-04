@@ -17,6 +17,7 @@ import { AboutView } from "./AboutView";
 import { AccessibilityStatement } from "./AccessibilityStatement";
 import { AppFooter } from "./AppFooter";
 import { CalculatorView } from "./CalculatorView";
+import { CookieConsent } from "./CookieConsent";
 import { DataConnectionView } from "./DataConnectionView";
 import type { DashboardTab } from "./Tabs";
 import { InvestorRoom } from "./InvestorRoom";
@@ -295,6 +296,7 @@ export function DashboardApp() {
           onClose={() => setShowAccessibilityStatement(false)}
         />
       )}
+      <CookieConsent language={language} />
     </div>
   );
 }

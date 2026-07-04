@@ -31,6 +31,30 @@ Those files can contain API keys, database credentials, OAuth secrets, storage c
 
 The `.gitignore` file now blocks real `.env` files while allowing `.env.example`.
 
+For Vercel or another cloud host, store production values only in the provider's encrypted environment variable system. Do not paste keys into source files, screenshots, documents, or demo data files.
+
+Example future production secrets include:
+
+```text
+DATABASE_URL
+AUTH_SECRET
+SFTP_PRIVATE_KEY
+PARTNER_API_KEY
+E_STAT_APP_ID
+```
+
+## Cookies And Browser Storage
+
+The demo uses browser local storage for:
+
+- language preference,
+- dark/light preference,
+- accessibility settings,
+- saved scenario workspace,
+- cookie consent choice.
+
+Only essential local preferences should be stored by default. Analytics should remain off unless a user explicitly accepts analytics cookies.
+
 ## Local Upload Storage
 
 Pilot uploads are stored locally under:
@@ -108,6 +132,8 @@ Before using real customer data, add:
 - audit logs,
 - file virus scanning,
 - data retention controls,
+- consent and cookie-management controls,
+- production security headers and CSP review,
 - customer data-processing agreement,
 - Japan privacy, labor, pension, tax, and financial-regulatory legal review,
 - external penetration test or security review.

@@ -279,6 +279,45 @@ export const copy = {
         "Partner instruction JSON"
       ]
     },
+    securityBoundary: {
+      eyebrow: "Enterprise readiness",
+      title: "Security and data boundary",
+      status: "Demo-safe posture",
+      body:
+        "The current dashboard is designed for investor demos and 90-day pilots with aggregated evidence only. Live employee, salary, pension account, bank, national ID, and secret data should stay outside the prototype.",
+      cards: [
+        [
+          "Cookies",
+          "Essential first",
+          "Only local preferences are stored by default. Analytics should remain off unless a user explicitly accepts it."
+        ],
+        [
+          "Secrets",
+          "Environment variables",
+          "API keys, database URLs, OAuth secrets, and connector credentials belong in Vercel environment variables, never in Git."
+        ],
+        [
+          "Customer data",
+          "Aggregated evidence",
+          "Use workflow, team, department, or cost-center data for pilots. Avoid personal employee-level exports."
+        ],
+        [
+          "Future SaaS",
+          "Controlled access",
+          "Production use requires SSO, roles, tenant isolation, audit logs, retention rules, and legal/security review."
+        ]
+      ],
+      noteTitle: "Boundary",
+      noteBody:
+        "PPD prepares verified contribution instructions. Regulated partners execute funds, custody, and pension account operations."
+    },
+    cookieConsent: {
+      title: "Cookie preferences",
+      body:
+        "This prototype uses essential local storage for language, theme, accessibility, and demo preferences. Optional analytics should be enabled only with consent.",
+      essential: "Essential only",
+      analytics: "Allow analytics"
+    },
     footer: {
       disclaimer:
         "Demo version for discussion purposes only. Calculations are based on simplified assumptions and do not represent financial, legal, tax, actuarial, investment, or pension advice."
@@ -556,6 +595,45 @@ export const copy = {
         "前提条件JSON",
         "パートナー指示JSON"
       ]
+    },
+    securityBoundary: {
+      eyebrow: "エンタープライズ準備",
+      title: "セキュリティとデータ境界",
+      status: "デモ向け安全設計",
+      body:
+        "現在のダッシュボードは、投資家デモと90日間パイロット向けに、集計エビデンスのみを扱う前提です。従業員、給与、年金口座、銀行、国民ID、秘密情報などの本番データは、このプロトタイプの外に置くべきです。",
+      cards: [
+        [
+          "Cookie",
+          "必須を優先",
+          "初期状態では、言語、テーマ、アクセシビリティ、デモ設定などのローカル設定のみを保存します。分析は明示的な同意後に限定します。"
+        ],
+        [
+          "シークレット",
+          "環境変数",
+          "APIキー、データベースURL、OAuthシークレット、接続認証情報はGitではなく、Vercel環境変数で管理します。"
+        ],
+        [
+          "顧客データ",
+          "集計エビデンス",
+          "パイロットでは業務、チーム、部門、コストセンター単位のデータを使用し、個人従業員レベルのエクスポートは避けます。"
+        ],
+        [
+          "将来SaaS",
+          "アクセス管理",
+          "本番利用にはSSO、ロール、テナント分離、監査ログ、保持ルール、法務・セキュリティレビューが必要です。"
+        ]
+      ],
+      noteTitle: "境界",
+      noteBody:
+        "PPDは検証済み拠出指示を作成します。資金、保管、年金口座運用は規制対象パートナーが実行します。"
+    },
+    cookieConsent: {
+      title: "Cookie設定",
+      body:
+        "このプロトタイプは、言語、テーマ、アクセシビリティ、デモ設定のために必須のローカル保存を使用します。任意の分析は同意がある場合のみ有効にします。",
+      essential: "必須のみ",
+      analytics: "分析を許可"
     },
     footer: {
       disclaimer:
