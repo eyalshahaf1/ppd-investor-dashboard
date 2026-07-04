@@ -378,6 +378,29 @@ h1 {
   padding: 0;
 }
 
+.accessibility-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.accessibility-panel-head b {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.accessibility-panel-head button {
+  min-height: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .accessibility-panel legend {
   margin-bottom: 8px;
   color: var(--ink);

@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import type {
   AccessibilityPreferences,
   AccessibilityTextSize
@@ -24,7 +27,8 @@ const accessibilityCopy = {
     reducedMotion: "Reduced motion",
     underlineLinks: "Underline links",
     enhancedFocus: "Enhanced focus",
-    reset: "Reset"
+    reset: "Reset",
+    close: "Close"
   },
   ja: {
     summary: "補助",
@@ -39,7 +43,8 @@ const accessibilityCopy = {
     reducedMotion: "動きを減らす",
     underlineLinks: "リンクに下線",
     enhancedFocus: "フォーカス強調",
-    reset: "リセット"
+    reset: "リセット",
+    close: "閉じる"
   }
 } as const;
 
@@ -49,6 +54,7 @@ export function AccessibilitySettings({
   onChange
 }: AccessibilitySettingsProps) {
   const copy = accessibilityCopy[language];
+  const detailsRef = useRef<HTMLDetailsElement | null>(null);
 
   function updatePreference<K extends keyof AccessibilityPreferences>(
     key: K,
@@ -58,9 +64,21 @@ export function AccessibilitySettings({
   }
 
   return (
-    <details className="accessibility-settings">
+    <details className="accessibility-settings" ref={detailsRef}>
       <summary>{copy.summary}</summary>
       <div className="accessibility-panel">
+        <div className="accessibility-panel-head">
+          <b>{copy.title}</b>
+          <button
+            type="button"
+            onClick={() => {
+              if (detailsRef.current) detailsRef.current.open = false;
+            }}
+          >
+            {copy.close}
+          </button>
+        </div>
+
         <fieldset>
           <legend>{copy.textSize}</legend>
           <div className="accessibility-choice-row">
