@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { ScenarioKey } from "@/lib/types";
 import { scenarios } from "@/lib/defaults";
 import type { AccessibilityPreferences } from "@/lib/accessibility";
@@ -38,9 +38,24 @@ export function TopBar({
 }: TopBarProps) {
   const t = getCopy(language);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const topbarRef = useRef<HTMLElement | null>(null);
+
+  function toggleMobileMenu() {
+    setIsMobileMenuOpen((isOpen) => {
+      if (isOpen) {
+        topbarRef.current
+          ?.querySelectorAll<HTMLDetailsElement>(".accessibility-settings[open]")
+          .forEach((details) => {
+            details.open = false;
+          });
+      }
+
+      return !isOpen;
+    });
+  }
 
   return (
-    <header className="topbar">
+    <header className="topbar" ref={topbarRef}>
       <div className="topbar-inner">
         <div className="brand">
           <div className="eyebrow">{t.topbar.eyebrow}</div>
@@ -68,7 +83,7 @@ export function TopBar({
           type="button"
           aria-expanded={isMobileMenuOpen}
           aria-controls="topbar-controls"
-          onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
+          onClick={toggleMobileMenu}
         >
           <span aria-hidden="true">{isMobileMenuOpen ? "×" : "☰"}</span>
           {isMobileMenuOpen ? t.topbar.closeControls : t.topbar.openControls}
