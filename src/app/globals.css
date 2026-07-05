@@ -265,6 +265,14 @@ h1 {
   min-width: 0;
 }
 
+:root[data-theme="dark"] .brand-lockup {
+  padding: 10px 14px;
+  border: 1px solid rgba(216, 224, 218, 0.86);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+}
+
 .brand-logo-horizontal {
   width: auto;
   height: 70px;
