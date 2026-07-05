@@ -2,7 +2,7 @@
 
 Prepared by Eyal Shahaf
 
-This project is a demonstration application for the Pension from AI Productivity Dividend concept in Japan.
+This project is a demonstration application for TOMO PENSION and the Pension Productivity Dividend framework in Japan.
 
 ## Important Boundaries
 

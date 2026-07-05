@@ -10,10 +10,21 @@ The `public/` folder contains static files that are served directly by Next.js. 
 
 ```text
 public/
-  PPD_App_Icon_Teal_White.svg
-  PPD_Icon_Only_Teal.svg
-  PPD_Horizontal_Primary_Teal.svg
-  social-preview.svg
+  brand/
+    tomo/
+      logo-horizontal.svg
+      logo-vertical.svg
+      icon.svg
+      logo-navy.svg
+      favicon-32.png
+      favicon-48.png
+      apple-touch-icon.png
+      og-image.png
+      jp-icons/
+        measure.svg
+        verify.svg
+        share.svg
+        future.svg
   manifest.webmanifest
   robots.txt
   humans.txt
@@ -28,10 +39,12 @@ public/
 
 ## File Purposes
 
-- `PPD_App_Icon_Teal_White.svg` - favicon, app icon, Apple touch icon, and manifest icon source.
-- `PPD_Icon_Only_Teal.svg` - compact symbol for the app title and other small placements.
-- `PPD_Horizontal_Primary_Teal.svg` - full horizontal logo for wide brand lockup placements only.
-- `social-preview.svg` - static website/social-card preview image referenced from app metadata. It is not a Canva editing master.
+- `brand/tomo/logo-horizontal.svg` - TOMO PENSION full horizontal lockup for wide header and identity placements.
+- `brand/tomo/icon.svg` - compact TOMO PENSION icon for narrow mobile identity placement.
+- `brand/tomo/favicon-32.png` and `brand/tomo/favicon-48.png` - browser favicon sources.
+- `brand/tomo/apple-touch-icon.png` - Apple touch icon and manifest icon source.
+- `brand/tomo/og-image.png` - static website/social-card preview image referenced from app metadata.
+- `brand/tomo/jp-icons/*.svg` - concept-strip icons for Measure, Verify, Share, and Future.
 - `manifest.webmanifest` - installable web-app metadata and theme color.
 - `robots.txt` - basic crawler guidance. Add a sitemap only after a real production domain exists.
 - `humans.txt` - project credit and repository note.
@@ -45,7 +58,7 @@ public/
 
 Before a public launch:
 
-- replace SVG touch icons with PNG icon sizes for broader platform support,
+- confirm all TOMO PENSION artwork has final legal and brand approval,
 - add a real production `sitemap.xml`,
 - replace legal placeholders with counsel-reviewed documents,
 - point metadata URLs to the production domain,

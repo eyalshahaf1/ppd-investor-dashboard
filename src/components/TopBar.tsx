@@ -40,12 +40,18 @@ export function TopBar({
       <div className="topbar-inner">
         <div className="brand">
           <div className="eyebrow">{t.topbar.eyebrow}</div>
-          <div className="title-row">
-            <span className="brand-symbol-frame" aria-hidden="true">
-              <img className="brand-symbol" src="/PPD_Icon_Only_Teal.svg" alt="" />
+          <div className="brand-lockup" aria-label={t.topbar.title}>
+            <img
+              className="brand-logo-horizontal"
+              src="/brand/tomo/logo-horizontal.svg"
+              alt={t.topbar.title}
+            />
+            <span className="brand-mobile-lockup">
+              <img className="brand-mobile-icon" src="/brand/tomo/icon.svg" alt="" aria-hidden="true" />
+              <span>{t.topbar.title}</span>
             </span>
-            <h1>{t.topbar.title}</h1>
           </div>
+          <h1 className="sr-only">{t.topbar.title}</h1>
           <p className="subtitle">
             {t.topbar.subtitle}
           </p>

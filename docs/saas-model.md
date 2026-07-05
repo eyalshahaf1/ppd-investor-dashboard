@@ -106,7 +106,7 @@ Customer ask:
 
 Output:
 
-- verified PPD pilot report,
+- verified TOMO PENSION pilot report,
 - contribution instruction demo,
 - partner execution design,
 - scale decision.
@@ -139,7 +139,7 @@ Duration:
 Scope:
 
 - industry benchmark dataset,
-- PPD Certified mark,
+- TOMO PENSION Certified mark,
 - third-party assurance standard,
 - insurer/trust-bank/payroll coalition,
 - policy observer pathway.
@@ -321,7 +321,7 @@ The moat should come from:
 - two paid pilots,
 - one regulated rail partner,
 - third-party verifier,
-- first verified PPD report,
+- first verified TOMO PENSION report,
 - repeatable integration pattern.
 
 ### Series A
@@ -349,4 +349,3 @@ If employees see the system as surveillance or layoff justification, adoption wi
 ### Incumbent Copying
 
 Insurers, payroll vendors, and consultancies can copy the story. Move fast on method, data, and coalition trust.
-

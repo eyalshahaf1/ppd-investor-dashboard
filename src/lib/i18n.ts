@@ -9,7 +9,7 @@ export const copy = {
   en: {
     topbar: {
       eyebrow: "Japan Pilot Feasibility Concept",
-      title: "Pension from AI Productivity",
+      title: "TOMO PENSION",
       subtitle:
         "Measure verified AI gains. Allocate a small pre-agreed share. Generate validated contribution instructions for partner-operated rails.",
       baseCase: "Base case",
@@ -31,9 +31,9 @@ export const copy = {
       investor: "Investor Room"
     },
     overview: {
-      thesisTitle: "AI productivity dividend layer for Japan.",
+      thesisTitle: "TOMO PENSION for Japan.",
       thesisBody:
-        "Measurement is the product. Pension value is the outcome. Existing partner-operated rails execute approved contribution routes.",
+        "Measurement is the product. Pension value is the outcome. The Pension Productivity Dividend framework turns verified productivity gains into partner-ready contribution instructions.",
       askTitle: "90-day measurement-only pilot",
       asks: [
         "1 operating employer",
@@ -44,7 +44,7 @@ export const copy = {
       dashboardBody:
         "Macro context, pension impact, and SaaS revenue in one view.",
       macroContextTitle: "Japan macro context",
-      modelOutputTitle: "PPD model output",
+      modelOutputTitle: "Pension Productivity Dividend model output",
       population65: "Japan population 65+",
       births2024: "2024 births",
       workingAgeShare: "Working-age share",
@@ -57,10 +57,17 @@ export const copy = {
       officialEstimateNote: "Latest official estimate. Source: Statistics Bureau of Japan.",
       officialAnnualNote: "Latest official annual data. Source: MHLW / e-Stat.",
       modelOutputNote: "Illustrative medium scenario model output.",
+      tomoConceptHeading: "Measured gains. Verified value. Shared future.",
+      tomoConceptItems: [
+        ["Measure / 測定", "Evidence from workflow change."],
+        ["Verify / 検証", "Reconciled eligible value."],
+        ["Share / 分かち合い", "Small agreed allocation."],
+        ["Future / 未来", "Long-term employee security."]
+      ],
       refreshed: "Refreshed",
       operatingFlowTitle: "Operating flow",
       operatingFlowBody:
-        "PPD measures, validates, reports, and prepares instructions. Regulated partners custody assets and execute approved routes.",
+        "TOMO PENSION measures, validates, reports, and prepares instructions. Regulated partners custody assets and execute approved routes.",
       flowSteps: [
         [
           "AI workflow",
@@ -120,7 +127,7 @@ export const copy = {
         body:
           "A customer can test the full flow with safe sample files: evidence upload, verified gain ledger, approval gate, and partner instruction export.",
         allocationLabel: "Current verified allocation",
-        allocationNote: "Instruction value only. No custody by PPD.",
+        allocationNote: "Instruction value only. No custody by TOMO PENSION.",
         steps: [
           {
             status: "Pilot input",
@@ -140,7 +147,7 @@ export const copy = {
           {
             status: "Partner rail",
             title: "4. Export instruction",
-            body: "Generate a dry-run instruction for regulated partner rails. PPD does not custody funds."
+            body: "Generate a dry-run instruction for regulated partner rails. TOMO PENSION does not custody funds."
           }
         ],
         ledgerKeyTitle: "Ledger key",
@@ -218,7 +225,7 @@ export const copy = {
       connectionModelTitle: "Connection model",
       connectionSteps: [
         ["Customer export", "Workflow and cost data."],
-        ["PPD verification", "Net AI cost and apply controls."],
+        ["TOMO PENSION verification", "Net AI cost and apply controls."],
         ["Partner instruction", "Contribution instructions only."]
       ],
       privacyTitle: "Privacy guardrails",
@@ -309,7 +316,7 @@ export const copy = {
       ],
       noteTitle: "Boundary",
       noteBody:
-        "PPD prepares verified contribution instructions. Regulated partners execute funds, custody, and pension account operations."
+        "TOMO PENSION prepares verified contribution instructions. Regulated partners execute funds, custody, and pension account operations."
     },
     cookieConsent: {
       title: "Cookie preferences",
@@ -326,7 +333,7 @@ export const copy = {
   ja: {
     topbar: {
       eyebrow: "日本向け実証可能性コンセプト",
-      title: "Pension from AI Productivity",
+      title: "TOMO PENSION",
       subtitle:
         "検証済みAI効果を測定し、事前合意された小さな割合を配分し、パートナー運営レール向けの検証済み拠出指示を生成します。",
       baseCase: "基本ケース",
@@ -348,9 +355,9 @@ export const copy = {
       investor: "投資家向け"
     },
     overview: {
-      thesisTitle: "日本向けAI生産性配当レイヤー。",
+      thesisTitle: "日本向けTOMO PENSION。",
       thesisBody:
-        "測定がプロダクトであり、年金価値が成果です。既存のパートナー運営レールが承認済み拠出ルートを実行します。",
+        "測定がプロダクトであり、年金価値が成果です。Pension Productivity Dividendの枠組みにより、検証済み生産性効果をパートナー向け拠出指示へ変換します。",
       askTitle: "90日間の測定限定パイロット",
       asks: [
         "実証参加企業 1社",
@@ -361,7 +368,7 @@ export const copy = {
       dashboardBody:
         "マクロ背景、年金インパクト、SaaS収益を一画面で表示。",
       macroContextTitle: "日本のマクロ背景",
-      modelOutputTitle: "PPDモデル出力",
+      modelOutputTitle: "Pension Productivity Dividendモデル出力",
       population65: "日本の65歳以上人口",
       births2024: "2024年出生数",
       workingAgeShare: "生産年齢人口比率",
@@ -374,10 +381,17 @@ export const copy = {
       officialEstimateNote: "最新の公式推計。出所: 日本の統計局。",
       officialAnnualNote: "最新の公式年次データ。出所: 厚生労働省 / e-Stat。",
       modelOutputNote: "中位シナリオの例示モデル出力。",
+      tomoConceptHeading: "Measured gains. Verified value. Shared future.",
+      tomoConceptItems: [
+        ["Measure / 測定", "業務変化からのエビデンス。"],
+        ["Verify / 検証", "照合済みの適格価値。"],
+        ["Share / 分かち合い", "事前合意された小さな配分。"],
+        ["Future / 未来", "従業員の長期的安心。"]
+      ],
       refreshed: "更新",
       operatingFlowTitle: "運用フロー",
       operatingFlowBody:
-        "PPDは測定、検証、報告、拠出指示の作成を行います。資産保管と実行は規制対象パートナーが担います。",
+        "TOMO PENSIONは測定、検証、報告、拠出指示の作成を行います。資産保管と実行は規制対象パートナーが担います。",
       flowSteps: [
         [
           "AI業務",
@@ -437,7 +451,7 @@ export const copy = {
         body:
           "顧客は安全なサンプルファイルで、エビデンスアップロード、検証台帳、承認ゲート、パートナー向け指示書出力までを確認できます。",
         allocationLabel: "現在の検証済み配分額",
-        allocationNote: "指示額のみ。PPDは資産を保管しません。",
+        allocationNote: "指示額のみ。TOMO PENSIONは資産を保管しません。",
         steps: [
           {
             status: "パイロット入力",
@@ -457,7 +471,7 @@ export const copy = {
           {
             status: "パートナーレール",
             title: "4. 指示書出力",
-            body: "規制対象パートナー向けのドライラン指示を生成します。PPDは資金を保管しません。"
+            body: "規制対象パートナー向けのドライラン指示を生成します。TOMO PENSIONは資金を保管しません。"
           }
         ],
         ledgerKeyTitle: "台帳キー",
@@ -535,7 +549,7 @@ export const copy = {
       connectionModelTitle: "接続モデル",
       connectionSteps: [
         ["顧客エクスポート", "業務データとコストデータ。"],
-        ["PPD検証", "AI純コストと管理条件を確認。"],
+        ["TOMO PENSION検証", "AI純コストと管理条件を確認。"],
         ["パートナー指示", "拠出指示のみ。"]
       ],
       privacyTitle: "プライバシー管理",
@@ -626,7 +640,7 @@ export const copy = {
       ],
       noteTitle: "境界",
       noteBody:
-        "PPDは検証済み拠出指示を作成します。資金、保管、年金口座運用は規制対象パートナーが実行します。"
+        "TOMO PENSIONは検証済み拠出指示を作成します。資金、保管、年金口座運用は規制対象パートナーが実行します。"
     },
     cookieConsent: {
       title: "Cookie設定",

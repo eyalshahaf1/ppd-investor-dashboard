@@ -44,7 +44,7 @@ Essential local storage is used for the demo experience. Optional analytics shou
 
 The prototype should not receive live employee-level records, salary details, bank data, pension account data, national IDs, API keys, passwords, or regulated partner secrets.
 
-PPD prepares measurement outputs and partner-ready contribution instructions. Regulated partners are responsible for funds, custody, and pension account execution.
+TOMO PENSION prepares measurement outputs and partner-ready contribution instructions. Regulated partners are responsible for funds, custody, and pension account execution.
 
 ## Production Requirement
 

@@ -1,23 +1,29 @@
 {
-  "name": "Pension from AI Productivity Dashboard",
-  "short_name": "PPD Dashboard",
+  "name": "TOMO PENSION Pilot Dashboard",
+  "short_name": "TOMO PENSION",
   "description": "A pilot dashboard for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f6f7f4",
-  "theme_color": "#0b6b5a",
+  "background_color": "#FFFFFF",
+  "theme_color": "#00234C",
   "icons": [
     {
-      "src": "/PPD_App_Icon_Teal_White.svg",
-      "sizes": "64x64",
-      "type": "image/svg+xml",
+      "src": "/brand/tomo/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/PPD_App_Icon_Teal_White.svg",
+      "src": "/brand/tomo/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/tomo/apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

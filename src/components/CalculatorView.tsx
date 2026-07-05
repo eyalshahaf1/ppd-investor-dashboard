@@ -223,7 +223,7 @@ const calculationCopy = {
       ["SaaS fee", "JPY / employee / month"],
       [
         "Contribution instruction fee",
-        "0.5% of verified allocation value. Separately invoiced to the employer or rail partner. Not deducted from, held, pooled, transferred, or invested by PPD."
+        "0.5% of verified allocation value. Separately invoiced to the employer or rail partner. Not deducted from, held, pooled, transferred, or invested by TOMO PENSION."
       ],
       ["Verification fee", "JPY millions / employer / year"],
       ["Gross margin", "% recurring revenue"],
@@ -325,7 +325,7 @@ const calculationCopy = {
       ["SaaS料金", "円 / 従業員 / 月"],
       [
         "拠出指示・照合フィー",
-        "検証済み配分額の0.5%。雇用主またはレールパートナーへ別請求。PPDが控除、保有、プール、移転、投資するものではありません。"
+        "検証済み配分額の0.5%。雇用主またはレールパートナーへ別請求。TOMO PENSIONが控除、保有、プール、移転、投資するものではありません。"
       ],
       ["検証フィー", "百万円 / 雇用主 / 年"],
       ["粗利率", "継続収益に対する割合"],

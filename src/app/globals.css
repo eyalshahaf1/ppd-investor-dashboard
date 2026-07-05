@@ -7,11 +7,11 @@
   --ink: #17201d;
   --muted: #65736c;
   --line: #d8e0da;
-  --teal: #0b6b5a;
+  --teal: #00234c;
   --coral: #d84c3f;
-  --amber: #f0b342;
-  --indigo: #4f5aa8;
-  --blue: #2f7da1;
+  --amber: #c88c15;
+  --indigo: #264a78;
+  --blue: #315f8f;
   --good: #14724f;
   --warn: #a65d14;
   --bad: #b83a31;
@@ -28,11 +28,11 @@
   --ink: #eef7f2;
   --muted: #a8b9b0;
   --line: #35463f;
-  --teal: #3fc5aa;
+  --teal: #dbe8f7;
   --coral: #ff766b;
-  --amber: #f3c45f;
-  --indigo: #9aa4ff;
-  --blue: #74c7e6;
+  --amber: #d7a13a;
+  --indigo: #95b3da;
+  --blue: #8ab5df;
   --good: #5bd69f;
   --warn: #f5ba5b;
   --bad: #ff7b73;
@@ -46,11 +46,11 @@
   --ink: #07110e;
   --muted: #263a33;
   --line: #52645d;
-  --teal: #006b5a;
+  --teal: #00234c;
   --coral: #a9271f;
-  --amber: #8a5a00;
-  --indigo: #29368f;
-  --blue: #075f86;
+  --amber: #8a5d00;
+  --indigo: #173b68;
+  --blue: #1c4f80;
   --shadow: none;
 }
 
@@ -61,11 +61,11 @@
   --ink: #ffffff;
   --muted: #d8e7df;
   --line: #7f948b;
-  --teal: #5ff5d7;
+  --teal: #ffffff;
   --coral: #ff958d;
-  --amber: #ffd36a;
-  --indigo: #c4caff;
-  --blue: #a1e7ff;
+  --amber: #f0bd54;
+  --indigo: #d6e5f8;
+  --blue: #c4dcf4;
   --shadow: none;
 }
 
@@ -181,6 +181,18 @@ main:focus {
   outline: none;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+}
+
 .app-chrome {
   position: sticky;
   top: 0;
@@ -236,6 +248,41 @@ h1 {
   gap: 12px;
   margin-top: 8px;
   margin-bottom: 6px;
+}
+
+.brand-lockup {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.brand-logo-horizontal {
+  width: auto;
+  height: 54px;
+  max-width: min(440px, 100%);
+  display: block;
+  object-fit: contain;
+}
+
+.brand-mobile-lockup {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.brand-mobile-icon {
+  width: auto;
+  height: 34px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  display: block;
 }
 
 .title-row h1 {
@@ -1242,8 +1289,8 @@ main {
 .accent-blue { border-top: 4px solid var(--blue); }
 
 .thesis-band {
-  background: linear-gradient(90deg, rgba(11, 107, 90, 0.11), rgba(240, 179, 66, 0.15));
-  border: 1px solid rgba(11, 107, 90, 0.18);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--teal) 11%, transparent), color-mix(in srgb, var(--amber) 16%, transparent));
+  border: 1px solid color-mix(in srgb, var(--teal) 18%, var(--line));
   border-radius: var(--radius);
   padding: 18px;
   display: grid;
@@ -1278,6 +1325,54 @@ main {
   color: var(--ink);
   font-size: 14px;
   line-height: 1.55;
+}
+
+.tomo-concept-strip {
+  display: grid;
+  gap: 14px;
+}
+
+.tomo-concept-strip h3 {
+  margin: 0;
+  color: var(--ink);
+}
+
+.tomo-concept-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tomo-concept-item {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: var(--surface-2);
+}
+
+.tomo-concept-item img {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.tomo-concept-item b {
+  display: block;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.tomo-concept-item p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .enterprise-console {
@@ -3324,6 +3419,14 @@ code {
     height: 25px;
   }
 
+  .brand-logo-horizontal {
+    display: none;
+  }
+
+  .brand-mobile-lockup {
+    display: inline-flex;
+  }
+
   .section-title,
   .chart-head {
     display: block;
@@ -3347,6 +3450,7 @@ code {
   .operational-note-grid,
   .operational-mapping-list,
   .security-boundary-grid,
+  .tomo-concept-grid,
   .about-footer,
   .footer-inner,
   .control-grid,

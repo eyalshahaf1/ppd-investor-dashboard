@@ -1,6 +1,6 @@
 const executionSteps = [
   ["Customer data", "Aggregated workflow evidence."],
-  ["PPD verification", "Net costs and baseline checks."],
+  ["TOMO PENSION verification", "Net costs and baseline checks."],
   ["Dividend calculation", "Rule applied to verified value."],
   ["Instruction file/API", "Partner-ready instructions."],
   ["Regulated partner", "Licensed rail executes."],

@@ -167,7 +167,7 @@ Recommended outputs:
 - HR report,
 - employee communication summary,
 - assurance evidence package,
-- PPD certification report.
+- TOMO PENSION certification report.
 
 Example contribution instruction payload:
 
@@ -217,7 +217,7 @@ For a 90-day pilot:
 ```text
 Customer systems
   -> secure pilot data export
-  -> PPD measurement workspace
+  -> TOMO PENSION measurement workspace
   -> verification review
   -> dividend calculation
   -> rail partner instruction file

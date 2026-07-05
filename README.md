@@ -1,4 +1,4 @@
-# Pension from AI Productivity - Investor Dashboard
+# TOMO PENSION - Investor Dashboard
 
 Prepared by Eyal Shahaf
 
@@ -145,7 +145,7 @@ The included backend is intentionally lightweight and local. Production SaaS sho
 The company should not act as the pension operator, asset custodian, funds-transfer provider, or investment adviser. The clean architecture is:
 
 ```text
-Customer workflow data -> PPD measurement engine -> dividend calculation -> contribution instruction file/API -> regulated partner rails -> reporting and assurance
+Customer workflow data -> TOMO PENSION measurement engine -> dividend calculation -> contribution instruction file/API -> regulated partner rails -> reporting and assurance
 ```
 
 ## Compliance Warning

@@ -29,6 +29,13 @@ const impactHorizonKeys: ImpactHorizon[] = [
   "multiYear"
 ];
 
+const tomoConceptIcons = [
+  "/brand/tomo/jp-icons/measure.svg",
+  "/brand/tomo/jp-icons/verify.svg",
+  "/brand/tomo/jp-icons/share.svg",
+  "/brand/tomo/jp-icons/future.svg"
+];
+
 export function OverviewView({
   assumptions,
   mediumProjection,
@@ -126,6 +133,21 @@ export function OverviewView({
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="span-12 panel tomo-concept-strip" aria-label={t.overview.tomoConceptHeading}>
+        <h3>{t.overview.tomoConceptHeading}</h3>
+        <div className="tomo-concept-grid">
+          {t.overview.tomoConceptItems.map(([label, body], index) => (
+            <article className="tomo-concept-item" key={label}>
+              <img src={tomoConceptIcons[index]} alt="" aria-hidden="true" />
+              <div>
+                <b>{label}</b>
+                <p>{body}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

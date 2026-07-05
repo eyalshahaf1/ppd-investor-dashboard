@@ -16,10 +16,17 @@ ppd-investor-dashboard-nextjs/
       AboutView.tsx
     lib/
   public/
-    favicon.svg
-    apple-touch-icon.svg
-    brand-mark.svg
-    social-preview.svg
+    brand/
+      tomo/
+        logo-horizontal.svg
+        logo-vertical.svg
+        icon.svg
+        logo-navy.svg
+        favicon-32.png
+        favicon-48.png
+        apple-touch-icon.png
+        og-image.png
+        jp-icons/
     manifest.webmanifest
     robots.txt
     humans.txt

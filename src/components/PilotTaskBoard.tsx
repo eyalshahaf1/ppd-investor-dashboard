@@ -63,7 +63,7 @@ const pilotCopy = {
         phase: "9-12週目: 検証",
         tasks: [
           ["assurance-sampling", "第三者によるエビデンスサンプリングを完了。"],
-          ["ppd-report", "CFO、人事、労使関係者向けPPDパイロット報告書を作成。"],
+          ["ppd-report", "CFO、人事、労使関係者向けTOMO PENSIONパイロット報告書を作成。"],
           ["board-readout", "投資家およびパートナー向け報告を予定。"]
         ]
       }

@@ -87,7 +87,7 @@ export function generateInvestorReport(
     : "No customer pilot uploads yet";
 
   return [
-    "# Pension from AI Productivity - Investor Demo Snapshot",
+    "# TOMO PENSION - Investor Demo Snapshot",
     "",
     `Scenario: ${scenarios[activeScenario].label}`,
     `Covered employees in current calculator: ${formatEmployees(assumptions.coveredEmployees * assumptions.employers)}`,

@@ -1,7 +1,7 @@
 import type { Language } from "@/lib/i18n";
 
 const resourceHrefs = [
-  ["/PPD_Horizontal_Primary_Teal.svg", "/social-preview.svg"],
+  ["/brand/tomo/logo-horizontal.svg", "/brand/tomo/og-image.png"],
   [
     "/templates/pilot-workflow-metrics.csv",
     "/templates/assumptions-template.json",
@@ -17,9 +17,9 @@ type AboutViewProps = {
 const aboutCopy = {
   en: {
     eyebrow: "About the project",
-    title: "Pension from AI Productivity Dividend in Japan",
+    title: "TOMO PENSION in Japan",
     body:
-      "Prepared by Eyal Shahaf. A SaaS MVP for turning verified AI productivity into retirement contribution capacity.",
+      "Prepared by Eyal Shahaf. A SaaS MVP for turning verified AI productivity into retirement contribution capacity through the Pension Productivity Dividend framework.",
     role: "Role",
     roleValue: "Measurement layer",
     roleBody: "Not custody, not investment advice, not pension administration.",
@@ -28,8 +28,8 @@ const aboutCopy = {
     founderParagraphs: [
       "Eyal Shahaf is the founder of Pension Productivity Dividend.",
       "He brings more than 20 years of international business-development experience across industries, alongside long-standing engagement with Japan and cross-border partnership work.",
-      "At PPD, Eyal leads market development, pilot design, partner engagement, and the coalition-building needed to connect employers, assurance providers, and regulated benefit or pension partners.",
-      "PPD is deliberately not built around a claim that one founder can replace pension operators, auditors, legal advisers, or security specialists. Those capabilities are assembled through expert partners and advisers."
+      "At TOMO PENSION, Eyal leads market development, pilot design, partner engagement, and the coalition-building needed to connect employers, assurance providers, and regulated benefit or pension partners.",
+      "TOMO PENSION is deliberately not built around a claim that one founder can replace pension operators, auditors, legal advisers, or security specialists. Those capabilities are assembled through expert partners and advisers."
     ],
     productTitle: "What the product does",
     principles: [
@@ -69,8 +69,8 @@ const aboutCopy = {
     resourcesBody: "Investor and pilot files served from",
     resourceGroups: [
       {
-        title: "Demo identity",
-        body: "Deck and sharing assets.",
+        title: "TOMO identity",
+        body: "Website and sharing assets.",
         links: ["Official horizontal logo", "Social preview"]
       },
       {
@@ -85,16 +85,16 @@ const aboutCopy = {
       }
     ],
     footer: [
-      ["Pension from AI Productivity Dividend", "Prepared by Eyal Shahaf. Prototype SaaS MVP."],
+      ["TOMO PENSION", "Prepared by Eyal Shahaf. Prototype SaaS MVP using the Pension Productivity Dividend framework."],
       ["Current status", "Next.js demo with SQLite, uploads, and static resources."],
       ["Compliance boundary", "Not advice. Regulated partners execute pension rails."]
     ]
   },
   ja: {
     eyebrow: "プロジェクト概要",
-    title: "日本におけるAI生産性配当から年金原資へ",
+    title: "日本におけるTOMO PENSION",
     body:
-      "作成: Eyal Shahaf。検証済みAI生産性を退職拠出能力へ変換するSaaS MVP。",
+      "作成: Eyal Shahaf。Pension Productivity Dividendの枠組みにより、検証済みAI生産性を退職拠出能力へ変換するSaaS MVP。",
     role: "役割",
     roleValue: "測定レイヤー",
     roleBody: "資産保管、投資助言、年金管理ではありません。",
@@ -103,8 +103,8 @@ const aboutCopy = {
     founderParagraphs: [
       "シャハフ・エヤールは、Pension Productivity Dividendの創業者です。",
       "複数業界で20年以上にわたる国際事業開発の経験と、日本との長年の関わり、国境を越えたパートナーシップ構築の経験を持ちます。",
-      "PPDでは、市場開拓、パイロット設計、パートナー連携、そして雇用主・第三者検証機関・規制対象の福利厚生／年金パートナーを結ぶ連携体制づくりを主導します。",
-      "PPDは、一人の創業者が年金運営、監査、法務、セキュリティをすべて担うという考え方ではありません。これらの専門性は、専門家とパートナーとともに構築します。"
+      "TOMO PENSIONでは、市場開拓、パイロット設計、パートナー連携、そして雇用主・第三者検証機関・規制対象の福利厚生／年金パートナーを結ぶ連携体制づくりを主導します。",
+      "TOMO PENSIONは、一人の創業者が年金運営、監査、法務、セキュリティをすべて担うという考え方ではありません。これらの専門性は、専門家とパートナーとともに構築します。"
     ],
     productTitle: "プロダクトの役割",
     principles: [
@@ -144,7 +144,7 @@ const aboutCopy = {
     resourcesBody: "投資家・パイロット用ファイルの配信元",
     resourceGroups: [
       {
-        title: "デモ用ブランド",
+        title: "TOMOブランド",
         body: "デックおよび共有用アセット。",
         links: ["公式横長ロゴ", "ソーシャルプレビュー"]
       },
@@ -160,7 +160,7 @@ const aboutCopy = {
       }
     ],
     footer: [
-      ["Pension from AI Productivity Dividend", "作成: Eyal Shahaf。プロトタイプSaaS MVP。"],
+      ["TOMO PENSION", "作成: Eyal Shahaf。Pension Productivity Dividendの枠組みを用いたプロトタイプSaaS MVP。"],
       ["現在の状態", "SQLite、アップロード、静的リソースを備えたNext.jsデモ。"],
       ["コンプライアンス境界", "助言ではありません。規制対象パートナーが年金レールを実行します。"]
     ]
@@ -177,8 +177,8 @@ export function AboutView({ language }: AboutViewProps) {
           <div className="about-brand-lockup-frame">
             <img
               className="about-brand-lockup"
-              src="/PPD_Horizontal_Primary_Teal.svg"
-              alt="Pension Productivity Dividend"
+              src="/brand/tomo/logo-horizontal.svg"
+              alt="TOMO PENSION"
             />
           </div>
           <p className="eyebrow">{copy.eyebrow}</p>

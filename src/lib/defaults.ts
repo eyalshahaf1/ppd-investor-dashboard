@@ -87,7 +87,7 @@ export const defaultPilotTasks: PilotTaskPhase[] = [
     phase: "Weeks 9-12: verification",
     tasks: [
       ["assurance-sampling", "Third-party evidence sampling completed."],
-      ["ppd-report", "PPD Pilot Report drafted for CFO, HR, and labor stakeholders."],
+      ["ppd-report", "TOMO PENSION pilot report drafted for CFO, HR, and labor stakeholders."],
       ["board-readout", "Investor and partner readout scheduled."]
     ]
   }
