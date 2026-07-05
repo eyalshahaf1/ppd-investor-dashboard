@@ -22,7 +22,7 @@ export function ImpactHorizonChart({ rows }: ImpactHorizonChartProps) {
   const plotWidth = chartWidth - padding.left - padding.right;
   const plotHeight = chartHeight - padding.top - padding.bottom;
   const groupWidth = plotWidth / rows.length;
-  const barWidth = rows.length > 4 ? 24 : 30;
+  const barWidth = rows.length > 4 ? 20 : 26;
 
   const yFor = (value: number) =>
     padding.top + plotHeight - (value / (maxValue * 1.15)) * plotHeight;
@@ -62,6 +62,7 @@ export function ImpactHorizonChart({ rows }: ImpactHorizonChartProps) {
               y={contributionY}
               width={barWidth}
               height={padding.top + plotHeight - contributionY}
+              rx="3"
             />
             <rect
               className="bar revenue"
@@ -69,6 +70,7 @@ export function ImpactHorizonChart({ rows }: ImpactHorizonChartProps) {
               y={revenueY}
               width={barWidth}
               height={padding.top + plotHeight - revenueY}
+              rx="3"
             />
             <text x={center} y={chartHeight - 16} textAnchor="middle" className="year-label">
               {row.label}
@@ -80,7 +82,7 @@ export function ImpactHorizonChart({ rows }: ImpactHorizonChartProps) {
       <polyline className="aum-line" points={trackedPoints} />
       {rows.map((row, index) => {
         const x = padding.left + groupWidth * index + groupWidth / 2;
-        return <circle key={row.label} cx={x} cy={yFor(row.trackedValue)} r="4" className="aum-dot" />;
+        return <circle key={row.label} cx={x} cy={yFor(row.trackedValue)} r="3.4" className="aum-dot" />;
       })}
     </svg>
   );

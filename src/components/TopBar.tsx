@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import type { ScenarioKey } from "@/lib/types";
 import { scenarios } from "@/lib/defaults";
 import type { AccessibilityPreferences } from "@/lib/accessibility";
@@ -34,6 +37,7 @@ export function TopBar({
   onSave
 }: TopBarProps) {
   const t = getCopy(language);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="topbar">
@@ -59,7 +63,17 @@ export function TopBar({
             {t.topbar.subtitle}
           </p>
         </div>
-        <div className="top-actions">
+        <button
+          className="mobile-menu-btn"
+          type="button"
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="topbar-controls"
+          onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
+        >
+          <span aria-hidden="true">{isMobileMenuOpen ? "×" : "☰"}</span>
+          {isMobileMenuOpen ? t.topbar.closeControls : t.topbar.openControls}
+        </button>
+        <div id="topbar-controls" className={`top-actions ${isMobileMenuOpen ? "is-open" : ""}`}>
           <div className="language-switch" aria-label="Language">
             {languages.map((item) => (
               <button

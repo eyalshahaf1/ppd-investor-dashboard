@@ -20,7 +20,9 @@ export const copy = {
       reset: "Reset",
       save: "Save",
       snapshot: "Snapshot",
-      switchTheme: "Switch theme"
+      switchTheme: "Switch theme",
+      openControls: "Menu",
+      closeControls: "Close"
     },
     tabs: {
       overview: "Overview",
@@ -345,7 +347,9 @@ export const copy = {
       reset: "リセット",
       save: "保存",
       snapshot: "印刷",
-      switchTheme: "テーマ切替"
+      switchTheme: "テーマ切替",
+      openControls: "メニュー",
+      closeControls: "閉じる"
     },
     tabs: {
       overview: "概要",
