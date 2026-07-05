@@ -10,7 +10,7 @@ export const copy = {
     topbar: {
       eyebrow: "Japan Pilot Feasibility Concept",
       title: "TOMO PENSION",
-      tagline: "",
+      tagline: "Creating a future together.",
       subtitle:
         "Measure verified AI gains. Allocate a small pre-agreed share. Generate validated contribution instructions for partner-operated rails.",
       baseCase: "Base case",

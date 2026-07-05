@@ -250,9 +250,16 @@ h1 {
   margin-bottom: 6px;
 }
 
-.brand-lockup {
+.brand-identity-row {
   margin-top: 8px;
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 34px);
+  flex-wrap: wrap;
+}
+
+.brand-lockup {
   display: flex;
   align-items: center;
   min-width: 0;
@@ -267,12 +274,14 @@ h1 {
 }
 
 .brand-tagline {
-  margin: 2px 0 8px;
+  margin: 0;
+  padding-left: clamp(16px, 2vw, 26px);
+  border-left: 1px solid var(--line);
   color: var(--amber);
-  font-size: 18px;
+  font-size: clamp(18px, 1.8vw, 28px);
   font-weight: 900;
   letter-spacing: 0.04em;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .brand-mobile-lockup {
@@ -3452,8 +3461,15 @@ code {
     display: inline-flex;
   }
 
+  .brand-identity-row {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
   .brand-tagline {
-    margin-top: 4px;
+    width: 100%;
+    padding-left: 0;
+    border-left: 0;
     font-size: 16px;
   }
 

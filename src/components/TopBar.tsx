@@ -40,18 +40,20 @@ export function TopBar({
       <div className="topbar-inner">
         <div className="brand">
           <div className="eyebrow">{t.topbar.eyebrow}</div>
-          <div className="brand-lockup" aria-label={t.topbar.title}>
-            <img
-              className="brand-logo-horizontal"
-              src="/brand/tomo/logo-horizontal.svg"
-              alt={t.topbar.title}
-            />
-            <span className="brand-mobile-lockup">
-              <img className="brand-mobile-icon" src="/brand/tomo/icon.svg" alt="" aria-hidden="true" />
-              <span>{t.topbar.title}</span>
-            </span>
+          <div className="brand-identity-row">
+            <div className="brand-lockup" aria-label={t.topbar.title}>
+              <img
+                className="brand-logo-horizontal"
+                src="/brand/tomo/logo-horizontal.svg"
+                alt={t.topbar.title}
+              />
+              <span className="brand-mobile-lockup">
+                <img className="brand-mobile-icon" src="/brand/tomo/icon.svg" alt="" aria-hidden="true" />
+                <span>{t.topbar.title}</span>
+              </span>
+            </div>
+            {t.topbar.tagline ? <p className="brand-tagline">{t.topbar.tagline}</p> : null}
           </div>
-          {t.topbar.tagline ? <p className="brand-tagline">{t.topbar.tagline}</p> : null}
           <h1 className="sr-only">{t.topbar.title}</h1>
           <p className="subtitle">
             {t.topbar.subtitle}
