@@ -51,6 +51,7 @@ export function TopBar({
               <span>{t.topbar.title}</span>
             </span>
           </div>
+          {t.topbar.tagline ? <p className="brand-tagline">{t.topbar.tagline}</p> : null}
           <h1 className="sr-only">{t.topbar.title}</h1>
           <p className="subtitle">
             {t.topbar.subtitle}

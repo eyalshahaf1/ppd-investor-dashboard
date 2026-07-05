@@ -91,8 +91,8 @@ const aboutCopy = {
     ]
   },
   ja: {
-    eyebrow: "プロジェクト概要",
-    title: "日本におけるTOMO PENSION",
+    eyebrow: "TOMO PENSION",
+    title: "共に未来をつくる TOMO PENSION",
     body:
       "作成: Eyal Shahaf。Pension Productivity Dividendの枠組みにより、検証済みAI生産性を退職拠出能力へ変換するSaaS MVP。",
     role: "役割",

@@ -10,6 +10,7 @@ export const copy = {
     topbar: {
       eyebrow: "Japan Pilot Feasibility Concept",
       title: "TOMO PENSION",
+      tagline: "",
       subtitle:
         "Measure verified AI gains. Allocate a small pre-agreed share. Generate validated contribution instructions for partner-operated rails.",
       baseCase: "Base case",
@@ -334,6 +335,7 @@ export const copy = {
     topbar: {
       eyebrow: "日本向け実証可能性コンセプト",
       title: "TOMO PENSION",
+      tagline: "共に未来をつくる",
       subtitle:
         "検証済みAI効果を測定し、事前合意された小さな割合を配分し、パートナー運営レール向けの検証済み拠出指示を生成します。",
       baseCase: "基本ケース",
@@ -351,7 +353,7 @@ export const copy = {
       scenarios: "投資家シナリオ",
       pilot: "実証エビデンス",
       data: "パートナー実行",
-      about: "概要説明",
+      about: "共に未来をつくる TOMO PENSION",
       investor: "投資家向け"
     },
     overview: {
