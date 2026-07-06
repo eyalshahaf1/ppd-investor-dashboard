@@ -18,16 +18,21 @@ export const copy = {
       y5Flow: "Y5 flow",
       backend: "Backend",
       offline: "Offline",
-      reset: "Reset",
-      save: "Save",
-      snapshot: "Snapshot",
+      reset: "Reset model",
+      save: "Save snapshot",
+      snapshot: "Print / PDF",
       switchTheme: "Switch theme",
       openControls: "Menu",
       closeControls: "Close",
+      menuTitle: "Menu",
+      navigate: "Navigate",
       preferences: "Preferences",
       actions: "Actions",
       language: "Language",
-      appearance: "Appearance"
+      appearance: "Appearance",
+      light: "Light",
+      dark: "Dark",
+      resetConfirm: "Reset the model assumptions?"
     },
     tabs: {
       overview: "Overview",
@@ -36,6 +41,15 @@ export const copy = {
       pilot: "Pilot Evidence",
       data: "Partner Execution",
       about: "About",
+      investor: "Investor Room"
+    },
+    drawerTabs: {
+      overview: "Overview",
+      calculator: "Verified Ledger",
+      scenarios: "Investor Scenario",
+      pilot: "Pilot Evidence",
+      data: "Partner Execution",
+      about: "About TOMO",
       investor: "Investor Room"
     },
     mobileTabs: {
@@ -364,16 +378,21 @@ export const copy = {
       y5Flow: "5年目フロー",
       backend: "バックエンド",
       offline: "オフライン",
-      reset: "リセット",
-      save: "保存",
-      snapshot: "印刷",
+      reset: "モデルをリセット",
+      save: "スナップショットを保存",
+      snapshot: "印刷 / PDF",
       switchTheme: "テーマ切替",
       openControls: "メニュー",
       closeControls: "閉じる",
+      menuTitle: "メニュー",
+      navigate: "移動",
       preferences: "設定",
       actions: "操作",
       language: "言語",
-      appearance: "表示"
+      appearance: "表示",
+      light: "ライト",
+      dark: "ダーク",
+      resetConfirm: "モデルの前提条件をリセットしますか？"
     },
     tabs: {
       overview: "概要",
@@ -382,6 +401,15 @@ export const copy = {
       pilot: "実証エビデンス",
       data: "パートナー実行",
       about: "共に未来をつくる TOMO PENSION",
+      investor: "投資家向け"
+    },
+    drawerTabs: {
+      overview: "概要",
+      calculator: "検証台帳",
+      scenarios: "投資家シナリオ",
+      pilot: "実証エビデンス",
+      data: "パートナー実行",
+      about: "TOMOについて",
       investor: "投資家向け"
     },
     mobileTabs: {

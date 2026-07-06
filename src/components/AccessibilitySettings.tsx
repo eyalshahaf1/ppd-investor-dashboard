@@ -10,6 +10,7 @@ import type { Language } from "@/lib/i18n";
 type AccessibilitySettingsProps = {
   language: Language;
   preferences: AccessibilityPreferences;
+  presentation?: "popover" | "inline";
   onChange: (preferences: AccessibilityPreferences) => void;
 };
 
@@ -51,6 +52,7 @@ const accessibilityCopy = {
 export function AccessibilitySettings({
   language,
   preferences,
+  presentation = "popover",
   onChange
 }: AccessibilitySettingsProps) {
   const copy = accessibilityCopy[language];
@@ -64,7 +66,12 @@ export function AccessibilitySettings({
   }
 
   return (
-    <details className="accessibility-settings" ref={detailsRef}>
+    <details
+      className={`accessibility-settings ${
+        presentation === "inline" ? "accessibility-settings-inline" : ""
+      }`}
+      ref={detailsRef}
+    >
       <summary>{copy.summary}</summary>
       <div className="accessibility-panel">
         <div className="accessibility-panel-head">

@@ -297,25 +297,6 @@ h1 {
   line-height: 1.15;
 }
 
-.brand-mobile-lockup {
-  display: none;
-  align-items: center;
-  gap: 10px;
-  color: var(--ink);
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  line-height: 1;
-}
-
-.brand-mobile-icon {
-  width: auto;
-  height: 42px;
-  flex: 0 0 auto;
-  object-fit: contain;
-  display: block;
-}
-
 .title-row h1 {
   margin: 0;
   min-width: 0;
@@ -389,7 +370,6 @@ h1 {
   display: none;
 }
 
-.brand-logo-mobile,
 .eyebrow-mobile,
 .tab-label-mobile {
   display: none;
@@ -492,6 +472,14 @@ h1 {
   padding: 14px;
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.accessibility-settings-inline .accessibility-panel {
+  position: static;
+  width: 100%;
+  max-height: none;
+  margin-top: 8px;
+  box-shadow: none;
 }
 
 .accessibility-panel fieldset {
@@ -3523,8 +3511,6 @@ code {
   }
 
   .eyebrow-full,
-  .brand-logo-desktop,
-  .brand-mobile-lockup,
   .subtitle,
   .desktop-controls,
   .tab-label-full {
@@ -3532,7 +3518,6 @@ code {
   }
 
   .eyebrow-mobile,
-  .brand-logo-mobile,
   .tab-label-mobile {
     display: inline;
   }
@@ -3593,6 +3578,11 @@ code {
     display: none;
   }
 
+  .topbar.mobile-menu-open .mobile-menu-btn {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   .accessibility-settings {
     margin-inline-start: 0;
   }
@@ -3610,7 +3600,7 @@ code {
     inset: 0;
     z-index: 80;
     display: none;
-    padding: 96px 14px 18px;
+    padding: calc(12px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));
     background: rgba(7, 17, 14, 0.42);
   }
 
@@ -3619,7 +3609,7 @@ code {
   }
 
   .mobile-drawer-panel {
-    max-height: calc(100vh - 116px);
+    max-height: calc(100vh - 30px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
     overflow: auto;
     display: grid;
     gap: 14px;
@@ -3628,6 +3618,34 @@ code {
     padding: 14px;
     background: var(--surface);
     box-shadow: var(--shadow);
+  }
+
+  .mobile-drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+  }
+
+  .mobile-drawer-head h2 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .mobile-drawer-close {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    min-height: 42px;
+    padding: 0;
+    color: var(--ink);
+    font-size: 24px;
+    line-height: 1;
+    background: var(--surface-2);
   }
 
   .mobile-drawer-section {
@@ -3649,6 +3667,31 @@ code {
     text-transform: uppercase;
   }
 
+  .mobile-nav-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  .mobile-nav-item {
+    width: 100%;
+    min-height: 44px;
+    justify-content: flex-start;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    background: var(--surface-2);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 900;
+    text-align: left;
+  }
+
+  .mobile-nav-item[aria-current="page"] {
+    border-color: var(--teal);
+    background: color-mix(in srgb, var(--teal) 18%, var(--surface));
+    box-shadow: inset 4px 0 0 var(--teal);
+  }
+
   .mobile-control-row {
     min-height: 44px;
     display: flex;
@@ -3664,12 +3707,29 @@ code {
     font-weight: 900;
   }
 
-  .mobile-control-button {
-    width: 100%;
+  .appearance-switch {
+    display: inline-flex;
+    gap: 6px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 3px;
+    background: var(--surface);
   }
 
-  .mobile-control-button b {
-    color: var(--teal);
+  .appearance-switch button {
+    min-height: 32px;
+    border: 0;
+    border-radius: 8px;
+    padding: 5px 10px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .appearance-switch button[aria-pressed="true"] {
+    background: var(--teal);
+    color: #fff;
   }
 
   .mobile-control-row .language-switch {
@@ -3697,6 +3757,18 @@ code {
     font-size: 18px;
   }
 
+  .mobile-accessibility-row .accessibility-settings[open] summary::after {
+    content: "⌄";
+  }
+
+  .mobile-accessibility-row .accessibility-panel {
+    position: static;
+    width: 100%;
+    max-height: none;
+    margin-top: 8px;
+    box-shadow: none;
+  }
+
   .mobile-action-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3712,6 +3784,10 @@ code {
   .mobile-reset-btn {
     color: var(--muted);
     background: var(--surface);
+  }
+
+  .tabs-wrap {
+    display: none;
   }
 
   main {

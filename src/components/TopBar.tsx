@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import type { ScenarioKey } from "@/lib/types";
 import { scenarios } from "@/lib/defaults";
 import type { AccessibilityPreferences } from "@/lib/accessibility";
+import { dashboardNavigation, type DashboardTab } from "@/lib/dashboard-navigation";
 import { getCopy, languages, type Language } from "@/lib/i18n";
 import { AccessibilitySettings } from "./AccessibilitySettings";
 
 export type ThemeMode = "light" | "dark";
 
 type TopBarProps = {
+  activeTab: DashboardTab;
   activeScenario: ScenarioKey;
   y5Flow: string;
   backendOnline: boolean;
@@ -19,11 +21,13 @@ type TopBarProps = {
   onThemeToggle: () => void;
   onLanguageChange: (language: Language) => void;
   onAccessibilityChange: (preferences: AccessibilityPreferences) => void;
+  onNavigate: (tab: DashboardTab) => void;
   onReset: () => void;
   onSave: () => void;
 };
 
 export function TopBar({
+  activeTab,
   activeScenario,
   y5Flow,
   backendOnline,
@@ -33,6 +37,7 @@ export function TopBar({
   onThemeToggle,
   onLanguageChange,
   onAccessibilityChange,
+  onNavigate,
   onReset,
   onSave
 }: TopBarProps) {
@@ -40,6 +45,7 @@ export function TopBar({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const topbarRef = useRef<HTMLElement | null>(null);
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const drawerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
@@ -47,15 +53,42 @@ export function TopBar({
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") closeMobileMenu();
+    function handleDrawerKeydown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        closeMobileMenu();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = drawerRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable?.length) {
+        event.preventDefault();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
 
-    document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener("keydown", handleDrawerKeydown);
+    window.requestAnimationFrame(() => {
+      drawerRef.current?.querySelector<HTMLElement>("button")?.focus();
+    });
 
     return () => {
       document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("keydown", handleDrawerKeydown);
     };
   }, [isMobileMenuOpen]);
 
@@ -78,8 +111,25 @@ export function TopBar({
     setIsMobileMenuOpen(true);
   }
 
+  function handleReset() {
+    if (window.confirm(t.topbar.resetConfirm)) {
+      onReset();
+      closeMobileMenu();
+    }
+  }
+
+  function handleMobileNavigate(tab: DashboardTab) {
+    onNavigate(tab);
+    closeMobileMenu();
+    window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "auto" }));
+  }
+
+  function setThemeMode(nextTheme: ThemeMode) {
+    if (themeMode !== nextTheme) onThemeToggle();
+  }
+
   return (
-    <header className="topbar" ref={topbarRef}>
+    <header className={`topbar ${isMobileMenuOpen ? "mobile-menu-open" : ""}`} ref={topbarRef}>
       <div className="topbar-inner">
         <div className="brand">
           <div className="eyebrow">
@@ -89,13 +139,8 @@ export function TopBar({
           <div className="brand-identity-row">
             <div className="brand-lockup" aria-label={t.topbar.title}>
               <img
-                className="brand-logo-horizontal brand-logo-desktop"
+                className="brand-logo-horizontal"
                 src="/brand/tomo/logo-horizontal.png"
-                alt={t.topbar.title}
-              />
-              <img
-                className="brand-logo-horizontal brand-logo-mobile"
-                src="/brand/tomo/logo-horizontal.svg"
                 alt={t.topbar.title}
               />
             </div>
@@ -164,7 +209,7 @@ export function TopBar({
             />
             {themeMode === "dark" ? "Light" : "Dark"}
           </button>
-          <button className="action-btn" type="button" onClick={onReset}>
+          <button className="action-btn" type="button" onClick={handleReset}>
             {t.topbar.reset}
           </button>
           <button className="action-btn" type="button" data-testid="save-snapshot" onClick={onSave}>
@@ -180,8 +225,47 @@ export function TopBar({
         id="mobile-shell-drawer"
         className={`mobile-shell-drawer ${isMobileMenuOpen ? "is-open" : ""}`}
         aria-hidden={!isMobileMenuOpen}
+        onMouseDown={(event) => {
+          if (event.target === event.currentTarget) closeMobileMenu();
+        }}
       >
-        <div className="mobile-drawer-panel" role="dialog" aria-modal="true" aria-label={t.topbar.openControls}>
+        <div
+          className="mobile-drawer-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t.topbar.menuTitle}
+          ref={drawerRef}
+          onMouseDown={(event) => event.stopPropagation()}
+        >
+          <div className="mobile-drawer-head">
+            <h2>{t.topbar.menuTitle}</h2>
+            <button
+              className="mobile-drawer-close"
+              type="button"
+              aria-label={t.topbar.closeControls}
+              onClick={closeMobileMenu}
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+
+          <section className="mobile-drawer-section" aria-labelledby="mobile-navigation-title">
+            <h2 id="mobile-navigation-title">{t.topbar.navigate}</h2>
+            <div className="mobile-nav-list">
+              {dashboardNavigation.map((item) => (
+                <button
+                  key={item.key}
+                  className="mobile-nav-item"
+                  type="button"
+                  aria-current={activeTab === item.key ? "page" : undefined}
+                  onClick={() => handleMobileNavigate(item.key)}
+                >
+                  {t.drawerTabs[item.key]}
+                </button>
+              ))}
+            </div>
+          </section>
+
           <section className="mobile-drawer-section" aria-labelledby="mobile-preferences-title">
             <h2 id="mobile-preferences-title">{t.topbar.preferences}</h2>
             <div className="mobile-control-row">
@@ -199,17 +283,28 @@ export function TopBar({
                 ))}
               </div>
             </div>
-            <button
-              className="mobile-control-row mobile-control-button"
-              type="button"
-              onClick={onThemeToggle}
-              aria-pressed={themeMode === "dark"}
-            >
+            <div className="mobile-control-row">
               <span>{t.topbar.appearance}</span>
-              <b>{themeMode === "dark" ? "Light" : "Dark"}</b>
-            </button>
+              <div className="appearance-switch" role="group" aria-label={t.topbar.appearance}>
+                <button
+                  type="button"
+                  aria-pressed={themeMode === "light"}
+                  onClick={() => setThemeMode("light")}
+                >
+                  {t.topbar.light}
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={themeMode === "dark"}
+                  onClick={() => setThemeMode("dark")}
+                >
+                  {t.topbar.dark}
+                </button>
+              </div>
+            </div>
             <div className="mobile-control-row mobile-accessibility-row">
               <AccessibilitySettings
+                presentation="inline"
                 language={language}
                 preferences={accessibilityPreferences}
                 onChange={onAccessibilityChange}
@@ -227,7 +322,7 @@ export function TopBar({
                 {t.topbar.snapshot}
               </button>
             </div>
-            <button className="action-btn mobile-reset-btn" type="button" onClick={onReset}>
+            <button className="action-btn mobile-reset-btn" type="button" onClick={handleReset}>
               {t.topbar.reset}
             </button>
           </section>

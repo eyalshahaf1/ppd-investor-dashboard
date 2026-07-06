@@ -1,23 +1,7 @@
 import { getCopy, type Language } from "@/lib/i18n";
+import { dashboardNavigation, type DashboardTab } from "@/lib/dashboard-navigation";
 
-export type DashboardTab =
-  | "overview"
-  | "calculator"
-  | "scenarios"
-  | "pilot"
-  | "data"
-  | "about"
-  | "investor";
-
-const tabs: Array<{ key: DashboardTab }> = [
-  { key: "overview" },
-  { key: "calculator" },
-  { key: "scenarios" },
-  { key: "pilot" },
-  { key: "data" },
-  { key: "about" },
-  { key: "investor" }
-];
+export type { DashboardTab };
 
 type TabsProps = {
   activeTab: DashboardTab;
@@ -31,7 +15,7 @@ export function Tabs({ activeTab, language, onChange }: TabsProps) {
   return (
     <div className="tabs-wrap">
       <nav className="tabs" aria-label="Dashboard views">
-        {tabs.map((tab) => (
+        {dashboardNavigation.map((tab) => (
           <button
             key={tab.key}
             type="button"

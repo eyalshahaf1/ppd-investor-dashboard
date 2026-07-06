@@ -236,6 +236,7 @@ export function DashboardApp() {
       </a>
       <div className="app-chrome">
         <TopBar
+          activeTab={activeTab}
           activeScenario={activeScenario}
           y5Flow={y5Flow}
           backendOnline={backendOnline}
@@ -245,6 +246,7 @@ export function DashboardApp() {
           onThemeToggle={toggleTheme}
           onLanguageChange={setLanguage}
           onAccessibilityChange={setAccessibilityPreferences}
+          onNavigate={changeTab}
           onReset={resetModel}
           onSave={saveSnapshot}
         />
