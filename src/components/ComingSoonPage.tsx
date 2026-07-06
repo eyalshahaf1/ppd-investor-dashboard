@@ -12,6 +12,7 @@ const landingCopy = {
     headline: "Measured gains. Verified value. Shared future.",
     body:
       "TOMO PENSION is building the trusted measurement and reporting layer that helps organisations turn a small, verified share of AI productivity gains into long-term retirement value.",
+    imageAlt: "West Shinjuku business district skyline",
     position: "Measure. Verify. Share.",
     boundary:
       "TOMO PENSION does not operate pensions, hold assets, or move funds. Regulated partners remain responsible for pension administration, custody, and execution.",
@@ -29,6 +30,7 @@ const landingCopy = {
     headline: "共に未来をつくる。",
     body:
       "TOMO PENSIONは、AIによる生産性向上のうち、検証可能な価値の一部を長期的な老後資産形成につなげるための、測定・検証・レポーティングのレイヤーを構築しています。",
+    imageAlt: "西新宿のビジネス街",
     position: "測定。検証。分かち合い。",
     boundary:
       "TOMO PENSIONは年金の運営、資産保管、資金移動を行いません。年金管理、資産保管、執行は規制対象のパートナーが担います。",
@@ -77,6 +79,9 @@ export function ComingSoonPage() {
         <h1 id="coming-soon-title">{copy.headline}</h1>
         <p className="coming-soon-body">{copy.body}</p>
         <div className="coming-soon-position">{copy.position}</div>
+        <figure className="coming-soon-image">
+          <img src="/brand/tomo/west-shinjuku.jpg" alt={copy.imageAlt} />
+        </figure>
       </section>
 
       <section className="coming-soon-statements" aria-label="TOMO PENSION positioning">
