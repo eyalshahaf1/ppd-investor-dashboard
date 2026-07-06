@@ -7,11 +7,13 @@
   --ink: #17201d;
   --muted: #65736c;
   --line: #d8e0da;
-  --teal: #00234c;
+  --brand-navy: #00234C;
+  --brand-gold: #C88C15;
+  --teal: #0B6B5A;
   --coral: #d84c3f;
-  --amber: #c88c15;
-  --indigo: #264a78;
-  --blue: #315f8f;
+  --amber: #F0B342;
+  --indigo: #4F5AA8;
+  --blue: #2F7DA1;
   --good: #14724f;
   --warn: #a65d14;
   --bad: #b83a31;
@@ -28,11 +30,11 @@
   --ink: #eef7f2;
   --muted: #a8b9b0;
   --line: #35463f;
-  --teal: #dbe8f7;
+  --teal: #3FC5AA;
   --coral: #ff766b;
-  --amber: #d7a13a;
-  --indigo: #95b3da;
-  --blue: #8ab5df;
+  --amber: #F3C45F;
+  --indigo: #9AA4FF;
+  --blue: #74C7E6;
   --good: #5bd69f;
   --warn: #f5ba5b;
   --bad: #ff7b73;
@@ -46,11 +48,11 @@
   --ink: #07110e;
   --muted: #263a33;
   --line: #52645d;
-  --teal: #00234c;
+  --teal: #006B5A;
   --coral: #a9271f;
-  --amber: #8a5d00;
-  --indigo: #173b68;
-  --blue: #1c4f80;
+  --amber: #8A5A00;
+  --indigo: #29368F;
+  --blue: #075F86;
   --shadow: none;
 }
 
@@ -61,11 +63,11 @@
   --ink: #ffffff;
   --muted: #d8e7df;
   --line: #7f948b;
-  --teal: #ffffff;
+  --teal: #5FF5D7;
   --coral: #ff958d;
-  --amber: #f0bd54;
-  --indigo: #d6e5f8;
-  --blue: #c4dcf4;
+  --amber: #FFD36A;
+  --indigo: #C4CAFF;
+  --blue: #A1E7FF;
   --shadow: none;
 }
 
@@ -279,13 +281,16 @@ h1 {
   max-width: min(560px, 100%);
   display: block;
   object-fit: contain;
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
 }
 
 .brand-tagline {
   margin: 0;
   padding-left: clamp(16px, 2vw, 26px);
   border-left: 1px solid var(--line);
-  color: var(--amber);
+  color: var(--brand-gold);
   font-size: clamp(18px, 1.8vw, 28px);
   font-weight: 900;
   letter-spacing: 0.04em;
@@ -375,7 +380,7 @@ h1 {
 }
 
 .mobile-menu-btn span {
-  color: var(--amber);
+  color: var(--brand-gold);
   font-size: 18px;
   line-height: 1;
 }
@@ -409,18 +414,16 @@ h1 {
 }
 
 :root[data-theme="dark"] .language-switch button[aria-pressed="true"],
-:root[data-theme="dark"] .action-btn.primary,
-:root[data-theme="dark"] .tab-btn[aria-selected="true"],
-:root[data-theme="dark"] .impact-horizon-controls button[aria-pressed="true"] {
-  background: #00234c;
-  border-color: var(--amber);
+:root[data-theme="dark"] .action-btn.primary {
+  background: var(--brand-navy);
+  border-color: var(--brand-gold);
   color: #ffffff;
 }
 
 :root[data-theme="dark"] .accessibility-settings summary::before {
-  background: #00234c;
+  background: var(--brand-navy);
   color: #ffffff;
-  box-shadow: inset 0 0 0 1px var(--amber);
+  box-shadow: inset 0 0 0 1px var(--brand-gold);
 }
 
 .accessibility-settings {
@@ -671,6 +674,12 @@ h1 {
 
 .tab-btn[aria-selected="true"] {
   color: #fff;
+  border-color: var(--teal);
+  background: var(--teal);
+}
+
+:root[data-theme="dark"] .tab-btn[aria-selected="true"] {
+  color: #07110e;
   border-color: var(--teal);
   background: var(--teal);
 }
@@ -1165,13 +1174,13 @@ main {
 }
 
 .scenario-compare-card.active {
-  border-color: #00234c;
-  box-shadow: inset 0 0 0 1px #00234c;
+  border-color: var(--teal);
+  box-shadow: inset 0 0 0 1px var(--teal);
 }
 
 :root[data-theme="dark"] .scenario-compare-card.active {
-  border-color: var(--amber);
-  box-shadow: inset 0 0 0 1px var(--amber);
+  border-color: var(--teal);
+  box-shadow: inset 0 0 0 1px var(--teal);
 }
 
 .scenario-compare-card > span {
@@ -1203,7 +1212,7 @@ main {
 }
 
 .compare-bar-fill {
-  background: #00234c;
+  background: var(--teal);
 }
 
 .unit-fill {
@@ -1211,7 +1220,7 @@ main {
 }
 
 :root[data-theme="dark"] .compare-bar-fill {
-  background: var(--amber);
+  background: var(--teal);
 }
 
 :root[data-theme="dark"] .unit-fill {
@@ -2019,11 +2028,7 @@ input[type="number"] {
   height: 12px;
   border-radius: 3px;
   display: inline-block;
-  background: #00234c;
-}
-
-:root[data-theme="dark"] .legend i {
-  background: #dbe8f7;
+  background: var(--teal);
 }
 
 .legend .aum i { background: var(--amber); }
@@ -2051,6 +2056,10 @@ input[type="number"] {
   border-color: var(--teal);
   background: var(--teal);
   color: #fff;
+}
+
+:root[data-theme="dark"] .impact-horizon-controls button[aria-pressed="true"] {
+  color: #07110e;
 }
 
 .impact-legend {
@@ -2084,7 +2093,7 @@ input[type="number"] {
 }
 
 .projection-chart .bar.annual {
-  fill: #00234c;
+  fill: var(--teal);
   opacity: 0.52;
 }
 
@@ -2109,12 +2118,12 @@ input[type="number"] {
 }
 
 :root[data-theme="dark"] .projection-chart .bar.annual {
-  fill: #dbe8f7;
+  fill: var(--teal);
   opacity: 0.62;
 }
 
 :root[data-theme="dark"] .projection-chart .bar.revenue {
-  fill: #8ab5df;
+  fill: var(--blue);
   opacity: 0.7;
 }
 
@@ -2674,9 +2683,9 @@ input[type="number"] {
 }
 
 :root[data-theme="dark"] .scenario-btn.active {
-  background: #00234c;
-  border-color: var(--amber);
-  color: #ffffff;
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #07110e;
 }
 
 .data-table {

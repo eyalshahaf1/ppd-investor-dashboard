@@ -63,7 +63,7 @@ export function TopBar({
             <div className="brand-lockup" aria-label={t.topbar.title}>
               <img
                 className="brand-logo-horizontal"
-                src="/brand/tomo/logo-horizontal.svg"
+                src="/brand/tomo/logo-horizontal.png"
                 alt={t.topbar.title}
               />
               <span className="brand-mobile-lockup">
