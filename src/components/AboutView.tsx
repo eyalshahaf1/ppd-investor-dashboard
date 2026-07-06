@@ -15,7 +15,8 @@ const aboutCopy = {
     founderTitle: "Founder",
     founderParagraphs: [
       "Eyal Shahaf is the founder of TOMO PENSION and the creator of the Pension Productivity Dividend framework.",
-      "He brings more than 20 years of international business-development experience across textiles, fashion, technology, renewable energy, and cross-border partnerships, alongside long-standing engagement with Japan.",
+      "He brings more than 20 years of international business-development experience across technology, renewable energy, and cross-border partnerships, alongside long-standing engagement with Japan.",
+      "Japan is not simply a market for this project. It is a society I have engaged with for many years, and one that has shaped how I think about responsibility across generations, long-term security, and the importance of building for the future. That respect and concern are part of why Japan is TOMO PENSION’s first market.",
       "At TOMO PENSION, Eyal leads market development, pilot design, and partner engagement. The product provides a measurement and verification layer, while regulated partners retain responsibility for pension administration, custody, and execution."
     ],
     productTitle: "What the product does",
@@ -53,8 +54,9 @@ const aboutCopy = {
     roleChips: ["測定", "検証", "パートナー運営による実行"],
     founderTitle: "創業者",
     founderParagraphs: [
-      "エヤール・シャハフは、TOMO PENSIONの創業者であり、Pension Productivity Dividendの構想を考案した人物です。",
-      "繊維・ファッション、テクノロジー、再生可能エネルギーなどの分野で20年以上にわたる国際事業開発の経験を持ち、日本との長年の関わりと、国境を越えたパートナーシップ構築に取り組んできました。",
+      "シャハフ・エヤールは、TOMO PENSIONの創業者であり、Pension Productivity Dividendの構想を考案した人物です。",
+      "テクノロジー、再生可能エネルギー、国境を越えたパートナーシップの分野で20年以上にわたる国際事業開発の経験を持ち、日本との長年の関わりを深めてきました。",
+      "私にとって日本は、このプロジェクトにおける単なる市場ではありません。長年にわたり関わってきた社会であり、世代を超えた責任、長期的な安心、そして未来に向けて仕組みを築くことの大切さを考える上で、大きな影響を受けてきました。その敬意と問題意識が、日本をTOMO PENSIONの最初の市場と考える理由の一つです。",
       "TOMO PENSIONでは、市場開拓、パイロット設計、パートナー連携を主導します。プロダクトの役割は測定と検証であり、年金管理、資産保管、執行は規制対象のパートナーが担います。"
     ],
     productTitle: "プロダクトの役割",
