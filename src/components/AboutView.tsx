@@ -1,35 +1,22 @@
 import type { Language } from "@/lib/i18n";
 
-const resourceHrefs = [
-  ["/brand/tomo/logo-horizontal.svg", "/brand/tomo/og-image.png"],
-  [
-    "/templates/pilot-workflow-metrics.csv",
-    "/templates/assumptions-template.json",
-    "/templates/contribution-instruction-template.json"
-  ],
-  ["/legal/privacy-notice.md", "/legal/terms-placeholder.md"]
-];
-
 type AboutViewProps = {
   language: Language;
 };
 
 const aboutCopy = {
   en: {
-    eyebrow: "About the project",
-    title: "TOMO PENSION in Japan",
+    eyebrow: "About TOMO PENSION",
+    title: "A measurement layer for shared long-term value.",
     body:
-      "Prepared by Eyal Shahaf. A SaaS MVP for turning verified AI productivity into retirement contribution capacity through the Pension Productivity Dividend framework.",
+      "TOMO PENSION helps employers measure and verify productivity gains from AI, then prepares an agreed share for partner-operated retirement contribution routes.",
     role: "Role",
-    roleValue: "Measurement layer",
-    roleBody: "Not custody, not investment advice, not pension administration.",
-    roleChips: ["Measurement layer", "No custody", "Partner-operated rails"],
+    roleChips: ["Measure", "Verify", "Partner-operated execution"],
     founderTitle: "Founder",
     founderParagraphs: [
-      "Eyal Shahaf is the founder of Pension Productivity Dividend.",
-      "He brings more than 20 years of international business-development experience across industries, alongside long-standing engagement with Japan and cross-border partnership work.",
-      "At TOMO PENSION, Eyal leads market development, pilot design, partner engagement, and the coalition-building needed to connect employers, assurance providers, and regulated benefit or pension partners.",
-      "TOMO PENSION is deliberately not built around a claim that one founder can replace pension operators, auditors, legal advisers, or security specialists. Those capabilities are assembled through expert partners and advisers."
+      "Eyal Shahaf is the founder of TOMO PENSION and the creator of the Pension Productivity Dividend framework.",
+      "He brings more than 20 years of international business-development experience across textiles, fashion, technology, renewable energy, and cross-border partnerships, alongside long-standing engagement with Japan.",
+      "At TOMO PENSION, Eyal leads market development, pilot design, and partner engagement. The product provides a measurement and verification layer, while regulated partners retain responsibility for pension administration, custody, and execution."
     ],
     productTitle: "What the product does",
     principles: [
@@ -39,72 +26,36 @@ const aboutCopy = {
       "Generate regulated-partner instructions.",
       "Report evidence and impact."
     ],
-    boundariesTitle: "What it deliberately avoids",
+    boundariesTitle: "Operating boundary",
     productBoundaries: [
-      ["Not a pension operator", "No custody, accounts, or fund movement."],
-      ["Not investment advice", "Models employer contribution capacity only."],
-      ["Not surveillance", "Use aggregated workflow evidence."],
-      ["Not policy-dependent", "Starts as voluntary employer SaaS."]
+      ["TOMO PENSION", "Measures, verifies, and reports eligible productivity gains."],
+      ["Employers", "Provide aggregated workflow and financial evidence, and set allocation rules."],
+      ["Regulated partners", "Operate retirement accounts, custody, and contribution execution."]
     ],
     japanTitle: "Why Japan is a strong first market",
     japanBody:
       "Aging demographics, enterprise scale, pension pressure, and responsible AI adoption. The product adds measurement; partners keep execution.",
-    proofTitle: "Investor proof logic",
-    proofPoints: [
-      ["Employer proof", "Measured workflow gains."],
-      ["Worker value", "Share of verified gains."],
-      ["Partner proof", "Regulated rails execute."],
-      ["Investor proof", "SaaS without custody risk."]
-    ],
-    languagePathTitle: "Japanese version path",
-    languagePathBody:
-      "Localize the interface first, then validate regulated terminology before pilots.",
-    languageSteps: [
-      ["Interface", "Navigation, labels, KPIs."],
-      ["Terminology", "Pension, HR, tax, privacy."],
-      ["Partner fit", "Instruction file/API format."],
-      ["Customer test", "HR, CFO, compliance review."]
-    ],
-    resourcesTitle: "Project resources",
-    resourcesBody: "Investor and pilot files served from",
-    resourceGroups: [
-      {
-        title: "TOMO identity",
-        body: "Website and sharing assets.",
-        links: ["Official horizontal logo", "Social preview"]
-      },
-      {
-        title: "Pilot templates",
-        body: "Aggregated demo data formats.",
-        links: ["Workflow CSV", "Assumptions JSON", "Partner instruction JSON"]
-      },
-      {
-        title: "Prototype legal notes",
-        body: "Prototype boundaries.",
-        links: ["Privacy notice", "Terms placeholder"]
-      }
-    ],
+    pilotTitle: "Current pilot focus",
+    pilotBody:
+      "The immediate objective is a measurement-only pilot with one operating employer, one assurance partner, and one regulated benefits or pension partner. TOMO PENSION prepares evidence and contribution instructions. Partners retain responsibility for execution.",
     footer: [
-      ["TOMO PENSION", "Prepared by Eyal Shahaf. Prototype SaaS MVP using the Pension Productivity Dividend framework."],
-      ["Current status", "Next.js demo with SQLite, uploads, and static resources."],
+      ["TOMO PENSION", "Prepared by Eyal Shahaf using the Pension Productivity Dividend framework."],
+      ["Current focus", "Measurement-only pilot design and partner engagement."],
       ["Compliance boundary", "Not advice. Regulated partners execute pension rails."]
     ]
   },
   ja: {
-    eyebrow: "TOMO PENSION",
-    title: "共に未来をつくる TOMO PENSION",
+    eyebrow: "TOMO PENSIONについて",
+    title: "検証された生産性を、長期的な安心へ。",
     body:
-      "作成: Eyal Shahaf。Pension Productivity Dividendの枠組みにより、検証済みAI生産性を退職拠出能力へ変換するSaaS MVP。",
+      "TOMO PENSIONは、AIによる生産性向上を測定・検証し、合意された一部をパートナー運営の退職給付・年金拠出ルートにつなぐための準備を行います。",
     role: "役割",
-    roleValue: "測定レイヤー",
-    roleBody: "資産保管、投資助言、年金管理ではありません。",
-    roleChips: ["測定レイヤー", "資産保管なし", "パートナー運営レール"],
+    roleChips: ["測定", "検証", "パートナー運営による実行"],
     founderTitle: "創業者",
     founderParagraphs: [
-      "シャハフ・エヤールは、Pension Productivity Dividendの創業者です。",
-      "複数業界で20年以上にわたる国際事業開発の経験と、日本との長年の関わり、国境を越えたパートナーシップ構築の経験を持ちます。",
-      "TOMO PENSIONでは、市場開拓、パイロット設計、パートナー連携、そして雇用主・第三者検証機関・規制対象の福利厚生／年金パートナーを結ぶ連携体制づくりを主導します。",
-      "TOMO PENSIONは、一人の創業者が年金運営、監査、法務、セキュリティをすべて担うという考え方ではありません。これらの専門性は、専門家とパートナーとともに構築します。"
+      "エヤール・シャハフは、TOMO PENSIONの創業者であり、Pension Productivity Dividendの構想を考案した人物です。",
+      "繊維・ファッション、テクノロジー、再生可能エネルギーなどの分野で20年以上にわたる国際事業開発の経験を持ち、日本との長年の関わりと、国境を越えたパートナーシップ構築に取り組んできました。",
+      "TOMO PENSIONでは、市場開拓、パイロット設計、パートナー連携を主導します。プロダクトの役割は測定と検証であり、年金管理、資産保管、執行は規制対象のパートナーが担います。"
     ],
     productTitle: "プロダクトの役割",
     principles: [
@@ -114,54 +65,21 @@ const aboutCopy = {
       "規制対象パートナー向けの指示を生成します。",
       "エビデンスとインパクトを報告します。"
     ],
-    boundariesTitle: "意図的に行わないこと",
+    boundariesTitle: "運用上の役割分担",
     productBoundaries: [
-      ["年金運営者ではない", "資産保管、口座管理、資金移動は行いません。"],
-      ["投資助言ではない", "雇用主の拠出能力のみをモデル化します。"],
-      ["監視ツールではない", "集計された業務エビデンスを使用します。"],
-      ["政策依存ではない", "任意参加の雇用主向けSaaSとして開始します。"]
+      ["TOMO PENSION", "対象となる生産性向上を測定・検証・報告します。"],
+      ["雇用主", "集計された業務・財務エビデンスを提供し、配分ルールを設定します。"],
+      ["規制対象パートナー", "退職給付口座、資産保管、拠出の実行を担います。"]
     ],
     japanTitle: "日本が最初の市場として強い理由",
     japanBody:
       "高齢化、企業規模、年金圧力、責任あるAI導入が重なっています。プロダクトは測定を追加し、実行はパートナーが担います。",
-    proofTitle: "投資家向け検証ロジック",
-    proofPoints: [
-      ["雇用主の証明", "測定された業務効果。"],
-      ["従業員価値", "検証済み効果の一部。"],
-      ["パートナー証明", "規制対象レールが実行。"],
-      ["投資家証明", "資産保管リスクのないSaaS。"]
-    ],
-    languagePathTitle: "日本語版の進め方",
-    languagePathBody:
-      "まずUIを短くローカライズし、パイロット前に規制・実務用語を確認します。",
-    languageSteps: [
-      ["インターフェース", "ナビゲーション、ラベル、KPI。"],
-      ["専門用語", "年金、人事、税務、プライバシー。"],
-      ["パートナー適合", "指示ファイル / API形式。"],
-      ["顧客テスト", "人事、CFO、コンプライアンスレビュー。"]
-    ],
-    resourcesTitle: "プロジェクトリソース",
-    resourcesBody: "投資家・パイロット用ファイルの配信元",
-    resourceGroups: [
-      {
-        title: "TOMOブランド",
-        body: "デックおよび共有用アセット。",
-        links: ["公式横長ロゴ", "ソーシャルプレビュー"]
-      },
-      {
-        title: "パイロットテンプレート",
-        body: "集計デモデータ形式。",
-        links: ["業務CSV", "前提条件JSON", "パートナー指示JSON"]
-      },
-      {
-        title: "プロトタイプ法務メモ",
-        body: "プロトタイプの境界。",
-        links: ["プライバシー通知", "利用規約プレースホルダー"]
-      }
-    ],
+    pilotTitle: "現在のパイロット焦点",
+    pilotBody:
+      "直近の目標は、導入企業1社、第三者検証パートナー1社、規制対象の福利厚生・年金パートナー1社とともに、測定に限定したパイロットを設計することです。TOMO PENSIONはエビデンスと拠出指示の準備を担い、執行の責任はパートナーが担います。",
     footer: [
-      ["TOMO PENSION", "作成: Eyal Shahaf。Pension Productivity Dividendの枠組みを用いたプロトタイプSaaS MVP。"],
-      ["現在の状態", "SQLite、アップロード、静的リソースを備えたNext.jsデモ。"],
+      ["TOMO PENSION", "Eyal ShahafがPension Productivity Dividendの枠組みを用いて作成。"],
+      ["現在の焦点", "測定限定パイロットの設計とパートナー連携。"],
       ["コンプライアンス境界", "助言ではありません。規制対象パートナーが年金レールを実行します。"]
     ]
   }
@@ -174,13 +92,6 @@ export function AboutView({ language }: AboutViewProps) {
     <div className="dashboard-grid">
       <section className="span-12 about-hero">
         <div>
-          <div className="about-brand-lockup-frame">
-            <img
-              className="about-brand-lockup"
-              src="/brand/tomo/logo-horizontal.svg"
-              alt="TOMO PENSION"
-            />
-          </div>
           <p className="eyebrow">{copy.eyebrow}</p>
           <h2>{copy.title}</h2>
           <p>{copy.body}</p>
@@ -231,55 +142,9 @@ export function AboutView({ language }: AboutViewProps) {
           <h3>{copy.japanTitle}</h3>
           <p>{copy.japanBody}</p>
         </div>
-        <div>
-          <h3>{copy.proofTitle}</h3>
-          <div className="proof-list">
-            {copy.proofPoints.map(([title, body]) => (
-              <div className="proof-row" key={title}>
-                <b>{title}</b>
-                <p>{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="span-12 panel">
-        <h3>{copy.languagePathTitle}</h3>
-        <p>{copy.languagePathBody}</p>
-        <div className="localization-grid">
-          {copy.languageSteps.map(([title, body]) => (
-            <article className="localization-step" key={title}>
-              <b>{title}</b>
-              <p>{body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="span-12 panel">
-        <div className="resource-head">
-          <div>
-            <h3>{copy.resourcesTitle}</h3>
-            <p>
-              {copy.resourcesBody} <code>public/</code>.
-            </p>
-          </div>
-        </div>
-        <div className="resource-group-grid">
-          {copy.resourceGroups.map((group, groupIndex) => (
-            <article className="resource-group" key={group.title}>
-              <h3>{group.title}</h3>
-              <p>{group.body}</p>
-              <div className="resource-actions">
-                {group.links.map((label, linkIndex) => (
-                  <a href={resourceHrefs[groupIndex][linkIndex]} key={resourceHrefs[groupIndex][linkIndex]}>
-                    {label}
-                  </a>
-                ))}
-              </div>
-            </article>
-          ))}
+        <div className="about-market-copy">
+          <h3>{copy.pilotTitle}</h3>
+          <p>{copy.pilotBody}</p>
         </div>
       </section>
 
