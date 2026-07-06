@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ScenarioKey } from "@/lib/types";
 import { scenarios } from "@/lib/defaults";
 import type { AccessibilityPreferences } from "@/lib/accessibility";
@@ -39,37 +39,65 @@ export function TopBar({
   const t = getCopy(language);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const topbarRef = useRef<HTMLElement | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") closeMobileMenu();
+    }
+
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isMobileMenuOpen]);
+
+  function closeMobileMenu() {
+    topbarRef.current
+      ?.querySelectorAll<HTMLDetailsElement>(".accessibility-settings[open]")
+      .forEach((details) => {
+        details.open = false;
+      });
+    setIsMobileMenuOpen(false);
+    window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+  }
 
   function toggleMobileMenu() {
-    setIsMobileMenuOpen((isOpen) => {
-      if (isOpen) {
-        topbarRef.current
-          ?.querySelectorAll<HTMLDetailsElement>(".accessibility-settings[open]")
-          .forEach((details) => {
-            details.open = false;
-          });
-      }
+    if (isMobileMenuOpen) {
+      closeMobileMenu();
+      return;
+    }
 
-      return !isOpen;
-    });
+    setIsMobileMenuOpen(true);
   }
 
   return (
     <header className="topbar" ref={topbarRef}>
       <div className="topbar-inner">
         <div className="brand">
-          <div className="eyebrow">{t.topbar.eyebrow}</div>
+          <div className="eyebrow">
+            <span className="eyebrow-full">{t.topbar.eyebrow}</span>
+            <span className="eyebrow-mobile">{t.topbar.mobileEyebrow}</span>
+          </div>
           <div className="brand-identity-row">
             <div className="brand-lockup" aria-label={t.topbar.title}>
               <img
-                className="brand-logo-horizontal"
+                className="brand-logo-horizontal brand-logo-desktop"
                 src="/brand/tomo/logo-horizontal.png"
                 alt={t.topbar.title}
               />
-              <span className="brand-mobile-lockup">
-                <img className="brand-mobile-icon" src="/brand/tomo/icon.svg" alt="" aria-hidden="true" />
-                <span>{t.topbar.title}</span>
-              </span>
+              <img
+                className="brand-logo-horizontal brand-logo-mobile"
+                src="/brand/tomo/logo-horizontal.svg"
+                alt={t.topbar.title}
+              />
             </div>
             {t.topbar.tagline ? <p className="brand-tagline">{t.topbar.tagline}</p> : null}
           </div>
@@ -81,14 +109,15 @@ export function TopBar({
         <button
           className="mobile-menu-btn"
           type="button"
+          ref={menuButtonRef}
           aria-expanded={isMobileMenuOpen}
-          aria-controls="topbar-controls"
+          aria-controls="mobile-shell-drawer"
+          aria-label={isMobileMenuOpen ? t.topbar.closeControls : t.topbar.openControls}
           onClick={toggleMobileMenu}
         >
           <span aria-hidden="true">{isMobileMenuOpen ? "×" : "☰"}</span>
-          {isMobileMenuOpen ? t.topbar.closeControls : t.topbar.openControls}
         </button>
-        <div id="topbar-controls" className={`top-actions ${isMobileMenuOpen ? "is-open" : ""}`}>
+        <div className="top-actions desktop-controls">
           <div className="language-switch" aria-label="Language">
             {languages.map((item) => (
               <button
@@ -144,6 +173,64 @@ export function TopBar({
           <button className="action-btn primary" type="button" onClick={() => window.print()}>
             {t.topbar.snapshot}
           </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-shell-drawer"
+        className={`mobile-shell-drawer ${isMobileMenuOpen ? "is-open" : ""}`}
+        aria-hidden={!isMobileMenuOpen}
+      >
+        <div className="mobile-drawer-panel" role="dialog" aria-modal="true" aria-label={t.topbar.openControls}>
+          <section className="mobile-drawer-section" aria-labelledby="mobile-preferences-title">
+            <h2 id="mobile-preferences-title">{t.topbar.preferences}</h2>
+            <div className="mobile-control-row">
+              <span>{t.topbar.language}</span>
+              <div className="language-switch" aria-label="Language">
+                {languages.map((item) => (
+                  <button
+                    key={item.key}
+                    type="button"
+                    aria-pressed={language === item.key}
+                    onClick={() => onLanguageChange(item.key)}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <button
+              className="mobile-control-row mobile-control-button"
+              type="button"
+              onClick={onThemeToggle}
+              aria-pressed={themeMode === "dark"}
+            >
+              <span>{t.topbar.appearance}</span>
+              <b>{themeMode === "dark" ? "Light" : "Dark"}</b>
+            </button>
+            <div className="mobile-control-row mobile-accessibility-row">
+              <AccessibilitySettings
+                language={language}
+                preferences={accessibilityPreferences}
+                onChange={onAccessibilityChange}
+              />
+            </div>
+          </section>
+
+          <section className="mobile-drawer-section" aria-labelledby="mobile-actions-title">
+            <h2 id="mobile-actions-title">{t.topbar.actions}</h2>
+            <div className="mobile-action-grid">
+              <button className="action-btn" type="button" data-testid="save-snapshot-mobile" onClick={onSave}>
+                {t.topbar.save}
+              </button>
+              <button className="action-btn primary" type="button" onClick={() => window.print()}>
+                {t.topbar.snapshot}
+              </button>
+            </div>
+            <button className="action-btn mobile-reset-btn" type="button" onClick={onReset}>
+              {t.topbar.reset}
+            </button>
+          </section>
         </div>
       </div>
     </header>

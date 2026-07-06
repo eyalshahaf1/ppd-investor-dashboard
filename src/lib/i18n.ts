@@ -9,6 +9,7 @@ export const copy = {
   en: {
     topbar: {
       eyebrow: "Japan Pilot Feasibility Concept",
+      mobileEyebrow: "Japan Pilot",
       title: "TOMO PENSION",
       tagline: "Measured gains. Verified value. Shared future.",
       subtitle:
@@ -22,7 +23,11 @@ export const copy = {
       snapshot: "Snapshot",
       switchTheme: "Switch theme",
       openControls: "Menu",
-      closeControls: "Close"
+      closeControls: "Close",
+      preferences: "Preferences",
+      actions: "Actions",
+      language: "Language",
+      appearance: "Appearance"
     },
     tabs: {
       overview: "Overview",
@@ -32,6 +37,15 @@ export const copy = {
       data: "Partner Execution",
       about: "About",
       investor: "Investor Room"
+    },
+    mobileTabs: {
+      overview: "Overview",
+      calculator: "Ledger",
+      scenarios: "Scenarios",
+      pilot: "Pilot",
+      data: "Data",
+      about: "About",
+      investor: "Investor"
     },
     overview: {
       thesisTitle: "TOMO PENSION for Japan.",
@@ -341,6 +355,7 @@ export const copy = {
   ja: {
     topbar: {
       eyebrow: "日本向け実証可能性コンセプト",
+      mobileEyebrow: "日本向けパイロット",
       title: "TOMO PENSION",
       tagline: "共に、未来をつくる。",
       subtitle:
@@ -354,7 +369,11 @@ export const copy = {
       snapshot: "印刷",
       switchTheme: "テーマ切替",
       openControls: "メニュー",
-      closeControls: "閉じる"
+      closeControls: "閉じる",
+      preferences: "設定",
+      actions: "操作",
+      language: "言語",
+      appearance: "表示"
     },
     tabs: {
       overview: "概要",
@@ -364,6 +383,15 @@ export const copy = {
       data: "パートナー実行",
       about: "共に未来をつくる TOMO PENSION",
       investor: "投資家向け"
+    },
+    mobileTabs: {
+      overview: "概要",
+      calculator: "検証台帳",
+      scenarios: "シナリオ",
+      pilot: "実証",
+      data: "連携",
+      about: "TOMOについて",
+      investor: "投資家"
     },
     overview: {
       thesisTitle: "日本向けTOMO PENSION。",

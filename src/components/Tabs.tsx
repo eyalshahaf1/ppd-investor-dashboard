@@ -38,9 +38,11 @@ export function Tabs({ activeTab, language, onChange }: TabsProps) {
             className="tab-btn"
             data-tab={tab.key}
             aria-selected={activeTab === tab.key}
+            aria-label={t.tabs[tab.key]}
             onClick={() => onChange(tab.key)}
           >
-            {t.tabs[tab.key]}
+            <span className="tab-label-full">{t.tabs[tab.key]}</span>
+            <span className="tab-label-mobile">{t.mobileTabs[tab.key]}</span>
           </button>
         ))}
       </nav>
