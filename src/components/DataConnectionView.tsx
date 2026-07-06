@@ -211,6 +211,10 @@ export function DataConnectionView({ language }: DataConnectionViewProps) {
           </button>
         </form>
 
+        <p className="source-note">
+          {copy.uploadLocalNote}
+        </p>
+
         <div className="upload-type-note">
           {copy.uploadTypes.map(([label, detail], index) => (
             <p key={uploadTypeKeys[index]}>

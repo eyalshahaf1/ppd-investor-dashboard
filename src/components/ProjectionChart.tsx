@@ -3,12 +3,17 @@ import type { ProjectionRow } from "@/lib/types";
 
 type ProjectionChartProps = {
   rows: ProjectionRow[];
+  showRevenue?: boolean;
 };
 
-export function ProjectionChart({ rows }: ProjectionChartProps) {
+export function ProjectionChart({ rows, showRevenue = true }: ProjectionChartProps) {
   const maxValue = Math.max(
     1,
-    ...rows.flatMap((row) => [row.annualContribution, row.aum, row.platformRevenue])
+    ...rows.flatMap((row) => [
+      row.annualContribution,
+      row.aum,
+      ...(showRevenue ? [row.platformRevenue] : [])
+    ])
   );
   const chartHeight = 260;
   const chartWidth = 760;
@@ -57,13 +62,15 @@ export function ProjectionChart({ rows }: ProjectionChartProps) {
               width={barWidth}
               height={padding.top + plotHeight - annualY}
             />
-            <rect
-              className="bar revenue"
-              x={center + 4}
-              y={revenueY}
-              width={barWidth}
-              height={padding.top + plotHeight - revenueY}
-            />
+            {showRevenue ? (
+              <rect
+                className="bar revenue"
+                x={center + 4}
+                y={revenueY}
+                width={barWidth}
+                height={padding.top + plotHeight - revenueY}
+              />
+            ) : null}
             <text x={center} y={chartHeight - 14} textAnchor="middle" className="year-label">
               {row.year}
             </text>
@@ -79,4 +86,3 @@ export function ProjectionChart({ rows }: ProjectionChartProps) {
     </svg>
   );
 }
-

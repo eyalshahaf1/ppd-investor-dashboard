@@ -148,10 +148,9 @@ export function ScenarioView({
           <div className="legend">
             <span><i />{copy.annualContributions}</span>
             <span className="aum"><i />{copy.endYearAumTracked}</span>
-            <span className="revenue"><i />{copy.platformRevenue}</span>
           </div>
         </div>
-        <ProjectionChart rows={rows} />
+        <ProjectionChart rows={rows} showRevenue={false} />
       </section>
 
       <aside className="span-4 panel">
@@ -159,7 +158,7 @@ export function ScenarioView({
         <div className="metric-grid single">
           <KpiCard label={copy.snapshotKpis[0][0]} value={formatEmployees(y5.employees)} note={copy.snapshotKpis[0][1]} />
           <KpiCard label={copy.snapshotKpis[1][0]} value={formatYen(y5.annualContribution)} note={copy.snapshotKpis[1][1]} accent="amber" />
-          <KpiCard label={copy.snapshotKpis[2][0]} value={formatYen(y5.platformRevenue)} note={copy.snapshotKpis[2][1]} accent="indigo" />
+          <KpiCard label={copy.snapshotKpis[2][0]} value={formatYen(y5.aum)} note={copy.snapshotKpis[2][1]} accent="indigo" />
         </div>
         <div className="callout">
           <h3>{copy.investorSafeTitle}</h3>
@@ -184,7 +183,6 @@ export function ScenarioView({
                 <td>{formatEmployees(row.employees)}</td>
                 <td>{formatYen(row.annualContribution)}</td>
                 <td>{formatYen(row.aum)}</td>
-                <td>{formatYen(row.platformRevenue)}</td>
                 <td>{row.newEmployers.toLocaleString("en-US")}</td>
               </tr>
             ))}

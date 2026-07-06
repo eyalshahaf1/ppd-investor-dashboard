@@ -10,7 +10,7 @@ export const copy = {
     topbar: {
       eyebrow: "Japan Pilot Feasibility Concept",
       title: "TOMO PENSION",
-      tagline: "Creating a future together.",
+      tagline: "Measured gains. Verified value. Shared future.",
       subtitle:
         "Measure verified AI gains. Allocate a small pre-agreed share. Generate validated contribution instructions for partner-operated rails.",
       baseCase: "Base case",
@@ -45,7 +45,7 @@ export const copy = {
       ],
       dashboardTitle: "Investor opening dashboard",
       dashboardBody:
-        "Macro context, pension impact, and SaaS revenue in one view.",
+        "Macro context, retirement value, covered employees, and partner readiness in one view.",
       macroContextTitle: "Japan macro context",
       modelOutputTitle: "Pension Productivity Dividend model output",
       population65: "Japan population 65+",
@@ -104,15 +104,17 @@ export const copy = {
         "Investor positioning: start with voluntary B2B pilots.",
       chartTitle: "Impact horizon: value now and at scale",
       contributionFlow: "Retirement contribution flow",
-      aumTracked: "End-year AUM tracked",
+      aumTracked: "Retirement assets tracked",
       platformRevenue: "Platform revenue",
+      retirementAssetsNote:
+        "Illustrative value tracked through partner-operated retirement rails. TOMO PENSION does not custody, manage, or invest retirement assets.",
       impactHorizons: ["Immediate", "Daily", "Monthly", "Annual", "Multi-year"],
       horizonSummaries: {
-        immediate: "Immediate view shows contribution and platform run-rate by covered employee scale.",
-        daily: "Daily view shows cumulative first-month run-rate from the medium Year 1 adoption case.",
+        immediate: "Immediate view shows retirement contribution by covered employee scale.",
+        daily: "Daily view shows cumulative first-month retirement value from the medium Year 1 adoption case.",
         monthly: "Monthly view shows how the medium Year 1 case becomes visible inside the first year.",
         annual: "Annual view shows quarterly build-up inside Year 1.",
-        multiYear: "Multi-year view shows cumulative five-year contribution and platform scale.",
+        multiYear: "Multi-year view shows cumulative five-year contribution and retirement assets tracked.",
         lastPoint: "Last point",
         retirementValue: "retirement value",
         platformRevenue: "platform revenue"
@@ -165,7 +167,7 @@ export const copy = {
           "Only documented financial outcomes enter the ledger. Hours saved alone are evidence, not eligible gain.",
         demoFilesTitle: "Demo scenario files",
         demoFilesBody:
-          "Use these files in Partner Execution / Secure pilot upload to test conservative, medium, and strong pilot evidence.",
+          "Use these files in Partner Execution / Pilot evidence upload to test conservative, medium, and strong pilot evidence.",
         demoFiles: [
           "Conservative pilot CSV",
           "Medium pilot CSV",
@@ -199,26 +201,28 @@ export const copy = {
       comparisonBody:
         "Illustrative adoption scenarios only. They are useful for investor scale discussion but are not verified pilot results.",
       y5ContributionFlow: "Y5 contribution flow",
-      y5AumInfluenced: "Y5 AUM influenced",
+      y5ContributionLabel: "Year 5 annual contribution",
+      y5AumInfluenced: "Illustrative retirement assets",
+      y5RetirementAssets: "Illustrative retirement assets",
       y5PlatformRevenue: "Y5 platform revenue",
       projectionSuffix: "projection",
       annualContributions: "Annual contributions",
-      endYearAumTracked: "End-year AUM tracked",
+      endYearAumTracked: "Retirement assets tracked",
       platformRevenue: "Platform revenue",
       snapshotTitle: "Scenario snapshot",
       snapshotKpis: [
         ["Y5 covered employees", "Scale assumption at year five."],
         ["Y5 annual contributions", "Retirement value created in year five."],
-        ["Y5 platform revenue", "Startup revenue earned from the platform model."]
+        ["Illustrative retirement assets", "Value tracked through partner-operated retirement rails."]
       ],
       investorSafeTitle: "Investor-safe phrasing",
       investorSafeBody:
-        "AUM tracked means assets verified through the program. The startup should not imply that it legally manages pension assets.",
+        "Illustrative value tracked through partner-operated retirement rails. TOMO PENSION does not custody, manage, or invest retirement assets.",
       tableTitle: "Projection table",
-      tableHeaders: ["Year", "Employees", "Annual contribution", "End-year AUM tracked", "Platform revenue", "New employers"],
+      tableHeaders: ["Year", "Employees", "Annual contribution", "Retirement assets tracked", "New employers"],
       metricLabels: {
         employees: "Employees",
-        aum: "AUM",
+        aum: "Retirement assets",
         revenue: "Revenue"
       }
     },
@@ -257,15 +261,16 @@ export const copy = {
         needsReview: "Pilot file needs mapping review.",
         previewFailed: "Could not preview this file."
       },
-      uploadTitle: "Secure pilot upload",
+      uploadTitle: "Pilot evidence upload",
       uploadBody: "Local CSV/TXT evidence under",
+      uploadLocalNote: "Demo mode: selected files remain local to this browser for review.",
       datasetType: "Dataset type",
       fileLabel: "CSV, TXT, or XLSX file",
       uploadButton: "Upload pilot data",
       uploadingButton: "Uploading",
       connectorTitle: "SaaS connector roadmap",
       connectorLanes: [
-        ["Pilot", "Secure CSV upload", "Fastest path for a 90-day proof of concept."],
+        ["Pilot", "Pilot CSV upload", "Fastest path for a 90-day proof of concept."],
         ["Scale", "SFTP import/export", "Standard enterprise transfer for larger employers."],
         ["Enterprise", "HRIS, payroll, ERP APIs", "Automated data sync after security and legal review."],
         ["Execution", "Regulated partner API", "Contribution instructions only; partners execute the rails."]
@@ -282,7 +287,7 @@ export const copy = {
         "Conservative pilot CSV",
         "Medium pilot CSV",
         "Strong pilot CSV",
-        "Secure pilot Excel sample",
+        "Pilot evidence Excel sample",
         "Verified gain Excel calculator",
         "Workflow CSV template",
         "Assumptions JSON",
@@ -337,7 +342,7 @@ export const copy = {
     topbar: {
       eyebrow: "日本向け実証可能性コンセプト",
       title: "TOMO PENSION",
-      tagline: "共に未来をつくる",
+      tagline: "共に、未来をつくる。",
       subtitle:
         "検証済みAI効果を測定し、事前合意された小さな割合を配分し、パートナー運営レール向けの検証済み拠出指示を生成します。",
       baseCase: "基本ケース",
@@ -372,7 +377,7 @@ export const copy = {
       ],
       dashboardTitle: "投資家向けオープニング指標",
       dashboardBody:
-        "マクロ背景、年金インパクト、SaaS収益を一画面で表示。",
+        "マクロ背景、退職価値、対象従業員、パートナー準備状況を一画面で表示。",
       macroContextTitle: "日本のマクロ背景",
       modelOutputTitle: "Pension Productivity Dividendモデル出力",
       population65: "日本の65歳以上人口",
@@ -431,15 +436,17 @@ export const copy = {
         "投資家向け位置づけ: 任意のB2Bパイロットから開始。",
       chartTitle: "インパクト期間: 現在と拡大時の価値",
       contributionFlow: "退職拠出フロー",
-      aumTracked: "年末AUMトラッキング",
+      aumTracked: "追跡対象の退職資産",
       platformRevenue: "プラットフォーム収益",
+      retirementAssetsNote:
+        "連携先の年金・退職給付レールを通じて追跡する試算値です。TOMO PENSIONは資産の保管、運用、投資を行いません。",
       impactHorizons: ["即時", "日次", "月次", "年次", "複数年"],
       horizonSummaries: {
-        immediate: "即時ビューは、対象従業員規模ごとの拠出額とプラットフォーム収益ランレートを示します。",
-        daily: "日次ビューは、中位シナリオYear 1の初月累計ランレートを示します。",
+        immediate: "即時ビューは、対象従業員規模ごとの退職拠出額を示します。",
+        daily: "日次ビューは、中位シナリオYear 1の初月累計退職価値を示します。",
         monthly: "月次ビューは、中位シナリオYear 1が初年度内にどう可視化されるかを示します。",
         annual: "年次ビューは、Year 1内の四半期ごとの積み上がりを示します。",
-        multiYear: "複数年ビューは、5年間の累計拠出額とプラットフォーム規模を示します。",
+        multiYear: "複数年ビューは、5年間の累計拠出額と追跡対象の退職資産を示します。",
         lastPoint: "最終点",
         retirementValue: "退職価値",
         platformRevenue: "プラットフォーム収益"
@@ -492,7 +499,7 @@ export const copy = {
           "台帳に入るのは文書化された財務成果のみです。時間削減だけでは適格利益になりません。",
         demoFilesTitle: "デモ用シナリオファイル",
         demoFilesBody:
-          "Partner Execution / Secure pilot uploadで、保守的・中位・強めのパイロットエビデンスをテストできます。",
+          "Partner Execution / パイロット証跡アップロードで、保守的・中位・強めのパイロットエビデンスをテストできます。",
         demoFiles: [
           "保守的パイロットCSV",
           "中位パイロットCSV",
@@ -526,26 +533,28 @@ export const copy = {
       comparisonBody:
         "例示導入シナリオのみです。投資家向けの拡大議論には有用ですが、検証済みパイロット結果ではありません。",
       y5ContributionFlow: "5年目拠出フロー",
-      y5AumInfluenced: "5年目AUM影響額",
+      y5ContributionLabel: "5年目の年間拠出額",
+      y5AumInfluenced: "試算上の退職資産",
+      y5RetirementAssets: "試算上の退職資産",
       y5PlatformRevenue: "5年目プラットフォーム収益",
       projectionSuffix: "予測",
       annualContributions: "年間拠出",
-      endYearAumTracked: "年末AUMトラッキング",
+      endYearAumTracked: "追跡対象の退職資産",
       platformRevenue: "プラットフォーム収益",
       snapshotTitle: "シナリオ概要",
       snapshotKpis: [
         ["5年目対象従業員数", "5年目の規模前提。"],
         ["5年目年間拠出額", "5年目に創出される退職価値。"],
-        ["5年目プラットフォーム収益", "プラットフォームモデルから得るスタートアップ収益。"]
+        ["試算上の退職資産", "連携先の年金・退職給付レールを通じて追跡する価値。"]
       ],
       investorSafeTitle: "投資家向けの安全な表現",
       investorSafeBody:
-        "AUM trackedは、このプログラムを通じて確認された資産を意味します。スタートアップが法的に年金資産を運用しているとは示唆しません。",
+        "連携先の年金・退職給付レールを通じて追跡する試算値です。TOMO PENSIONは資産の保管、運用、投資を行いません。",
       tableTitle: "予測テーブル",
-      tableHeaders: ["年", "従業員数", "年間拠出", "年末AUMトラッキング", "プラットフォーム収益", "新規雇用主"],
+      tableHeaders: ["年", "従業員数", "年間拠出", "追跡対象の退職資産", "新規雇用主"],
       metricLabels: {
         employees: "従業員数",
-        aum: "AUM",
+        aum: "退職資産",
         revenue: "収益"
       }
     },
@@ -584,15 +593,16 @@ export const copy = {
         needsReview: "パイロットファイルはマッピングレビューが必要です。",
         previewFailed: "このファイルをプレビューできませんでした。"
       },
-      uploadTitle: "安全なパイロットアップロード",
+      uploadTitle: "パイロット証跡アップロード",
       uploadBody: "ローカルCSV/TXTエビデンス保存先",
+      uploadLocalNote: "デモモード：選択したファイルは確認のためこのブラウザ内にのみ保持されます。",
       datasetType: "データセット種別",
       fileLabel: "CSV、TXT、またはXLSXファイル",
       uploadButton: "パイロットデータをアップロード",
       uploadingButton: "アップロード中",
       connectorTitle: "SaaS接続ロードマップ",
       connectorLanes: [
-        ["Pilot", "安全なCSVアップロード", "90日間PoCの最短ルート。"],
+        ["Pilot", "パイロットCSVアップロード", "90日間PoCの最短ルート。"],
         ["Scale", "SFTPインポート/エクスポート", "大規模雇用主向けの標準的な企業転送。"],
         ["Enterprise", "HRIS、給与、ERP API", "セキュリティ・法務レビュー後の自動データ同期。"],
         ["Execution", "規制対象パートナーAPI", "拠出指示のみ。実行はパートナーが担います。"]
@@ -609,7 +619,7 @@ export const copy = {
         "保守的パイロットCSV",
         "中位パイロットCSV",
         "強めパイロットCSV",
-        "安全なパイロットExcelサンプル",
+        "パイロット証跡Excelサンプル",
         "検証済みAI効果Excel計算サンプル",
         "業務CSVテンプレート",
         "前提条件JSON",

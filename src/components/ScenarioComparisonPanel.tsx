@@ -7,6 +7,7 @@ type ScenarioComparisonPanelProps = {
   assumptions: Assumptions;
   activeScenario: ScenarioKey;
   language: Language;
+  showRevenue?: boolean;
   onScenarioChange: (scenario: ScenarioKey) => void;
 };
 
@@ -14,6 +15,7 @@ export function ScenarioComparisonPanel({
   assumptions,
   activeScenario,
   language,
+  showRevenue = false,
   onScenarioChange
 }: ScenarioComparisonPanelProps) {
   const summaries = buildScenarioSummaries(assumptions);
@@ -31,8 +33,8 @@ export function ScenarioComparisonPanel({
         </div>
         <div className="legend">
           <span><i />{copy.y5ContributionFlow}</span>
-          <span className="aum"><i />{copy.y5AumInfluenced}</span>
-          <span className="revenue"><i />{copy.y5PlatformRevenue}</span>
+          <span className="aum"><i />{copy.y5RetirementAssets}</span>
+          {showRevenue ? <span className="revenue"><i />{copy.y5PlatformRevenue}</span> : null}
         </div>
       </div>
 
@@ -45,6 +47,7 @@ export function ScenarioComparisonPanel({
             onClick={() => onScenarioChange(summary.key)}
           >
             <span>{copy.scenarioLabels[summary.key]}</span>
+            <em>{copy.y5ContributionLabel}</em>
             <strong>{formatYen(summary.y5AnnualContribution)}</strong>
             <div className="compare-bar-track">
               <div
@@ -61,10 +64,12 @@ export function ScenarioComparisonPanel({
                 <dt>{copy.metricLabels.aum}</dt>
                 <dd>{formatYen(summary.y5Aum)}</dd>
               </div>
-              <div>
-                <dt>{copy.metricLabels.revenue}</dt>
-                <dd>{formatYen(summary.y5PlatformRevenue)}</dd>
-              </div>
+              {showRevenue ? (
+                <div>
+                  <dt>{copy.metricLabels.revenue}</dt>
+                  <dd>{formatYen(summary.y5PlatformRevenue)}</dd>
+                </div>
+              ) : null}
             </dl>
           </button>
         ))}

@@ -9,12 +9,17 @@ export type ImpactHorizonRow = {
 
 type ImpactHorizonChartProps = {
   rows: ImpactHorizonRow[];
+  showRevenue?: boolean;
 };
 
-export function ImpactHorizonChart({ rows }: ImpactHorizonChartProps) {
+export function ImpactHorizonChart({ rows, showRevenue = true }: ImpactHorizonChartProps) {
   const maxValue = Math.max(
     1,
-    ...rows.flatMap((row) => [row.contribution, row.platformRevenue, row.trackedValue])
+    ...rows.flatMap((row) => [
+      row.contribution,
+      row.trackedValue,
+      ...(showRevenue ? [row.platformRevenue] : [])
+    ])
   );
   const chartHeight = 260;
   const chartWidth = 760;
@@ -64,14 +69,16 @@ export function ImpactHorizonChart({ rows }: ImpactHorizonChartProps) {
               height={padding.top + plotHeight - contributionY}
               rx="3"
             />
-            <rect
-              className="bar revenue"
-              x={center + 4}
-              y={revenueY}
-              width={barWidth}
-              height={padding.top + plotHeight - revenueY}
-              rx="3"
-            />
+            {showRevenue ? (
+              <rect
+                className="bar revenue"
+                x={center + 4}
+                y={revenueY}
+                width={barWidth}
+                height={padding.top + plotHeight - revenueY}
+                rx="3"
+              />
+            ) : null}
             <text x={center} y={chartHeight - 16} textAnchor="middle" className="year-label">
               {row.label}
             </text>

@@ -107,9 +107,7 @@ export function OverviewView({
               />
             </div>
             <p className="source-note macro-note">
-              <strong>{t.overview.macroSource}:</strong>{" "}
-              {population65?.source_name ?? "Statistics Bureau of Japan"} ·{" "}
-              {population65?.period ?? "Oct 1, 2024"}
+              {formatProvenanceLine(population65, language)}
             </p>
           </div>
 
@@ -156,6 +154,7 @@ export function OverviewView({
           <div>
             <h3>{t.overview.chartTitle}</h3>
             <p className="source-note">{horizonSummary}</p>
+            <p className="source-note">{t.overview.retirementAssetsNote}</p>
           </div>
           <div className="impact-horizon-controls" aria-label="Impact horizon">
             {impactHorizonKeys.map((key, index) => (
@@ -172,10 +171,9 @@ export function OverviewView({
           <div className="legend impact-legend">
             <span><i />{t.overview.contributionFlow}</span>
             <span className="aum"><i />{t.overview.aumTracked}</span>
-            <span className="revenue"><i />{t.overview.platformRevenue}</span>
           </div>
         </div>
-        <ImpactHorizonChart rows={impactRows} />
+        <ImpactHorizonChart rows={impactRows} showRevenue={false} />
       </section>
 
       <section className="span-12 panel">
@@ -296,7 +294,16 @@ function getHorizonSummary(horizon: ImpactHorizon, rows: ImpactHorizonRow[], lan
   const copy = getCopy(language).overview.horizonSummaries;
   const prefix = copy[horizon];
 
-  return `${prefix} ${copy.lastPoint}: ${formatYen(last.contribution)} ${copy.retirementValue} / ${formatYen(last.platformRevenue)} ${copy.platformRevenue}.`;
+  return `${prefix} ${copy.lastPoint}: ${formatYen(last.contribution)} ${copy.retirementValue}.`;
+}
+
+function formatProvenanceLine(record: JapanStatRecord | undefined, language: Language) {
+  const sourceName = record?.source_name ?? "Statistics Bureau of Japan";
+  const period = record?.period ?? "Oct 1, 2024";
+
+  return language === "ja"
+    ? `出所： ${sourceName} ・対象時点： ${period} ・状態：公式データのキャッシュ`
+    : `Source: ${sourceName} · Reference period: ${period} · Status: Cached official data`;
 }
 
 function ReadinessItem({ title, value, body }: { title: string; value: string; body: string }) {

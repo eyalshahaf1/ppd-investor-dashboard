@@ -268,7 +268,7 @@ h1 {
 }
 
 :root[data-theme="dark"] .brand-lockup {
-  padding: 10px 14px;
+  padding: 8px 12px;
   border: 1px solid rgba(216, 224, 218, 0.86);
   border-radius: 12px;
   background: #ffffff;
@@ -277,7 +277,7 @@ h1 {
 
 .brand-logo-horizontal {
   width: auto;
-  height: 70px;
+  height: 54px;
   max-width: min(560px, 100%);
   display: block;
   object-fit: contain;
@@ -1189,6 +1189,14 @@ main {
   font-weight: 900;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+.scenario-compare-card > em {
+  color: var(--muted);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .scenario-compare-card > strong {
