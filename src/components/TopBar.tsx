@@ -160,7 +160,10 @@ export function TopBar({
           aria-label={isMobileMenuOpen ? t.topbar.closeControls : t.topbar.openControls}
           onClick={toggleMobileMenu}
         >
-          <span aria-hidden="true">{isMobileMenuOpen ? "×" : "☰"}</span>
+          <span className="mobile-menu-icon" aria-hidden="true">
+            {isMobileMenuOpen ? "×" : "☰"}
+          </span>
+          <span className="mobile-menu-label">{t.topbar.openControls}</span>
         </button>
         <div className="top-actions desktop-controls">
           <div className="language-switch" aria-label="Language">

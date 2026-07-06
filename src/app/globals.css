@@ -360,9 +360,15 @@ h1 {
   font-weight: 900;
 }
 
-.mobile-menu-btn span {
+.mobile-menu-icon {
   color: var(--brand-gold);
   font-size: 18px;
+  line-height: 1;
+}
+
+.mobile-menu-label {
+  color: var(--ink);
+  font-size: 13px;
   line-height: 1;
 }
 
@@ -3562,13 +3568,13 @@ code {
 
   .mobile-menu-btn {
     display: inline-flex;
-    width: 44px;
-    min-width: 44px;
+    width: auto;
+    min-width: 84px;
     height: 44px;
     min-height: 44px;
     grid-column: 2;
     grid-row: 1;
-    padding: 0;
+    padding: 0 12px;
     align-self: start;
     border-color: var(--line);
     background: var(--surface);
