@@ -12,6 +12,15 @@ const aboutCopy = {
       "TOMO PENSION helps employers measure and verify productivity gains from AI, then prepares an agreed share for partner-operated retirement contribution routes.",
     role: "Role",
     roleChips: ["Measure", "Verify", "Partner-operated execution"],
+    identity: {
+      eyebrow: "TOMO identity",
+      title: "Built around shared long-term value.",
+      body:
+        "A visual identity designed around measurement, trust, contribution, and a future built together.",
+      logoAlt: "TOMO PENSION horizontal logo",
+      symbolAlt: "TOMO PENSION symbol",
+      previewAlt: "TOMO PENSION social preview"
+    },
     founderTitle: "Founder",
     founderParagraphs: [
       "Eyal Shahaf is the founder of TOMO PENSION and the creator of the Pension Productivity Dividend framework.",
@@ -52,6 +61,15 @@ const aboutCopy = {
       "TOMO PENSIONは、AIによる生産性向上を測定・検証し、合意された一部をパートナー運営の退職給付・年金拠出ルートにつなぐための準備を行います。",
     role: "役割",
     roleChips: ["測定", "検証", "パートナー運営による実行"],
+    identity: {
+      eyebrow: "TOMO PENSIONのアイデンティティ",
+      title: "共に築く、長期的な価値。",
+      body:
+        "測定、信頼、貢献、そして共に未来を築くという考え方を軸にしたビジュアルアイデンティティです。",
+      logoAlt: "TOMO PENSION 横型ロゴ",
+      symbolAlt: "TOMO PENSION シンボル",
+      previewAlt: "TOMO PENSION ソーシャルプレビュー"
+    },
     founderTitle: "創業者",
     founderParagraphs: [
       "シャハフ・エヤールは、TOMO PENSIONの創業者であり、Pension Productivity Dividendの構想を考案した人物です。",
@@ -101,6 +119,34 @@ export function AboutView({ language }: AboutViewProps) {
             {copy.roleChips.map((chip) => (
               <span key={chip}>{chip}</span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="span-12 panel about-identity">
+        <div className="about-market-copy">
+          <p className="eyebrow">{copy.identity.eyebrow}</p>
+          <h3>{copy.identity.title}</h3>
+          <p>{copy.identity.body}</p>
+        </div>
+        <div className="about-identity-grid">
+          <div className="about-identity-card about-identity-logo">
+            <img
+              src="/brand/tomo/logo-horizontal.png"
+              alt={copy.identity.logoAlt}
+            />
+          </div>
+          <div className="about-identity-card about-identity-symbol">
+            <img
+              src="/brand/tomo/icon.svg"
+              alt={copy.identity.symbolAlt}
+            />
+          </div>
+          <div className="about-identity-card about-identity-preview">
+            <img
+              src="/brand/tomo/og-image.png"
+              alt={copy.identity.previewAlt}
+            />
           </div>
         </div>
       </section>

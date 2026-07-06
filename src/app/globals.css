@@ -3225,6 +3225,66 @@ code {
   font-weight: 900;
 }
 
+.about-identity {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  gap: 22px;
+  align-items: center;
+}
+
+.about-identity-grid {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(120px, 0.55fr) minmax(220px, 1.25fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.about-identity-card {
+  min-height: 128px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: var(--surface-2);
+}
+
+.about-identity-card img {
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.about-identity-logo,
+.about-identity-symbol {
+  background: #ffffff;
+}
+
+.about-identity-logo img {
+  max-height: 64px;
+}
+
+.about-identity-symbol {
+  aspect-ratio: 1;
+}
+
+.about-identity-symbol img {
+  max-height: 76px;
+}
+
+.about-identity-preview {
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.about-identity-preview img {
+  width: 100%;
+  height: 100%;
+  min-height: 128px;
+  object-fit: cover;
+}
+
 .resource-group h3 {
   color: var(--muted);
   font-size: 12px;
@@ -3482,6 +3542,7 @@ code {
 
   .thesis-band,
   .about-hero,
+  .about-identity,
   .about-two-column,
   .about-market-proof {
     grid-template-columns: 1fr;
@@ -3868,6 +3929,18 @@ code {
 
   .about-market-proof {
     gap: 14px;
+  }
+
+  .about-identity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-identity-card {
+    min-height: 112px;
+  }
+
+  .about-identity-symbol {
+    aspect-ratio: auto;
   }
 
   .about-market-proof .proof-list {
