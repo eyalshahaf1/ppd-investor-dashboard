@@ -96,7 +96,7 @@ export function ComingSoonPage() {
       </section>
 
       <section className="coming-soon-cta" aria-label={copy.cta}>
-        <a href="mailto:eyal@eyalshahaf.com">{copy.cta}</a>
+        <a href="mailto:info@tomopension.com">{copy.cta}</a>
         <p>{copy.secondary}</p>
       </section>
 

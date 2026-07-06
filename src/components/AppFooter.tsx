@@ -17,7 +17,7 @@ export function AppFooter({ language, onAccessibilityOpen }: AppFooterProps) {
         </div>
 
         <div className="footer-contact">
-          <a href="mailto:eyal@eyalshahaf.com">eyal@eyalshahaf.com</a>
+          <a href="mailto:info@tomopension.com">info@tomopension.com</a>
           <a
             className="linkedin-icon"
             href="https://www.linkedin.com/in/eyalshahaf/"
