@@ -14,9 +14,9 @@ const aboutCopy = {
     roleChips: ["Measure", "Verify", "Partner-operated execution"],
     identity: {
       eyebrow: "TOMO identity",
-      title: "Built around shared long-term value.",
+      title: "Clarity, trust, and a future built together.",
       body:
-        "A visual identity designed around measurement, trust, contribution, and a future built together.",
+        "A visual identity shaped by measurement, contribution, institutional confidence, and a long-term view.",
       logoAlt: "TOMO PENSION horizontal logo",
       symbolAlt: "TOMO PENSION symbol",
       previewAlt: "TOMO PENSION social preview"
@@ -63,9 +63,9 @@ const aboutCopy = {
     roleChips: ["測定", "検証", "パートナー運営による実行"],
     identity: {
       eyebrow: "TOMO PENSIONのアイデンティティ",
-      title: "共に築く、長期的な価値。",
+      title: "明確さ、信頼、そして共に築く未来。",
       body:
-        "測定、信頼、貢献、そして共に未来を築くという考え方を軸にしたビジュアルアイデンティティです。",
+        "測定、貢献、制度に対する信頼、そして長期的な視点を軸にしたビジュアルアイデンティティです。",
       logoAlt: "TOMO PENSION 横型ロゴ",
       symbolAlt: "TOMO PENSION シンボル",
       previewAlt: "TOMO PENSION ソーシャルプレビュー"
