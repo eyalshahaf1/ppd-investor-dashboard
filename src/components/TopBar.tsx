@@ -193,7 +193,10 @@ export function TopBar({
           </div>
           <div className="pill">
             <span>{t.topbar.backend}</span>
-            <strong className={backendOnline ? "status-ok" : "status-off"}>
+            <strong
+              className={backendOnline ? "status-ok" : "status-demo"}
+              title={backendOnline ? undefined : t.topbar.offlineDetail}
+            >
               {backendOnline ? "SQLite" : t.topbar.offline}
             </strong>
           </div>

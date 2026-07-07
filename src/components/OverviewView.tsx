@@ -325,8 +325,8 @@ function formatOfficialNote(
 ) {
   if (!record) {
     return language === "ja"
-      ? "バックエンド接続待ち。デモの初期値を表示中。"
-      : "Waiting for backend connection. Showing demo seed value.";
+      ? "公開プロトタイプ用のデモ初期値を表示中。"
+      : "Showing illustrative seed data for this public prototype.";
   }
 
   return language === "ja"

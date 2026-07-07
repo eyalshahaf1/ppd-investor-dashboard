@@ -16,8 +16,10 @@ export const copy = {
         "Measure verified AI gains. Allocate a small pre-agreed share. Generate validated contribution instructions for partner-operated rails.",
       baseCase: "Base case",
       y5Flow: "Y5 flow",
-      backend: "Backend",
-      offline: "Offline",
+      backend: "Demo Data Mode",
+      offline: "Seed data",
+      offlineDetail:
+        "Showing illustrative seed data. Live backend is not connected in this public prototype.",
       reset: "Reset model",
       save: "Save snapshot",
       snapshot: "Print / PDF",
@@ -42,6 +44,11 @@ export const copy = {
       data: "Partner Execution",
       about: "About",
       investor: "Investor Room"
+    },
+    prototypeNotice: {
+      title: "Prototype Preview",
+      body:
+        "This interactive demo uses illustrative data for concept discussion only. Tomo Pension does not custody assets, move funds, or provide pension, tax, legal, actuarial, or investment advice."
     },
     drawerTabs: {
       overview: "Overview",
@@ -71,7 +78,7 @@ export const copy = {
         "1 benefits / pension rail partner",
         "1 assurance partner"
       ],
-      dashboardTitle: "Investor opening dashboard",
+      dashboardTitle: "Interactive demo opening view",
       dashboardBody:
         "Macro context, retirement value, covered employees, and partner readiness in one view.",
       macroContextTitle: "Japan macro context",
@@ -327,7 +334,7 @@ export const copy = {
       title: "Security and data boundary",
       status: "Demo-safe posture",
       body:
-        "The current dashboard is designed for investor demos and 90-day pilots with aggregated evidence only. Live employee, salary, pension account, bank, national ID, and secret data should stay outside the prototype.",
+        "The current interactive demo is designed for investor discussions and 90-day pilots with aggregated evidence only. Live employee, salary, pension account, bank, national ID, and secret data should stay outside the prototype.",
       cards: [
         [
           "Cookies",
@@ -376,8 +383,10 @@ export const copy = {
         "検証済みAI効果を測定し、事前合意された小さな割合を配分し、パートナー運営レール向けの検証済み拠出指示を生成します。",
       baseCase: "基本ケース",
       y5Flow: "5年目フロー",
-      backend: "バックエンド",
-      offline: "オフライン",
+      backend: "デモデータモード",
+      offline: "初期データ",
+      offlineDetail:
+        "公開プロトタイプでは、例示用の初期データを表示しています。ライブデータサービスには接続していません。",
       reset: "モデルをリセット",
       save: "スナップショットを保存",
       snapshot: "印刷 / PDF",
@@ -402,6 +411,11 @@ export const copy = {
       data: "パートナー実行",
       about: "共に未来をつくる TOMO PENSION",
       investor: "投資家向け"
+    },
+    prototypeNotice: {
+      title: "プロトタイププレビュー",
+      body:
+        "このインタラクティブデモは、コンセプト検討のための例示データを使用しています。Tomo Pensionは資産の保管、資金移動、年金・税務・法務・アクチュアリー・投資助言を行いません。"
     },
     drawerTabs: {
       overview: "概要",
@@ -431,7 +445,7 @@ export const copy = {
         "福利厚生・年金レールパートナー 1社",
         "保証・検証パートナー 1社"
       ],
-      dashboardTitle: "投資家向けオープニング指標",
+      dashboardTitle: "インタラクティブデモの概要",
       dashboardBody:
         "マクロ背景、退職価値、対象従業員、パートナー準備状況を一画面で表示。",
       macroContextTitle: "日本のマクロ背景",
@@ -687,7 +701,7 @@ export const copy = {
       title: "セキュリティとデータ境界",
       status: "デモ向け安全設計",
       body:
-        "現在のダッシュボードは、投資家デモと90日間パイロット向けに、集計エビデンスのみを扱う前提です。従業員、給与、年金口座、銀行、国民ID、秘密情報などの本番データは、このプロトタイプの外に置くべきです。",
+        "現在のインタラクティブデモは、投資家向けの議論と90日間パイロット向けに、集計エビデンスのみを扱う前提です。従業員、給与、年金口座、銀行、国民ID、秘密情報などの本番データは、このプロトタイプの外に置くべきです。",
       cards: [
         [
           "Cookie",
@@ -723,7 +737,7 @@ export const copy = {
     },
     footer: {
       disclaimer:
-        "本ダッシュボードは議論用のデモ版です。計算は簡略化された前提に基づくものであり、金融、法律、税務、年金数理、投資、または年金制度に関する助言ではありません。"
+        "本インタラクティブデモは議論用のプロトタイプです。計算は簡略化された前提に基づくものであり、金融、法律、税務、年金数理、投資、または年金制度に関する助言ではありません。"
     }
   }
 } as const;

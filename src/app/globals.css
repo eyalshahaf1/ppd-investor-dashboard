@@ -971,8 +971,44 @@ h1 {
   color: var(--teal) !important;
 }
 
+.status-demo {
+  color: var(--amber) !important;
+}
+
 .status-off {
   color: var(--coral) !important;
+}
+
+.prototype-notice {
+  width: min(1480px, calc(100% - 48px));
+  margin: 18px auto 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px 14px;
+  align-items: start;
+  border: 1px solid color-mix(in srgb, var(--amber) 42%, var(--line));
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--amber) 9%, var(--surface));
+  color: var(--ink);
+}
+
+.prototype-notice strong {
+  color: var(--brand-navy);
+  font-size: 13px;
+  font-weight: 950;
+  line-height: 1.35;
+}
+
+.prototype-notice p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+:root[data-theme="dark"] .prototype-notice strong {
+  color: var(--amber);
 }
 
 .action-btn {
@@ -4008,6 +4044,19 @@ code {
 
   .top-actions {
     display: none;
+  }
+
+  .prototype-notice {
+    width: calc(100% - 28px);
+    margin-top: 12px;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 11px 12px;
+  }
+
+  .prototype-notice strong,
+  .prototype-notice p {
+    font-size: 12px;
   }
 
   .topbar.mobile-menu-open .mobile-menu-btn {

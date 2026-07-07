@@ -10,8 +10,8 @@ export const metadata: Metadata = {
     template: "%s | TOMO PENSION"
   },
   description:
-    "A pilot dashboard for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
-  applicationName: "TOMO PENSION Pilot Dashboard",
+    "An interactive demo for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
+  applicationName: "TOMO PENSION Interactive Demo",
   authors: [{ name: "Eyal Shahaf" }],
   creator: "Eyal Shahaf",
   publisher: "Eyal Shahaf",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "retirement",
     "SaaS",
     "productivity dividend",
-    "investor dashboard"
+    "interactive demo"
   ],
   manifest: "/manifest.webmanifest",
   icons: {
@@ -36,14 +36,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TOMO PENSION",
     description:
-      "A pilot dashboard for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
+      "An interactive demo for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
     type: "website",
     images: [
       {
         url: "/brand/tomo/og-image.png",
         width: 1200,
         height: 630,
-        alt: "TOMO PENSION investor dashboard preview"
+        alt: "TOMO PENSION interactive demo preview"
       }
     ]
   },
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TOMO PENSION",
     description:
-      "A pilot dashboard for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
+      "An interactive demo for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
     images: ["/brand/tomo/og-image.png"]
   }
 };

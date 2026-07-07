@@ -17,7 +17,7 @@ type EvidenceMetric = {
 
 const evidenceCopy = {
   en: {
-    title: "Pilot evidence dashboard",
+    title: "Pilot evidence view",
     body:
       "A customer pilot should show operational proof before pension impact: faster cycles, higher throughput, lower rework, and explicit AI cost.",
     improved: "Improved",
@@ -27,7 +27,7 @@ const evidenceCopy = {
     metrics: ["Cycle time", "Volume handled", "Error / rework", "Overtime cost", "AI cost"]
   },
   ja: {
-    title: "パイロットエビデンスダッシュボード",
+    title: "パイロットエビデンスビュー",
     body:
       "顧客パイロットでは、年金インパクトの前に業務上の証拠を示します。サイクル短縮、処理量増加、手戻り削減、明示的なAIコストです。",
     improved: "改善",

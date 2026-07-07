@@ -14,9 +14,9 @@ const statementCopy = {
     intro:
       "We are committed to making this application accessible, usable, and clear for as many people as possible.",
     features:
-      "This prototype dashboard is designed to support keyboard navigation, visible focus states, readable contrast, adjustable text size, reduced motion preferences, underlined links, and semantic page structure.",
+      "This interactive demo is designed to support keyboard navigation, visible focus states, readable contrast, adjustable text size, reduced motion preferences, underlined links, and semantic page structure.",
     status:
-      "The product is currently a prototype investor dashboard. Accessibility improvements are ongoing as the product develops.",
+      "The product is currently a prototype interactive demo. Accessibility improvements are ongoing as the product develops.",
     conformance:
       "This statement is not a formal WCAG conformance claim. A full conformance claim should only be made after a professional accessibility audit.",
     contactTitle: "Report an accessibility issue",
@@ -30,9 +30,9 @@ const statementCopy = {
     intro:
       "私たちは、このアプリケーションをできるだけ多くの人にとって利用しやすく、分かりやすいものにすることを目指しています。",
     features:
-      "このプロトタイプダッシュボードは、キーボード操作、見やすいフォーカス表示、読みやすいコントラスト、文字サイズ調整、動きを減らす設定、リンク下線、意味のあるページ構造を支援するよう設計されています。",
+      "このインタラクティブデモは、キーボード操作、見やすいフォーカス表示、読みやすいコントラスト、文字サイズ調整、動きを減らす設定、リンク下線、意味のあるページ構造を支援するよう設計されています。",
     status:
-      "本製品は現在、投資家向けプロトタイプダッシュボードです。製品の発展に合わせてアクセシビリティ改善を継続します。",
+      "本製品は現在、プロトタイプのインタラクティブデモです。製品の発展に合わせてアクセシビリティ改善を継続します。",
     conformance:
       "このステートメントは正式なWCAG適合宣言ではありません。正式な適合宣言は、専門的なアクセシビリティ監査後にのみ行うべきです。",
     contactTitle: "アクセシビリティ問題の報告",

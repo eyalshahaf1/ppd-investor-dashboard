@@ -14,7 +14,7 @@ export function Tabs({ activeTab, language, onChange }: TabsProps) {
 
   return (
     <div className="tabs-wrap">
-      <nav className="tabs" aria-label="Dashboard views">
+      <nav className="tabs" aria-label="Interactive demo views">
         {dashboardNavigation.map((tab) => (
           <button
             key={tab.key}

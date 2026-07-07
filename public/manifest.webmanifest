@@ -1,7 +1,7 @@
 {
-  "name": "TOMO PENSION Pilot Dashboard",
+  "name": "TOMO PENSION Interactive Demo",
   "short_name": "TOMO PENSION",
-  "description": "A pilot dashboard for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
+  "description": "An interactive demo for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

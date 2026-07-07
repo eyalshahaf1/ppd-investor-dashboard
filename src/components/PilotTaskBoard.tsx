@@ -10,10 +10,10 @@ type PilotTaskBoardProps = {
 
 const pilotCopy = {
   en: {
-    title: "90-day pilot operating dashboard",
+    title: "90-day pilot operating view",
     body: "What must be proven before scaling.",
     checklistTitle: "Task checklist",
-    checklistBody: "Saved locally when backend is online.",
+    checklistBody: "Saved locally when demo data mode is active.",
     complete: "complete",
     phases: defaultPilotTasks,
     partnerTriangle: "Partner triangle",
@@ -37,10 +37,10 @@ const pilotCopy = {
     ]
   },
   ja: {
-    title: "90日間パイロット運用ダッシュボード",
+    title: "90日間パイロット運用ビュー",
     body: "拡大前に証明すべき事項。",
     checklistTitle: "タスクチェックリスト",
-    checklistBody: "バックエンド接続時にローカル保存されます。",
+    checklistBody: "デモデータモードが有効な場合はローカルに保存されます。",
     complete: "完了",
     phases: [
       {

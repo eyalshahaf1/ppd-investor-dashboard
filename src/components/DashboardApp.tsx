@@ -10,7 +10,7 @@ import {
   normalizeAccessibilityPreferences,
   type AccessibilityPreferences
 } from "@/lib/accessibility";
-import type { Language } from "@/lib/i18n";
+import { getCopy, type Language } from "@/lib/i18n";
 import { generateInvestorReport } from "@/lib/productFeatures";
 import type { Assumptions, JapanStatKey, JapanStatRecord, PilotTasks, ScenarioKey } from "@/lib/types";
 import { AboutView } from "./AboutView";
@@ -59,6 +59,7 @@ export function DashboardApp() {
     useState<AccessibilityPreferences>(defaultAccessibilityPreferences);
   const [showAccessibilityStatement, setShowAccessibilityStatement] = useState(false);
   const [japanStats, setJapanStats] = useState<Record<JapanStatKey, JapanStatRecord> | null>(null);
+  const t = getCopy(language);
 
   const mediumProjection = useMemo(
     () => projectScenario("medium", assumptions),
@@ -195,14 +196,14 @@ export function DashboardApp() {
 
   async function saveSnapshot() {
     if (!backendOnline) {
-      setSaveLabel("Offline");
+      setSaveLabel("Demo data mode");
       setTimeout(() => setSaveLabel("Save"), 1200);
       return;
     }
 
     try {
       await apiPost("/api/snapshots", {
-        name: `Investor dashboard snapshot - ${new Date().toISOString()}`,
+        name: `Interactive demo snapshot - ${new Date().toISOString()}`,
         assumptions,
         outputs: getDashboardSnapshot(assumptions, activeScenario)
       });
@@ -252,6 +253,10 @@ export function DashboardApp() {
         />
         <Tabs activeTab={activeTab} language={language} onChange={changeTab} />
       </div>
+      <aside className="prototype-notice" aria-label={t.prototypeNotice.title}>
+        <strong>{t.prototypeNotice.title}</strong>
+        <p>{t.prototypeNotice.body}</p>
+      </aside>
       <div className="save-status" aria-live="polite">{saveLabel !== "Save" ? saveLabel : ""}</div>
       <main id="main-content" tabIndex={-1}>
         {activeTab === "overview" && (

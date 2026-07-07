@@ -1,6 +1,6 @@
 TOMO PENSION in Japan
 
 Prepared by: Eyal Shahaf
-Purpose: Investor dashboard and SaaS MVP for demonstrating a responsible AI productivity dividend model.
+Purpose: Interactive demo and SaaS MVP for demonstrating a responsible AI productivity dividend model.
 Technology: Next.js, React, TypeScript, local SQLite, static templates.
 Repository: https://github.com/eyalshahaf1/ppd-investor-dashboard
