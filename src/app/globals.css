@@ -124,6 +124,7 @@ body {
   grid-template-rows: auto 1fr auto auto auto;
   gap: clamp(24px, 5vw, 58px);
   padding: clamp(18px, 4vw, 48px);
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top right, rgba(200, 140, 21, 0.1), transparent 34vw),
     linear-gradient(180deg, #ffffff 0%, #f7f8f5 100%);
@@ -141,14 +142,10 @@ body {
 }
 
 .coming-soon-logo-frame {
-  width: min(260px, 58vw);
+  width: min(250px, 48vw);
   display: grid;
   place-items: center;
-  border: 1px solid rgba(0, 35, 76, 0.12);
-  border-radius: 14px;
-  padding: 12px 14px;
-  background: #ffffff;
-  box-shadow: 0 18px 40px rgba(0, 35, 76, 0.08);
+  flex: 0 1 auto;
 }
 
 .coming-soon-logo-frame img {
@@ -168,10 +165,10 @@ body {
 }
 
 .coming-soon-language button {
-  min-height: 34px;
+  min-height: 44px;
   border: 0;
   border-radius: 999px;
-  padding: 7px 12px;
+  padding: 9px 14px;
   background: transparent;
   color: #4b5b55;
   font-size: 13px;
@@ -188,7 +185,7 @@ body {
   margin: 0 auto;
   display: grid;
   justify-items: center;
-  gap: 18px;
+  gap: clamp(12px, 2.2vw, 18px);
   text-align: center;
 }
 
@@ -221,15 +218,23 @@ body {
   max-width: 860px;
   margin: 0;
   color: var(--brand-navy);
-  font-size: clamp(42px, 7vw, 82px);
-  line-height: 0.98;
+  font-size: clamp(32px, 6vw, 64px);
+  line-height: 1.04;
+}
+
+.coming-soon-tagline {
+  margin: 0;
+  color: var(--brand-gold);
+  font-size: clamp(16px, 2.1vw, 24px);
+  font-weight: 950;
+  line-height: 1.28;
 }
 
 .coming-soon-body {
   max-width: 760px;
   margin: 0;
   color: #33423d;
-  font-size: clamp(17px, 2vw, 21px);
+  font-size: clamp(16px, 1.8vw, 20px);
   line-height: 1.65;
 }
 
@@ -335,6 +340,13 @@ body {
   box-shadow: 0 0 0 4px rgba(200, 140, 21, 0.18);
 }
 
+.coming-soon-secondary-link {
+  min-height: 44px;
+  background: transparent !important;
+  border-color: rgba(0, 35, 76, 0.2) !important;
+  color: var(--brand-navy) !important;
+}
+
 .coming-soon-cta p {
   margin: 0;
   color: #5d6b65;
@@ -371,34 +383,103 @@ body {
 
 @media (max-width: 760px) {
   .coming-soon-page {
-    gap: 32px;
-    padding: 16px;
+    gap: 24px;
+    padding: 16px 20px 22px;
   }
 
   .coming-soon-header {
-    align-items: flex-start;
+    align-items: center;
+    gap: 14px;
+    padding-block: 0;
   }
 
   .coming-soon-logo-frame {
-    width: min(218px, 56vw);
-    padding: 10px 12px;
+    width: clamp(120px, 38vw, 145px);
   }
 
   .coming-soon-language button {
-    padding-inline: 10px;
+    padding-inline: 11px;
+  }
+
+  .coming-soon-hero {
+    gap: 12px;
+  }
+
+  .coming-soon-mark {
+    width: 56px;
+    height: 56px;
+  }
+
+  .coming-soon-mark img {
+    width: 37px;
+    height: 37px;
+  }
+
+  .coming-soon-eyebrow {
+    font-size: 11px;
+  }
+
+  .coming-soon-hero h1 {
+    font-size: clamp(30px, 9.6vw, 38px);
+    line-height: 1.08;
+  }
+
+  .coming-soon-tagline {
+    font-size: clamp(16px, 4.6vw, 18px);
+  }
+
+  .coming-soon-body {
+    font-size: 16px;
+    line-height: 1.58;
+  }
+
+  .coming-soon-position {
+    padding: 11px 4px 10px;
+    font-size: clamp(17px, 5.2vw, 22px);
+  }
+
+  .coming-soon-image {
+    margin-top: 2px;
+    border-radius: 16px;
+    aspect-ratio: 1.65 / 1;
   }
 
   .coming-soon-statements {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .coming-soon-statements article {
     min-height: auto;
+    padding: 18px;
   }
 
   .coming-soon-footer {
     grid-template-columns: 1fr;
     justify-items: start;
+    gap: 10px;
+    padding-top: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .coming-soon-page {
+    padding-inline: 16px;
+  }
+
+  .coming-soon-logo-frame {
+    width: 120px;
+  }
+
+  .coming-soon-language {
+    gap: 2px;
+    padding: 3px;
+  }
+
+  .coming-soon-language button {
+    min-height: 44px;
+    padding-inline: 9px;
+    font-size: 12px;
   }
 }
 
