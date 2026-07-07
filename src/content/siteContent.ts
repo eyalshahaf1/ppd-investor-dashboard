@@ -48,7 +48,7 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
     languageLabel: "言語",
     comingSoonText: "COMING SOON",
     heroTitle: "検証されたAI生産性を、老後の安心へ",
-    heroTagline: "Measured gains. Verified value. Shared future.",
+    heroTagline: "共に未来をつくる",
     heroDescription:
       "Tomo Pensionは、AIによる生産性向上のうち、検証可能な価値の一部を長期的な老後資産形成につなげるための、測定・検証・レポーティングのレイヤーを構築しています。",
     primaryCTA: "パイロットについて相談する",

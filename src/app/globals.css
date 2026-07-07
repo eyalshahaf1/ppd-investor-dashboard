@@ -223,7 +223,7 @@ body {
 }
 
 .coming-soon-tagline {
-  margin: 0;
+  margin: -4px 0 0;
   color: var(--brand-gold);
   font-size: clamp(16px, 2.1vw, 24px);
   font-weight: 950;
