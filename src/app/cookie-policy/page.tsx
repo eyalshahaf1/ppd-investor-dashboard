@@ -24,11 +24,10 @@ export default function CookiePolicyPage() {
           storage is denied.
         </p>
 
-        <h2>What is not stored</h2>
+        <h2>What we do not use</h2>
         <p>
-          Do not upload personal employee records, salaries, bank details,
-          national IDs, pension account numbers, or secrets into the public
-          prototype.
+          We do not use advertising cookies, remarketing pixels, or behavioural
+          advertising tools. We do not sell personal data.
         </p>
 
         <h2>Contact</h2>
@@ -56,10 +55,10 @@ export default function CookiePolicyPage() {
           無効化されています。
         </p>
 
-        <h2>保存しない情報</h2>
+        <h2>使用しないもの</h2>
         <p>
-          公開プロトタイプには、従業員の個人記録、給与、銀行情報、
-          国民ID、年金口座番号、秘密情報をアップロードしないでください。
+          広告Cookie、リマーケティングピクセル、行動ターゲティング広告
+          ツールは使用しません。個人データを販売することはありません。
         </p>
 
         <h2>お問い合わせ</h2>

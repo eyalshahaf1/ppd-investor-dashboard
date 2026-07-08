@@ -75,7 +75,14 @@ export function ComingSoonPage() {
         </div>
         <p>{copy.footerText}</p>
         <small>
-          © 2026 TOMO PENSION · <a href="/cookie-policy">Cookie Policy</a>
+          © 2026 TOMO PENSION · <a href="/cookie-policy">Cookie Policy</a> ·{" "}
+          <a
+            href="https://www.linkedin.com/in/eyalshahaf/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            LinkedIn
+          </a>
         </small>
       </footer>
       <CookieConsent language={language} />
