@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { holdingPageContent, type SiteLanguage } from "@/content/siteContent";
+import { CookieConsent } from "./CookieConsent";
 
 export function ComingSoonPage() {
   const [language, setLanguage] = useState<SiteLanguage>("en");
@@ -77,6 +78,7 @@ export function ComingSoonPage() {
           © 2026 TOMO PENSION · <a href="/cookie-policy">Cookie Policy</a>
         </small>
       </footer>
+      <CookieConsent language={language} />
     </main>
   );
 }
