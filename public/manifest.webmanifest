@@ -1,7 +1,7 @@
 {
-  "name": "TOMO PENSION Interactive Demo",
+  "name": "TOMO PENSION",
   "short_name": "TOMO PENSION",
-  "description": "An interactive demo for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
+  "description": "Tomo Pension is building the trusted measurement and reporting layer that helps organisations turn a small, verified share of AI productivity gains into long-term retirement value.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

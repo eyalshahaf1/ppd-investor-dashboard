@@ -3,6 +3,8 @@ import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteDescription =
+  "Tomo Pension is building the trusted measurement and reporting layer that helps organisations turn a small, verified share of AI productivity gains into long-term retirement value.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -10,9 +12,8 @@ export const metadata: Metadata = {
     default: "TOMO PENSION",
     template: "%s | TOMO PENSION"
   },
-  description:
-    "An interactive demo for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
-  applicationName: "TOMO PENSION Interactive Demo",
+  description: siteDescription,
+  applicationName: "TOMO PENSION",
   authors: [{ name: "Eyal Shahaf" }],
   creator: "Eyal Shahaf",
   publisher: "Eyal Shahaf",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     "retirement",
     "SaaS",
     "productivity dividend",
-    "interactive demo"
+    "retirement security"
   ],
   manifest: "/manifest.webmanifest",
   icons: {
@@ -36,23 +37,21 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "TOMO PENSION",
-    description:
-      "An interactive demo for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
+    description: siteDescription,
     type: "website",
     images: [
       {
         url: "/brand/tomo/og-image.png",
         width: 1200,
         height: 630,
-        alt: "TOMO PENSION interactive demo preview"
+        alt: "TOMO PENSION"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
     title: "TOMO PENSION",
-    description:
-      "An interactive demo for measuring verified AI productivity gains and preparing validated contribution instructions through partner-operated retirement rails.",
+    description: siteDescription,
     images: ["/brand/tomo/og-image.png"]
   }
 };

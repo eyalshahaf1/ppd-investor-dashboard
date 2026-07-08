@@ -7,7 +7,7 @@ import {
   cookieConsentChangeEvent
 } from "@/lib/cookieConsent";
 
-const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-JZW89Z1CBN";
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export function GoogleAnalytics() {
   const [enabled, setEnabled] = useState(false);
