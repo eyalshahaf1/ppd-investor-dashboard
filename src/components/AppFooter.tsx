@@ -32,6 +32,9 @@ export function AppFooter({ language, onAccessibilityOpen }: AppFooterProps) {
 
         <div className="footer-disclaimer">
           <p>{t.footer.disclaimer}</p>
+          <a href="/cookie-policy">
+            {language === "ja" ? "Cookieポリシー" : "Cookie Policy"}
+          </a>
           <button type="button" onClick={onAccessibilityOpen}>
             Accessibility
           </button>

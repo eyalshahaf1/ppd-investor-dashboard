@@ -32,3 +32,21 @@ export function readCookieConsent(): CookieConsentRecord | null {
 export function analyticsConsentGranted() {
   return readCookieConsent()?.choice === "analytics";
 }
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+export function updateGoogleAnalyticsConsent(granted: boolean) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+
+  window.gtag("consent", "update", {
+    analytics_storage: granted ? "granted" : "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied"
+  });
+}

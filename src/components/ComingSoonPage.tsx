@@ -73,7 +73,9 @@ export function ComingSoonPage() {
           <span>{copy.founded}</span>
         </div>
         <p>{copy.footerText}</p>
-        <small>© 2026 TOMO PENSION</small>
+        <small>
+          © 2026 TOMO PENSION · <a href="/cookie-policy">Cookie Policy</a>
+        </small>
       </footer>
     </main>
   );
