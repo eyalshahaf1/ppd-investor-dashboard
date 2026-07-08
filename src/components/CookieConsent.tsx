@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  cookieConsentChangeEvent,
+  cookieConsentStorageKey,
+  type CookieChoice
+} from "@/lib/cookieConsent";
 import { getCopy, type Language } from "@/lib/i18n";
-
-const cookieConsentStorageKey = "ppd-cookie-consent";
 
 type CookieConsentProps = {
   language: Language;
 };
-
-type CookieChoice = "essential" | "analytics";
 
 export function CookieConsent({ language }: CookieConsentProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,6 +28,7 @@ export function CookieConsent({ language }: CookieConsentProps) {
         acceptedAt: new Date().toISOString()
       })
     );
+    window.dispatchEvent(new Event(cookieConsentChangeEvent));
     setIsVisible(false);
   }
 
