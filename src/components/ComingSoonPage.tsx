@@ -2,11 +2,35 @@
 
 import { useState } from "react";
 import { holdingPageContent, type SiteLanguage } from "@/content/siteContent";
+import { analyticsConsentGranted } from "@/lib/cookieConsent";
 import { CookieConsent } from "./CookieConsent";
 
 export function ComingSoonPage() {
   const [language, setLanguage] = useState<SiteLanguage>("en");
   const copy = holdingPageContent[language];
+
+  function handleLanguageChange(nextLanguage: SiteLanguage) {
+    if (nextLanguage === language) return;
+
+    setLanguage(nextLanguage);
+
+    if (
+      typeof window !== "undefined" &&
+      analyticsConsentGranted() &&
+      typeof window.gtag === "function"
+    ) {
+      const pagePath = `${window.location.pathname}?lang=${nextLanguage}`;
+
+      window.gtag("event", "language_change", {
+        language: nextLanguage
+      });
+      window.gtag("event", "page_view", {
+        page_title: `TOMO PENSION | ${nextLanguage === "ja" ? "Japanese" : "English"}`,
+        page_location: `${window.location.origin}${pagePath}`,
+        page_path: pagePath
+      });
+    }
+  }
 
   return (
     <main className="coming-soon-page" lang={language}>
@@ -18,14 +42,14 @@ export function ComingSoonPage() {
           <button
             type="button"
             aria-pressed={language === "en"}
-            onClick={() => setLanguage("en")}
+            onClick={() => handleLanguageChange("en")}
           >
             EN
           </button>
           <button
             type="button"
             aria-pressed={language === "ja"}
-            onClick={() => setLanguage("ja")}
+            onClick={() => handleLanguageChange("ja")}
           >
             日本語
           </button>
