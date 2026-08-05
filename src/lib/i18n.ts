@@ -30,8 +30,8 @@ export const copy = {
       actions: "Actions",
       language: "Language",
       appearance: "Appearance",
-      light: "Light",
-      dark: "Dark",
+      light: "Light Mode",
+      dark: "Dark Mode",
       resetConfirm: "Reset the model assumptions?"
     },
       tabs: {
@@ -400,8 +400,8 @@ export const copy = {
       actions: "操作",
       language: "言語",
       appearance: "表示",
-      light: "ライト",
-      dark: "ダーク",
+      light: "Light Mode",
+      dark: "Dark Mode",
       resetConfirm: "モデルの前提条件をリセットしますか？"
     },
     tabs: {

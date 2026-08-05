@@ -72,7 +72,9 @@ export function AccessibilitySettings({
       }`}
       ref={detailsRef}
     >
-      <summary>{copy.summary}</summary>
+      <summary aria-label={copy.title}>
+        <span className="accessibility-summary-label">{copy.summary}</span>
+      </summary>
       <div className="accessibility-panel">
         <div className="accessibility-panel-head">
           <b>{copy.title}</b>

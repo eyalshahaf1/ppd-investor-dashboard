@@ -97,7 +97,7 @@ export function ComingSoonPage() {
               aria-pressed={themeMode === "dark"}
               onClick={() => setThemeMode((current) => current === "dark" ? "light" : "dark")}
             >
-              {themeMode === "dark" ? "Light" : "Dark"}
+              {themeMode === "dark" ? "Light Mode" : "Dark Mode"}
             </button>
             <AccessibilitySettings
               language={language}

@@ -202,7 +202,7 @@ export function TopBar({
               }`}
               aria-hidden="true"
             />
-            {themeMode === "dark" ? "Light" : "Dark"}
+            {themeMode === "dark" ? t.topbar.light : t.topbar.dark}
           </button>
           <button className="action-btn" type="button" onClick={handleReset}>
             {t.topbar.reset}
