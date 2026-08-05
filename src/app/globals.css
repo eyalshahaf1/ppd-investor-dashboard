@@ -692,7 +692,7 @@ body {
 .coming-soon-section-heading h2,
 .coming-soon-story-block h2,
 .coming-soon-founder h2,
-.coming-soon-cta h2 { margin: 8px 0 0; color: var(--brand-navy); font-size: clamp(30px, 4vw, 52px); line-height: 1.08; }
+.coming-soon-cta h2 { margin: 8px 0 0; color: var(--brand-navy); font-size: clamp(27px, 3.2vw, 42px); line-height: 1.14; }
 .coming-soon-story-block p,
 .coming-soon-founder > p:last-child,
 .coming-soon-cta > p { color: #45554f; font-size: 17px; line-height: 1.7; }
