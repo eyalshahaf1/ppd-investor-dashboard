@@ -929,6 +929,16 @@ html[lang="ja"] .coming-soon-hero h1 {
   text-wrap: balance;
 }
 
+html[lang="ja"] .coming-soon-nav a {
+  font-size: 13px;
+  font-weight: 750;
+}
+
+html[lang="ja"] .coming-soon-header .coming-soon-theme-toggle,
+html[lang="ja"] .coming-soon-header .accessibility-settings summary {
+  font-size: 12px;
+}
+
 .coming-soon-hero-symbol {
   width: 56px;
   height: 56px;
