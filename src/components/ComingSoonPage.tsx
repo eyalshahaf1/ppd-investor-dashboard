@@ -80,7 +80,7 @@ export function ComingSoonPage() {
     <main className="coming-soon-page" lang={language}>
       <header className="coming-soon-header">
         <a className="coming-soon-logo-frame" href="#top" aria-label="Tomo Pension home">
-          <img src="/brand/tomo/logo-horizontal.svg" alt={copy.logoAlt} />
+          <img src="/brand/tomo/logo-horizontal.png" alt={copy.logoAlt} />
         </a>
         <nav className="coming-soon-nav" aria-label={language === "ja" ? "サイトナビゲーション" : "Site navigation"}>
           <a href="#how-it-works">{labels.how}</a>
