@@ -82,31 +82,33 @@ export function ComingSoonPage() {
         <a className="coming-soon-logo-frame" href="#top" aria-label="Tomo Pension home">
           <img src="/brand/tomo/logo-horizontal.png" alt={copy.logoAlt} />
         </a>
-        <nav className="coming-soon-nav" aria-label={language === "ja" ? "サイトナビゲーション" : "Site navigation"}>
-          <a href="#how-it-works">{labels.how}</a>
-          <a href="#about">{labels.about}</a>
-          <a href="#pilot">{labels.pilot}</a>
-          <a href="#boundaries">{labels.boundaries}</a>
-          <a href="/dashboard">{labels.demo}</a>
-        </nav>
-        <div className="coming-soon-preferences" aria-label={labels.theme}>
-          <button
-            className="coming-soon-theme-toggle"
-            type="button"
-            aria-pressed={themeMode === "dark"}
-            onClick={() => setThemeMode((current) => current === "dark" ? "light" : "dark")}
-          >
-            {themeMode === "dark" ? "Light" : "Dark"}
-          </button>
-          <AccessibilitySettings
-            language={language}
-            preferences={accessibilityPreferences}
-            onChange={setAccessibilityPreferences}
-          />
-        </div>
-        <div className="coming-soon-language" aria-label={copy.languageLabel}>
-          <button type="button" aria-pressed={language === "en"} onClick={() => handleLanguageChange("en")}>EN</button>
-          <button type="button" aria-pressed={language === "ja"} onClick={() => handleLanguageChange("ja")}>日本語</button>
+        <div className="coming-soon-header-actions">
+          <nav className="coming-soon-nav" aria-label={language === "ja" ? "サイトナビゲーション" : "Site navigation"}>
+            <a href="#how-it-works">{labels.how}</a>
+            <a href="#about">{labels.about}</a>
+            <a href="#pilot">{labels.pilot}</a>
+            <a href="#boundaries">{labels.boundaries}</a>
+            <a href="/dashboard">{labels.demo}</a>
+          </nav>
+          <div className="coming-soon-preferences" aria-label={labels.theme}>
+            <button
+              className="coming-soon-theme-toggle"
+              type="button"
+              aria-pressed={themeMode === "dark"}
+              onClick={() => setThemeMode((current) => current === "dark" ? "light" : "dark")}
+            >
+              {themeMode === "dark" ? "Light" : "Dark"}
+            </button>
+            <AccessibilitySettings
+              language={language}
+              preferences={accessibilityPreferences}
+              onChange={setAccessibilityPreferences}
+            />
+          </div>
+          <div className="coming-soon-language" aria-label={copy.languageLabel}>
+            <button type="button" aria-pressed={language === "en"} onClick={() => handleLanguageChange("en")}>EN</button>
+            <button type="button" aria-pressed={language === "ja"} onClick={() => handleLanguageChange("ja")}>日本語</button>
+          </div>
         </div>
       </header>
 

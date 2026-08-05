@@ -629,6 +629,19 @@ body {
   flex: 1;
 }
 
+.coming-soon-header-actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(10px, 1.5vw, 18px);
+  margin-left: auto;
+}
+
+.coming-soon-header-actions .coming-soon-nav {
+  flex: 0 1 auto;
+}
+
 .coming-soon-nav a,
 .coming-soon-footer a {
   color: var(--brand-navy);
@@ -740,7 +753,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: auto;
+  margin-left: 0;
 }
 
 .coming-soon-preferences .accessibility-settings {
@@ -907,6 +920,7 @@ html[lang="ja"] .coming-soon-hero h1 {
 
 @media (max-width: 640px) {
   .coming-soon-header { align-items: flex-start; }
+  .coming-soon-header-actions { display: contents; }
   .coming-soon-preferences { order: 2; }
   .coming-soon-language { margin-left: auto; }
   .coming-soon-nav { order: 3; }
