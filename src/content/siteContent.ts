@@ -105,7 +105,7 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
         items: [
           { title: "Founder commitment", body: "Eyal Shahaf leads the concept, pilot design and partner conversations behind TOMO PENSION." },
           { title: "Product role", body: "TOMO is a measurement and reporting layer for verified productivity value, not a pension operator or custodian." },
-          { title: "Built with partners", body: "Execution should sit with employers, assurance specialists, legal and security advisers, and regulated benefit or pension partners." }
+          { title: "Execution through regulated partners", body: "TOMO prepares measurement, evidence and reporting. Employers, assurance specialists, legal and security advisers, and regulated benefit or pension partners handle the areas that require their authority and expertise." }
         ]
       },
       boundaries: {
@@ -191,7 +191,7 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
         items: [
           { title: "創業者の責任", body: "シャハフ・エヤールは、TOMO PENSIONの構想、パイロット設計、パートナー連携を主導します。" },
           { title: "プロダクトの役割", body: "TOMOは検証された生産性価値の測定・レポーティング層であり、年金運営者や資産保管者ではありません。" },
-          { title: "パートナーと構築", body: "実行は、雇用主、第三者検証、法務・セキュリティ専門家、規制対象の福利厚生・年金パートナーとともに設計されるべきものです。" }
+          { title: "規制対象パートナーによる実行", body: "TOMOは測定、エビデンス、レポーティングを準備します。権限と専門性が必要な領域は、雇用主、第三者検証、法務・セキュリティ専門家、規制対象の福利厚生・年金パートナーが担います。" }
         ]
       },
       boundaries: {
