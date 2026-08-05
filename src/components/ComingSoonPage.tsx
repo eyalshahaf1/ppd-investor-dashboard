@@ -94,7 +94,6 @@ export function ComingSoonPage() {
         <a
           className="coming-soon-logo-frame"
           href="#top"
-          onClick={(event) => handleSectionNavigation(event, "top")}
           aria-label="Tomo Pension home"
         >
           <img src="/brand/tomo/logo-horizontal.png" alt={copy.logoAlt} />
