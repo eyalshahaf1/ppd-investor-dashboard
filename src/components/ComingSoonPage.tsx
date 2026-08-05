@@ -187,7 +187,7 @@ export function ComingSoonPage() {
       </section>
 
       <footer className="coming-soon-footer">
-        <div className="coming-soon-footer-identity">
+        <div className="coming-soon-footer-primary">
           <div className="coming-soon-footer-brand">
             <img src="/brand/tomo/icon.svg" alt="" aria-hidden="true" />
             <strong>TOMO PENSION</strong>
@@ -205,13 +205,15 @@ export function ComingSoonPage() {
               <span aria-hidden="true">in</span>
             </a>
           </div>
-          <p>{copy.footerText}</p>
-          <small>© 2026 TOMO PENSION</small>
         </div>
         <nav className="coming-soon-footer-links" aria-label={language === "ja" ? "フッターナビゲーション" : "Footer navigation"}>
           <a href="/cookie-policy">Cookie Policy</a>
           <a href="/accessibility">{language === "ja" ? "アクセシビリティ" : "Accessibility"}</a>
         </nav>
+        <div className="coming-soon-footer-meta">
+          <p>{copy.footerText}</p>
+          <small>© 2026 TOMO PENSION</small>
+        </div>
       </footer>
       <CookieConsent language={language} />
       {showBackToTop ? (
