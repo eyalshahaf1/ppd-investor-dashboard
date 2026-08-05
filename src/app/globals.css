@@ -703,6 +703,7 @@ body {
 .coming-soon-question-block { width: min(920px, 100%); margin-inline: auto; display: grid; justify-items: center; gap: 22px; text-align: center; }
 .coming-soon-question-block img { width: 54px; height: 54px; }
 .coming-soon-question-block p { max-width: 860px; margin: 0; color: var(--brand-navy); font-size: clamp(26px, 4vw, 48px); font-weight: 800; line-height: 1.18; }
+.coming-soon-question-block p.coming-soon-question-tagline { margin: -8px 0 0; color: var(--brand-gold); font-size: 13px; font-weight: 900; letter-spacing: .08em; line-height: 1.35; }
 .coming-soon-content-section { display: grid; gap: 28px; }
 .coming-soon-item-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .coming-soon-item-grid article { min-width: 0; border-top: 1px solid rgba(0,35,76,.22); padding: 20px 0 0; }
@@ -727,10 +728,10 @@ body {
 .coming-soon-footer strong { color: var(--brand-navy); font-size: 14px; }
 .coming-soon-footer-founder { margin: 0; color: #65726d; font-size: 13px; }
 .coming-soon-footer-label { color: var(--brand-gold); font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-.coming-soon-footer-bottom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(0,35,76,.1); padding-top: 18px; }
+.coming-soon-footer-bottom { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; gap: 8px; border-top: 1px solid rgba(0,35,76,.1); padding-top: 18px; text-align: center; }
 .coming-soon-footer-bottom p,
 .coming-soon-footer-bottom small { margin: 0; }
-.coming-soon-footer-bottom p { color: #45554f; font-size: 14px; font-weight: 750; }
+.coming-soon-footer-bottom p { color: var(--brand-gold); font-size: 14px; font-weight: 850; }
 .coming-soon-footer-bottom small { color: #65726d; font-size: 13px; }
 .coming-soon-linkedin { width: 20px; height: 20px; display: inline-grid; place-items: center; border-radius: 3px; background: #0a66c2; color: #fff; font-family: Arial, sans-serif; font-size: 13px; font-weight: 900; line-height: 1; }
 .coming-soon-footer-linkedin:hover .coming-soon-linkedin,
@@ -761,7 +762,7 @@ body {
   .coming-soon-facts article { padding-block: 14px; }
   .coming-soon-section-heading h2, .coming-soon-story-block h2, .coming-soon-founder h2, .coming-soon-cta h2 { font-size: clamp(29px, 9vw, 40px); }
   .coming-soon-footer { grid-template-columns: 1fr; gap: 20px; }
-  .coming-soon-footer-bottom { grid-column: auto; align-items: flex-start; flex-direction: column; gap: 8px; padding-top: 16px; }
+  .coming-soon-footer-bottom { grid-column: auto; align-items: center; gap: 8px; padding-top: 16px; }
 }
 
 /* Public landing page controls and theme. These deliberately reuse the app's saved preferences. */
@@ -851,10 +852,14 @@ body {
   color: #bdccc5;
 }
 
-:root[data-theme="dark"] .coming-soon-footer-bottom p,
 :root[data-theme="dark"] .coming-soon-footer-bottom small,
 :root[data-theme="dark"] .coming-soon-footer-founder {
   color: #bdccc5;
+}
+
+:root[data-theme="dark"] .coming-soon-footer-bottom p,
+:root[data-theme="dark"] .coming-soon-question-tagline {
+  color: var(--brand-gold);
 }
 
 :root[data-theme="dark"] .coming-soon-item-grid article,

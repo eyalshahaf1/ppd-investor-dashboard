@@ -148,6 +148,7 @@ export function ComingSoonPage() {
 
       <section className="coming-soon-question-block" aria-label={labels.positioning}>
         <img src="/brand/tomo/icon.svg" alt="" aria-hidden="true" />
+        <p className="coming-soon-question-tagline">{copy.footerText}</p>
         <p>{copy.heroQuestion}</p>
       </section>
 
