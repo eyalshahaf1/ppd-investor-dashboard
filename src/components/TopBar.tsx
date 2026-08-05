@@ -160,6 +160,9 @@ export function TopBar({
           <span className="mobile-menu-label">{t.topbar.openControls}</span>
         </button>
         <div className="top-actions desktop-controls">
+          <a className="action-btn topbar-site-link" href="/">
+            {language === "ja" ? "サイトへ" : "Website"}
+          </a>
           <div className="language-switch" aria-label="Language">
             {languages.map((item) => (
               <button
@@ -307,6 +310,9 @@ export function TopBar({
           <section className="mobile-drawer-section" aria-labelledby="mobile-actions-title">
             <h2 id="mobile-actions-title">{t.topbar.actions}</h2>
             <div className="mobile-action-grid">
+              <a className="action-btn topbar-site-link" href="/">
+                {language === "ja" ? "サイトへ" : "Website"}
+              </a>
               <button className="action-btn" type="button" data-testid="save-snapshot-mobile" onClick={onSave}>
                 {t.topbar.save}
               </button>
