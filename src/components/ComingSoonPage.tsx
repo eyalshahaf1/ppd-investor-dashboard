@@ -174,7 +174,14 @@ export function ComingSoonPage() {
       </section>
 
       <section id="about" className="coming-soon-founder" aria-labelledby="founder-title">
-        <p className="coming-soon-section-kicker">{labels.about}</p><h2 id="founder-title">{copy.sections.founder.title}</h2><p>{copy.sections.founder.body}</p>
+        <p className="coming-soon-section-kicker">{labels.about}</p>
+        <h2 id="founder-title">{copy.sections.founder.title}</h2>
+        <div className="coming-soon-founder-copy">
+          {copy.sections.founder.body?.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        </div>
+        <div className="coming-soon-founder-points">
+          {copy.sections.founder.items?.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}
+        </div>
       </section>
 
       <section id="boundaries" className="coming-soon-content-section" aria-labelledby="boundary-title">

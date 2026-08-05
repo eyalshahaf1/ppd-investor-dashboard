@@ -101,7 +101,12 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
       founder: {
         title: "Founder perspective",
         body:
-          "Japan has been part of my life for many years. What has stayed with me is not only its technology or economic strength, but its sense of responsibility, respect for work and concern for future generations. TOMO PENSION began with a simple question: when progress creates value, can part of that progress help strengthen the future of the people who make it possible?"
+          "Japan has been part of my life for many years. What has stayed with me is not only its technology or economic strength, but its sense of responsibility, respect for work and concern for future generations.\n\nTOMO PENSION began with a simple question: when progress creates value, can part of that progress help strengthen the future of the people who make it possible?",
+        items: [
+          { title: "Founder commitment", body: "Eyal Shahaf leads the concept, pilot design and partner conversations behind TOMO PENSION." },
+          { title: "Product role", body: "TOMO is a measurement and reporting layer for verified productivity value, not a pension operator or custodian." },
+          { title: "Built with partners", body: "Execution should sit with employers, assurance specialists, legal and security advisers, and regulated benefit or pension partners." }
+        ]
       },
       boundaries: {
         title: "Clear boundaries",
@@ -182,7 +187,12 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
       founder: {
         title: "創業者の視点",
         body:
-          "日本は、私にとって長年関わってきた場所です。技術や経済力だけでなく、責任感、仕事への敬意、そして次の世代への思いが心に残っています。TOMO PENSIONは、進展が価値を生み出すとき、その一部を価値を生み出す人々の未来を支えることに役立てられるか、という問いから始まりました。"
+          "日本は、私にとって長年関わってきた場所です。技術や経済力だけでなく、責任感、仕事への敬意、そして次の世代への思いが心に残っています。\n\nTOMO PENSIONは、進展が価値を生み出すとき、その一部を価値を生み出す人々の未来を支えることに役立てられるか、という問いから始まりました。",
+        items: [
+          { title: "創業者の責任", body: "シャハフ・エヤールは、TOMO PENSIONの構想、パイロット設計、パートナー連携を主導します。" },
+          { title: "プロダクトの役割", body: "TOMOは検証された生産性価値の測定・レポーティング層であり、年金運営者や資産保管者ではありません。" },
+          { title: "パートナーと構築", body: "実行は、雇用主、第三者検証、法務・セキュリティ専門家、規制対象の福利厚生・年金パートナーとともに設計されるべきものです。" }
+        ]
       },
       boundaries: {
         title: "明確な役割の境界",
