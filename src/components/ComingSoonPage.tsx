@@ -112,6 +112,12 @@ export function ComingSoonPage() {
 
       <section id="top" className="coming-soon-hero" aria-labelledby="coming-soon-title">
         <div className="coming-soon-hero-copy">
+          <img
+            className="coming-soon-hero-symbol"
+            src="/brand/tomo/icon.svg"
+            alt=""
+            aria-hidden="true"
+          />
           <p className="coming-soon-eyebrow">{copy.comingSoonText}</p>
           <h1 id="coming-soon-title">{copy.heroTitle}</h1>
           <p className="coming-soon-question">{copy.heroQuestion}</p>

@@ -867,9 +867,17 @@ body {
 :root[data-theme="dark"] .public-accessibility-content p { color: #bdccc5; }
 
 html[lang="ja"] .coming-soon-hero h1 {
-  max-width: 13ch;
-  line-height: 1.24;
+  max-width: 100%;
+  font-size: clamp(38px, 4.2vw, 58px);
+  line-height: 1.18;
   text-wrap: balance;
+}
+
+.coming-soon-hero-symbol {
+  width: 56px;
+  height: 56px;
+  display: block;
+  margin: 0 0 18px;
 }
 
 @media (max-width: 900px) {
@@ -888,7 +896,15 @@ html[lang="ja"] .coming-soon-hero h1 {
     width: min(360px, calc(100vw - 32px));
     max-height: calc(100vh - 100px);
   }
-  html[lang="ja"] .coming-soon-hero h1 { max-width: 11ch; }
+  html[lang="ja"] .coming-soon-hero h1 {
+    font-size: clamp(28px, 8.6vw, 42px);
+    line-height: 1.22;
+  }
+  .coming-soon-hero-symbol {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 14px;
+  }
 }
 
 :root[data-theme="dark"] body {
