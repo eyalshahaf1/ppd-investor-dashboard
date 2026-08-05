@@ -187,32 +187,35 @@ export function ComingSoonPage() {
       </section>
 
       <footer className="coming-soon-footer">
-        <div className="coming-soon-footer-primary">
+        <div className="coming-soon-footer-brand-column">
           <div className="coming-soon-footer-brand">
             <img src="/brand/tomo/icon.svg" alt="" aria-hidden="true" />
             <strong>TOMO PENSION</strong>
           </div>
-          <div className="coming-soon-footer-founder">
-            <span>{copy.founded}</span>
-            <a
-              className="coming-soon-linkedin"
-              href="https://www.linkedin.com/in/eyalshahaf/"
-              rel="noreferrer"
-              target="_blank"
-              aria-label="Eyal Shahaf on LinkedIn"
-              title="Eyal Shahaf on LinkedIn"
-            >
-              <span aria-hidden="true">in</span>
-            </a>
-          </div>
+          <p className="coming-soon-footer-founder">{copy.founded}</p>
+        </div>
+        <div className="coming-soon-footer-contact">
+          <span className="coming-soon-footer-label">{copy.footerContact}</span>
+          <a href="mailto:info@tomopension.com">info@tomopension.com</a>
+          <a
+            className="coming-soon-footer-linkedin"
+            href="https://www.linkedin.com/in/eyalshahaf/"
+            rel="noreferrer"
+            target="_blank"
+            aria-label="Eyal Shahaf on LinkedIn"
+          >
+            <span className="coming-soon-linkedin" aria-hidden="true">in</span>
+            LinkedIn
+          </a>
         </div>
         <nav className="coming-soon-footer-links" aria-label={language === "ja" ? "フッターナビゲーション" : "Footer navigation"}>
+          <span className="coming-soon-footer-label">{copy.footerPolicies}</span>
           <a href="/cookie-policy">Cookie Policy</a>
           <a href="/accessibility">{language === "ja" ? "アクセシビリティ" : "Accessibility"}</a>
         </nav>
-        <div className="coming-soon-footer-meta">
+        <div className="coming-soon-footer-bottom">
           <p>{copy.footerText}</p>
-          <small>© 2026 TOMO PENSION</small>
+          <small>{copy.footerCopyright}</small>
         </div>
       </footer>
       <CookieConsent language={language} />

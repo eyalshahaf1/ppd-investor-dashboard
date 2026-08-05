@@ -33,6 +33,9 @@ export type HoldingPageContent = {
   };
   footerText: string;
   founded: string;
+  footerContact: string;
+  footerPolicies: string;
+  footerCopyright: string;
 };
 
 // Edit this file for public website copy. The page component only owns layout and interaction.
@@ -113,7 +116,10 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
       }
     },
     footerText: "Measured gains. Verified value. Shared future.",
-    founded: "Founded by Eyal Shahaf"
+    founded: "Founded by Eyal Shahaf",
+    footerContact: "Contact",
+    footerPolicies: "Policies",
+    footerCopyright: "© 2026 TOMO PENSION. All rights reserved."
   },
   ja: {
     logoAlt: "Tomo Pension",
@@ -191,6 +197,9 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
       }
     },
     footerText: "Measured gains. Verified value. Shared future.",
-    founded: "Founded by Eyal Shahaf"
+    founded: "創業者：シャハフ・エヤール",
+    footerContact: "お問い合わせ",
+    footerPolicies: "ポリシー",
+    footerCopyright: "© 2026 TOMO PENSION. 無断転載を禁じます。"
   }
 };
