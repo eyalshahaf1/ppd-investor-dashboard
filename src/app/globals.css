@@ -716,10 +716,22 @@ body {
 .coming-soon-cta h2 { max-width: 850px; margin-inline: auto; }
 .coming-soon-cta > p { margin: 14px auto 24px; }
 .coming-soon-cta > a { width: fit-content; }
-.coming-soon-footer { margin-inline: auto; display: grid; grid-template-columns: 1fr auto auto; gap: 18px; align-items: center; border-top: 1px solid rgba(0,35,76,.16); padding-top: 22px; color: #65726d; font-size: 13px; }
-.coming-soon-footer div { display: grid; gap: 4px; }
-.coming-soon-footer strong { color: var(--brand-navy); }
-.coming-soon-footer p, .coming-soon-footer small { margin: 0; }
+.coming-soon-footer { margin-inline: auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; border-top: 1px solid rgba(0,35,76,.16); padding-top: 24px; color: #65726d; font-size: 13px; }
+.coming-soon-footer-identity { display: grid; gap: 8px; justify-items: start; }
+.coming-soon-footer-brand,
+.coming-soon-footer-founder,
+.coming-soon-footer-links { display: flex; align-items: center; gap: 9px; }
+.coming-soon-footer-brand img { width: 26px; height: 26px; display: block; }
+.coming-soon-footer strong { color: var(--brand-navy); font-size: 14px; }
+.coming-soon-footer-founder { color: #65726d; font-size: 13px; }
+.coming-soon-footer-identity p,
+.coming-soon-footer-identity small { margin: 0; }
+.coming-soon-footer-identity p { color: #45554f; font-size: 14px; font-weight: 750; }
+.coming-soon-footer-identity small { color: #65726d; font-size: 13px; }
+.coming-soon-footer-links { flex-wrap: wrap; justify-content: flex-end; padding-top: 3px; }
+.coming-soon-linkedin { width: 24px; height: 24px; display: inline-grid; place-items: center; border-radius: 4px; background: #0a66c2; color: #fff !important; font-family: Arial, sans-serif; font-size: 15px; font-weight: 900; line-height: 1; text-decoration: none !important; }
+.coming-soon-linkedin:hover,
+.coming-soon-linkedin:focus-visible { background: var(--brand-navy); }
 
 @media (max-width: 900px) {
   .coming-soon-nav a:nth-child(-n+2) { display: none; }
@@ -745,7 +757,8 @@ body {
   .coming-soon-facts, .coming-soon-item-grid { grid-template-columns: 1fr; }
   .coming-soon-facts article { padding-block: 14px; }
   .coming-soon-section-heading h2, .coming-soon-story-block h2, .coming-soon-founder h2, .coming-soon-cta h2 { font-size: clamp(29px, 9vw, 40px); }
-  .coming-soon-footer { grid-template-columns: 1fr; justify-items: start; }
+  .coming-soon-footer { align-items: flex-start; flex-direction: column; }
+  .coming-soon-footer-links { justify-content: flex-start; }
 }
 
 /* Public landing page controls and theme. These deliberately reuse the app's saved preferences. */

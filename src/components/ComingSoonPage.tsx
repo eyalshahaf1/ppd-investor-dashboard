@@ -187,9 +187,31 @@ export function ComingSoonPage() {
       </section>
 
       <footer className="coming-soon-footer">
-        <div><strong>TOMO PENSION</strong><span>{copy.founded}</span></div>
-        <p>{copy.footerText}</p>
-        <small>© 2026 TOMO PENSION · <a href="/cookie-policy">Cookie Policy</a> · <a href="/accessibility">{language === "ja" ? "アクセシビリティ" : "Accessibility"}</a> · <a href="https://www.linkedin.com/in/eyalshahaf/" rel="noreferrer" target="_blank">LinkedIn</a></small>
+        <div className="coming-soon-footer-identity">
+          <div className="coming-soon-footer-brand">
+            <img src="/brand/tomo/icon.svg" alt="" aria-hidden="true" />
+            <strong>TOMO PENSION</strong>
+          </div>
+          <div className="coming-soon-footer-founder">
+            <span>{copy.founded}</span>
+            <a
+              className="coming-soon-linkedin"
+              href="https://www.linkedin.com/in/eyalshahaf/"
+              rel="noreferrer"
+              target="_blank"
+              aria-label="Eyal Shahaf on LinkedIn"
+              title="Eyal Shahaf on LinkedIn"
+            >
+              <span aria-hidden="true">in</span>
+            </a>
+          </div>
+          <p>{copy.footerText}</p>
+          <small>© 2026 TOMO PENSION</small>
+        </div>
+        <nav className="coming-soon-footer-links" aria-label={language === "ja" ? "フッターナビゲーション" : "Footer navigation"}>
+          <a href="/cookie-policy">Cookie Policy</a>
+          <a href="/accessibility">{language === "ja" ? "アクセシビリティ" : "Accessibility"}</a>
+        </nav>
       </footer>
       <CookieConsent language={language} />
       {showBackToTop ? (
