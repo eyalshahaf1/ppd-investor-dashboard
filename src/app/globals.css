@@ -924,7 +924,7 @@ html[lang="ja"] .coming-soon-hero h1 {
   width: 56px;
   height: 56px;
   display: block;
-  margin: 0 0 18px;
+  margin: 0 auto 18px;
 }
 
 @media (max-width: 900px) {
