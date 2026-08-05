@@ -3,7 +3,7 @@ import { formatYen } from "@/lib/format";
 import { getCopy, type Language } from "@/lib/i18n";
 import type { Assumptions } from "@/lib/types";
 
-type EnterprisePilotTab = "calculator" | "pilot" | "data";
+type EnterprisePilotTab = "calculator" | "ledger" | "pilot" | "data";
 
 type EnterprisePilotConsoleProps = {
   assumptions: Assumptions;
@@ -11,7 +11,7 @@ type EnterprisePilotConsoleProps = {
   onNavigate: (tab: EnterprisePilotTab) => void;
 };
 
-const workflowTabs: EnterprisePilotTab[] = ["data", "calculator", "pilot", "data"];
+const workflowTabs: EnterprisePilotTab[] = ["data", "ledger", "pilot", "data"];
 
 const demoFileHrefs = [
   "/templates/demo-scenarios/conservative-pilot-workflow.csv",

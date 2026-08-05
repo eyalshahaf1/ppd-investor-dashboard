@@ -36,14 +36,13 @@ export const copy = {
     },
       tabs: {
         overview: "Overview",
-        workflow: "Define Workflow",
-        evidence: "Evidence",
-        review: "Evidence Review",
-        finance: "Finance Decision",
-        policy: "Employer Policy",
-        report: "Decision Report",
+        calculator: "Live Calculator",
+        ledger: "Evidence Ledger",
+        scenarios: "Investor Scenarios",
         pilot: "Pilot Evidence",
-        about: "About and Boundaries"
+        data: "Data Connect",
+        about: "About TOMO",
+        investor: "Investor Room"
       },
     prototypeNotice: {
       title: "Prototype Preview",
@@ -52,25 +51,23 @@ export const copy = {
     },
       drawerTabs: {
         overview: "Overview",
-        workflow: "Define Workflow",
-        evidence: "Evidence",
-        review: "Evidence Review",
-        finance: "Finance Decision",
-        policy: "Employer Policy",
-        report: "Decision Report",
+        calculator: "Live Calculator",
+        ledger: "Evidence Ledger",
+        scenarios: "Investor Scenarios",
         pilot: "Pilot Evidence",
-        about: "About TOMO"
+        data: "Data Connect",
+        about: "About TOMO",
+        investor: "Investor Room"
       },
       mobileTabs: {
         overview: "Overview",
-        workflow: "Workflow",
-        evidence: "Evidence",
-        review: "Review",
-        finance: "Finance",
-        policy: "Policy",
-        report: "Report",
+        calculator: "Calculator",
+        ledger: "Ledger",
+        scenarios: "Scenarios",
         pilot: "Pilot",
-        about: "About"
+        data: "Data",
+        about: "About",
+        investor: "Investor"
       },
     overview: {
       thesisTitle: "TOMO PENSION for Japan.",
@@ -409,14 +406,13 @@ export const copy = {
     },
     tabs: {
       overview: "概要",
-      workflow: "業務を定義",
-      evidence: "エビデンス",
-      review: "エビデンスレビュー",
-      finance: "財務部門の意思決定",
-      policy: "雇用主ポリシー",
-      report: "意思決定レポート",
+      calculator: "ライブ計算",
+      ledger: "検証台帳",
+      scenarios: "投資家シナリオ",
       pilot: "実証エビデンス",
-      about: "概要説明"
+      data: "データ接続",
+      about: "TOMOについて",
+      investor: "投資家ルーム"
     },
     prototypeNotice: {
       title: "プロトタイププレビュー",
@@ -425,25 +421,23 @@ export const copy = {
     },
     drawerTabs: {
       overview: "概要",
-      workflow: "業務を定義",
-      evidence: "エビデンス",
-      review: "エビデンスレビュー",
-      finance: "財務部門の意思決定",
-      policy: "雇用主ポリシー",
-      report: "意思決定レポート",
+      calculator: "ライブ計算",
+      ledger: "検証台帳",
+      scenarios: "投資家シナリオ",
       pilot: "実証エビデンス",
-      about: "TOMOについて"
+      data: "データ接続",
+      about: "TOMOについて",
+      investor: "投資家ルーム"
     },
     mobileTabs: {
       overview: "概要",
-      workflow: "業務",
-      evidence: "証拠",
-      review: "レビュー",
-      finance: "財務",
-      policy: "ポリシー",
-      report: "レポート",
+      calculator: "計算",
+      ledger: "台帳",
+      scenarios: "シナリオ",
       pilot: "実証",
-      about: "概要"
+      data: "データ",
+      about: "概要",
+      investor: "投資家"
     },
     overview: {
       thesisTitle: "日本向けTOMO PENSION。",

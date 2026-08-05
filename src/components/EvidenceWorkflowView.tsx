@@ -3,9 +3,6 @@
 import { formatYen } from "@/lib/format";
 import { getCopy, type Language } from "@/lib/i18n";
 import type {
-  DashboardTab
-} from "@/lib/dashboard-navigation";
-import type {
   EmployerPolicy,
   EvidenceItem,
   EvidenceReview,
@@ -15,8 +12,18 @@ import type {
   WorkflowDefinition
 } from "@/lib/types";
 
+export type EvidenceWorkflowStep =
+  | "overview"
+  | "workflow"
+  | "evidence"
+  | "review"
+  | "finance"
+  | "policy"
+  | "report"
+  | "pilot";
+
 type EvidenceWorkflowViewProps = {
-  activeTab: Exclude<DashboardTab, "about">;
+  activeTab: EvidenceWorkflowStep;
   workflow: WorkflowDefinition;
   evidenceItems: EvidenceItem[];
   qualityGates: QualityGate[];
@@ -31,7 +38,7 @@ type EvidenceWorkflowViewProps = {
   onAdjustmentChange: (value: number) => void;
   onFinanceChange: <K extends keyof FinanceDecision>(key: K, value: FinanceDecision[K]) => void;
   onPolicyChange: <K extends keyof EmployerPolicy>(key: K, value: EmployerPolicy[K]) => void;
-  onNavigate: (tab: DashboardTab) => void;
+  onNavigate: (tab: EvidenceWorkflowStep) => void;
 };
 
 const copy = {

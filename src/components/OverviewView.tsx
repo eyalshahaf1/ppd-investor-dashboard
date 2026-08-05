@@ -5,6 +5,7 @@ import { scenarios } from "@/lib/defaults";
 import { formatYen } from "@/lib/format";
 import { getCopy, type Language } from "@/lib/i18n";
 import type { Assumptions, JapanStatKey, JapanStatRecord, ProjectionRow } from "@/lib/types";
+import type { DashboardTab } from "@/lib/dashboard-navigation";
 import { EnterprisePilotConsole } from "./EnterprisePilotConsole";
 import { ImpactHorizonChart, type ImpactHorizonRow } from "./ImpactHorizonChart";
 import { KpiCard } from "./KpiCard";
@@ -16,7 +17,7 @@ type OverviewViewProps = {
   mediumProjection: ProjectionRow[];
   japanStats: Record<JapanStatKey, JapanStatRecord> | null;
   language: Language;
-  onNavigate: (tab: "calculator" | "pilot" | "data") => void;
+  onNavigate: (tab: Extract<DashboardTab, "calculator" | "ledger" | "pilot" | "data">) => void;
 };
 
 type ImpactHorizon = "immediate" | "daily" | "monthly" | "annual" | "multiYear";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { calculateEvidenceReview } from "@/lib/calculations";
+import { calculateEvidenceReview, getDashboardSnapshot, projectScenario } from "@/lib/calculations";
 import {
   defaultAssumptions,
   defaultEmployerPolicy,
@@ -18,17 +18,28 @@ import {
 } from "@/lib/accessibility";
 import { getCopy, type Language } from "@/lib/i18n";
 import type {
+  Assumptions,
   EmployerPolicy,
   EvidenceItem,
   FinanceDecision,
+  JapanStatKey,
+  JapanStatRecord,
+  PilotTasks,
   QualityGateStatus,
+  ScenarioKey,
   WorkflowDefinition
 } from "@/lib/types";
 import { AboutView } from "./AboutView";
 import { AccessibilityStatement } from "./AccessibilityStatement";
 import { AppFooter } from "./AppFooter";
 import { CookieConsent } from "./CookieConsent";
-import { EvidenceWorkflowView } from "./EvidenceWorkflowView";
+import { CalculatorView } from "./CalculatorView";
+import { DataConnectionView } from "./DataConnectionView";
+import { EvidenceWorkflowView, type EvidenceWorkflowStep } from "./EvidenceWorkflowView";
+import { InvestorRoom } from "./InvestorRoom";
+import { OverviewView } from "./OverviewView";
+import { PilotTaskBoard } from "./PilotTaskBoard";
+import { ScenarioView } from "./ScenarioView";
 import type { DashboardTab } from "./Tabs";
 import { Tabs } from "./Tabs";
 import { TopBar } from "./TopBar";
@@ -53,7 +64,11 @@ async function apiPost<T>(path: string, payload: unknown): Promise<ApiEnvelope<T
 }
 
 export function DashboardApp() {
+  const [assumptions, setAssumptions] = useState<Assumptions>(defaultAssumptions);
+  const [activeScenario, setActiveScenario] = useState<ScenarioKey>("medium");
   const [activeTab, setActiveTab] = useState<DashboardTab>("overview");
+  const [ledgerStep, setLedgerStep] = useState<EvidenceWorkflowStep>("overview");
+  const [pilotTasks, setPilotTasks] = useState<PilotTasks>({});
   const [backendOnline, setBackendOnline] = useState(false);
   const [saveLabel, setSaveLabel] = useState("Save");
   const [themeMode, setThemeMode] = useState<ThemeMode>("light");
@@ -61,6 +76,7 @@ export function DashboardApp() {
   const [accessibilityPreferences, setAccessibilityPreferences] =
     useState<AccessibilityPreferences>(defaultAccessibilityPreferences);
   const [showAccessibilityStatement, setShowAccessibilityStatement] = useState(false);
+  const [japanStats, setJapanStats] = useState<Record<JapanStatKey, JapanStatRecord> | null>(null);
   const t = getCopy(language);
 
   const [workflow, setWorkflow] = useState<WorkflowDefinition>(defaultWorkflowDefinition);
@@ -73,12 +89,26 @@ export function DashboardApp() {
     () => calculateEvidenceReview(evidenceItems, qualityGates, evidenceAdjustmentRate),
     [evidenceItems, qualityGates, evidenceAdjustmentRate]
   );
+  const mediumProjection = useMemo(() => projectScenario("medium", assumptions), [assumptions]);
+  const investorReport = useMemo(
+    () => getDashboardSnapshot(assumptions, activeScenario),
+    [assumptions, activeScenario]
+  );
 
   useEffect(() => {
     async function loadBackendState() {
       try {
         await apiGet<{ service: string }>("/api/health");
         setBackendOnline(true);
+
+        const [assumptionResponse, taskResponse, statsResponse] = await Promise.all([
+          apiGet<{ assumptions: Assumptions }>("/api/assumptions"),
+          apiGet<{ tasks: PilotTasks }>("/api/tasks"),
+          apiGet<{ metrics: Record<JapanStatKey, JapanStatRecord> }>("/api/japan-stats")
+        ]);
+        setAssumptions({ ...defaultAssumptions, ...assumptionResponse.assumptions });
+        setPilotTasks(taskResponse.tasks ?? {});
+        setJapanStats(statsResponse.metrics);
 
       } catch {
         setBackendOnline(false);
@@ -87,6 +117,38 @@ export function DashboardApp() {
 
     loadBackendState();
   }, []);
+
+  async function persistAssumptions(nextAssumptions: Assumptions) {
+    if (!backendOnline) return;
+    try {
+      await apiPost<{ assumptions: Assumptions }>("/api/assumptions", nextAssumptions);
+    } catch {
+      setBackendOnline(false);
+    }
+  }
+
+  function updateAssumption<K extends keyof Assumptions>(key: K, value: Assumptions[K]) {
+    const next = { ...assumptions, [key]: value };
+    setAssumptions(next);
+    persistAssumptions(next);
+  }
+
+  function applyAssumptions(nextAssumptions: Assumptions) {
+    const normalized = { ...defaultAssumptions, ...nextAssumptions };
+    setAssumptions(normalized);
+    persistAssumptions(normalized);
+  }
+
+  async function updateTask(taskKey: string, completed: boolean) {
+    const next = { ...pilotTasks, [taskKey]: completed };
+    setPilotTasks(next);
+    if (!backendOnline) return;
+    try {
+      await apiPost<{ tasks: PilotTasks }>("/api/tasks", next);
+    } catch {
+      setBackendOnline(false);
+    }
+  }
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem("ppd-theme");
@@ -161,8 +223,11 @@ export function DashboardApp() {
     try {
       await apiPost("/api/snapshots", {
         name: `Evidence decision snapshot - ${new Date().toISOString()}`,
-        assumptions: defaultAssumptions,
-        outputs: { workflow, evidenceItems, qualityGates, evidenceReview, financeDecision, employerPolicy }
+        assumptions,
+        outputs: {
+          dashboard: getDashboardSnapshot(assumptions, activeScenario),
+          ledger: { workflow, evidenceItems, qualityGates, evidenceReview, financeDecision, employerPolicy }
+        }
       });
       setSaveLabel("Saved");
     } catch {
@@ -173,6 +238,11 @@ export function DashboardApp() {
   }
 
   function resetModel() {
+    setAssumptions(defaultAssumptions);
+    setActiveScenario("medium");
+    persistAssumptions(defaultAssumptions);
+    setPilotTasks({});
+    setLedgerStep("overview");
     setWorkflow(defaultWorkflowDefinition);
     setEvidenceItems(defaultEvidenceItems);
     setQualityGates(defaultQualityGates);
@@ -183,6 +253,11 @@ export function DashboardApp() {
 
   function changeTab(tab: DashboardTab) {
     setActiveTab(tab);
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
+  function changeLedgerStep(step: EvidenceWorkflowStep) {
+    setLedgerStep(step);
     window.scrollTo({ top: 0, behavior: "auto" });
   }
 
@@ -217,8 +292,24 @@ export function DashboardApp() {
       </aside>
       <div className="save-status" aria-live="polite">{saveLabel !== "Save" ? saveLabel : ""}</div>
       <main id="main-content" tabIndex={-1}>
-        {activeTab !== "about" && <EvidenceWorkflowView
-          activeTab={activeTab}
+        {activeTab === "overview" && (
+          <OverviewView
+            assumptions={assumptions}
+            mediumProjection={mediumProjection}
+            japanStats={japanStats}
+            language={language}
+            onNavigate={changeTab}
+          />
+        )}
+        {activeTab === "calculator" && (
+          <CalculatorView
+            assumptions={assumptions}
+            language={language}
+            onAssumptionChange={updateAssumption}
+          />
+        )}
+        {activeTab === "ledger" && <EvidenceWorkflowView
+          activeTab={ledgerStep}
           workflow={workflow}
           evidenceItems={evidenceItems}
           qualityGates={qualityGates}
@@ -233,9 +324,29 @@ export function DashboardApp() {
           onAdjustmentChange={setEvidenceAdjustmentRate}
           onFinanceChange={(key, value) => setFinanceDecision((current) => ({ ...current, [key]: value }))}
           onPolicyChange={(key, value) => setEmployerPolicy((current) => ({ ...current, [key]: value }))}
-          onNavigate={changeTab}
+          onNavigate={changeLedgerStep}
         />}
+        {activeTab === "scenarios" && (
+          <ScenarioView
+            assumptions={assumptions}
+            activeScenario={activeScenario}
+            language={language}
+            onScenarioChange={setActiveScenario}
+            onApplyAssumptions={applyAssumptions}
+          />
+        )}
+        {activeTab === "pilot" && (
+          <PilotTaskBoard tasks={pilotTasks} language={language} onTaskChange={updateTask} />
+        )}
+        {activeTab === "data" && <DataConnectionView language={language} />}
         {activeTab === "about" && <AboutView language={language} />}
+        {activeTab === "investor" && (
+          <InvestorRoom
+            reportText={JSON.stringify(investorReport, null, 2)}
+            language={language}
+            onNavigate={changeTab}
+          />
+        )}
       </main>
       <AppFooter
         language={language}
