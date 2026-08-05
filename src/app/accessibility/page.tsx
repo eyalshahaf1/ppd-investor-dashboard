@@ -9,7 +9,7 @@ export default function AccessibilityPage() {
   return (
     <main className="public-accessibility-page">
       <article className="public-accessibility-content">
-        <a href="/">TOMO PENSION</a>
+        <a className="policy-return" href="/">← Return to website</a>
         <h1>Accessibility</h1>
         <p>
           We are committed to making TOMO PENSION accessible, usable, and clear for as many people as possible.

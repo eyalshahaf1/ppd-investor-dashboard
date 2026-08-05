@@ -11,6 +11,7 @@ export default function CookiePolicyPage() {
     <main className="policy-page">
       <section className="policy-card">
         <p className="policy-eyebrow">TOMO PENSION</p>
+        <a className="policy-return" href="/">← Return to website</a>
         <h1>Cookie Policy</h1>
         <p>
           This website and interactive demo use essential local storage to remember
@@ -41,6 +42,7 @@ export default function CookiePolicyPage() {
         <hr className="policy-divider" />
 
         <p className="policy-eyebrow">TOMO PENSION</p>
+        <a className="policy-return" href="/">← サイトに戻る</a>
         <h1>Cookieポリシー</h1>
         <p>
           このウェブサイトおよびインタラクティブデモでは、言語、テーマ、

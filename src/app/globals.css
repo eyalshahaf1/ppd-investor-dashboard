@@ -388,6 +388,27 @@ body {
   text-underline-offset: 0.18em;
 }
 
+.policy-return {
+  width: fit-content;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(0, 35, 76, 0.26);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: #fff;
+  color: var(--brand-navy) !important;
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.policy-return:hover,
+.policy-return:focus-visible {
+  border-color: var(--brand-gold);
+  box-shadow: 0 0 0 4px rgba(200, 140, 21, 0.16);
+}
+
 .policy-page {
   min-height: 100vh;
   display: grid;
