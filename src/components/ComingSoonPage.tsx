@@ -88,12 +88,18 @@ export function ComingSoonPage() {
     handleSectionNavigation(event, href.slice(1));
   }
 
+  function handleLogoNavigation(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <main className="coming-soon-page" lang={language}>
       <header className="coming-soon-header">
         <a
           className="coming-soon-logo-frame"
-          href="#top"
+          href="/"
+          onClick={handleLogoNavigation}
           aria-label="Tomo Pension home"
         >
           <img src="/brand/tomo/logo-horizontal.png" alt={copy.logoAlt} />
