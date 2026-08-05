@@ -2,8 +2,14 @@ import { scenarios, years } from "./defaults";
 import type {
   Assumptions,
   CalculatorOutputs,
+  AllocationOutput,
+  EmployerPolicy,
+  EvidenceItem,
+  EvidenceReview,
+  FinanceDecision,
   OperationalOutputs,
   ProjectionRow,
+  QualityGate,
   ScenarioKey,
   VerifiedAiGainOutputs
 } from "./types";
@@ -100,6 +106,116 @@ export function calculateVerifiedAiGain(assumptions: Assumptions): VerifiedAiGai
     hasVerifiedGain,
     canAllocate,
     allocationBlockers
+  };
+}
+
+const supportedBenefitOutcomes = new Set(["O", "S", "Q", "M"]);
+
+export function calculateEvidenceReview(
+  evidenceItems: EvidenceItem[],
+  qualityGates: QualityGate[],
+  evidenceAdjustmentRate: number
+): EvidenceReview {
+  const grossSupportedBenefitsJpy = evidenceItems
+    .filter((item) => item.category === "benefit" && supportedBenefitOutcomes.has(item.outcome))
+    .reduce((total, item) => total + Math.max(0, item.amountJpy), 0);
+  const aiRelatedCostsJpy = evidenceItems
+    .filter((item) => item.category === "cost" || item.outcome === "A")
+    .reduce((total, item) => total + Math.max(0, item.amountJpy), 0);
+  const exclusionsJpy = evidenceItems
+    .filter((item) => item.category === "exclusion" || item.outcome === "X")
+    .reduce((total, item) => total + Math.max(0, item.amountJpy), 0);
+  const adjustedBenefitsJpy = Math.max(
+    0,
+    grossSupportedBenefitsJpy * (1 - Math.max(0, evidenceAdjustmentRate) / 100)
+  );
+  const evidenceSupportedValueJpy = Math.max(
+    0,
+    adjustedBenefitsJpy - aiRelatedCostsJpy - exclusionsJpy
+  );
+  const materialLimitations = evidenceItems
+    .map((item) => item.limitation)
+    .filter((limitation): limitation is string => Boolean(limitation));
+  const qualityGatePassed = qualityGates.every(
+    (gate) => gate.status !== "fail" && gate.status !== "review"
+  );
+  const blockers = [
+    grossSupportedBenefitsJpy <= 0 ? "No supported benefit evidence recorded." : "",
+    evidenceSupportedValueJpy <= 0 ? "Evidence-supported value is zero." : "",
+    !qualityGatePassed ? "A quality gate requires review or has failed." : "",
+    evidenceItems.some((item) => item.approvalStatus === "rejected")
+      ? "A submitted evidence item was rejected."
+      : ""
+  ].filter(Boolean);
+  const evidenceGrade = evidenceItems.some((item) => item.evidenceType === "external")
+    ? "A"
+    : evidenceItems.some((item) => item.evidenceType === "finance")
+      ? "B"
+      : evidenceItems.some((item) => item.evidenceType === "system")
+        ? "C"
+        : "D";
+
+  return {
+    grossSupportedBenefitsJpy,
+    evidenceAdjustmentRate,
+    adjustedBenefitsJpy,
+    aiRelatedCostsJpy,
+    exclusionsJpy,
+    evidenceSupportedValueJpy,
+    evidenceGrade,
+    materialLimitations,
+    blockers,
+    qualityGatePassed
+  };
+}
+
+export function validateFinanceDecision(
+  review: EvidenceReview,
+  decision: FinanceDecision
+): string[] {
+  return [
+    decision.approvedAllocationBaseJpy < 0
+      ? "Finance-approved allocation base cannot be negative."
+      : "",
+    decision.approvedAllocationBaseJpy > review.evidenceSupportedValueJpy
+      ? "Finance-approved allocation base cannot exceed the evidence-supported value."
+      : "",
+    decision.status === "approved" && !decision.limitationsAcknowledged
+      ? "Finance must acknowledge the material limitations before approval."
+      : ""
+  ].filter(Boolean);
+}
+
+export function calculatePotentialAllocation(
+  review: EvidenceReview,
+  financeDecision: FinanceDecision,
+  employerPolicy: EmployerPolicy
+): AllocationOutput {
+  const blockers = [
+    ...review.blockers,
+    ...validateFinanceDecision(review, financeDecision),
+    financeDecision.status !== "approved" ? "Finance decision is not approved." : "",
+    employerPolicy.allocationRate < 0 || employerPolicy.allocationRate > 100
+      ? "Employer allocation rate must be between 0% and 100%."
+      : "",
+    employerPolicy.capJpy < 0 ? "Employer cap cannot be negative." : "",
+    employerPolicy.eligibleEmployees <= 0 ? "Eligible employee population must be greater than zero." : ""
+  ].filter(Boolean);
+  const potentialAllocationJpy = blockers.length
+    ? 0
+    : Math.min(
+        employerPolicy.capJpy,
+        financeDecision.approvedAllocationBaseJpy * (employerPolicy.allocationRate / 100)
+      );
+
+  return {
+    potentialAllocationJpy,
+    illustrativePerEmployeeJpy:
+      employerPolicy.eligibleEmployees > 0
+        ? potentialAllocationJpy / employerPolicy.eligibleEmployees
+        : 0,
+    canCalculate: blockers.length === 0,
+    blockers
   };
 }
 

@@ -4,7 +4,7 @@ import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const siteDescription =
-  "Tomo Pension is building the trusted measurement and reporting layer that helps organisations turn a small, verified share of AI productivity gains into long-term retirement value.";
+  "TOMO PENSION is exploring a practical way to connect credible evidence of AI-enabled progress with long-term employee value.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

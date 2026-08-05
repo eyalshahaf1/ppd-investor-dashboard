@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { ScenarioKey } from "@/lib/types";
-import { scenarios } from "@/lib/defaults";
 import type { AccessibilityPreferences } from "@/lib/accessibility";
 import { dashboardNavigation, type DashboardTab } from "@/lib/dashboard-navigation";
 import { getCopy, languages, type Language } from "@/lib/i18n";
@@ -12,8 +10,6 @@ export type ThemeMode = "light" | "dark";
 
 type TopBarProps = {
   activeTab: DashboardTab;
-  activeScenario: ScenarioKey;
-  y5Flow: string;
   backendOnline: boolean;
   themeMode: ThemeMode;
   language: Language;
@@ -28,8 +24,6 @@ type TopBarProps = {
 
 export function TopBar({
   activeTab,
-  activeScenario,
-  y5Flow,
   backendOnline,
   themeMode,
   language,
@@ -183,14 +177,6 @@ export function TopBar({
             preferences={accessibilityPreferences}
             onChange={onAccessibilityChange}
           />
-          <div className="pill">
-            <span>{t.topbar.baseCase}</span>
-            <strong>{scenarios[activeScenario].label.replace(" adoption", "")}</strong>
-          </div>
-          <div className="pill">
-            <span>{t.topbar.y5Flow}</span>
-            <strong>{y5Flow}</strong>
-          </div>
           <div className="pill">
             <span>{t.topbar.backend}</span>
             <strong

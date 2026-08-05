@@ -89,10 +89,10 @@ export function InvestorRoom({ reportText, language, onNavigate }: InvestorRoomP
           <button className="action-btn" type="button" onClick={() => onNavigate("overview")}>
             {copy.nav[0]}
           </button>
-          <button className="action-btn" type="button" onClick={() => onNavigate("calculator")}>
+          <button className="action-btn" type="button" onClick={() => onNavigate("review")}>
             {copy.nav[1]}
           </button>
-          <button className="action-btn" type="button" onClick={() => onNavigate("data")}>
+          <button className="action-btn" type="button" onClick={() => onNavigate("evidence")}>
             {copy.nav[2]}
           </button>
           <a className="action-btn primary" download="ppd-investor-demo-snapshot.md" href={reportHref}>
