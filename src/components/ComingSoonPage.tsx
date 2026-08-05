@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { holdingPageContent, type SiteLanguage } from "@/content/siteContent";
 import {
   accessibilityStorageKey,
@@ -76,18 +76,35 @@ export function ComingSoonPage() {
     }
   }
 
+  function handleSectionNavigation(event: MouseEvent<HTMLAnchorElement>, sectionId: string) {
+    if (!sectionId) return;
+    event.preventDefault();
+    const target = document.getElementById(sectionId);
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function handleConfigLinkNavigation(event: MouseEvent<HTMLAnchorElement>, href: string) {
+    if (!href.startsWith("#")) return;
+    handleSectionNavigation(event, href.slice(1));
+  }
+
   return (
     <main className="coming-soon-page" lang={language}>
       <header className="coming-soon-header">
-        <a className="coming-soon-logo-frame" href="#top" aria-label="Tomo Pension home">
+        <a
+          className="coming-soon-logo-frame"
+          href="#top"
+          onClick={(event) => handleSectionNavigation(event, "top")}
+          aria-label="Tomo Pension home"
+        >
           <img src="/brand/tomo/logo-horizontal.png" alt={copy.logoAlt} />
         </a>
         <div className="coming-soon-header-actions">
           <nav className="coming-soon-nav" aria-label={language === "ja" ? "サイトナビゲーション" : "Site navigation"}>
-            <a href="#how-it-works">{labels.how}</a>
-            <a href="#about">{labels.about}</a>
-            <a href="#pilot">{labels.pilot}</a>
-            <a href="#boundaries">{labels.boundaries}</a>
+            <a href="#how-it-works" onClick={(event) => handleSectionNavigation(event, "how-it-works")}>{labels.how}</a>
+            <a href="#about" onClick={(event) => handleSectionNavigation(event, "about")}>{labels.about}</a>
+            <a href="#pilot" onClick={(event) => handleSectionNavigation(event, "pilot")}>{labels.pilot}</a>
+            <a href="#boundaries" onClick={(event) => handleSectionNavigation(event, "boundaries")}>{labels.boundaries}</a>
             <a href="/dashboard">{labels.demo}</a>
           </nav>
           <div className="coming-soon-preferences" aria-label={labels.theme}>
@@ -126,7 +143,13 @@ export function ComingSoonPage() {
           <p className="coming-soon-body">{copy.heroDescription}</p>
           <div className="coming-soon-actions">
             <a href={copy.primaryCTALink}>{copy.primaryCTA}</a>
-            <a className="coming-soon-secondary-link" href={copy.secondaryCTALink}>{copy.secondaryCTA}</a>
+            <a
+              className="coming-soon-secondary-link"
+              href={copy.secondaryCTALink}
+              onClick={(event) => handleConfigLinkNavigation(event, copy.secondaryCTALink)}
+            >
+              {copy.secondaryCTA}
+            </a>
           </div>
           <p className="coming-soon-status">{copy.statusLine}</p>
         </div>
