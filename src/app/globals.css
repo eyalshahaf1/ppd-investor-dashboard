@@ -959,6 +959,12 @@ html[lang="ja"] .coming-soon-question-block p {
   line-height: 1.35;
 }
 
+html[lang="ja"] .coming-soon-question-block p.coming-soon-question-tagline {
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
 html[lang="ja"] .coming-soon-item-grid h3 {
   font-size: 16px;
   line-height: 1.45;
