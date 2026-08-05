@@ -610,9 +610,16 @@ body {
 }
 
 .coming-soon-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
   display: flex;
   align-items: center;
   gap: 24px;
+  padding-block: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(0, 35, 76, 0.08);
+  backdrop-filter: blur(14px);
 }
 
 .coming-soon-logo-frame {
@@ -692,7 +699,7 @@ body {
 .coming-soon-section-heading h2,
 .coming-soon-story-block h2,
 .coming-soon-founder h2,
-.coming-soon-cta h2 { margin: 8px 0 0; color: var(--brand-navy); font-size: clamp(27px, 3.2vw, 42px); line-height: 1.14; }
+.coming-soon-cta h2 { margin: 8px 0 0; color: var(--brand-navy); font-size: clamp(27px, 3.2vw, 42px); font-weight: 650; line-height: 1.14; }
 .coming-soon-story-block p,
 .coming-soon-founder > p:last-child,
 .coming-soon-cta > p { color: #45554f; font-size: 17px; line-height: 1.7; }
@@ -708,7 +715,7 @@ body {
 .coming-soon-item-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .coming-soon-item-grid article { min-width: 0; border-top: 1px solid rgba(0,35,76,.22); padding: 20px 0 0; }
 .coming-soon-item-grid article > span { display: block; margin-bottom: 14px; color: var(--brand-gold); font-weight: 950; }
-.coming-soon-item-grid h3 { margin: 0; color: var(--brand-navy); font-size: 20px; font-weight: 850; line-height: 1.25; }
+.coming-soon-item-grid h3 { margin: 0; color: var(--brand-navy); font-size: 20px; font-weight: 760; line-height: 1.25; }
 .coming-soon-item-grid p { margin: 10px 0 0; color: #52615b; font-size: 15px; line-height: 1.6; }
 .coming-soon-measure { padding-block: clamp(26px, 5vw, 56px); border-block: 1px solid rgba(0,35,76,.16); }
 .coming-soon-rule { margin: 8px 0 0; color: var(--brand-navy); font-size: 15px; font-weight: 800; }
@@ -828,6 +835,11 @@ body {
   border: 1px solid rgba(216, 224, 218, 0.86);
   border-radius: 12px;
   background: #fff;
+}
+
+:root[data-theme="dark"] .coming-soon-header {
+  background: rgba(16, 22, 20, 0.9);
+  border-bottom-color: rgba(189, 204, 197, 0.18);
 }
 
 :root[data-theme="dark"] .coming-soon-nav a,
@@ -976,6 +988,7 @@ html[lang="ja"] .coming-soon-question-block p.coming-soon-question-tagline {
 
 html[lang="ja"] .coming-soon-item-grid h3 {
   font-size: 16px;
+  font-weight: 850;
   line-height: 1.45;
 }
 
