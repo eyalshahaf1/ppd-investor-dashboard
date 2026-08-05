@@ -10,12 +10,10 @@ export const copy = {
     topbar: {
       eyebrow: "Japan Pilot Feasibility Concept",
       mobileEyebrow: "Japan Pilot",
-      title: "TOMO PENSION",
+      title: "TOMO Evidence and Allocation Decision Prototype",
       tagline: "Measured gains. Verified value. Shared future.",
       subtitle:
-        "Measure verified AI gains. Allocate a small pre-agreed share. Generate validated contribution instructions for partner-operated rails.",
-      baseCase: "Base case",
-      y5Flow: "Y5 flow",
+        "One workflow. Credible evidence. A controlled employer decision.",
       backend: "Demo Data Mode",
       offline: "Seed data",
       offlineDetail:
@@ -36,38 +34,44 @@ export const copy = {
       dark: "Dark",
       resetConfirm: "Reset the model assumptions?"
     },
-    tabs: {
-      overview: "Overview",
-      calculator: "Verified Ledger",
-      scenarios: "Investor Scenario",
-      pilot: "Pilot Evidence",
-      data: "Partner Execution",
-      about: "About",
-      investor: "Investor Room"
-    },
+      tabs: {
+        overview: "Overview",
+        workflow: "Define Workflow",
+        evidence: "Evidence",
+        review: "Evidence Review",
+        finance: "Finance Decision",
+        policy: "Employer Policy",
+        report: "Decision Report",
+        pilot: "Pilot Evidence",
+        about: "About and Boundaries"
+      },
     prototypeNotice: {
       title: "Prototype Preview",
       body:
         "This interactive demo uses illustrative data for concept discussion only. Tomo Pension does not custody assets, move funds, or provide pension, tax, legal, actuarial, or investment advice."
     },
-    drawerTabs: {
-      overview: "Overview",
-      calculator: "Verified Ledger",
-      scenarios: "Investor Scenario",
-      pilot: "Pilot Evidence",
-      data: "Partner Execution",
-      about: "About TOMO",
-      investor: "Investor Room"
-    },
-    mobileTabs: {
-      overview: "Overview",
-      calculator: "Ledger",
-      scenarios: "Scenarios",
-      pilot: "Pilot",
-      data: "Data",
-      about: "About",
-      investor: "Investor"
-    },
+      drawerTabs: {
+        overview: "Overview",
+        workflow: "Define Workflow",
+        evidence: "Evidence",
+        review: "Evidence Review",
+        finance: "Finance Decision",
+        policy: "Employer Policy",
+        report: "Decision Report",
+        pilot: "Pilot Evidence",
+        about: "About TOMO"
+      },
+      mobileTabs: {
+        overview: "Overview",
+        workflow: "Workflow",
+        evidence: "Evidence",
+        review: "Review",
+        finance: "Finance",
+        policy: "Policy",
+        report: "Report",
+        pilot: "Pilot",
+        about: "About"
+      },
     overview: {
       thesisTitle: "TOMO PENSION for Japan.",
       thesisBody:
@@ -405,12 +409,14 @@ export const copy = {
     },
     tabs: {
       overview: "概要",
-      calculator: "検証台帳",
-      scenarios: "投資家シナリオ",
+      workflow: "業務を定義",
+      evidence: "エビデンス",
+      review: "エビデンスレビュー",
+      finance: "財務部門の意思決定",
+      policy: "雇用主ポリシー",
+      report: "意思決定レポート",
       pilot: "実証エビデンス",
-      data: "パートナー実行",
-      about: "共に未来をつくる TOMO PENSION",
-      investor: "投資家向け"
+      about: "概要説明"
     },
     prototypeNotice: {
       title: "プロトタイププレビュー",
@@ -419,21 +425,25 @@ export const copy = {
     },
     drawerTabs: {
       overview: "概要",
-      calculator: "検証台帳",
-      scenarios: "投資家シナリオ",
+      workflow: "業務を定義",
+      evidence: "エビデンス",
+      review: "エビデンスレビュー",
+      finance: "財務部門の意思決定",
+      policy: "雇用主ポリシー",
+      report: "意思決定レポート",
       pilot: "実証エビデンス",
-      data: "パートナー実行",
-      about: "TOMOについて",
-      investor: "投資家向け"
+      about: "TOMOについて"
     },
     mobileTabs: {
       overview: "概要",
-      calculator: "検証台帳",
-      scenarios: "シナリオ",
+      workflow: "業務",
+      evidence: "証拠",
+      review: "レビュー",
+      finance: "財務",
+      policy: "ポリシー",
+      report: "レポート",
       pilot: "実証",
-      data: "連携",
-      about: "TOMOについて",
-      investor: "投資家"
+      about: "概要"
     },
     overview: {
       thesisTitle: "日本向けTOMO PENSION。",

@@ -1,18 +1,22 @@
 export type DashboardTab =
   | "overview"
-  | "calculator"
-  | "scenarios"
+  | "workflow"
+  | "evidence"
+  | "review"
+  | "finance"
+  | "policy"
+  | "report"
   | "pilot"
-  | "data"
   | "about"
-  | "investor";
 
 export const dashboardNavigation: Array<{ key: DashboardTab }> = [
   { key: "overview" },
-  { key: "calculator" },
-  { key: "scenarios" },
+  { key: "workflow" },
+  { key: "evidence" },
+  { key: "review" },
+  { key: "finance" },
+  { key: "policy" },
+  { key: "report" },
   { key: "pilot" },
-  { key: "data" },
-  { key: "about" },
-  { key: "investor" }
+  { key: "about" }
 ];

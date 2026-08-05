@@ -4,7 +4,7 @@ import { ComingSoonPage } from "@/components/ComingSoonPage";
 export const metadata: Metadata = {
   title: "TOMO PENSION | Coming Soon",
   description:
-    "TOMO PENSION is building a trusted measurement and reporting layer for shared long-term retirement value."
+    "TOMO PENSION is exploring a practical way to connect credible evidence of AI-enabled progress with long-term employee value."
 };
 
 export default function Home() {

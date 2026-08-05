@@ -2,7 +2,10 @@ const assert = require("node:assert/strict");
 const {
   calculateEmployerEconomics,
   calculateOperationalGain,
-  calculateVerifiedAiGain
+  calculateVerifiedAiGain,
+  calculateEvidenceReview,
+  validateFinanceDecision,
+  calculatePotentialAllocation
 } = require("../.test-build/calculations.js");
 const { defaultAssumptions } = require("../.test-build/defaults.js");
 const {
@@ -13,6 +16,63 @@ const {
 
 function withAssumptions(overrides) {
   return { ...defaultAssumptions, ...overrides };
+}
+
+{
+  const evidence = [
+    { category: "benefit", outcome: "O", amountJpy: 300, approvalStatus: "submitted" },
+    { category: "benefit", outcome: "S", amountJpy: 200, approvalStatus: "submitted" },
+    { category: "benefit", outcome: "Q", amountJpy: 100, approvalStatus: "submitted" },
+    { category: "benefit", outcome: "M", amountJpy: 800, approvalStatus: "submitted" },
+    { category: "cost", outcome: "A", amountJpy: 105, approvalStatus: "submitted" }
+  ];
+  const review = calculateEvidenceReview(evidence, [{ status: "pass" }], 10);
+  assert.equal(review.grossSupportedBenefitsJpy, 1400);
+  assert.equal(review.adjustedBenefitsJpy, 1260);
+  assert.equal(review.aiRelatedCostsJpy, 105);
+  assert.equal(review.evidenceSupportedValueJpy, 1155);
+  assert.equal(review.qualityGatePassed, true);
+
+  const finance = {
+    evidenceSupportedValueJpy: review.evidenceSupportedValueJpy,
+    approvedAllocationBaseJpy: 500,
+    status: "approved",
+    limitationsAcknowledged: true
+  };
+  assert.deepEqual(validateFinanceDecision(review, finance), []);
+  const allocation = calculatePotentialAllocation(review, finance, {
+    allocationRate: 5,
+    capJpy: 40,
+    eligibleEmployees: 10,
+    policyPeriod: "2026",
+    eligibilityRule: "Demo"
+  });
+  assert.equal(allocation.potentialAllocationJpy, 25);
+  assert.equal(allocation.illustrativePerEmployeeJpy, 2.5);
+}
+
+{
+  const review = calculateEvidenceReview(
+    [{ category: "benefit", outcome: "M", amountJpy: 100, approvalStatus: "submitted" }],
+    [{ status: "pass" }],
+    0
+  );
+  const invalidFinance = {
+    evidenceSupportedValueJpy: review.evidenceSupportedValueJpy,
+    approvedAllocationBaseJpy: 101,
+    status: "approved",
+    limitationsAcknowledged: true
+  };
+  assert.equal(validateFinanceDecision(review, invalidFinance).length, 1);
+  const blocked = calculatePotentialAllocation(review, invalidFinance, {
+    allocationRate: 5,
+    capJpy: 100,
+    eligibleEmployees: 10,
+    policyPeriod: "2026",
+    eligibilityRule: "Demo"
+  });
+  assert.equal(blocked.canCalculate, false);
+  assert.equal(blocked.potentialAllocationJpy, 0);
 }
 
 {
