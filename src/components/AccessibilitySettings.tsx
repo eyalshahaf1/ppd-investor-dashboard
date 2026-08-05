@@ -49,6 +49,23 @@ const accessibilityCopy = {
   }
 } as const;
 
+function AccessibilityIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      viewBox="0 0 24 24"
+      className="accessibility-summary-svg"
+    >
+      <circle cx="12" cy="4.5" r="2.2" />
+      <path d="M5.5 8.8h13" />
+      <path d="M12 7.8v5.1" />
+      <path d="M8.3 20l2.1-6.3h3.2l2.1 6.3" />
+      <path d="M8.9 13.7h6.2" />
+    </svg>
+  );
+}
+
 export function AccessibilitySettings({
   language,
   preferences,
@@ -73,6 +90,9 @@ export function AccessibilitySettings({
       ref={detailsRef}
     >
       <summary aria-label={copy.title}>
+        <span className="accessibility-summary-icon">
+          <AccessibilityIcon />
+        </span>
         <span className="accessibility-summary-label">{copy.summary}</span>
       </summary>
       <div className="accessibility-panel">
