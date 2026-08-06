@@ -46,7 +46,7 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
     comingSoonText: "COMING SOON",
     heroTitle: "Turning AI productivity into retirement security.",
     heroQuestion:
-      "When AI-enabled progress creates measurable value, can a small, well-governed share help support employees' long-term security?",
+      "When technology creates meaningful value, can a small, responsibly governed share strengthen the future of the people who help create it?",
     heroDescription:
       "TOMO PENSION is exploring a practical way for employers to connect credible evidence of AI-enabled progress with long-term employee value.",
     primaryCTA: "Start a pilot conversation",
@@ -101,7 +101,7 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
       founder: {
         title: "Founder perspective",
         body:
-          "Japan has been part of my life for many years. What has stayed with me is not only its technology or economic strength, but its sense of responsibility, respect for work and concern for future generations.\n\nTOMO PENSION began with a simple question: when progress creates measurable value, can a small, well-governed share help support employees' long-term security?",
+          "Japan has been part of my life for many years. What has stayed with me is not only its technology or economic strength, but its sense of responsibility, respect for work and concern for future generations.\n\nTOMO PENSION began with a simple question: when progress creates value, can part of that progress help strengthen the future of the people who make it possible?",
         items: [
           { title: "Founder commitment", body: "Eyal Shahaf leads the concept, pilot design and partner conversations behind TOMO PENSION." },
           { title: "Product role", body: "TOMO is a measurement and reporting layer for verified productivity value, not a pension operator or custodian." },
