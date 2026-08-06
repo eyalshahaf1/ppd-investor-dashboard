@@ -28,6 +28,7 @@ export type HoldingPageContent = {
     measure: LandingSection;
     firstStep: LandingSection;
     founder: LandingSection;
+    mark: LandingSection;
     boundaries: LandingSection;
     pilot: LandingSection;
   };
@@ -107,6 +108,11 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
           { title: "Product role", body: "TOMO is a measurement and reporting layer for verified productivity value, not a pension operator or custodian." },
           { title: "Execution through regulated partners", body: "TOMO prepares measurement, evidence and reporting. Employers, assurance specialists, legal and security advisers, and regulated benefit or pension partners handle the areas that require their authority and expertise." }
         ]
+      },
+      mark: {
+        title: "The meaning behind our mark",
+        body:
+          "The TOMO PENSION logo reflects trust, strength, renewal, and a future built together.\n\nDeep blue speaks of trust, dignity, and stability. Gold suggests light entering through a crack: a quiet reference to kintsugi, where repair is not hidden but made meaningful. Japan is not broken. It is a society facing deep change, and the colours reflect the belief that change can be met with care, courage, and renewal.\n\nTomo carries the idea of together. 共に未来をつくる means building the future together: a belief that value created by technology may also help strengthen the future of the people who make that progress possible."
       },
       boundaries: {
         title: "Clear boundaries",
@@ -193,6 +199,11 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
           { title: "プロダクトの役割", body: "TOMOは検証された生産性価値の測定・レポーティング層であり、年金運営者や資産保管者ではありません。" },
           { title: "規制対象パートナーによる実行", body: "TOMOは測定、エビデンス、レポーティングを準備します。権限と専門性が必要な領域は、雇用主、第三者検証、法務・セキュリティ専門家、規制対象の福利厚生・年金パートナーが担います。" }
         ]
+      },
+      mark: {
+        title: "ロゴに込めた意味",
+        body:
+          "TOMO PENSIONのロゴには、信頼、強さ、再生、そして共に未来をつくるという思いが込められています。\n\n深い青は、信頼、品格、安定を表しています。金色は、ひびの間から差し込む光のようなものです。金継ぎのように、傷を隠すのではなく、受け止めながら、より強く、美しく意味のあるものへとつなぐ。日本が壊れているという意味ではありません。大きな変化に向き合う社会だからこそ、思いやりと勇気を持って未来を築いていけるという願いを込めています。\n\nTomoには「共に」という意味があります。共に未来をつくる。それは、技術が生み出す価値を企業だけの成果にせず、その進歩を支える人々の将来にもつなげていくという考えです。"
       },
       boundaries: {
         title: "明確な役割の境界",

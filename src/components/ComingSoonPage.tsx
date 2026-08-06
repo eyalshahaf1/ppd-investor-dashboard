@@ -233,17 +233,6 @@ export function ComingSoonPage() {
         <div className="coming-soon-item-grid">{copy.sections.whyTomo.items?.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
       </section>
 
-      <section className="coming-soon-content-section coming-soon-measure" aria-labelledby="measure-title">
-        <div className="coming-soon-section-heading"><p className="coming-soon-section-kicker">{labels.how}</p><h2 id="measure-title">{copy.sections.measure.title}</h2></div>
-        <div className="coming-soon-item-grid">{copy.sections.measure.items?.map((item, index) => <article key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
-        <p className="coming-soon-rule">{copy.boundaryLine}</p>
-      </section>
-
-      <section className="coming-soon-story-block" aria-labelledby="first-title">
-        <div className="coming-soon-section-heading"><p className="coming-soon-section-kicker">{labels.first}</p><h2 id="first-title">{copy.sections.firstStep.title}</h2></div>
-        <div className="coming-soon-item-grid">{copy.sections.firstStep.items?.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
-      </section>
-
       <section id="about" className="coming-soon-founder" aria-labelledby="founder-title">
         <p className="coming-soon-section-kicker">{labels.about}</p>
         <h2 id="founder-title">{copy.sections.founder.title}</h2>
@@ -253,6 +242,28 @@ export function ComingSoonPage() {
         <div className="coming-soon-founder-points">
           {copy.sections.founder.items?.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}
         </div>
+      </section>
+
+      <section className="coming-soon-mark" aria-labelledby="mark-title">
+        <div className="coming-soon-mark-logo" aria-hidden="true">
+          <img src="/brand/tomo/logo-horizontal.png" alt="" />
+        </div>
+        <div className="coming-soon-mark-copy">
+          <p className="coming-soon-section-kicker">{language === "ja" ? "TOMO PENSION" : "TOMO identity"}</p>
+          <h2 id="mark-title">{copy.sections.mark.title}</h2>
+          {copy.sections.mark.body?.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        </div>
+      </section>
+
+      <section className="coming-soon-content-section coming-soon-measure" aria-labelledby="measure-title">
+        <div className="coming-soon-section-heading"><p className="coming-soon-section-kicker">{labels.how}</p><h2 id="measure-title">{copy.sections.measure.title}</h2></div>
+        <div className="coming-soon-item-grid">{copy.sections.measure.items?.map((item, index) => <article key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
+        <p className="coming-soon-rule">{copy.boundaryLine}</p>
+      </section>
+
+      <section className="coming-soon-story-block" aria-labelledby="first-title">
+        <div className="coming-soon-section-heading"><p className="coming-soon-section-kicker">{labels.first}</p><h2 id="first-title">{copy.sections.firstStep.title}</h2></div>
+        <div className="coming-soon-item-grid">{copy.sections.firstStep.items?.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
       </section>
 
       <section id="boundaries" className="coming-soon-content-section" aria-labelledby="boundary-title">
