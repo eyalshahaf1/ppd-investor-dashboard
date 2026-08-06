@@ -18,10 +18,11 @@ export function ComingSoonPage() {
   const [accessibilityPreferences, setAccessibilityPreferences] =
     useState<AccessibilityPreferences>(defaultAccessibilityPreferences);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const copy = holdingPageContent[language];
   const labels = language === "ja"
-    ? { positioning: "TOMO PENSIONの考え方", facts: "日本の背景", how: "仕組み", first: "最初の一歩", about: "TOMOについて", boundaries: "境界", pilot: "パイロット", demo: "デモを見る", theme: "表示" }
-    : { positioning: "TOMO PENSION's approach", facts: "Japan in context", how: "How it works", first: "First practical step", about: "About", boundaries: "Boundaries", pilot: "Pilot", demo: "Open the demonstration", theme: "Appearance" };
+    ? { positioning: "TOMO PENSIONの考え方", facts: "日本の背景", how: "仕組み", first: "最初の一歩", about: "TOMOについて", boundaries: "境界", pilot: "パイロット", demo: "デモを見る", theme: "表示", menu: "Menu", demoLocked: "デモへのアクセスは、パスワード設定後に有効化します。" }
+    : { positioning: "TOMO PENSION's approach", facts: "Japan in context", how: "How it works", first: "First practical step", about: "About", boundaries: "Boundaries", pilot: "Pilot", demo: "Open the demonstration", theme: "Appearance", menu: "Menu", demoLocked: "Demo access will be enabled after password protection is configured." };
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem("ppd-theme");
@@ -45,6 +46,15 @@ export function ComingSoonPage() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     document.documentElement.dataset.theme = themeMode;
@@ -81,6 +91,7 @@ export function ComingSoonPage() {
     event.preventDefault();
     const target = document.getElementById(sectionId);
     target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setIsMobileMenuOpen(false);
   }
 
   function handleConfigLinkNavigation(event: MouseEvent<HTMLAnchorElement>, href: string) {
@@ -90,6 +101,7 @@ export function ComingSoonPage() {
 
   function handleLogoNavigation(event: MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
+    setIsMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -104,13 +116,39 @@ export function ComingSoonPage() {
         >
           <img src="/brand/tomo/logo-horizontal.png" alt={copy.logoAlt} />
         </a>
-        <div className="coming-soon-header-actions">
+        <button
+          className="coming-soon-menu-toggle"
+          type="button"
+          aria-controls="coming-soon-header-actions"
+          aria-expanded={isMobileMenuOpen}
+          onClick={() => setIsMobileMenuOpen((current) => !current)}
+        >
+          <span className="coming-soon-menu-lines" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span>{labels.menu}</span>
+        </button>
+        <div
+          id="coming-soon-header-actions"
+          className="coming-soon-header-actions"
+          data-open={isMobileMenuOpen ? "true" : "false"}
+        >
           <nav className="coming-soon-nav" aria-label={language === "ja" ? "サイトナビゲーション" : "Site navigation"}>
             <a href="#how-it-works" onClick={(event) => handleSectionNavigation(event, "how-it-works")}>{labels.how}</a>
             <a href="#about" onClick={(event) => handleSectionNavigation(event, "about")}>{labels.about}</a>
             <a href="#pilot" onClick={(event) => handleSectionNavigation(event, "pilot")}>{labels.pilot}</a>
             <a href="#boundaries" onClick={(event) => handleSectionNavigation(event, "boundaries")}>{labels.boundaries}</a>
-            <a href="/dashboard">{labels.demo}</a>
+            <button
+              className="coming-soon-demo-disabled"
+              type="button"
+              aria-disabled="true"
+              title={labels.demoLocked}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {labels.demo}
+            </button>
           </nav>
           <div className="coming-soon-preferences" aria-label={labels.theme}>
             <button

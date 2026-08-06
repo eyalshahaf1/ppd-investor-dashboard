@@ -651,6 +651,7 @@ body {
 }
 
 .coming-soon-nav a,
+.coming-soon-nav button,
 .coming-soon-footer a {
   color: var(--brand-navy);
   font-size: 14px;
@@ -658,13 +659,53 @@ body {
   text-decoration: none;
 }
 
+.coming-soon-nav button {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: not-allowed;
+  font-family: inherit;
+}
+
 .coming-soon-nav a:hover,
 .coming-soon-nav a:focus-visible,
+.coming-soon-nav button:hover,
+.coming-soon-nav button:focus-visible,
 .coming-soon-footer a:hover,
 .coming-soon-footer a:focus-visible { text-decoration: underline; text-underline-offset: 0.2em; }
 
 .coming-soon-language {
   flex: 0 0 auto;
+}
+
+.coming-soon-menu-toggle {
+  display: none;
+  min-height: 44px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid rgba(0, 35, 76, 0.18);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--brand-navy);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.coming-soon-menu-lines {
+  display: grid;
+  gap: 3px;
+  width: 16px;
+}
+
+.coming-soon-menu-lines span {
+  display: block;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
 }
 
 .coming-soon-hero {
@@ -750,7 +791,6 @@ body {
 .coming-soon-footer-linkedin:focus-visible .coming-soon-linkedin { background: var(--brand-navy); }
 
 @media (max-width: 900px) {
-  .coming-soon-nav a:nth-child(-n+2) { display: none; }
   .coming-soon-hero { grid-template-columns: 1fr; }
   .coming-soon-hero-copy { max-width: 760px; }
   .coming-soon-image { max-height: 360px; aspect-ratio: 2 / 1; }
@@ -758,11 +798,53 @@ body {
 
 @media (max-width: 640px) {
   .coming-soon-page { gap: 58px; padding: 18px 20px 28px; }
-  .coming-soon-header { gap: 12px; flex-wrap: wrap; }
+  .coming-soon-header { gap: 12px; flex-wrap: wrap; align-items: center; }
   .coming-soon-logo-frame { width: 135px; }
-  .coming-soon-nav { order: 3; width: 100%; justify-content: flex-start; overflow-x: auto; }
-  .coming-soon-nav a:nth-child(-n+2) { display: inline; }
-  .coming-soon-nav a { white-space: nowrap; font-size: 13px; }
+  .coming-soon-menu-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+  .coming-soon-header-actions {
+    order: 3;
+    width: 100%;
+    display: none;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    border: 1px solid rgba(0, 35, 76, 0.12);
+    border-radius: 18px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 16px 36px rgba(0, 35, 76, 0.08);
+  }
+  .coming-soon-header-actions[data-open="true"] { display: grid; }
+  .coming-soon-header-actions .coming-soon-nav {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .coming-soon-nav a,
+  .coming-soon-nav button {
+    width: 100%;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 13px;
+    text-align: left;
+  }
+  .coming-soon-nav a:hover,
+  .coming-soon-nav a:focus-visible,
+  .coming-soon-nav button:hover,
+  .coming-soon-nav button:focus-visible {
+    background: rgba(0, 35, 76, 0.06);
+    text-decoration: none;
+  }
+  .coming-soon-demo-disabled {
+    opacity: .62;
+  }
   .coming-soon-language button { min-height: 44px; padding-inline: 10px; }
   .coming-soon-hero h1 { margin-top: 10px; font-size: clamp(34px, 10vw, 43px); }
   .coming-soon-question { font-size: 19px; }
@@ -843,6 +925,8 @@ body {
 }
 
 :root[data-theme="dark"] .coming-soon-nav a,
+:root[data-theme="dark"] .coming-soon-nav button,
+:root[data-theme="dark"] .coming-soon-menu-toggle,
 :root[data-theme="dark"] .coming-soon-footer a,
 :root[data-theme="dark"] .coming-soon-hero h1,
 :root[data-theme="dark"] .coming-soon-section-heading h2,
@@ -904,6 +988,21 @@ body {
 :root[data-theme="dark"] .coming-soon-back-to-top {
   border-color: var(--brand-gold);
   background: var(--brand-navy);
+}
+
+@media (max-width: 640px) {
+  :root[data-theme="dark"] .coming-soon-header-actions {
+    background: rgba(16, 22, 20, 0.98);
+    border-color: rgba(237, 244, 240, .18);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+  }
+
+  :root[data-theme="dark"] .coming-soon-nav a:hover,
+  :root[data-theme="dark"] .coming-soon-nav a:focus-visible,
+  :root[data-theme="dark"] .coming-soon-nav button:hover,
+  :root[data-theme="dark"] .coming-soon-nav button:focus-visible {
+    background: rgba(237, 244, 240, .08);
+  }
 }
 
 .public-accessibility-page {
@@ -1008,11 +1107,21 @@ html[lang="ja"] .coming-soon-facts strong {
 }
 
 @media (max-width: 640px) {
-  .coming-soon-header { align-items: flex-start; }
-  .coming-soon-header-actions { display: contents; }
-  .coming-soon-preferences { order: 2; }
-  .coming-soon-language { margin-left: auto; }
-  .coming-soon-nav { order: 3; }
+  .coming-soon-preferences,
+  .coming-soon-language {
+    width: 100%;
+  }
+  .coming-soon-preferences {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .coming-soon-language {
+    justify-content: stretch;
+  }
+  .coming-soon-language button {
+    flex: 1;
+  }
   .coming-soon-preferences .accessibility-panel {
     position: fixed;
     top: 76px;

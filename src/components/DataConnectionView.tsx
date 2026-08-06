@@ -19,6 +19,7 @@ const templateHrefs = [
   "/templates/demo-scenarios/conservative-pilot-workflow.csv",
   "/templates/demo-scenarios/medium-pilot-workflow.csv",
   "/templates/demo-scenarios/strong-pilot-workflow.csv",
+  "/templates/tomo-pension-detailed-demo-input-sample.xlsx",
   "/templates/secure-pilot-upload-sample.xlsx",
   "/templates/verified-ai-gain-calculator-sample.xlsx",
   "/templates/pilot-workflow-metrics.csv",
