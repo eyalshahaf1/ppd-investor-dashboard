@@ -112,7 +112,7 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
       mark: {
         title: "The meaning behind our mark",
         body:
-          "The TOMO PENSION logo reflects trust, strength, renewal, and a future built together.\n\nDeep blue speaks of trust, dignity, and stability. Gold suggests light entering through a crack: a quiet reference to kintsugi, where repair is not hidden but made meaningful. Japan is not broken. It is a society facing deep change, and the colours reflect the belief that change can be met with care, courage, and renewal.\n\nTomo carries the idea of together. 共に未来をつくる means building the future together: a belief that value created by technology may also help strengthen the future of the people who make that progress possible."
+          "The mark is simple on purpose. It brings together two ideas: trust and shared progress.\n\nThe deep blue gives TOMO PENSION a serious base. The gold adds warmth. I also wanted a quiet reference to kintsugi, the Japanese practice of repairing pottery with gold. The point is not decline. It is about meeting change with care, and finding strength in what is repaired, adapted, and carried forward.\n\nTomo carries the idea of together. 共に未来をつくる means building the future together. For TOMO PENSION, that means asking whether some of the value created through technology can also support the long-term security of the people who help make that progress possible."
       },
       boundaries: {
         title: "Clear boundaries",
@@ -203,7 +203,7 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
       mark: {
         title: "ロゴに込めた意味",
         body:
-          "TOMO PENSIONのロゴには、信頼、強さ、再生、そして共に未来をつくるという思いが込められています。\n\n深い青は、信頼、品格、安定を表しています。金色は、ひびの間から差し込む光のようなものです。金継ぎのように、傷を隠すのではなく、受け止めながら、より強く、美しく意味のあるものへとつなぐ。日本が壊れているという意味ではありません。大きな変化に向き合う社会だからこそ、思いやりと勇気を持って未来を築いていけるという願いを込めています。\n\nTomoには「共に」という意味があります。共に未来をつくる。それは、技術が生み出す価値を企業だけの成果にせず、その進歩を支える人々の将来にもつなげていくという考えです。"
+          "このマークは、あえてシンプルにしています。信頼と、共に進むこと。その二つを重ねています。\n\n深い青は、TOMO PENSIONに落ち着いた土台を与えます。金色は、あたたかさを添える色です。そこには、壊れた器を金でつなぐ金継ぎへの静かな参照もあります。これは衰退を語るものではありません。変化に丁寧に向き合い、修復し、適応し、受け継いでいくものの中に強さを見いだすという考えです。\n\nTomoには「共に」という意味があります。共に未来をつくる。それは、技術が生み出す価値の一部を、その進歩を支える人々の長期的な安心にもつなげられないか、というTOMO PENSIONの問いです。"
       },
       boundaries: {
         title: "明確な役割の境界",
