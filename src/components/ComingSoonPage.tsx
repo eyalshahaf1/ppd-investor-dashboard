@@ -19,10 +19,11 @@ export function ComingSoonPage() {
     useState<AccessibilityPreferences>(defaultAccessibilityPreferences);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const copy = holdingPageContent[language];
   const labels = language === "ja"
-    ? { positioning: "TOMO PENSIONの考え方", facts: "日本の背景", how: "仕組み", first: "最初の一歩", about: "TOMOについて", boundaries: "境界", pilot: "パイロット", demo: "デモを見る", theme: "表示", menu: "Menu", demoLocked: "デモへのアクセスは、パスワード設定後に有効化します。" }
-    : { positioning: "TOMO PENSION's approach", facts: "Japan in context", how: "How it works", first: "First practical step", about: "About", boundaries: "Boundaries", pilot: "Pilot", demo: "Open the demonstration", theme: "Appearance", menu: "Menu", demoLocked: "Demo access will be enabled after password protection is configured." };
+    ? { positioning: "TOMO PENSIONの考え方", facts: "日本の背景", how: "仕組み", first: "最初の一歩", about: "TOMOについて", boundaries: "境界", pilot: "パイロット", demo: "デモを見る", theme: "表示", menu: "Menu", demoTitle: "デモへのアクセス", demoMessage: "詳細についてはお問い合わせください。", demoBody: "現在、インタラクティブデモは個別のご案内で提供しています。", demoContact: "メールで問い合わせる", close: "閉じる" }
+    : { positioning: "TOMO PENSION's approach", facts: "Japan in context", how: "How it works", first: "First practical step", about: "About", boundaries: "Boundaries", pilot: "Pilot", demo: "Open the demonstration", theme: "Appearance", menu: "Menu", demoTitle: "Demo access", demoMessage: "Please contact for more information.", demoBody: "The interactive demonstration is currently available by request while access protection is being prepared.", demoContact: "Contact by email", close: "Close" };
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem("ppd-theme");
@@ -48,13 +49,14 @@ export function ComingSoonPage() {
   }, []);
 
   useEffect(() => {
-    if (!isMobileMenuOpen) return;
+    if (!isMobileMenuOpen && !isDemoModalOpen) return;
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setIsMobileMenuOpen(false);
+      if (event.key === "Escape") setIsDemoModalOpen(false);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, isDemoModalOpen]);
 
   useEffect(() => {
     document.documentElement.dataset.theme = themeMode;
@@ -105,6 +107,11 @@ export function ComingSoonPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function handleDemoRequest() {
+    setIsMobileMenuOpen(false);
+    setIsDemoModalOpen(true);
+  }
+
   return (
     <main className="coming-soon-page" lang={language}>
       <header className="coming-soon-header">
@@ -141,11 +148,9 @@ export function ComingSoonPage() {
             <a href="#pilot" onClick={(event) => handleSectionNavigation(event, "pilot")}>{labels.pilot}</a>
             <a href="#boundaries" onClick={(event) => handleSectionNavigation(event, "boundaries")}>{labels.boundaries}</a>
             <button
-              className="coming-soon-demo-disabled"
+              className="coming-soon-demo-request"
               type="button"
-              aria-disabled="true"
-              title={labels.demoLocked}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={handleDemoRequest}
             >
               {labels.demo}
             </button>
@@ -293,6 +298,34 @@ export function ComingSoonPage() {
         </div>
       </footer>
       <CookieConsent language={language} />
+      {isDemoModalOpen ? (
+        <div
+          className="coming-soon-modal-backdrop"
+          role="presentation"
+          onClick={() => setIsDemoModalOpen(false)}
+        >
+          <section
+            className="coming-soon-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="coming-soon-demo-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="coming-soon-modal-close"
+              type="button"
+              onClick={() => setIsDemoModalOpen(false)}
+              aria-label={labels.close}
+            >
+              ×
+            </button>
+            <p className="coming-soon-section-kicker">{labels.demoTitle}</p>
+            <h2 id="coming-soon-demo-modal-title">{labels.demoMessage}</h2>
+            <p>{labels.demoBody}</p>
+            <a href={copy.primaryCTALink}>{labels.demoContact}</a>
+          </section>
+        </div>
+      ) : null}
       {showBackToTop ? (
         <button
           className="coming-soon-back-to-top"
