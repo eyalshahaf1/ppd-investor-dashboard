@@ -235,7 +235,7 @@ export function ComingSoonPage() {
 
       <section className="coming-soon-content-section coming-soon-measure" aria-labelledby="measure-title">
         <div className="coming-soon-section-heading"><p className="coming-soon-section-kicker">{labels.how}</p><h2 id="measure-title">{copy.sections.measure.title}</h2></div>
-        <div className="coming-soon-item-grid">{copy.sections.measure.items?.map((item, index) => <article key={item.title}><span className="coming-soon-step-dot">{index + 1}</span><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
+        <div className="coming-soon-item-grid">{copy.sections.measure.items?.map((item, index) => <article key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
         <p className="coming-soon-rule">{copy.boundaryLine}</p>
       </section>
 

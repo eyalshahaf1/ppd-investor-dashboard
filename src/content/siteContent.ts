@@ -116,7 +116,7 @@ export const holdingPageContent: Record<SiteLanguage, HoldingPageContent> = {
         ]
       },
       pilot: {
-        title: "One employer. One measurable AI-enabled workflow. One transparent Evidence Sprint.",
+        title: "One employer.\nOne measurable AI-enabled workflow.\nOne transparent Evidence Sprint.",
         body: "A pension deposit is not required to prove the first product."
       }
     },
