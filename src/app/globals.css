@@ -1225,6 +1225,110 @@ html[lang="ja"] .coming-soon-facts strong {
   }
 }
 
+@media (max-width: 640px) {
+  .coming-soon-page {
+    padding: 14px 18px 26px;
+  }
+
+  .coming-soon-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px 12px;
+    padding-block: 8px;
+  }
+
+  .coming-soon-logo-frame {
+    width: clamp(104px, 32vw, 118px);
+    justify-self: start;
+  }
+
+  .coming-soon-menu-toggle {
+    min-height: 38px;
+    justify-self: end;
+    gap: 6px;
+    padding: 7px 10px;
+    font-size: 10px;
+    letter-spacing: .08em;
+  }
+
+  .coming-soon-menu-lines {
+    width: 15px;
+    gap: 3px;
+  }
+
+  .coming-soon-header-actions {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
+    max-width: none;
+    gap: 10px;
+    border-radius: 16px;
+    padding: 12px;
+  }
+
+  .coming-soon-header-actions .coming-soon-nav {
+    gap: 6px;
+  }
+
+  .coming-soon-nav a,
+  .coming-soon-nav button {
+    min-height: 40px;
+    justify-content: center;
+    border: 1px solid rgba(0, 35, 76, 0.08);
+    padding: 8px 10px;
+    font-size: 13px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .coming-soon-preferences {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .coming-soon-theme-toggle,
+  .coming-soon-preferences .accessibility-settings summary {
+    min-height: 40px;
+    padding: 8px 11px;
+    font-size: 12px;
+  }
+
+  .coming-soon-preferences .accessibility-settings {
+    justify-self: end;
+  }
+
+  .coming-soon-language {
+    width: min(150px, 100%);
+    justify-self: center;
+    gap: 3px;
+    padding: 3px;
+  }
+
+  .coming-soon-language button {
+    min-height: 38px;
+    padding: 7px 10px;
+    font-size: 12px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .coming-soon-logo-frame {
+    width: 102px;
+  }
+
+  .coming-soon-nav a,
+  .coming-soon-nav button {
+    font-size: 12px;
+  }
+
+  .coming-soon-language {
+    width: 138px;
+  }
+}
+
 :root[data-theme="dark"] body {
   background: linear-gradient(180deg, rgba(63, 197, 170, 0.13), rgba(16, 22, 20, 0) 330px), var(--bg);
 }
