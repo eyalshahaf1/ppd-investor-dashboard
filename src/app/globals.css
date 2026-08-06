@@ -593,7 +593,7 @@ body {
 .coming-soon-page {
   display: flex;
   flex-direction: column;
-  gap: clamp(48px, 8vw, 112px);
+  gap: clamp(40px, 6vw, 82px);
   padding: clamp(20px, 4vw, 56px);
   background: #fff;
   color: #17201d;
@@ -604,6 +604,7 @@ body {
 .coming-soon-story-block,
 .coming-soon-content-section,
 .coming-soon-founder,
+.coming-soon-mark,
 .coming-soon-cta,
 .coming-soon-footer {
   width: min(1180px, 100%);
@@ -805,7 +806,7 @@ body {
 }
 
 @media (max-width: 640px) {
-  .coming-soon-page { gap: 58px; padding: 18px 20px 28px; }
+  .coming-soon-page { gap: 48px; padding: 18px 20px 28px; }
   .coming-soon-header { gap: 12px; flex-wrap: wrap; align-items: center; }
   .coming-soon-logo-frame { width: 135px; }
   .coming-soon-menu-toggle {
