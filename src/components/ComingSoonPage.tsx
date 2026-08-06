@@ -244,7 +244,7 @@ export function ComingSoonPage() {
         </div>
       </section>
 
-      <section className="coming-soon-mark" aria-labelledby="mark-title">
+      <section className="coming-soon-mark-section" aria-labelledby="mark-title">
         <div className="coming-soon-mark-logo" aria-hidden="true">
           <img src="/brand/tomo/logo-horizontal.png" alt="" />
         </div>
